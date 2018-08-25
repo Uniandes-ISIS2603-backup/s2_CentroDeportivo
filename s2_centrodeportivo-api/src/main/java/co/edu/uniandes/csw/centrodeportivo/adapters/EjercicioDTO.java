@@ -6,9 +6,27 @@
 package co.edu.uniandes.csw.centrodeportivo.adapters;
 
 /**
- *
+ *aa
  * @author estudiante
  */
-public class EjercicioDTO {
+public class EjercicioDTO 
+{
+    private Long id;
     
+    private String name;
+    
+    public EjercicioDTO()
+    {
+        
+    }
+    
+    public EjercicioDTO(EjercicioEntity ejercicio)
+    {
+        
+    }
+
+    public EjercicioEntity toEntity()
+    {
+        return null;
+    }
 }

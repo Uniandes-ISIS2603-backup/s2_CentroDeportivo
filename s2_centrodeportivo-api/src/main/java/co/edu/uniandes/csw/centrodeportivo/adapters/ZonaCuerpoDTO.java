@@ -6,9 +6,33 @@
 package co.edu.uniandes.csw.centrodeportivo.adapters;
 
 /**
- *
+ *aa
  * @author estudiante
  */
-public class ZonaCuerpoDTO {
+public class ZonaCuerpoDTO 
+{
+    
+    private Long id;
+    
+    private String name;
+    
+    public ZonaCuerpoDTO()
+    {
+        
+    }
+    
+    public ZonaCuerpoDTO(ZonaCuerpoEntity zonaDelCuerpo)
+    {
+        
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ZonaCuerpoEntity toEntity()
+    {
+        return null;
+    }
     
 }

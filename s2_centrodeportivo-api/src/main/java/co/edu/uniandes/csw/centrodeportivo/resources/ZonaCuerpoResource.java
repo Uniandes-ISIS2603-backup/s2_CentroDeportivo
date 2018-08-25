@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 /**
- *
+ *aa
  * @author estudiante
  */
 public class ZonaCuerpoResource 
@@ -18,4 +18,5 @@ public class ZonaCuerpoResource
         return null;
     }
    
+    
 }
