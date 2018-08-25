@@ -9,6 +9,13 @@ package co.edu.uniandes.csw.centrodeportivo.resources;
  *
  * @author estudiante
  */
-public class ZonaCuerpoResource {
+public class ZonaCuerpoResource 
+{
+    private String nombre;
     
+    public ZonaCuerpoResourceDTO crearZonaCuerpoResource(ZonaCuerpoResourceDTO zonaDelCuerpoDTO)
+    {
+        return null;
+    }
+   
 }
