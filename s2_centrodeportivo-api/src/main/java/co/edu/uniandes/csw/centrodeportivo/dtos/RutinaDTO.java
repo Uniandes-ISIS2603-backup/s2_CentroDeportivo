@@ -10,5 +10,16 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
  * @author estudiante
  */
 public class RutinaDTO {
+    private String nombre;
+    private boolean estadoTerminado;
+    
+    public RutinaDTO()
+    {
+        
+    }
+    public boolean getEstado(String pNombre)
+    {
+        return true;
+    }
     
 }
