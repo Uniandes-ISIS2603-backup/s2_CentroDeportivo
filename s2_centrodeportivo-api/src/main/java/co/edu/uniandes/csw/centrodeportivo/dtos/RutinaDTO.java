@@ -24,7 +24,7 @@ public class RutinaDTO {
     private Long id;
     private String nombre;
     private boolean estadoTerminado;
-    @POST
+   
     public RutinaDTO()
     {
         
