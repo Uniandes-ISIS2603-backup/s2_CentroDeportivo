@@ -19,9 +19,11 @@ import javax.ws.rs.Produces;
 @Consumes("aplication/json")
 @RequestScoped
 public class EspecialistaDTO {
+    private Long identificador;
     private int id;
     private String nombre;
     private String especialidad;
+    
     public EspecialistaDTO()
     {
         
