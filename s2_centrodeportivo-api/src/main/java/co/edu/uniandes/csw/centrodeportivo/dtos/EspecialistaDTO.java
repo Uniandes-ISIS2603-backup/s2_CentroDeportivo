@@ -5,6 +5,11 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
 /**
  *
  * @author Francisco Jose MacAllister
