@@ -4,11 +4,24 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
+import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDTO;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.*;
+
 
 /**
  *
- * @author estudiante
+ * @author dy.quintero
  */
+@Path("maquinas")
+@Produces("maquina/json")
+@Consumes("maquina/json")
+@RequestScoped
 public class MaquinaResource {
     
+    @POST
+    public MaquinaDTO createCentroDeportivo(MaquinaDTO maquina)
+    {
+        return maquina;
+    }
 }
