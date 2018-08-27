@@ -7,8 +7,11 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -23,15 +26,25 @@ public class EspecialistaDTO {
     private int id;
     private String nombre;
     private String especialidad;
-    
+    @POST
     public EspecialistaDTO()
     {
         
     }
+    @GET
+    @Path("(especialistaId: \\d+")
+    public EspecialistaDTO getEspecialista(@PathParam("especialistaId") Long especialistaId) throws WebApplicationException{
+        return null;
+    }
+    {
+        
+    }
+    @GET
     public String getNombre(int pIdentificador)
     {
         return null;
     }
+    @GET
     public String getEspecialidad(int pIdentificador)
     {
         return null;
