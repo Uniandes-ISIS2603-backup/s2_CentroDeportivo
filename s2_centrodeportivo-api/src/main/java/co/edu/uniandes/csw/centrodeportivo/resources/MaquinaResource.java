@@ -13,6 +13,7 @@ import javax.ws.rs.*;
  *
  * @author dy.quintero
  */
+@Path("maquinas")
 @Produces("maquina/json")
 @Consumes("maquina/json")
 @RequestScoped
