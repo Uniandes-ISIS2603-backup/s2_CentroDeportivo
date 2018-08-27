@@ -7,8 +7,12 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 /**
  *
- * @author estudiante
+ * @author Francisco Jose MacAllister
  */
+@Path("especialista")
+@Produces("aplication/json")
+@Consumes("aplication/json")
+@RequestScoped
 public class EspecialistaDTO {
     private int id;
     private String nombre;
