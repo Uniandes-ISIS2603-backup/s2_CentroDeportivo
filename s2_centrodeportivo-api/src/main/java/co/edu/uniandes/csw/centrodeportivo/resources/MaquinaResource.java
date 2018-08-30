@@ -14,8 +14,8 @@ import javax.ws.rs.*;
  * @author dy.quintero
  */
 @Path("maquinas")
-@Produces("maquina/json")
-@Consumes("maquina/json")
+@Produces("application/json")
+@Consumes("application/json")
 @RequestScoped
 public class MaquinaResource {
     
@@ -23,5 +23,13 @@ public class MaquinaResource {
     public MaquinaDTO createCentroDeportivo(MaquinaDTO maquina)
     {
         return maquina;
+    }
+    
+    
+    @GET
+    @Path("{maquinasId: \\d+}")
+    public MaquinaDTO getMaquina(@PathParam("maquinasId") Long maquinasId) {
+       
+        return new MaquinaDTO();
     }
 }
