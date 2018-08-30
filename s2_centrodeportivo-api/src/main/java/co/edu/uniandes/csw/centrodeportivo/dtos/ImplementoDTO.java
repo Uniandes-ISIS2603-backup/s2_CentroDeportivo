@@ -5,10 +5,39 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author estudiante
  */
-public class ImplementoDTO {
+public class ImplementoDTO implements Serializable {
     
+    public Long id;
+    public String nombre;
+    
+    public ImplementoDTO()
+    {
+        
+    }
+    
+    public Long getId()
+    {
+        return id;
+    }
+    
+    public String getNombre()
+    {
+        return nombre;
+    }
+    
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+    
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
 }
