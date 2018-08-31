@@ -5,34 +5,54 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import java.io.Serializable;
+
 /**
  *aa
- * @author estudiante
+ * @author Daniel Pardo
  */
-public class ZonaCuerpoDTO 
+public class ZonaCuerpoDTO implements Serializable 
 {
-    
-    private Long id;
-    
-    private String name;
-    
-    public ZonaCuerpoDTO()
-    {
-        
-    }
-    
-    public ZonaCuerpoDTO(ZonaCuerpoEntity zonaDelCuerpo)
-    {
-        
-    }
-
     /**
-     *
-     * @return
+     * Id de la zona del cuerpo
      */
-    public ZonaCuerpoEntity toEntity()
-    {
-        return null;
+    private Long id;
+    /**
+     * Nombre de la zona del cuerpo
+     */
+    private String nombre;
+    
+    
+    //Metodos
+    
+    /**
+     * Metodo que retorna el id unico de la zona del cuerpo
+     *
+     * @return Id unico de la zona del cuerpo
+     */
+    public Long getId() {
+        return id;
     }
+    
+    /**
+     * Metodo que retorna el nombre de la zona del cuerpo
+     *
+     * @return el nombre de la zona del cuerpo
+     */
+    public String getNombre( )
+    {
+        return nombre;
+    }
+    
+    /**
+     * Actualizalos datos de la zona del cuerpo
+     *
+     * @param pNombre - Nuevo nombre
+     */
+    public void actualizarZonaCuerpo(String pNombre ) {
+        this.nombre = pNombre;
+        
+    }
+    
     
 }

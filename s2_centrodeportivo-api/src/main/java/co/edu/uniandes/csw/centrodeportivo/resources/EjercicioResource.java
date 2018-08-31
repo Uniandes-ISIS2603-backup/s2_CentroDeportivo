@@ -4,39 +4,33 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
-
+import co.edu.uniandes.csw.centrodeportivo.dtos.EjercicioDTO;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.*;
 /**
  *aa
- * @author estudiante
+ * @author Daniel Pardo
  */
+@Path("ejercicio")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
 public class EjercicioResource {
     
-    public static final String TIPO_AEROBICO = "aerobico";
+    @POST
+    public EjercicioDTO createEjercicio(EjercicioDTO ejercicio)
+    {
+        return ejercicio;
+    }
     
-    public static final String TIPO_ANAEROBICO = "anaerobico";
-
-    public static final String TIPO_FEXIBILIDAD = "flexibilidad";
-    
-    public static final String TIPO_EQUILIBRIO = "equilibrio";
-    
-    public static final String TIPO_RELAJACION = "relajacion";
-    
-    public static final String TIPO_TONIFICACION = "tonificacion";
-    
-    private String nombre;
-    
-    private String categoria;
-    
-    private int duracion;
-    
-    private int numeroDeSeries;
-    
-    private String descripcion;
-    
-    private String explicacion;
-    
-    public EjercicioDTO crearEjercicio(EjercicioDTO ejercicioDTO)
+    @GET
+    @Path("(maquinasId:\\d+)")
+    public EjercicioDTO getEjercicio()
     {
         return null;
     }
+
+   
+    
+
 }

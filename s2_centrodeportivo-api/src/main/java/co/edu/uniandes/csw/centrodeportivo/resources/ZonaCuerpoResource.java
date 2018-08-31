@@ -5,18 +5,30 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
+import co.edu.uniandes.csw.centrodeportivo.dtos.ZonaCuerpoDTO;
+import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
 /**
- *aa
- * @author estudiante
+ *
+ * @author Daniel Pardo
  */
-public class ZonaCuerpoResource 
+@Path("zonaCuerpo")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
+public class ZonaCuerpoResource  
 {
-    private String nombre;
-    
-    public ZonaCuerpoResourceDTO crearZonaCuerpoResource(ZonaCuerpoResourceDTO zonaDelCuerpoDTO)
+    @POST
+    public ZonaCuerpoDTO createZonaCuerpo(ZonaCuerpoDTO zona)
     {
-        return null;
+        return zona;
     }
+
    
     
 }
