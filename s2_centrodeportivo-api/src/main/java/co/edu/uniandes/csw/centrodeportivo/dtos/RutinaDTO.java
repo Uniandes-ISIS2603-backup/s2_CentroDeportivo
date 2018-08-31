@@ -5,23 +5,15 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
 
 /**
  *
- * @author estudiante
+ * @author Francisco Jose MacAllister
  */
-@Path("rutina")
-@Produces("aplication/json")
-@Consumes("aplication/json")
-@RequestScoped
 public class RutinaDTO {
     private Long id;
+    private int identificadorRutina;
     private String nombre;
     private boolean estadoTerminado;
    
@@ -29,10 +21,29 @@ public class RutinaDTO {
     {
         
     }
-    @GET
-    public boolean getEstado(String pNombre)
-    {
-        return true;
+
+    public int getIdentificadorRutina() {
+        return identificadorRutina;
+    }
+
+    public void setIdentificadorRutina(int identificadorRutina) {
+        this.identificadorRutina = identificadorRutina;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean isEstadoTerminado() {
+        return estadoTerminado;
+    }
+
+    public void setEstadoTerminado(boolean estadoTerminado) {
+        this.estadoTerminado = estadoTerminado;
     }
     
 }

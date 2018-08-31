@@ -18,10 +18,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author Francisco Jose MacAllister
  */
-@Path("especialista")
-@Produces("aplication/json")
-@Consumes("aplication/json")
-@RequestScoped
+
 public class EspecialistaDTO {
     private Long identificador;
     private int id;
@@ -32,24 +29,30 @@ public class EspecialistaDTO {
     {
         
     }
-    @GET
-    @Path("(especialistaId: \\d+")
-    public EspecialistaDTO getEspecialista(@PathParam("especialistaId") Long especialistaId) throws WebApplicationException{
-        return null;
+
+    public int getId() {
+        return id;
     }
-    {
-        
+
+    public void setId(int id) {
+        this.id = id;
     }
-    @GET
-    public String getNombre(int pIdentificador)
-    {
-        return null;
+
+    public String getNombre() {
+        return nombre;
     }
-    @GET
-    public String getEspecialidad(int pIdentificador)
-    {
-        return null;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-    
-    
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+   
+   
 }
