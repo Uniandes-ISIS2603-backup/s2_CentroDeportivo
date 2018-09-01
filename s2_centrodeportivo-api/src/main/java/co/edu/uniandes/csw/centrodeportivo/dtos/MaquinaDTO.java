@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class MaquinaDTO implements Serializable{
     
     private Long id;
+    private String nombre;
     private double calorias;
     private int tiempo;
     private double velocidad;
@@ -27,6 +28,7 @@ public class MaquinaDTO implements Serializable{
     /**
     *
     * Id unico de una maquina
+     * @return 
     */
     public Long getId(){
         return id;
@@ -64,10 +66,27 @@ public class MaquinaDTO implements Serializable{
     public double getVelocidadPromedio(){
         return velocidadPromedio;
     }
+    /**
+    * Metodo que devuelve el nombre de la maquina
+    * @return la velocidad promedio
+    */
+    public String getNombre() {
+        return nombre;
+    }
+
+     /**
+    *
+    * Metodo que cambia el nombre de la maquina
+     * @param nombre
+    */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
     /**
     *
     * Metodo que cambia la cantidad de calorias
+     * @param pCalorias
     */
     public void setCalorias( double pCalorias ){
         this.calorias = pCalorias;
@@ -76,6 +95,7 @@ public class MaquinaDTO implements Serializable{
     /**
     *
     * Metodo que cambia el tiempo
+     * @param pTiempo
     */
     public void setTiempo( int pTiempo ){
         this.tiempo = pTiempo;
@@ -84,6 +104,7 @@ public class MaquinaDTO implements Serializable{
     /**
     *
     * Metodo que cambia la velocidad
+     * @param pVelocidad
     */
     public void setVelocidad( double pVelocidad )
     {
@@ -93,6 +114,7 @@ public class MaquinaDTO implements Serializable{
     /**
     *
     * Metodo que cambia la velocidad promedio
+     * @param pVelocidadPromedio
     */
     public void setVelocidadPromedio( double pVelocidadPromedio ){
         this.velocidadPromedio = pVelocidadPromedio;

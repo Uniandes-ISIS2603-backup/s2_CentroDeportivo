@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
 import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDTO;
+import java.util.Collection;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 
@@ -25,11 +26,30 @@ public class MaquinaResource {
         return maquina;
     }
     
+    @GET
+    public Collection<MaquinaDTO> getMaquinas()
+    {
+        return null;
+    }
     
     @GET
     @Path("{maquinasId: \\d+}")
     public MaquinaDTO getMaquina(@PathParam("maquinasId") Long maquinasId) {
        
-        return new MaquinaDTO();
+        return null;
+    }
+    
+    @PUT
+    @Path("{maquinasId: \\d+}")
+    public MaquinaDTO actualizarAtributos(@PathParam("maquinasId") Long maquinasId)
+    {
+        return null;
+    }
+    
+    @DELETE
+    @Path("{maquinasId: \\d+}")
+    public MaquinaDTO eliminarMaquina(@PathParam("maquinasId") Long maquinasId)
+    {
+       return null; 
     }
 }
