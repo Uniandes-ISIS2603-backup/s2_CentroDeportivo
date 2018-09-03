@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author estudiante
  */
-public class ZonaCuerpoEntity 
+public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
 {
     private String nombre;
     
