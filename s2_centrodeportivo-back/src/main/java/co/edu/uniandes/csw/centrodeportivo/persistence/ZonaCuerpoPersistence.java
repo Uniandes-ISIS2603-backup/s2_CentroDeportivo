@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.persistence;
 
-import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.util.List;
 import java.util.logging.Level;
