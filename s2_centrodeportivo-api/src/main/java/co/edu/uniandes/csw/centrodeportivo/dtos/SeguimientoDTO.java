@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author estudiante
+ * @author Lina Cardozo
  */
 public class SeguimientoDTO implements Serializable {
     
