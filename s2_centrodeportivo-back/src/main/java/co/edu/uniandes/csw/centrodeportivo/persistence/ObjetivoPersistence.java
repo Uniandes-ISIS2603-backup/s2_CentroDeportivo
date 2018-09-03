@@ -21,9 +21,9 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ObjetivoPersistence {
-       private static final Logger LOGGER = Logger.getLogger(ObjetivoPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ObjetivoPersistence.class.getName());
 
-    @PersistenceContext(unitName = "centroDeportivoPU")
+    @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
     
     /**

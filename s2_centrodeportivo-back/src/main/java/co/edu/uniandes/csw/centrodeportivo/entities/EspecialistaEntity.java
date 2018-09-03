@@ -3,27 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.centrodeportivo.dtos;
+package co.edu.uniandes.csw.centrodeportivo.entities;
 
-
+import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
- * @author Francisco Jose MacAllister
+ * @authorFrancisco Jose MacAllister
  */
-
-public class EspecialistaDTO {
-    private Long identificador;
-    private int id;
+@Entity
+public class EspecialistaEntity extends BaseEntity implements Serializable {
+     private int id;
     private String nombre;
     private String especialidad;
-    
-    public EspecialistaDTO()
-    {
-        
-    }
 
-    public int getId() {
+    public int getIdentificador() {
         return id;
     }
 
@@ -46,6 +41,4 @@ public class EspecialistaDTO {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-   
-   
 }
