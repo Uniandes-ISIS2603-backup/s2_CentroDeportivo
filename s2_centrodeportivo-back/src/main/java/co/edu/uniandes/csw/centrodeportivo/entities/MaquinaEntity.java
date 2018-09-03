@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author dy.quintero
  */
+@Entity
 public class MaquinaEntity extends BaseEntity implements Serializable {
     
     private String nombre;

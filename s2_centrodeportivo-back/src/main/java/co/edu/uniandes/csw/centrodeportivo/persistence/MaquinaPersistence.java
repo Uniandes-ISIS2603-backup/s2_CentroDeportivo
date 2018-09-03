@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author estudiante
+ * @author dy.quintero
  */
 public class MaquinaPersistence 
 {

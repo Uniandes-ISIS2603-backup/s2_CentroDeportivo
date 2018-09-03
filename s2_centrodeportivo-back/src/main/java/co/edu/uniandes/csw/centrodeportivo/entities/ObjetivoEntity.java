@@ -21,7 +21,6 @@ import javax.persistence.Entity;
  * @author Leidy Romero  *
  */
 @Entity
-
 public class ObjetivoEntity extends BaseEntity implements Serializable {
 
     private String descripcion;
