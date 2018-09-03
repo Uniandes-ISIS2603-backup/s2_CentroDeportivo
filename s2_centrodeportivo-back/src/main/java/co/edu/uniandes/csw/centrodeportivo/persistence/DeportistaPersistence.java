@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class DeportistaPersistence {
-    private static final Logger LOGGER = Logger.getLogger(DeportistaEntity.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(DeportistaPersistence.class.getName());
 
     @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
