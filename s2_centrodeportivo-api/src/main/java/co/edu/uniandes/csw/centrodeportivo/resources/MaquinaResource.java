@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
 import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDTO;
+import java.io.Serializable;
 import java.util.Collection;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
@@ -18,7 +19,7 @@ import javax.ws.rs.*;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class MaquinaResource {
+public class MaquinaResource implements Serializable{
     
     @POST
     public MaquinaDTO createCentroDeportivo(MaquinaDTO maquina)
@@ -48,8 +49,8 @@ public class MaquinaResource {
     
     @DELETE
     @Path("{maquinasId: \\d+}")
-    public MaquinaDTO eliminarMaquina(@PathParam("maquinasId") Long maquinasId)
+    public void eliminarMaquina(@PathParam("maquinasId") Long maquinasId)
     {
-       return null; 
+  
     }
 }
