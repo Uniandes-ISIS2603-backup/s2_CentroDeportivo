@@ -15,10 +15,10 @@ public class MaquinaDTO implements Serializable{
     
     private Long id;
     private String nombre;
-    private double calorias;
-    private int tiempo;
-    private double velocidad;
-    private double velocidadPromedio;
+    private Double calorias;
+    private Integer tiempo;
+    private Double velocidad;
+    private Double velocidadPromedio;
     
     public MaquinaDTO()
     {
@@ -38,7 +38,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que devuelve las calorias quemadas en la maquina
     * @return calorias quemadas en la maquina
     */
-    public double getCalorias(){
+    public Double getCalorias(){
         return calorias;
     }
     
@@ -46,7 +46,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que devuelve el tiempo de uso de la maquina
     * @return tiempo de uso de la maquina
     */
-    public int getTiempo(){
+    public Integer getTiempo(){
         return tiempo;
     }
     
@@ -54,7 +54,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que devuelve la velocidad alcanzada en la la maquina
     * @return velocidad alcanzada en la maquina
     */
-    public double getVelocidad()
+    public Double getVelocidad()
     {
         return velocidad;
     }
@@ -63,7 +63,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que devuelve la velocidad promedio
     * @return la velocidad promedio
     */
-    public double getVelocidadPromedio(){
+    public Double getVelocidadPromedio(){
         return velocidadPromedio;
     }
     /**
@@ -88,7 +88,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que cambia la cantidad de calorias
      * @param pCalorias
     */
-    public void setCalorias( double pCalorias ){
+    public void setCalorias( Double pCalorias ){
         this.calorias = pCalorias;
     }
     
@@ -97,7 +97,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que cambia el tiempo
      * @param pTiempo
     */
-    public void setTiempo( int pTiempo ){
+    public void setTiempo( Integer pTiempo ){
         this.tiempo = pTiempo;
     }
     
@@ -106,7 +106,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que cambia la velocidad
      * @param pVelocidad
     */
-    public void setVelocidad( double pVelocidad )
+    public void setVelocidad( Double pVelocidad )
     {
         this.velocidad = pVelocidad;
     }
@@ -116,7 +116,7 @@ public class MaquinaDTO implements Serializable{
     * Metodo que cambia la velocidad promedio
      * @param pVelocidadPromedio
     */
-    public void setVelocidadPromedio( double pVelocidadPromedio ){
+    public void setVelocidadPromedio( Double pVelocidadPromedio ){
         this.velocidadPromedio = pVelocidadPromedio;
     }        
 }   
