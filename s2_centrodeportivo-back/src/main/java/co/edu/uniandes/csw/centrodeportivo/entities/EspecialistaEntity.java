@@ -14,7 +14,8 @@ import javax.persistence.Entity;
  */
 @Entity
 public class EspecialistaEntity extends BaseEntity implements Serializable {
-     private int id;
+  
+    private int id;
     private String nombre;
     private String especialidad;
 

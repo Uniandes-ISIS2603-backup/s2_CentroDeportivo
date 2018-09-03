@@ -24,6 +24,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private Double medidaPiernas;
     private Double medidaCintura;
     private Double medidaBrazos;
+ 
     private Integer cedula;
     private Date ultimaActualizacionDatos;
     private Date fechaNacimiento;

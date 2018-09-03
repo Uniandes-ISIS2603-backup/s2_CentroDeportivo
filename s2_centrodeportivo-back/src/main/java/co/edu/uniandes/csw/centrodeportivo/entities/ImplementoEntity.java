@@ -14,11 +14,11 @@ import javax.persistence.Id;
  * @author Lina Cardozo
  */
 @Entity
-public class ImplementoEntity implements Serializable {
+public class ImplementoEntity extends BaseEntity implements Serializable {
     
     private static final long serialVersionUID =1L;
     
-    @Id
+    
     private Long id;
     
     private String nombre;
