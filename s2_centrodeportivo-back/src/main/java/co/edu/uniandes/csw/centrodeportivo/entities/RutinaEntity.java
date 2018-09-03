@@ -13,16 +13,18 @@ import javax.persistence.Entity;
  * @author Francisco Jose MacAllister
  */
 @Entity
-public class RutinaEntity implements Serializable {
-     private int identificadorRutina;
+public class RutinaEntity extends BaseEntity implements Serializable {
+    
+   
+    private Long identificadorRutina;
     private String nombre;
     private boolean estadoTerminado;
 
-    public int getIdentificadorRutina() {
+    public long getIdentificadorRutina() {
         return identificadorRutina;
     }
 
-    public void setIdentificadorRutina(int identificadorRutina) {
+    public void setIdentificadorRutina(Long identificadorRutina) {
         this.identificadorRutina = identificadorRutina;
     }
 

@@ -13,12 +13,13 @@ import javax.persistence.Entity;
  * @authorFrancisco Jose MacAllister
  */
 @Entity
-public class EspecialistaEntity implements Serializable {
-     private int id;
+public class EspecialistaEntity extends BaseEntity implements Serializable {
+  
+    private int id;
     private String nombre;
     private String especialidad;
 
-    public int getId() {
+    public int getIdentificador() {
         return id;
     }
 
