@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * @author Francisco Jose MacAllister
  */
 @Entity
-public class RutinaEntity implements Serializable {
+public class RutinaEntity extends BaseEntity implements Serializable {
      private int identificadorRutina;
     private String nombre;
     private boolean estadoTerminado;
