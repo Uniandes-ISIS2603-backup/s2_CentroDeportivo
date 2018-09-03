@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.ludis.test.persistence;
+package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EspecialistaPersistence;

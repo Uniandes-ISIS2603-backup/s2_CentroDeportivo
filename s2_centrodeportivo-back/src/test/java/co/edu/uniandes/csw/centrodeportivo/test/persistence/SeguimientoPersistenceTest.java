@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.s2_ludis.test.persistance;
+package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author estudiante
  */
-public class SeguimientoPersistanceTest {
+public class SeguimientoPersistenceTest {
     
-    public SeguimientoPersistanceTest() {
+    public SeguimientoPersistenceTest() {
         
     }
     
