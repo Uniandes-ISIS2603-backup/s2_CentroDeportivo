@@ -10,7 +10,10 @@
     <packaging>pom</packaging>
     <name>s2_ludis</name>
  
-    <modules></modules>
+    <modules>
+        <module>s2_centrodeportivo-api</module>
+        <module>s2_centrodeportivo-back</module>
+    </modules>
     
     <repositories>
         <repository>
