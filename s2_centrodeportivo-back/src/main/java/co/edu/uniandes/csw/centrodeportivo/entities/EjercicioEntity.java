@@ -12,9 +12,7 @@ import java.io.Serializable;
  * @author estudiante
  */
 public class EjercicioEntity extends BaseEntity implements Serializable
-{
-    private Long id;
-    
+{    
     private String nombre;
     
     private String categoria;
@@ -27,14 +25,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     
     private String explicacion;
    
-    
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     public String getNombre() {
         return nombre;
     }

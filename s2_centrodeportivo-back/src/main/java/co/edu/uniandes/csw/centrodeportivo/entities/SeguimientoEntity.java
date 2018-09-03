@@ -19,7 +19,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID =1L;
     
    
-    private Long id;
+
     private Integer tiempo;
     private Double calorias;
     private Double velocidadPromedio;
@@ -30,10 +30,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
         
     }
 
-    public Long getId() 
-    {
-        return id;
-    }
+
     
     public Integer getTiempo()
     {

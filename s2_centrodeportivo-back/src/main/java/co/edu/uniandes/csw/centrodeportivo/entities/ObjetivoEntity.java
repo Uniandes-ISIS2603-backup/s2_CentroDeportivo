@@ -24,10 +24,6 @@ import javax.persistence.Entity;
 
 public class ObjetivoEntity extends BaseEntity implements Serializable {
 
-    
-   
-    private Long id;
-    
     private String descripcion;
 
     private Boolean cumplio;
@@ -81,13 +77,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
         this.fechaLimite = pFechaLimite;
     }
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+ 
     
 
 }

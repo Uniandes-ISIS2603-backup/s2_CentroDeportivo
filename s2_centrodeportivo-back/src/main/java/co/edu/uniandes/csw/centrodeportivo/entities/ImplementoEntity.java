@@ -18,30 +18,19 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     
     private static final long serialVersionUID =1L;
     
-    
-    private Long id;
-    
     private String nombre;
     
     public ImplementoEntity()
     {
         
     }
-    
-    public Long getId()
-    {
-        return id;
-    }
-    
+  
     public String getNombre()
     {
         return nombre;
     }
     
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
+    
     
     public void setNombre(String nombre)
     {
