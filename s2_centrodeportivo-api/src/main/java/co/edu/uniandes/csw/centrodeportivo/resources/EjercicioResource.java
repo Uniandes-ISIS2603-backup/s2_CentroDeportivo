@@ -24,7 +24,7 @@ public class EjercicioResource {
     }
     
     @GET
-    @Path("(maquinasId:\\d+)")
+    @Path("(ejercicioId:\\d+)")
     public EjercicioDTO getEjercicio()
     {
         return null;

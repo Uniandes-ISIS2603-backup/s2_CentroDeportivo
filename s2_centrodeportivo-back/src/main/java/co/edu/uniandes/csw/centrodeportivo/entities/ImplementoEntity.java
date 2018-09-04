@@ -7,30 +7,34 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
- * @author Francisco Jose MacAllister
+ * @author Lina Cardozo
  */
 @Entity
-public class RutinaEntity extends BaseEntity implements Serializable {
+public class ImplementoEntity extends BaseEntity implements Serializable {
+    
+    private static final long serialVersionUID =1L;
     
     private String nombre;
-    private boolean estadoTerminado;
-
-    public String getNombre() {
+    
+    public ImplementoEntity()
+    {
+        
+    }
+  
+    public String getNombre()
+    {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
+    
+    
+    
+    public void setNombre(String nombre)
+    {
         this.nombre = nombre;
     }
-
-    public boolean isEstadoTerminado() {
-        return estadoTerminado;
-    }
-
-    public void setEstadoTerminado(boolean estadoTerminado) {
-        this.estadoTerminado = estadoTerminado;
-    }
+    
 }

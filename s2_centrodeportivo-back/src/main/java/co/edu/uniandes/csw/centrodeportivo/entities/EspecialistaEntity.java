@@ -14,17 +14,11 @@ import javax.persistence.Entity;
  */
 @Entity
 public class EspecialistaEntity extends BaseEntity implements Serializable {
-     private int id;
+  
+
     private String nombre;
     private String especialidad;
 
-    public int getIdentificador() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;

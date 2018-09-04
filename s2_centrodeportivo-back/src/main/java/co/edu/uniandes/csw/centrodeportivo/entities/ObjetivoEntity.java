@@ -21,7 +21,6 @@ import javax.persistence.Entity;
  * @author Leidy Romero  *
  */
 @Entity
-
 public class ObjetivoEntity extends BaseEntity implements Serializable {
 
     private String descripcion;
@@ -76,5 +75,8 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     public void setFechaLimite(Date pFechaLimite) {
         this.fechaLimite = pFechaLimite;
     }
+    
+ 
+    
 
 }

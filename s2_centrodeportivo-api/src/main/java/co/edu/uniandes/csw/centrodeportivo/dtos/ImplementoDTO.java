@@ -13,8 +13,8 @@ import java.io.Serializable;
  */
 public class ImplementoDTO implements Serializable {
     
-    public Long id;
-    public String nombre;
+    private Long id;
+    private String nombre;
     
     public ImplementoDTO()
     {
