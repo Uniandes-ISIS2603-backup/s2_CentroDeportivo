@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.centrodeportivo.test.persistence;
-
-import co.edu.uniandes.csw.ludis.test.persistence.*;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EspecialistaPersistence;
 import java.lang.reflect.Type;
