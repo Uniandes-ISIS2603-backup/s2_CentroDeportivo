@@ -55,7 +55,23 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
       return this.objetivos;  
     }
     
+    public void setObjetivo(ObjetivoEntity pObjetivo)
+    {
+        this.objetivo = pObjetivo;
+    }
+    public ObjetivoEntity getObjetivo()
+    {
+       return objetivo;
+    }
     
+    public void setEspecialista(EspecialistaEntity pEspecialista)
+    {
+        this.especialista = pEspecialista;
+    }
+    public EspecialistaEntity getEspecialista()
+    {
+       return especialista;
+    }
     
     /**
      * Devuelve el NOMBRE del deportista.
