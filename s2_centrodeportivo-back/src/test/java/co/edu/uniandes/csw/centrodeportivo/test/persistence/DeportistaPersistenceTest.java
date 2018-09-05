@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
 /**
  *
- * @author estudiante
+ * @author Leidy Romero
  */
 public class DeportistaPersistenceTest {
     
