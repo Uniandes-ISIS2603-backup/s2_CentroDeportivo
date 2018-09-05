@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
 
@@ -28,6 +29,34 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private Date ultimaActualizacionDatos;
     private Date fechaNacimiento;
 
+    /**
+     * Modela la asociacion *...1 entre las clases Deportista y (hacia) Objetivo
+     */
+    @javax.persistence.ManyToOne()
+    ObjetivoEntity objetivo;
+
+     /**
+     * Modela la asociacion *...1 entre las clases Deportista y (hacia) Especialista
+     */
+    @javax.persistence.ManyToOne()
+    EspecialistaEntity especialista;
+        
+     /**
+     * Modela la asociacion 1...* entre las clases Deportista y (hacia) Objetivo
+     */
+    @javax.persistence.OneToMany(mappedBy = "deportista")
+    Collection<ObjetivoEntity> objetivos;
+    /**
+     * Devuelve los objetivos del deportista
+     * @return Collection los objetivos
+     */
+    public Collection<ObjetivoEntity> getObjetivos()
+    {
+      return this.objetivos;  
+    }
+    
+    
+    
     /**
      * Devuelve el NOMBRE del deportista.
      *
