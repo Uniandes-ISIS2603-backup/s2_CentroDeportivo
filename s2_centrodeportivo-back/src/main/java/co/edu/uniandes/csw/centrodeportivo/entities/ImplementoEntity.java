@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 /**
  *
@@ -29,8 +28,6 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     {
         return nombre;
     }
-    
-    
     
     public void setNombre(String nombre)
     {
