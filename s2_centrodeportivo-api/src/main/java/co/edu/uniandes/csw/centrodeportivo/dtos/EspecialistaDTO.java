@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import java.io.Serializable;
+
 
 
 /**
@@ -12,9 +14,9 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
  * @author Francisco Jose MacAllister
  */
 
-public class EspecialistaDTO {
-    private Long identificador;
-    private int id;
+public class EspecialistaDTO implements Serializable {
+    private Long id;
+    private int cedula;
     private String nombre;
     private String especialidad;
     
@@ -23,12 +25,12 @@ public class EspecialistaDTO {
         
     }
 
-    public int getId() {
-        return id;
+    public int getCedula() {
+        return cedula;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCedula(int pCedula) {
+        this.cedula=pCedula;
     }
 
     public String getNombre() {
