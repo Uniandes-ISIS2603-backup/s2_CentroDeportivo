@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 /**
  *
- * @author estudiante
+ * @author Leidy Romero
  */
 public class ObjetivoLogic {
     

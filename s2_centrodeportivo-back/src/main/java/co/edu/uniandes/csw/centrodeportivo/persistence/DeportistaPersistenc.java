@@ -20,8 +20,8 @@ import javax.persistence.TypedQuery;
  * @author Leidy Romero
  */
 @Stateless
-public class DeportistaPersistence {
-    private static final Logger LOGGER = Logger.getLogger(DeportistaPersistence.class.getName());
+public class DeportistaPersistenc {
+    private static final Logger LOGGER = Logger.getLogger(DeportistaPersistenc.class.getName());
 
     @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
