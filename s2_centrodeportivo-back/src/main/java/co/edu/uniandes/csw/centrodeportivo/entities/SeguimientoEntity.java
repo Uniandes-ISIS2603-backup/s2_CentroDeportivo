@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -26,15 +28,13 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     {
         
     }
-
-
     
     public Integer getTiempo()
     {
         return tiempo;
     }
     
-    public Double returnCalorias()
+    public Double getCalorias()
     {
         return calorias;
     }
@@ -65,4 +65,8 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
         this.ritmoCardiacoPromedio = ritmoCardiacoPromedio;
     }
     
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }
