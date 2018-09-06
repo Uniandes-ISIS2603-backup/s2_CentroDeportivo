@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -18,6 +19,7 @@ import javax.persistence.TypedQuery;
  *
  * @author dy.quintero
  */
+@Stateless
 public class MaquinaPersistence 
 {
     private static final Logger LOGGER = Logger.getLogger(ObjetivoPersistence.class.getName());
@@ -49,10 +51,10 @@ public class MaquinaPersistence
      * MaquinaEntity;" - "SELECT * FROM table_name" en SQL.
      */
     public List<MaquinaEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todos los objetivos");
+        LOGGER.log(Level.INFO, "Consultando todas las maquinas");
         // Se crea un query para buscar todos los objetivos en la base de datos.
-        TypedQuery query = em.createQuery("select u from ObjetivoEntity u", MaquinaEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de objetivos.
+        TypedQuery query = em.createQuery("select u from MaquinaEntity u", MaquinaEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de maquinas.
         return query.getResultList();
     }
     
