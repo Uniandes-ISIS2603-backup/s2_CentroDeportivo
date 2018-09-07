@@ -59,6 +59,13 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     {
         this.objetivo = pObjetivo;
     }
+    
+        
+    public void setObjetivos(Collection<ObjetivoEntity> pObjetivos)
+    {
+        this.objetivos = pObjetivos;
+    }
+    
     public ObjetivoEntity getObjetivo()
     {
        return objetivo;

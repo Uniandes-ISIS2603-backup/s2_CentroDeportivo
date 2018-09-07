@@ -114,4 +114,15 @@ public class DeportistaPersistenceTest {
         
         //Assert.assertEquals(nuevoDeportista.getCedula(), entidad.getCedula());
     }
+    
+    /**
+     * Prueba para consultar la lista de deportistas
+     */
+    @Test
+    public void getDeportistasTest()
+    {
+        List<DeportistaEntity> lista = DeportistaPersistenc.findAll();
+        Assert.assertEquals(data.size()),lista.size());
+        
+    }
 }

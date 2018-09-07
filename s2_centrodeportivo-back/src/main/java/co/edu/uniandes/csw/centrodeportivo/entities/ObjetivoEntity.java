@@ -49,14 +49,19 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
      */
     @javax.persistence.OneToMany(mappedBy = "objetivo",
             fetch = javax.persistence.FetchType.LAZY)
-    Collection<DeportistaEntity> deportistas;
+    Collection<DeportistaEntity> casosExitosos;
     /**
      * Devuelve los deportistas que en el historial, han completado este objetivo (casos exitosos)
      * @return Collection los deportistas
      */
-    public Collection<DeportistaEntity> getDeportistas()
+    public Collection<DeportistaEntity> getCasosExitosos()
     {
-      return this.deportistas;  
+      return this.casosExitosos;  
+    }
+    
+    public void setCasosExitosos(Collection<DeportistaEntity> pDeportistas)
+    {
+      this.casosExitosos = pDeportistas;  
     }
     
     public void setDeportista(DeportistaEntity pDeportista)
