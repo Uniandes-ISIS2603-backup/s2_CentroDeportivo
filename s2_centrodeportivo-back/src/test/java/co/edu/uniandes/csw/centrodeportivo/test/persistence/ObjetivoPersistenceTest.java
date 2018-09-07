@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
