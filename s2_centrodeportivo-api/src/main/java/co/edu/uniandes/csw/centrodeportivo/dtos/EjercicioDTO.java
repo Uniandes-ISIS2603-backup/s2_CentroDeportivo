@@ -5,6 +5,11 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  *aaa
  * @author estudiante
@@ -41,34 +46,80 @@ public class EjercicioDTO
     public Long getId(){
         return id;
     }
+    
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+    
     public String getNombre(){
         return nombre;
     }
+    
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    
     public String getCategoria(){
         return categoria;
     }
+    
+    public void setCategoria(String categoria){
+        this.categoria = categoria;
+    }
+    
     public int getDuracion(){
         return duracion;
     }
+    
+    public void setDuracion(int duracion){
+        this.duracion = duracion;
+    }
+    
     public int getNumeroDeSeries()
     {
         return numeroDeSeries;
     }
+    
+    public void setNumeroDeSeries(int numeroDeSeries){
+        this.numeroDeSeries = numeroDeSeries;
+    }
+    
     public String getDescripcion(){
         return descripcion;
     }
+    
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+    
     public String getExplicacion(){
         return explicacion;
     }
     
-    public void actualizarDatos(String pNombre , String pCategoria ,Integer pDuracion,Integer pNumeroDeSeries,String pDescripcion,String pExplicacion ) {
-        this.nombre = pNombre;
-        this.categoria = pCategoria;
-        this.duracion = pDuracion;
-        this.numeroDeSeries = pNumeroDeSeries;
-        this.descripcion = pDescripcion;
-        this.explicacion = pExplicacion;
-                 
+    public void setExplicacion(String explicacion){
+        this.explicacion = explicacion;
+    }
+ 
+    public EjercicioEntity toEntity() {
+
+        EjercicioEntity ejercicioEntity = new EjercicioEntity();
+        ejercicioEntity.setId(this.id);
+        ejercicioEntity.setNombre(this.nombre);
+        ejercicioEntity.setCategoria(this.categoria);
+        ejercicioEntity.setDuracion(this.duracion);
+        ejercicioEntity.setNumeroDeSeries(this.numeroDeSeries);
+        ejercicioEntity.setDescripcion(this.descripcion);
+        ejercicioEntity.setExplicacion(this.explicacion);
+        
+
+        return ejercicioEntity;
+
     }
     
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
 }

@@ -40,8 +40,13 @@ public class ZonaCuerpoPersistence {
     }    
 
     public ZonaCuerpoEntity find(Long zonaCuerpoEntity) {
-        LOGGER.log(Level.INFO, "Consultando la zona del curpo con id={0}", zonaCuerpoEntity);
+        LOGGER.log(Level.INFO, "Consultando la zona del cuerpo con id={0}", zonaCuerpoEntity);
         return em.find(ZonaCuerpoEntity.class, zonaCuerpoEntity);
     }
    
+     public ZonaCuerpoEntity update(ZonaCuerpoEntity zonaCuerpoEntity) {
+        LOGGER.log(Level.INFO, "Actualizando la zona del cuerpo con id = {0}", zonaCuerpoEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar el ejercicio con id = {0}", zonaCuerpoEntity.getId());
+        return em.merge(zonaCuerpoEntity);
+    }
 }

@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *aa
@@ -34,6 +38,10 @@ public class ZonaCuerpoDTO implements Serializable
         return id;
     }
     
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     /**
      * Metodo que retorna el nombre de la zona del cuerpo
      *
@@ -44,15 +52,21 @@ public class ZonaCuerpoDTO implements Serializable
         return nombre;
     }
     
-    /**
-     * Actualizalos datos de la zona del cuerpo
-     *
-     * @param pNombre - Nuevo nombre
-     */
-    public void actualizarZonaCuerpo(String pNombre ) {
-        this.nombre = pNombre;
-        
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
     
+    public ZonaCuerpoEntity toEntity() 
+    {        
+        ZonaCuerpoEntity zonaCuerpoEntity = new ZonaCuerpoEntity();
+        zonaCuerpoEntity.setId(this.id);
+        zonaCuerpoEntity.setNombre(this.nombre);
+        return zonaCuerpoEntity;
+    }
+    
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
     
 }

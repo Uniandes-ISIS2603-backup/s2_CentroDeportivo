@@ -6,15 +6,17 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Pardo
  */
 @Entity
 public class EjercicioEntity extends BaseEntity implements Serializable
-{    
+{  
+    //Atributos---------------
     private String nombre;
     
     private String categoria;
@@ -26,16 +28,91 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     private String descripcion;
     
     private String explicacion;
+    
+    
+    
+  //   @javax.persistence.ManyToOne()
+  //   RutinaEntity rutina;
+    
+    @javax.persistence.ManyToOne()
+    ZonaCuerpoEntity zonaCuerpo;
+    
+  //   @javax.persistence.ManyToOne()
+  //   MaquinaEntity maquina;
+    
+    @javax.persistence.OneToMany(mappedBy = "ejercicio",
+            fetch = javax.persistence.FetchType.LAZY)
+    Collection<ZonaCuerpoEntity> zonasCuerpo;
    
+  //   @javax.persistence.OneToMany(mappedBy = "ejercicio",
+  //           fetch = javax.persistence.FetchType.LAZY)
+   //  Collection<ImplementoEntity> implementos;
+    
+  //   @javax.persistence.OneToMany(mappedBy = "ejercicio",
+  //           fetch = javax.persistence.FetchType.LAZY)
+  //   Collection<MaquinaEntity> maquinas;
+    
+    //Metodos-------------------------
+    
+    
+    //---------------------------------------------------------------
+    
+   //  public Collection<MaquinaEntity> getObjetivos()
+   //  {
+   //    return this.maquinas;  
+   //  }
+   //  public Collection<ImplementoEntity> getImplementos()
+   //  {
+    //   return this.implementos;  
+   //  }
+
+   //  public Collection<ZonaCuerpoEntity> getZonasCuerpo()
+   //  {
+   //    return this.zonasCuerpo;  
+   //  }
+    
+    
+    //---------------------------------------------------------------
+    
+   //  public void setMaquina(MaquinaEntity pMaquina)
+   //  {
+   //      this.maquina = pMaquina;
+  //   }
+   //  public MaquinaEntity getMaquina()
+  //   {
+  //      return maquina;
+  //   }
+    
+    public void setZonaCuerpo(ZonaCuerpoEntity pZonaCuerpo)
+    {
+        this.zonaCuerpo = pZonaCuerpo;
+    }
+    public ZonaCuerpoEntity getZonaCuerpo()
+    {
+       return zonaCuerpo;
+    }
+    
+  //   public void setRutina(RutinaEntity pRutina)
+   //  {
+  //       this.rutina = pRutina;
+  //   }
+ //    public RutinaEntity getRutina()
+  //   {
+  //      return rutina;
+  //   }
+    
+    
+    //---------------------------------------------------------------
+    
     public String getNombre() {
         return nombre;
     }
-    
+   
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
      
-    public String getategoria() {
+    public String getCategoria() {
         return categoria;
     }
     

@@ -30,7 +30,7 @@ public class EspecialistaPersistenceTest {
  private EspecialistaPersistence especialistaPersistence;
  @PersistenceContext
  private EntityManager em;
-     
+ 
  @Test
  public void createEspecialistaTest()
  {
