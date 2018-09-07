@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import javax.inject.Inject;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class DeportistaPersistenceTest {
     
     @Inject
-    private DeportistaPersistence deportistaPersistance;
+    private DeportistaPersistenc deportistaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -51,7 +51,7 @@ public class DeportistaPersistenceTest {
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(DeportistaEntity.class.getPackage())
-                .addPackage(DeportistaPersistence.class.getPackage())
+                .addPackage(DeportistaPersistenc.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -107,7 +107,7 @@ public class DeportistaPersistenceTest {
     {
         PodamFactory factory =  new PodamFactoryImpl();
         DeportistaEntity nuevoDeportista = factory.manufacturePojo(DeportistaEntity.class);
-        DeportistaEntity resultado = deportistaPersistance.create(nuevoDeportista);
+        DeportistaEntity resultado = deportistaPersistence.create(nuevoDeportista);
         
         Assert.assertNotNull(resultado);
         DeportistaEntity entidad = em.find(DeportistaEntity.class, resultado.getId());
@@ -121,8 +121,56 @@ public class DeportistaPersistenceTest {
     @Test
     public void getDeportistasTest()
     {
-        List<DeportistaEntity> lista = DeportistaPersistenc.findAll();
-        Assert.assertEquals(data.size()),lista.size());
-        
+        List<DeportistaEntity> lista = deportistaPersistence.findAll();
+        Assert.assertEquals(data.size(), lista.size());
+        for (DeportistaEntity entidad : lista) {
+            boolean found = false;
+            for (DeportistaEntity entity : data) {
+                if (entidad.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+     /**
+     * Prueba para consultar un Deportista
+     */
+    @Test
+    public void getDeportistaTest() {
+        DeportistaEntity entity = data.get(0);
+        DeportistaEntity nuevaEntity = deportistaPersistence.find(entity.getId());
+        Assert.assertNotNull(nuevaEntity);
+        Assert.assertEquals(entity.getNombre(), nuevaEntity.getNombre());
+        Assert.assertEquals(entity.getCedula(), nuevaEntity.getCedula());
+    }
+    
+     /**
+     * Prueba para actualizar un Deportista
+     */
+    @Test
+    public void updateDeportistaTest() {
+        DeportistaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        DeportistaEntity newEntity = factory.manufacturePojo(DeportistaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        deportistaPersistence.update(newEntity);
+
+        DeportistaEntity resp = em.find(DeportistaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+    }
+
+    /**
+     * Prueba para eliminar un Author.
+     */
+    @Test
+    public void deleteDeportistaTest() {
+        DeportistaEntity entity = data.get(0);
+        deportistaPersistence.delete(entity.getId());
+        DeportistaEntity deleted = em.find(DeportistaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }

@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class ObjetivoPersistenceTest {
     
     @Inject
-    private ObjetivoPersistence objetivoPersistance;
+    private ObjetivoPersistence objetivoPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -110,11 +110,59 @@ public class ObjetivoPersistenceTest {
     {
         PodamFactory factory =  new PodamFactoryImpl();
         ObjetivoEntity nuevoObjetivo = factory.manufacturePojo(ObjetivoEntity.class);
-        ObjetivoEntity resultado = objetivoPersistance.create(nuevoObjetivo);
+        ObjetivoEntity resultado = objetivoPersistence.create(nuevoObjetivo);
         
         Assert.assertNotNull(resultado);
         ObjetivoEntity entidad = em.find(ObjetivoEntity.class, resultado.getId());
         
-        //Assert.assertEquals(nuevoObjetivo.getId(), entidad.getId());
+        Assert.assertEquals(nuevoObjetivo.getId(), entidad.getId());
+    }
+    
+     /**
+     * Prueba para consultar la lista de Objetivos.
+     */
+    @Test
+    public void getObjetivosTest() {
+        List<ObjetivoEntity> list = objetivoPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ObjetivoEntity ent : list) {
+            boolean found = false;
+            for (ObjetivoEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    /**
+     * Prueba para consultar un Objetivo.
+     */
+    @Test
+    public void getObjetivoTest() {
+        ObjetivoEntity entity = data.get(0);
+        ObjetivoEntity newEntity = objetivoPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+    }
+
+    /**
+     * Prueba para actualizar un Objetivo.
+     */
+    @Test
+    public void updateObjetivoTest() {
+        ObjetivoEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        objetivoPersistence.update(newEntity);
+
+        ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
+        Assert.assertEquals(newEntity.getCumplio(), resp.getCumplio());
     }
 }
