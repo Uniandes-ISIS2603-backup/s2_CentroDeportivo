@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "6edbb1c9-0f16-4178-afd1-0711ff9581e4",
+		"name": "Pruebas Seguimiento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un seguimiento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tiempo\": 120,\n\t\"calorias\": 135,\n\t\"velocidadPromedio\": 10,\n\t\"ritmoCardiacoPromedio\": 175\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos"
+					]
+				},
+				"description": "Crea un seguimiento y lo retorna."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3573d2cd-bb11-4dd4-a892-fa8d5dd172f0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos",
+						"1"
+					]
+				},
+				"description": "Retorna null."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un seguimiento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tiempo\": 125,\n\t\"calorias\": 140,\n\t\"velocidadPromedio\": 15,\n\t\"ritmoCardiacoPromedio\": 180\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"1"
+					]
+				},
+				"description": "Actualiza un implemento."
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un seguimiento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"1"
+					]
+				},
+				"description": "Elimina el implemento con el id dado."
+			},
+			"response": []
+		}
+	]
+}

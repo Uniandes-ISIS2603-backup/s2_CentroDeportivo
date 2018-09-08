@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -63,7 +64,7 @@ public class ImplementoResource {
         ImplementoDTO nuevoImplementoDTO = new ImplementoDTO(nuevoImplementoEntity);
         LOGGER.log(Level.INFO, "ImplementoResource createImplemento: output: {0}", nuevoImplementoDTO.toString());
         return nuevoImplementoDTO;*/
-        return null;
+        return implemento;
     }
     
     /**
@@ -122,5 +123,21 @@ public class ImplementoResource {
     public ImplementoDetailDTO updateImplemento(@PathParam("implementosId") Long implementosId, ImplementoDetailDTO implemento) throws WebApplicationException 
     {
         return null;
+    }
+    
+    /**
+     * Borra el implemento con el id asociado recibido en la URL.
+     *
+     * @param implementosId Identificador del implemento que se desea borrar.
+     * Este debe ser una cadena de dígitos.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando no se puede eliminar el implemento.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el implemento.
+     */
+    @DELETE
+    @Path("{implementosId: \\d+}")
+    public void deleteImplemento(@PathParam("implementosId") Long implementosId) throws BusinessLogicException {
+        
     }
 }

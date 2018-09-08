@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "d8abf2c5-8cd8-493e-be5b-f635974e4362",
+		"name": "Pruebas Implemento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un implemento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfa1e69c-d765-4d8c-b84e-acc9456ce4a1",
+						"type": "text/javascript",
+						"exec": [
+							"/*tests['No crea con el mismo nombre'] = responseCode.code === 412",
+							"tests['Mensaje correcto de error'] = responseBody.has(\"Ya existe un implemento con el nombre\")",
+							"*/"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Colchoneta\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos"
+					]
+				},
+				"description": "Crea un implemento y lo retorna."
+			},
+			"response": [
+				{
+					"name": "Crear un implemento",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Pesas\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"s2_centrodeportivo-api",
+								"api",
+								"implementos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "18",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Sep 2018 15:41:49 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"nombre\":\"Pesas\"}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un implemento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3573d2cd-bb11-4dd4-a892-fa8d5dd172f0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos",
+						"1"
+					]
+				},
+				"description": "Retorna null."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los implementos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos"
+					]
+				},
+				"description": "Retorna una lista con todos los implementos."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un implemento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Pesas 1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos",
+						"1"
+					]
+				},
+				"description": "Actualiza un implemento."
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un implemento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos",
+						"1"
+					]
+				},
+				"description": "Elimina el implemento con el id dado."
+			},
+			"response": []
+		}
+	]
+}
