@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -29,7 +31,8 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     
     private String explicacion;
     
-    
+    @javax.persistence.OneToMany(mappedBy = "ejercicio")
+    private List<ImplementoEntity> implementos = new ArrayList<ImplementoEntity>();
     
   //   @javax.persistence.ManyToOne()
   //   RutinaEntity rutina;

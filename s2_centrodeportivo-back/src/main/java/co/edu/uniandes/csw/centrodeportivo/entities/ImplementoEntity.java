@@ -7,10 +7,12 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa un implemento en la persistencia y permite su
+ * serialización.
  *
  * @author Lina Cardozo
  */
@@ -19,11 +21,35 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     
     private static final long serialVersionUID =1L;
     
+    @PodamExclude
+    @ManyToOne
+    private EjercicioEntity ejercicio;
+    
     private String nombre;
     
     public ImplementoEntity()
     {
         
+    }
+    
+    /**
+     * Devuelve el ejercicio que corresponde al implemento.
+     *
+     * @return Ejercicio que corresponde al Implemento.
+     */
+    public EjercicioEntity getEjercicio() 
+    {
+        return ejercicio;
+    }
+
+    /**
+     * Modifica el ejercicio perteneciente al implemento.
+     *
+     * @param ejercicio El nuevo ejercicio.
+     */
+    public void setEjercicio(EjercicioEntity ejercicio) 
+    {
+        this.ejercicio = ejercicio;
     }
   
     /**
@@ -45,9 +71,5 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     {
         this.nombre = nombre;
     }
-    
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+
 }
