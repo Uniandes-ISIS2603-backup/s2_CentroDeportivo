@@ -6,8 +6,11 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -26,16 +29,21 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
      * se especifica fetch para especificar que no se deben cargar las
      * dos entidades al  mismo tiempo
      */
+    @PodamExclude
     @javax.persistence.OneToMany(mappedBy = "especialista",
             fetch = javax.persistence.FetchType.LAZY)
-    Collection<DeportistaEntity> deportistas;
+    List<DeportistaEntity> deportistas =new ArrayList<DeportistaEntity>();
     /**
      * Devuelve los deportistas que son asesorados por este deportista
      * @return Collection los deportistas
      */
-    public Collection<DeportistaEntity> getDeportistas()
+    public List<DeportistaEntity> getDeportistas()
     {
       return this.deportistas;  
+    }
+    public void setDeportistas(List<DeportistaEntity> deportistas)
+    {
+        this.deportistas=deportistas;
     }
     
      /**
@@ -45,15 +53,20 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
      */
     @javax.persistence.OneToMany(mappedBy = "especialista",
             fetch = javax.persistence.FetchType.LAZY)
-    Collection<ObjetivoEntity> objetivos;
+   List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     /**
      * Devuelve los objetivos
      * @return Collection los objetivos
      */
-    public Collection<ObjetivoEntity> getObjetivos()
+    public List<ObjetivoEntity> getObjetivos()
     {
       return this.objetivos;  
     }
+    public void getObjetivos(List<ObjetivoEntity> listaObjetivos)
+    {
+      objetivos=listaObjetivos;  
+    }
+    
     
     public String getNombre() {
         return nombre;
