@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "e77ad113-a1ae-48ed-882d-12d4c8c4f6b1",
+		"name": "Pruebas Ejercicio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Ejercicio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				},
+				"description": "Crea un ejercicio"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Ejercicio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				},
+				"description": "Obtiene el ejercicio"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ejercicio 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/ejercicios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios",
+						"1"
+					]
+				},
+				"description": "Obtiene el ejercicio con id 1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Ejercicio.",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/ejercicios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios",
+						"1"
+					]
+				},
+				"description": "Actualiza el ejercicio con id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar ejercicio",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				},
+				"description": "Borra el ejercicio."
+			},
+			"response": []
+		}
+	]
+}

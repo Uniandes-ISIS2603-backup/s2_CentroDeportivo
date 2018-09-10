@@ -52,7 +52,7 @@ public class EjercicioResource {
     @Path("{ejerciciosId: \\d+}")
     public EjercicioDTO updateEjercicio(@PathParam("ejerciciosId") Long ejerciciosId, EjercicioDTO ejercicio) throws WebApplicationException {
 
-        LOGGER.log(Level.INFO, "EjercicioResource updateEjercicio: input: id:{0} , objetivo: {1}", new Object[]{ejerciciosId, ejercicio.toString()});
+        LOGGER.log(Level.INFO, "EjercicioResource updateEjercicio: input: id:{0} , ejercicio: {1}", new Object[]{ejerciciosId, ejercicio.toString()});
         ejercicio.setId(ejerciciosId);
 
         return null;

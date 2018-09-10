@@ -25,6 +25,15 @@ public class ZonaCuerpoDTO implements Serializable
      * Nombre de la zona del cuerpo
      */
     private String nombre;
+
+    public ZonaCuerpoDTO(ZonaCuerpoEntity zonaCuerpoEntity) {
+
+        if (zonaCuerpoEntity != null) {
+            this.id = zonaCuerpoEntity.getId();
+            this.nombre = zonaCuerpoEntity.getNombre();
+               
+        }
+    }
     
     
     //Metodos
