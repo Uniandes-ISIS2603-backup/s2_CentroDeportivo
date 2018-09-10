@@ -29,6 +29,19 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private Date ultimaActualizacionDatos;
     private Date fechaNacimiento;
 
+    
+     /**
+     * Modela la asociacion 1...1 entre las clases Deportista y (hacia) Seguimiento
+     */
+    @javax.persistence.OneToOne()
+    SeguimientoEntity seguimiento;
+    
+    /**
+     * Modela la asociacion 1...1 entre las clases Deportista y (hacia) Seguimiento
+     */
+    @javax.persistence.OneToOne()
+    private SeguimientoEntity seguimiento;
+    
     /**
      * Modela la asociacion *...1 entre las clases Deportista y (hacia) Objetivo
      */
@@ -59,8 +72,14 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     {
         this.objetivo = pObjetivo;
     }
-    
-        
+    public void setSeguimiento(SeguimientoEntity pSeguimiento )
+    {
+        this.seguimiento = pSeguimiento;
+    }
+    public SeguimientoEntity getSeguimiento()
+    {
+       return seguimiento;
+    }
     public void setObjetivos(Collection<ObjetivoEntity> pObjetivos)
     {
         this.objetivos = pObjetivos;

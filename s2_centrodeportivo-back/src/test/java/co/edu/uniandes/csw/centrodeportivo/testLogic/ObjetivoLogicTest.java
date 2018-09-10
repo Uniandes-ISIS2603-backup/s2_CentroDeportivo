@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.centrodeportivo.test.persistence;
+package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
-import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.ejb.ObjetivoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,32 +26,34 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
+ *
  * @author Leidy Romero
  */
 @RunWith(Arquillian.class)
-public class ObjetivoPersistenceTest {
+public class ObjetivoLogicTest {
+    private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
-    private ObjetivoPersistence objetivoPersistence;
+    private ObjetivoLogic objetivoLogic;
     
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
-    UserTransaction utx;
-    
+    private UserTransaction utx;
+
     private List<ObjetivoEntity> data = new ArrayList<>();
-    
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
-     * El jar contiene las clases, el descriptor de la base de datos y el 
-     * archivo beans.xml para resolver la inyeccion de dependencias.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
      */
     @Deployment
-    public static JavaArchive createDeployment(){
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ObjetivoEntity.class.getPackage())
+                .addPackage(ObjetivoLogic.class.getPackage())
                 .addPackage(ObjetivoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -65,7 +66,6 @@ public class ObjetivoPersistenceTest {
     public void configTest() {
         try {
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -78,17 +78,16 @@ public class ObjetivoPersistenceTest {
             }
         }
     }
-    
      /**
      * Limpia las tablas que estan implicada en la prueba.
      */
     private void clearData()
     {
-        em.createQuery("delete from ObjetivoaEntity").executeUpdate();
+        em.createQuery("delete from ObjetivoEntity").executeUpdate();
     }
-    
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData()
     {
@@ -101,8 +100,7 @@ public class ObjetivoPersistenceTest {
             data.add (entidad);
         }
     }
-    
-     /**
+    /**
      * Prueba para crear un objetivo
      */
     @Test
@@ -110,7 +108,7 @@ public class ObjetivoPersistenceTest {
     {
         PodamFactory factory =  new PodamFactoryImpl();
         ObjetivoEntity nuevoObjetivo = factory.manufacturePojo(ObjetivoEntity.class);
-        ObjetivoEntity resultado = objetivoPersistence.create(nuevoObjetivo);
+        ObjetivoEntity resultado = objetivoLogic.createObjetivo(nuevoObjetivo);
         
         Assert.assertNotNull(resultado);
         ObjetivoEntity entidad = em.find(ObjetivoEntity.class, resultado.getId());
@@ -123,7 +121,7 @@ public class ObjetivoPersistenceTest {
      */
     @Test
     public void getObjetivosTest() {
-        List<ObjetivoEntity> list = objetivoPersistence.findAll();
+        List<ObjetivoEntity> list = objetivoLogic.getObjetivos();
         Assert.assertEquals(data.size(), list.size());
         for (ObjetivoEntity ent : list) {
             boolean found = false;
@@ -142,7 +140,7 @@ public class ObjetivoPersistenceTest {
     @Test
     public void getObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = objetivoPersistence.find(entity.getId());
+        ObjetivoEntity newEntity = objetivoLogic.getObjetivo(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
     }
@@ -154,15 +152,15 @@ public class ObjetivoPersistenceTest {
     public void updateObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
+        ObjetivoEntity nuevaEntity = factory.manufacturePojo(ObjetivoEntity.class);
 
-        newEntity.setId(entity.getId());
+        nuevaEntity.setId(entity.getId());
 
-        objetivoPersistence.update(newEntity);
+        objetivoLogic.updateObjetivo(nuevaEntity.getId(), nuevaEntity);
 
         ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
-        Assert.assertEquals(newEntity.getCumplio(), resp.getCumplio());
+        Assert.assertEquals(nuevaEntity.getDescripcion(), resp.getDescripcion());
+        Assert.assertEquals(nuevaEntity.getCumplio(), resp.getCumplio());
     }
 }

@@ -15,6 +15,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
+ * Clase que maneja la persistencia para Implemento. Se conecta a través Entity
+ * Manager de javax.persistance con la base de datos SQL.
  *
  * @author Lina Cardozo
  */
@@ -41,8 +43,8 @@ public class ImplementoPersistence {
         LOGGER.log(Level.INFO, "Saliendo de crear un implemento nuevo");
         return implementoEntity;
     }
-	
-	/**
+
+    /**
      * Devuelve todos los implementos de la base de datos.
      *
      * @return una lista con todos los implementos que encuentre en la base de
@@ -72,7 +74,7 @@ public class ImplementoPersistence {
         return em.find(ImplementoEntity.class, implementosId);
     }
 
-	 /**
+    /**
      * Actualiza un implemento.
      *
      * @param implementoEntity: el implemento que viene con los nuevos cambios.
@@ -113,7 +115,7 @@ public class ImplementoPersistence {
      *
      * @param name: Nombre del implemento que se está buscando
      * @return null si no existe ningún implemento con el nombre del argumento.
-     * Si existe alguna devuelve la primera.
+     * Si existe alguno devuelve el primero.
      */
     public ImplementoEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando implemento por nombre ", name);

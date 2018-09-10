@@ -7,13 +7,17 @@ package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EspecialistaPersistence;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Before;
 import org.junit.Test;
 import uk.co.jemos.podam.api.ClassInfoStrategy;
 import uk.co.jemos.podam.api.DataProviderStrategy;
@@ -22,7 +26,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Mac
+ * @author Francisco Jose MacAllister
  */
 public class EspecialistaPersistenceTest {
     
@@ -30,7 +34,16 @@ public class EspecialistaPersistenceTest {
  private EspecialistaPersistence especialistaPersistence;
  @PersistenceContext
  private EntityManager em;
- 
+   /**
+     * Variable para martcar las transacciones del em anterior cuando se
+     * crean/borran datos para las pruebas.
+     */
+    @Inject
+    UserTransaction utx;
+     /**
+     * lista que tiene los datos de prueba.
+     */
+    private List<EspecialistaEntity> data = new ArrayList<EspecialistaEntity>();
  @Test
  public void createEspecialistaTest()
  {
@@ -50,5 +63,119 @@ public class EspecialistaPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+ /**
+     * Configuración inicial de la prueba.
+     */
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 
+    /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
+    private void clearData() {
+        em.createQuery("delete from EditorialEntity").executeUpdate();
+    }
+
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+
+            EspecialistaEntity entity = factory.manufacturePojo(EspecialistaEntity.class);
+
+            em.persist(entity);
+
+            data.add(entity);
+        }
+    }
+
+    /**
+     * Prueba para consultar la lista de Especialistas.
+     */
+    @Test
+    public void getEspecialistasTest() {
+        List<EspecialistaEntity> list = especialistaPersistence.findAll();
+        org.junit.Assert.assertEquals(data.size(), list.size());
+        for (EspecialistaEntity ent : list) {
+            boolean found = false;
+            for (EspecialistaEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            org.junit.Assert.assertTrue(found);
+        }
+    }
+
+    /**
+     * Prueba para consultar a un especialista.
+     */
+    @Test
+    public void getEspecialistaTest() {
+        EspecialistaEntity entity = data.get(0);
+        EspecialistaEntity newEntity = especialistaPersistence.find(entity.getId());
+        org.junit.Assert.assertNotNull(newEntity);
+        org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+    }
+
+    /**
+     * Prueba para eliminar un especialista.
+     */
+    @Test
+    public void deleteEspecialistaTest() {
+        EspecialistaEntity entity = data.get(0);
+        especialistaPersistence.delete(entity.getId());
+        EspecialistaEntity deleted = em.find(EspecialistaEntity.class, entity.getId());
+        org.junit.Assert.assertNull(deleted);
+    }
+
+    /**
+     * Prueba para actualizar un Especialista.
+     */
+    @Test
+    public void updateEspecialistaTest() {
+        EspecialistaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        EspecialistaEntity newEntity = factory.manufacturePojo(EspecialistaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        especialistaPersistence.update(newEntity);
+
+        EspecialistaEntity resp = em.find(EspecialistaEntity.class, entity.getId());
+
+        org.junit.Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+    }
+
+    /**
+     * Prueba para consultar un Especialista por nombre.
+     */
+    @Test
+    public void findEspecialistaByNameTest() {
+        EspecialistaEntity entity = data.get(0);
+        EspecialistaEntity newEntity = especialistaPersistence.findByName(entity.getNombre());
+        org.junit.Assert.assertNotNull(newEntity);
+        org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+
+        newEntity = especialistaPersistence.findByName(null);
+        org.junit.Assert.assertNull(newEntity);
+    }
 }

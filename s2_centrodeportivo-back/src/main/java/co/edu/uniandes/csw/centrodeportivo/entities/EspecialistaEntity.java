@@ -19,6 +19,7 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
 
     private String nombre;
     private String especialidad;
+    private int cedula;
 
     /**
      * Modela la asociacion 1...* entre las clases Especialista y Deportista
@@ -69,4 +70,10 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    public void setCedula(int cedula) {
+        this.cedula=cedula;
+    }
+
+    
 }
