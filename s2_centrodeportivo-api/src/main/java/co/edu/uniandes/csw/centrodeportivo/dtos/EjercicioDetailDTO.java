@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -17,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author estudiante
  */
-public class EjercicioDetailDTO extends EjercicioDTO implements Seriarizable
+public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
 {
     private List<ZonaCuerpoDTO> zonasCuerpo;
     
