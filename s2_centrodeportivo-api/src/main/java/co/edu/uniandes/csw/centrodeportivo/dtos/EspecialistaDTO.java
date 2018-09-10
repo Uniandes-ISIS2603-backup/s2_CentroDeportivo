@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import java.io.Serializable;
 
 
@@ -48,6 +49,15 @@ public class EspecialistaDTO implements Serializable {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-   
+    public EspecialistaEntity toEntity() {
+
+        EspecialistaEntity especialistaEntity = new EspecialistaEntity();
+        especialistaEntity.setId(this.id);
+        especialistaEntity.setCedula(this.cedula);
+        especialistaEntity.setNombre(this.nombre);
+        especialistaEntity.setEspecialidad(this.especialidad);
+        return especialistaEntity;
+
+    }
    
 }

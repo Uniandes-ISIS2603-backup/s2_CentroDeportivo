@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
-import co.edu.uniandes.csw.centrodeportivo.dtos.SeguimientoDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.SeguimientoDetailDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.SeguimientoDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.SeguimientoLogic;
@@ -72,14 +71,14 @@ public class SeguimientoResource {
      * @return JSONArray {@link SeguimientoDetailDTO} - Los seguimientos
      * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
-    @GET
+    /*@GET
     public List<SeguimientoDetailDTO> getSeguimientos() {
         /*LOGGER.info("EditorialResource getEditorials: input: void");
         List<SeguimientoDetailDTO> listaSeguimientos = listEntity2DetailDTO(seguimientoLogic.getSeguimientos());
         LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaSeguimientos.toString());
-        return listaSeguimientos;*/
+        return listaSeguimientos;
         return null;
-    }
+    }*/
     
     /**
      * Busca el seguimiento con el id asociado recibido en la URL y lo devuelve.

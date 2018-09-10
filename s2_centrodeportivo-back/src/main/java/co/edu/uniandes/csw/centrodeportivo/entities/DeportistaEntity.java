@@ -37,6 +37,12 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     SeguimientoEntity seguimiento;
     
     /**
+     * Modela la asociacion 1...1 entre las clases Deportista y (hacia) Seguimiento
+     */
+    @javax.persistence.OneToOne()
+    private SeguimientoEntity seguimiento;
+    
+    /**
      * Modela la asociacion *...1 entre las clases Deportista y (hacia) Objetivo
      */
     @javax.persistence.ManyToOne()

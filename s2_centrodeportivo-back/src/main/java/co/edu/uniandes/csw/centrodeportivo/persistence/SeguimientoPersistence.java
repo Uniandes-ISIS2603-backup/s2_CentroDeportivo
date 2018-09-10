@@ -15,6 +15,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
+ * Clase que maneja la persistencia para Seguimiento. Se conecta a través Entity
+ * Manager de javax.persistance con la base de datos SQL.
  *
  * @author Lina Cardozo
  */
@@ -42,20 +44,20 @@ public class SeguimientoPersistence {
         return seguimientoEntity;
     }
 	
-	/**
+    /**
      * Devuelve todos los seguimientos de la base de datos.
      *
      * @return una lista con todos los seguimientos que encuentre en la base de
      * datos, "select u from SeguimientoEntity u" es como un "select * from
      * SeguimientoEntity;" - "SELECT * FROM table_name" en SQL.
      */
-    public List<SeguimientoEntity> findAll() {
+    /*public List<SeguimientoEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los seguimientos");
         // Se crea un query para buscar todos los seguimientos en la base de datos.
         TypedQuery query = em.createQuery("select u from SeguimientoEntity u", SeguimientoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de seguimientos.
         return query.getResultList();
-    }
+    }*/
 	
     /**
      * Busca si hay algún seguimiento con el id que se envía de argumento
@@ -72,7 +74,7 @@ public class SeguimientoPersistence {
         return em.find(SeguimientoEntity.class, seguimientosId);
     }
 
-	 /**
+    /**
      * Actualiza un seguimiento.
      *
      * @param seguimientoEntity: el seguimiento que viene con los nuevos cambios.
@@ -109,29 +111,29 @@ public class SeguimientoPersistence {
     }
 	
     /**
-     * Busca si hay algún seguimiento con el nombre que se envía de argumento
+     * Busca si hay algún seguimiento con el tiempo que se envía de argumento
      *
-     * @param name: Nombre del seguimiento que se está buscando
-     * @return null si no existe ningún seguimiento con el nombre del argumento.
-     * Si existe alguna devuelve la primera.
+     * @param tiempo: Tiempo del seguimiento que se está buscando
+     * @return null si no existe ningún seguimiento con el tiempo del argumento.
+     * Si existe alguno devuelve el primero.
      */
-    public SeguimientoEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando seguimiento por nombre ", name);
-        // Se crea un query para buscar seguimientos con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From SeguimientoEntity e where e.name = :name", SeguimientoEntity.class);
-        // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
+    public SeguimientoEntity findByTime(Integer tiempo) {
+        LOGGER.log(Level.INFO, "Consultando seguimiento por tiempo ", tiempo);
+        // Se crea un query para buscar seguimientos con el tiempo que recibe el método como argumento. ":tiempo" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From SeguimientoEntity e where e.tiempo = :tiempo", SeguimientoEntity.class);
+        // Se remplaza el placeholder ":tiempo" con el valor del argumento 
+        query = query.setParameter("tiempo", tiempo);
         // Se invoca el query se obtiene la lista resultado
-        List<SeguimientoEntity> sameName = query.getResultList();
+        List<SeguimientoEntity> sameTime = query.getResultList();
         SeguimientoEntity result;
-        if (sameName == null) {
+        if (sameTime == null) {
             result = null;
-        } else if (sameName.isEmpty()) {
+        } else if (sameTime.isEmpty()) {
             result = null;
         } else {
-            result = sameName.get(0);
+            result = sameTime.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar seguimiento por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar seguimiento por tiempo ", tiempo);
         return result;
     }
 }
