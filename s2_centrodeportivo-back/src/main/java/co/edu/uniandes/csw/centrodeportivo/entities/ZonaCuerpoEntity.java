@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -27,11 +28,11 @@ public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
     
     @javax.persistence.OneToMany(mappedBy = "zonaCuerpo",
             fetch = javax.persistence.FetchType.LAZY)
-    Collection<EjercicioEntity> ejercicios;
+    List<EjercicioEntity> ejercicios;
     
     //----------------------------------------------
     
-    public Collection<EjercicioEntity> getEjercicios()
+    public List<EjercicioEntity> getEjercicios()
     {
       return this.ejercicios;  
     }

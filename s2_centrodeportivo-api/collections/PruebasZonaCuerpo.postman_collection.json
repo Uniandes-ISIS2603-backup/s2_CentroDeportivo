@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "4fcdb0cb-6539-4e70-9255-ca1403258509",
+		"name": "PruebasZonaCuerpo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Zona Cuerpo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 2,\n\t\"nombre\": \"biceps\" \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/zonasCuerpo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo"
+					]
+				},
+				"description": "Crea la zona Cuerpo"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ZonaCuerpo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/zonasCuerpo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo"
+					]
+				},
+				"description": "Obtiene la zona del cuerpo"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener zona cuerpo 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/zonasCuerpo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo",
+						"1"
+					]
+				},
+				"description": "obtiene la zona cuerpo con id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Actulizar ZonaCuerpo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/zonasCuerpo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo",
+						"1"
+					]
+				},
+				"description": "Actualiza la zona del cuerpo con 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar ZonaCuerpo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/zonasCuerpo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo"
+					]
+				},
+				"description": "Borra la zona del cuerpo"
+			},
+			"response": []
+		}
+	]
+}

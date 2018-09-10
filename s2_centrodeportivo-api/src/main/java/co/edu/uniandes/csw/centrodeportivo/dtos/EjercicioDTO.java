@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
-import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -42,6 +41,19 @@ public class EjercicioDTO
     private String descripcion;
     
     private String explicacion;
+    
+    public EjercicioDTO(EjercicioEntity ejercicioEntity) {
+
+        if (ejercicioEntity != null) {
+            this.id = ejercicioEntity.getId();
+            this.nombre = ejercicioEntity.getNombre();
+            this.categoria = ejercicioEntity.getCategoria();
+            this.duracion = ejercicioEntity.getDuracion();
+            this.numeroDeSeries = ejercicioEntity.getNumeroDeSeries();
+            this.descripcion = ejercicioEntity.getDescripcion();
+            this.explicacion = ejercicioEntity.getExplicacion();    
+        }
+    }
     
     public Long getId(){
         return id;
