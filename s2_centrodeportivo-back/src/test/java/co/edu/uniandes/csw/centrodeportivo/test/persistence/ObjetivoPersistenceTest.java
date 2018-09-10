@@ -112,7 +112,7 @@ public class ObjetivoPersistenceTest {
         ObjetivoEntity nuevoObjetivo = factory.manufacturePojo(ObjetivoEntity.class);
         ObjetivoEntity resultado = objetivoPersistence.create(nuevoObjetivo);
         
-        Assert.assertNotNull(resultado);
+        Assert.assertNull(resultado);
         ObjetivoEntity entidad = em.find(ObjetivoEntity.class, resultado.getId());
         
         Assert.assertEquals(nuevoObjetivo.getId(), entidad.getId());
