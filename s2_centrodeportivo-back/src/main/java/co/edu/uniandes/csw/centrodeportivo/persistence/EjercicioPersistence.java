@@ -49,5 +49,12 @@ public class EjercicioPersistence
         LOGGER.log(Level.INFO, "Saliendo de actualizar el ejercicio con id = {0}", ejercicioEntity.getId());
         return em.merge(ejercicioEntity);
     }
+    
+    public void delete(Long ejerciciosId) {
+        LOGGER.log(Level.INFO, "Borrando el ejercicio con id = {0}", ejerciciosId);
+        EjercicioEntity entity = em.find(EjercicioEntity.class, ejerciciosId);
+        em.remove(entity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar el ejercicio con id = {0}", ejerciciosId);
+    }
    
 }

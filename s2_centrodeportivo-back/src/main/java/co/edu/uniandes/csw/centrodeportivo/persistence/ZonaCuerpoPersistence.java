@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.persistence;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ZonaCuerpoPersistence {
 
-    private static final Logger LOGGER = Logger.getLogger(EjercicioPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoPersistence.class.getName());
 
     @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
@@ -44,9 +45,16 @@ public class ZonaCuerpoPersistence {
         return em.find(ZonaCuerpoEntity.class, zonaCuerpoEntity);
     }
    
-     public ZonaCuerpoEntity update(ZonaCuerpoEntity zonaCuerpoEntity) {
+    public ZonaCuerpoEntity update(ZonaCuerpoEntity zonaCuerpoEntity) {
         LOGGER.log(Level.INFO, "Actualizando la zona del cuerpo con id = {0}", zonaCuerpoEntity.getId());
         LOGGER.log(Level.INFO, "Saliendo de actualizar el ejercicio con id = {0}", zonaCuerpoEntity.getId());
         return em.merge(zonaCuerpoEntity);
+    }
+     
+    public void delete(Long zonaCuerpoId) {
+        LOGGER.log(Level.INFO, "Borrando la zonaCuerpo con id = {0}", zonaCuerpoId);
+        EjercicioEntity entity = em.find(EjercicioEntity.class, zonaCuerpoId);
+        em.remove(entity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar la zonaCuerpo con id = {0}", zonaCuerpoId);
     }
 }
