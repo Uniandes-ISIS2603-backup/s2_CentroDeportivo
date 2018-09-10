@@ -13,6 +13,9 @@ import javax.ws.rs.*;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.*;
 import co.edu.uniandes.csw.centrodeportivo.entities.*;
 import co.edu.uniandes.csw.centrodeportivo.ejb.*;
+import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 /**
@@ -48,12 +51,11 @@ public class DeportistaResource {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica. 
         DeportistaEntity deportistaEntity = deportista.toEntity();
         // Invoca la lógica para crear el deportista nuevo
-//        DeportistaEntity nuevoDeportistaEntity = deportistaLogic.createDeportista(deportistaEntity); 
-//        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo 
-//        DeportistaDTO nuevoDeportistaDTO = new DeportistaDTO(nuevoDeportistaEntity); 
-//        LOGGER.log(Level.INFO, "DeportistaResource createDeportista: output: {0}", nuevoDeportistaDTO.toString()); 
-//        return nuevoDeportistaDTO; 
-        return null;
+        DeportistaEntity nuevoDeportistaEntity = deportistaLogic.createDeportista(deportistaEntity); 
+        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo 
+        DeportistaDTO nuevoDeportistaDTO = new DeportistaDTO(nuevoDeportistaEntity); 
+        LOGGER.log(Level.INFO, "DeportistaResource createDeportista: output: {0}", nuevoDeportistaDTO.toString()); 
+        return nuevoDeportistaDTO; 
     }
 
     /**
@@ -63,12 +65,11 @@ public class DeportistaResource {
      * la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<DeportistaDTO> getDeportistas() {
+    public List<DeportistaDetailDTO> getDeportistas() {
         LOGGER.info("DeportistaResource getDeportistas: input: void");
-//        List<DeportistaDTO> listaDeportistas = listEntity2DetailDTO(DeportistaLogic.getDeportistas()); 
-//        LOGGER.log(Level.INFO, "DeportistaResource getDeportistas: output: {0}", listaDeportistas.toString()); 
-//        return listaDeportistas; 
-        return null;
+        List<DeportistaDetailDTO> listaDeportistas = listEntity2DetailDTO(deportistaLogic.getDeportistas()); 
+        LOGGER.log(Level.INFO, "DeportistaResource getDeportistas: output: {0}", listaDeportistas.toString()); 
+        return listaDeportistas; 
     }
 
     /**
@@ -84,14 +85,13 @@ public class DeportistaResource {
     @Path("{deportistasId: \\d+}")
     public DeportistaDTO getDeportista(@PathParam("deportistasId") Long deportistasId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "DeportistaResource getDeportista: input: {0}", deportistasId);
-//        DeportistaEntity deportistaEntity = DeportistaLogic.getDeportista(deportistasId); 
-//        if (deportistaEntity == null)  
-//            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404); 
-//         
-//        DeportistaDTO detailDTO = new DeportistaDTO(deportistaEntity); 
-//        LOGGER.log(Level.INFO, "DeportistaResource getDeportista: output: {0}", detailDTO.toString()); 
-//        return detailDTO; 
-        return null;
+        DeportistaEntity deportistaEntity = deportistaLogic.getDeportista(deportistasId); 
+        if (deportistaEntity == null)  
+            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404); 
+         
+        DeportistaDTO detailDTO = new DeportistaDTO(deportistaEntity); 
+        LOGGER.log(Level.INFO, "DeportistaResource getDeportista: output: {0}", detailDTO.toString()); 
+        return detailDTO; 
     }
 
     /**
@@ -113,13 +113,12 @@ public class DeportistaResource {
 
         LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: input: id:{0} , deportista: {1}", new Object[]{deportistasId, deportista.toString()});
         deportista.setId(deportistasId);
-//        if (DeportistaLogic.getDeportista(deportistasId) == null)  
-//            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
-//
-//        DeportistaDTO detailDTO = new DeportistaDTO(DeportistaLogic.updateDeportista(deportistasId, deportista.toEntity())); 
-//        LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: output: {0}", detailDTO.toString()); 
-//        return detailDTO; 
-        return null;
+        if (deportistaLogic.getDeportista(deportistasId) == null)  
+            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+
+        DeportistaDTO detailDTO = new DeportistaDTO(deportistaLogic.updateDeportista(deportistasId, deportista.toEntity())); 
+        LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: output: {0}", detailDTO.toString()); 
+        return detailDTO; 
     }
     
      /**
@@ -136,10 +135,25 @@ public class DeportistaResource {
     @Path("{deportistasId: \\d+}")
     public void deleteDeportista(@PathParam("deportistasId") Long deportistasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "DeportistaResource deleteDeportista: input: {0}", deportistasId);
-//        if (deportistaLogic.getDeportista(deportistasId) == null) {
-//            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
-//        }
-//        deportistaLogic.deleteDeportista(deportistasId);
-//        LOGGER.info("DeportistaResource deleteDeportista: output: void");
+        if (deportistaLogic.getDeportista(deportistasId) == null) {
+            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+        }
+        deportistaLogic.deleteDeportista(deportistasId);
+        LOGGER.info("DeportistaResource deleteDeportista: output: void");
+    }
+    
+     /**
+     * Convierte una lista de Entity a una lista de DetailDTO.
+     *
+     * @param entityList Lista de Entity a convertir.
+     * @return Lista de DetailDTO convertida.
+     */
+
+    private List<DeportistaDetailDTO> listEntity2DetailDTO(List<DeportistaEntity> entityList) {
+        List<DeportistaDetailDTO> list = new ArrayList<>();
+        for (DeportistaEntity entity : entityList) {
+            list.add(new DeportistaDetailDTO(entity));
+        }
+        return list;
     }
 }

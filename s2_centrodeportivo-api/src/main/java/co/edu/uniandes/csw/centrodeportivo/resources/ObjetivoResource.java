@@ -5,12 +5,14 @@
 */ 
 package co.edu.uniandes.csw.centrodeportivo.resources; 
 
-import co.edu.uniandes.csw.centrodeportivo.dtos.DeportistaDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.ObjetivoDTO;
+import co.edu.uniandes.csw.centrodeportivo.dtos.ObjetivoDetailDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.ObjetivoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +39,7 @@ public class ObjetivoResource {
 
     private static final Logger LOGGER = Logger.getLogger(DeportistaResource.class.getName());
     @Inject
-    ObjetivoLogic objetivoaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias. 
+    ObjetivoLogic objetivoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias. 
 
     /**
      * Crea un nuevo objetivo con la informacion que se recibe en el cuerpo de
@@ -57,12 +59,11 @@ public class ObjetivoResource {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica. 
         ObjetivoEntity objetivoEntity = objetivo.toEntity();
         // Invoca la lógica para crear el objetivo nuevo
-//        ObjetivoEntity nuevoObjetivoEntity = objetivoLogic.createObjetivo(objetivoEntity); 
-//        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo 
-//        ObjetivoDTO nuevoObjetivoDTO = new ObjetivoDTO(nuevoObjetivoEntity); 
-//        LOGGER.log(Level.INFO, "ObjetivoResource createObjetivo: output: {0}", nuevoObjetivoDTO.toString()); 
-//        return nuevoObjetivoDTO; 
-        return null;
+        ObjetivoEntity nuevoObjetivoEntity = objetivoLogic.createObjetivo(objetivoEntity); 
+        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo 
+        ObjetivoDTO nuevoObjetivoDTO = new ObjetivoDTO(nuevoObjetivoEntity); 
+        LOGGER.log(Level.INFO, "ObjetivoResource createObjetivo: output: {0}", nuevoObjetivoDTO.toString()); 
+        return nuevoObjetivoDTO; 
     }
     
     /**
@@ -72,12 +73,11 @@ public class ObjetivoResource {
      * la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<ObjetivoDTO> getObjetivos() {
+    public List<ObjetivoDetailDTO> getObjetivos() {
         LOGGER.info("ObjetivoResource getObjetivos: input: void");
-//        List<ObjetivoDTO> listaObjetivos = listEntity2DetailDTO(ObjetivoLogic.getObjetivos()); 
-//        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivos: output: {0}", listaObjetivos.toString()); 
-//        return listaObjetivos; 
-        return null;
+        List<ObjetivoDetailDTO> listaObjetivos = listEntity2DetailDTO(objetivoLogic.getObjetivos()); 
+        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivos: output: {0}", listaObjetivos.toString()); 
+        return listaObjetivos; 
     }
     
      /**
@@ -93,14 +93,13 @@ public class ObjetivoResource {
     @Path("{objetivosId: \\d+}")
     public ObjetivoDTO getObjetivo(@PathParam("objetivosId") Long objetivosId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: input: {0}", objetivosId);
-//        ObjetivoEntity objetivoEntity = ObjetivoLogic.getObjetivo(objetivosId); 
-//        if (objetivoEntity == null)  
-//            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404); 
-//         
-//        ObjetivoDTO detailDTO = new ObjetivoDTO(objetivoEntity); 
-//        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: output: {0}", detailDTO.toString()); 
-//        return detailDTO; 
-        return null;
+        ObjetivoEntity objetivoEntity = objetivoLogic.getObjetivo(objetivosId); 
+        if (objetivoEntity == null)  
+            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404); 
+         
+        ObjetivoDTO detailDTO = new ObjetivoDTO(objetivoEntity); 
+        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: output: {0}", detailDTO.toString()); 
+        return detailDTO; 
     }
        /**
      * Actualiza el objetivo con el id recibido en la URL con la informacion
@@ -121,14 +120,28 @@ public class ObjetivoResource {
 
         LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: input: id:{0} , objetivo: {1}", new Object[]{objetivosId, objetivo.toString()});
         objetivo.setId(objetivosId);
-//        if (ObjetivoLogic.getObjetivo(objetivosId) == null)  
-//            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404);
-//
-//        ObjetivoDTO detailDTO = new ObjetivoDTO(ObjetivoLogic.updateObjetivo(objetivosId, objetivo.toEntity())); 
-//        LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: output: {0}", detailDTO.toString()); 
-//        return detailDTO; 
-        return null;
+        if (objetivoLogic.getObjetivo(objetivosId) == null)  
+            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404);
+
+        ObjetivoDTO detailDTO = new ObjetivoDTO(objetivoLogic.updateObjetivo(objetivosId, objetivo.toEntity())); 
+        LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: output: {0}", detailDTO.toString()); 
+        return detailDTO; 
     }
+    
+    /**
+     * Convierte una lista de Entity a una lista de DetailDTO.
+     *
+     * @param entityList Lista de Entity a convertir.
+     * @return Lista de DetailDTO convertida.
+     */
+    private List<ObjetivoDetailDTO> listEntity2DetailDTO(List<ObjetivoEntity> entityList) {
+        List<ObjetivoDetailDTO> list = new ArrayList<>();
+        for (ObjetivoEntity entity : entityList) {
+            list.add(new ObjetivoDetailDTO(entity));
+        }
+        return list;
+    }
+    
     
     //ELIMINAR?
     
