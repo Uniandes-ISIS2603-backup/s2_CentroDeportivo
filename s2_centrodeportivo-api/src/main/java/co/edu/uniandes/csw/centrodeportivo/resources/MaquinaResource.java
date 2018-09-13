@@ -42,7 +42,7 @@ public class MaquinaResource implements Serializable{
     
     @PUT
     @Path("{maquinasId: \\d+}")
-    public MaquinaDTO actualizarAtributos(@PathParam("maquinasId") Long maquinasId)
+    public MaquinaDTO actualizarAtributos(@PathParam("maquinasId") Long maquinasId, MaquinaDTO maquina)
     {
         return null;
     }

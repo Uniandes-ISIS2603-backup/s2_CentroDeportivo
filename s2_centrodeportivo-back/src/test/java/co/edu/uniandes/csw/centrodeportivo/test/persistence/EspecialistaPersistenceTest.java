@@ -15,10 +15,12 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.ClassInfoStrategy;
 import uk.co.jemos.podam.api.DataProviderStrategy;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -28,6 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Francisco Jose MacAllister
  */
+@RunWith(Arquillian.class)
 public class EspecialistaPersistenceTest {
     
  @Inject
@@ -44,17 +47,7 @@ public class EspecialistaPersistenceTest {
      * lista que tiene los datos de prueba.
      */
     private List<EspecialistaEntity> data = new ArrayList<EspecialistaEntity>();
- @Test
- public void createEspecialistaTest()
- {
-     PodamFactory factory =new PodamFactoryImpl();
-     EspecialistaEntity newEntity =factory.manufacturePojo(EspecialistaEntity.class);
-     EspecialistaEntity result= especialistaPersistence.create(newEntity);
-     
-     Assert.assertNotNull(result);
-     EspecialistaEntity entity=em.find(EspecialistaEntity.class, result.getId());
-    // org.junit.Assert.assertEquals(newEntity.getName(), entity.getName());
- }
+ 
   @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -106,7 +99,19 @@ public class EspecialistaPersistenceTest {
             data.add(entity);
         }
     }
-
+    
+    @Test
+ public void createEspecialistaTest()
+ {
+     PodamFactory factory =new PodamFactoryImpl();
+     EspecialistaEntity newEntity =factory.manufacturePojo(EspecialistaEntity.class);
+     EspecialistaEntity result= especialistaPersistence.create(newEntity);
+     
+     Assert.assertNotNull(result);
+     EspecialistaEntity entity=em.find(EspecialistaEntity.class, result.getId());
+     Assert.assertEquals(newEntity.getId(), entity.getId());
+ }
+    
     /**
      * Prueba para consultar la lista de Especialistas.
      */
@@ -133,7 +138,7 @@ public class EspecialistaPersistenceTest {
         EspecialistaEntity entity = data.get(0);
         EspecialistaEntity newEntity = especialistaPersistence.find(entity.getId());
         org.junit.Assert.assertNotNull(newEntity);
-        org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        org.junit.Assert.assertEquals(entity.getId(), newEntity.getId());
     }
 
     /**

@@ -5,11 +5,15 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
+import com.gs.collections.impl.list.fixed.ArrayAdapter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -33,70 +37,58 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     private String explicacion;
     
     
-    @PodamExclude
-    @javax.persistence.ManyToOne()
-    ZonaCuerpoEntity zonaCuerpo;
-    
    // @PodamExclude
    //  @javax.persistence.ManyToOne()
    //  MaquinaEntity maquina;
     
     @PodamExclude
-    @javax.persistence.OneToMany(mappedBy = "ejercicio")
-    List<ZonaCuerpoEntity> zonasCuerpo;
+    @ManyToOne 
+    private RutinaEntity rutina;
     
     @PodamExclude
-    @javax.persistence.OneToMany(mappedBy = "ejercicio")
-    List<ImplementoEntity> implementos;
+    @ManyToOne
+    private MaquinaEntity maquina;
     
-   // @PodamExclude
-   //@javax.persistence.OneToMany(mappedBy = "ejercicio",
-    //        fetch = javax.persistence.FetchType.LAZY)
-   // List<MaquinaEntity> maquinas;
+    @PodamExclude
+    @OneToMany(mappedBy = "ejercicio")
+    private List<ZonaCuerpoEntity> zonasCuerpo = new ArrayList<ZonaCuerpoEntity>();
     
-    //Metodos-------------------------
-    
-    
-    //---------------------------------------------------------------
-    
-   //  public List<MaquinaEntity> getZonasCuerpo()
-   // {
-  ////     return this.maquinas;  
-   // }
-     public List<ImplementoEntity> getImplementos()
-     {
-      return this.implementos;  
-     }
+    @PodamExclude
+    @OneToMany(mappedBy = "ejercicio")
+    private List<ImplementoEntity> implementos = new ArrayList<ImplementoEntity>();
 
-     public List<ZonaCuerpoEntity> getZonasCuerpo()
-    {
-     return this.zonasCuerpo;  
+    public RutinaEntity getRutina() {
+        return rutina;
     }
-     public void setZonasCuerpo(List<ZonaCuerpoEntity> pZonasCuerpo)
-    {
-        this.zonasCuerpo = pZonasCuerpo;
+
+    public void setRutina(RutinaEntity rutina) {
+        this.rutina = rutina;
+    }
+
+    public MaquinaEntity getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(MaquinaEntity maquinaEntity) {
+        this.maquina = maquinaEntity;
+    }
+
+    public List<ZonaCuerpoEntity> getZonasCuerpo() {
+        return zonasCuerpo;
+    }
+
+    public void setZonasCuerpo(List<ZonaCuerpoEntity> zonasCuerpo) {
+        this.zonasCuerpo = zonasCuerpo;
+    }
+
+    public List<ImplementoEntity> getImplementos() {
+        return implementos;
+    }
+
+    public void setImplementos(List<ImplementoEntity> implementos) {
+        this.implementos = implementos;
     }
     
-    
-    //---------------------------------------------------------------
-    
-//     public void setMaquina(MaquinaEntity pMaquina)
-  //  {
-  //      this.maquina = pMaquina;
-  //   }
-  //  public MaquinaEntity getMaquina()
-  //   {
-  //      return maquina;
-  //   }
-    
-    public void setZonaCuerpo(ZonaCuerpoEntity pZonaCuerpo)
-    {
-        this.zonaCuerpo = pZonaCuerpo;
-    }
-    public ZonaCuerpoEntity getZonaCuerpo()
-    {
-       return zonaCuerpo;
-    }
     
     
     //---------------------------------------------------------------

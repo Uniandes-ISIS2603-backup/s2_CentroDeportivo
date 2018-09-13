@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -24,9 +25,8 @@ public class RutinaEntity extends BaseEntity implements Serializable {
      * dos entidades al  mismo tiempo
      */
     @PodamExclude
-    @javax.persistence.OneToMany(mappedBy = "rutina",
-            fetch = javax.persistence.FetchType.LAZY)
-    List<ObjetivoEntity> objetivos =new ArrayList<ObjetivoEntity>();
+    @OneToMany(mappedBy = "rutina")
+    private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     
     
     /**
@@ -44,9 +44,8 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     
     
     
-     @PodamExclude
-    @javax.persistence.OneToMany(mappedBy = "rutina",
-            fetch = javax.persistence.FetchType.LAZY)
+    @PodamExclude
+    @javax.persistence.OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
     List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
     
     

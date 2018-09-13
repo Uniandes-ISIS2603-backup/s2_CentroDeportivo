@@ -25,17 +25,10 @@ public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
     @javax.persistence.ManyToOne()
     EjercicioEntity ejercicio;
     
-    
-    @javax.persistence.OneToMany(mappedBy = "zonaCuerpo",
-            fetch = javax.persistence.FetchType.LAZY)
-    List<EjercicioEntity> ejercicios;
+
     
     //----------------------------------------------
     
-    public List<EjercicioEntity> getEjercicios()
-    {
-      return this.ejercicios;  
-    }
     
     //-----------------------------------------------
 

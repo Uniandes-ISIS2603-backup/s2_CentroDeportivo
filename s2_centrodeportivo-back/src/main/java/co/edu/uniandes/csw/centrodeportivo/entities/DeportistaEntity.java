@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.*;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @author Leidy Romero
@@ -29,30 +33,22 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private Date ultimaActualizacionDatos;
     private Date fechaNacimiento;
 
+    @PodamExclude
+    @ManyToOne
+    private EspecialistaEntity especialista;
     
-     /**
-     * Modela la asociacion 1...1 entre las clases Deportista y (hacia) Seguimiento
-     */
-    @javax.persistence.OneToOne()
-    SeguimientoEntity seguimiento;
+    @PodamExclude
+    @OneToMany(mappedBy = "deportista", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     
-    /**
-     * Modela la asociacion *...1 entre las clases Deportista y (hacia) Objetivo
-     */
-    @javax.persistence.ManyToOne()
-    ObjetivoEntity objetivo;
-
-     /**
-     * Modela la asociacion *...1 entre las clases Deportista y (hacia) Especialista
-     */
-    @javax.persistence.ManyToOne()
-    EspecialistaEntity especialista;
-        
-     /**
-     * Modela la asociacion 1...* entre las clases Deportista y (hacia) Objetivo
-     */
-    @javax.persistence.OneToMany(mappedBy = "deportista")
-    Collection<ObjetivoEntity> objetivos;
+    @PodamExclude
+    @ManyToOne
+    private ObjetivoEntity objetivo;
+    
+    @PodamExclude
+    @OneToOne(mappedBy = "deportista")
+    private SeguimientoEntity seguimiento;
+    
     /**
      * Devuelve los objetivos del deportista
      * @return Collection los objetivos
@@ -76,7 +72,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     }
     public void setObjetivos(Collection<ObjetivoEntity> pObjetivos)
     {
-        this.objetivos = pObjetivos;
+        this.objetivos = (List<ObjetivoEntity>) pObjetivos;
     }
     
     public ObjetivoEntity getObjetivo()

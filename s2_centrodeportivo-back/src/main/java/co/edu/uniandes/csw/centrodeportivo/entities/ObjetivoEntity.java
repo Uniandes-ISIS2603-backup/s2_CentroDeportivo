@@ -10,11 +10,17 @@
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**  *
  *
@@ -30,26 +36,26 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
 
     private Date fechaLimite;
 
-     /**
-     * Modela la asociacion *...1 entre las clases Objetivo y (hacia) Deportista
-     */
-    @javax.persistence.ManyToOne()
-    DeportistaEntity deportista;
+    @PodamExclude
+    @ManyToOne
+    private DeportistaEntity deportista;
     
-     /**
-     * Modela la asociacion *...1 entre las clases Objetivo y (hacia) Especialista
-     */
-    @javax.persistence.ManyToOne()
-    EspecialistaEntity especialista;
-        
+    @PodamExclude
+    @ManyToOne
+    private RutinaEntity rutina;   
      /**
      * Modela la asociacion 1...* entre las clases Objetivo Y (hacia) Deportista
      * se especifica fetch para especificar que no se deben cargar las
      * dos entidades al  mismo tiempo
      */
-    @javax.persistence.OneToMany(mappedBy = "objetivo",
-            fetch = javax.persistence.FetchType.LAZY)
-    Collection<DeportistaEntity> casosExitosos;
+    @PodamExclude
+    @OneToMany(mappedBy = "objetivo")
+    private List<DeportistaEntity> casosExitosos = new ArrayList<DeportistaEntity>();
+
+    @PodamExclude
+    @ManyToOne
+    private EspecialistaEntity especialista;
+    
     /**
      * Devuelve los deportistas que en el historial, han completado este objetivo (casos exitosos)
      * @return Collection los deportistas
@@ -61,7 +67,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     
     public void setCasosExitosos(Collection<DeportistaEntity> pDeportistas)
     {
-      this.casosExitosos = pDeportistas;  
+      this.casosExitosos = (List<DeportistaEntity>) pDeportistas;  
     }
     
     public void setDeportista(DeportistaEntity pDeportista)
@@ -72,7 +78,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     {
        return deportista;
     }
-    
+        
     public void setEspecialista(EspecialistaEntity pEspecialista)
     {
         this.especialista = pEspecialista;

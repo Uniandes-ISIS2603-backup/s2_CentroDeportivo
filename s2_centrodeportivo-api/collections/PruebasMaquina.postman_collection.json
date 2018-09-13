@@ -6,37 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Crear una máquina",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\":\"uniandes\"}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_centrodeportivo-api",
-						"api",
-						"maquinas"
-					]
-				},
-				"description": "Se espera null"
-			},
-			"response": []
-		},
-		{
 			"name": "Devuelve todas las máquinas",
 			"request": {
 				"method": "GET",
@@ -87,8 +56,16 @@
 			"name": "Actualiza los atributos de una máquina",
 			"request": {
 				"method": "PUT",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/9",
 					"protocol": "http",
@@ -125,6 +102,29 @@
 						"api",
 						"maquinas",
 						"30"
+					]
+				},
+				"description": "Se espera null"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una maquina",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas"
 					]
 				},
 				"description": "Se espera null"

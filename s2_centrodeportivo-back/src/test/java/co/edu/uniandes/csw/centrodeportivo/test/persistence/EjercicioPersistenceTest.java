@@ -76,7 +76,7 @@ public class EjercicioPersistenceTest
 
     private void inserData() {
         PodamFactory factory = new PodamFactoryImpl();
-        for(int i = 0; i<10 ; i++)
+        for(int i = 0; i < 3; i++)
         {
             EjercicioEntity entidad = factory.manufacturePojo(EjercicioEntity.class);
             
@@ -135,7 +135,7 @@ public class EjercicioPersistenceTest
 
         EjercicioEntity resp = em.find(EjercicioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     
     @Test

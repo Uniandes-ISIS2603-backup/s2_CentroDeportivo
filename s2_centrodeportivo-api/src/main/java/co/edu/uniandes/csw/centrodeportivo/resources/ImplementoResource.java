@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.ImplementoDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.ImplementoDetailDTO;
-import co.edu.uniandes.csw.centrodeportivo.ejb.ImplementoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import java.util.List;
@@ -36,10 +35,7 @@ import javax.ws.rs.WebApplicationException;
 public class ImplementoResource {
     
     private static final Logger LOGGER = Logger.getLogger(ImplementoResource.class.getName());
-    
-    @Inject
-    private ImplementoLogic implementoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    
+  
     /**
      * Crea un nuevo implemento con la informacion que se recibe en el cuerpo de
      * la petición y se regresa un objeto identico con un id auto-generado por

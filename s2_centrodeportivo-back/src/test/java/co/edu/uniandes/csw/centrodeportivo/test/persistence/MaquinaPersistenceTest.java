@@ -137,7 +137,7 @@ public class MaquinaPersistenceTest {
      * Prueba para consultar una maquina.
      */
     @Test
-    public void getReservaTest() {
+    public void getMaquinaTest() {
         MaquinaEntity entity = data.get(0);
         MaquinaEntity newEntity = maquinaPersistencia.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -145,7 +145,7 @@ public class MaquinaPersistenceTest {
     }
 
     /**
-     * Prueba para eliminar una Reserva.
+     * Prueba para eliminar una maquina.
      */
     @Test
     public void deleteMaquinaTest() {

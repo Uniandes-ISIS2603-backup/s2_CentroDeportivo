@@ -26,10 +26,11 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @PodamExclude
-    @OneToOne(mappedBy = "seguimiento", fetch = FetchType.LAZY)
+    @OneToOne
     private DeportistaEntity deportista;
     
-    @OneToMany(mappedBy = "seguimiento")
+    @PodamExclude
+    @OneToMany
     private List<MaquinaEntity> maquinas = new ArrayList<MaquinaEntity>();
     
     private Integer tiempo;

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -24,15 +25,10 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     private String especialidad;
     private int cedula;
 
-    /**
-     * Modela la asociacion 1...* entre las clases Especialista y Deportista
-     * se especifica fetch para especificar que no se deben cargar las
-     * dos entidades al  mismo tiempo
-     */
     @PodamExclude
-    @javax.persistence.OneToMany(mappedBy = "especialista",
-            fetch = javax.persistence.FetchType.LAZY)
-    List<DeportistaEntity> deportistas =new ArrayList<DeportistaEntity>();
+    @OneToMany(mappedBy = "especialista")
+    private List<DeportistaEntity> deportistas = new ArrayList<DeportistaEntity>();
+
     /**
      * Devuelve los deportistas que son asesorados por este deportista
      * @return Collection los deportistas
@@ -51,9 +47,9 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
      * se especifica fetch para especificar que no se deben cargar las
      * dos entidades al  mismo tiempo
      */
-    @javax.persistence.OneToMany(mappedBy = "especialista",
-            fetch = javax.persistence.FetchType.LAZY)
-   List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
+    @PodamExclude
+    @OneToMany(mappedBy = "especialista")
+    private List <ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     /**
      * Devuelve los objetivos
      * @return Collection los objetivos

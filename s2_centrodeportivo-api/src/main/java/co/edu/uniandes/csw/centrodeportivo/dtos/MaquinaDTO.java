@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
 import java.io.Serializable;
 
 /**
@@ -23,6 +25,19 @@ public class MaquinaDTO implements Serializable{
     public MaquinaDTO()
     {
         
+    }
+    
+    public MaquinaDTO(MaquinaEntity maquinaEntity)
+    {
+        if(maquinaEntity != null)
+        {
+            this.id = maquinaEntity.getId();
+            this.nombre = maquinaEntity.getNombre();
+            this.calorias = maquinaEntity.getCalorias();
+            this.tiempo = maquinaEntity.getTiempo();
+            this.velocidad = maquinaEntity.getVelocidad();
+            this.velocidadPromedio = maquinaEntity.getVelocidadPromedio();
+        }
     }
     
     /**
@@ -118,5 +133,23 @@ public class MaquinaDTO implements Serializable{
     */
     public void setVelocidadPromedio( Double pVelocidadPromedio ){
         this.velocidadPromedio = pVelocidadPromedio;
-    }        
+    }  
+    
+    /**      *
+     * Convertir DTO a Entity      *
+     *
+     *
+     * @return Un Entity con los valores del DTO      *
+     */
+    public MaquinaEntity toEntity() 
+    {
+        MaquinaEntity maquinaEntity = new MaquinaEntity();
+        maquinaEntity.setId(this.id);
+        maquinaEntity.setNombre(this.nombre);
+        maquinaEntity.setCalorias(this.calorias);
+        maquinaEntity.setTiempo(this.tiempo);
+        maquinaEntity.setVelocidad(this.velocidad);
+        maquinaEntity.setVelocidadPromedio(this.velocidadPromedio);
+        return maquinaEntity;
+    }
 }   
