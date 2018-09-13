@@ -5,33 +5,31 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
-
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import javax.inject.Inject;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.runner.RunWith;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EjercicioPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 /**
  *
- * @author Daniel Pardo
+ * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class EjercicioPersistenceTest 
-{
+public class EjercicioPersistenceTest {
+      
     @Inject
     private EjercicioPersistence ejercicioPersistence;
     
@@ -43,15 +41,22 @@ public class EjercicioPersistenceTest
     
     private List<EjercicioEntity> data = new ArrayList<>();
     
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el 
+     * archivo beans.xml para resolver la inyeccion de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(EjercicioEntity.class.getPackage())
-                .addPackage(EjercicioEntity.class.getPackage())
+                .addPackage(EjercicioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest() {
         try {
@@ -69,14 +74,22 @@ public class EjercicioPersistenceTest
             }
         }
     }
-
-    private void clearData() {
+    
+    /**
+     * Limpia las tablas que estan implicada en la prueba.
+     */
+    private void clearData()
+    {
         em.createQuery("delete from EjercicioEntity").executeUpdate();
     }
-
-    private void inserData() {
+    
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas
+     */
+    private void inserData()
+    {
         PodamFactory factory = new PodamFactoryImpl();
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i<10 ; i++)
         {
             EjercicioEntity entidad = factory.manufacturePojo(EjercicioEntity.class);
             
@@ -85,6 +98,9 @@ public class EjercicioPersistenceTest
         }
     }
     
+    /**
+     * Prueba para crear un ejercicio
+     */
     @Test
     public void createEjercicioEntity()
     {
@@ -95,9 +111,12 @@ public class EjercicioPersistenceTest
         Assert.assertNotNull(resultado);
         EjercicioEntity entidad = em.find(EjercicioEntity.class, resultado.getId());
         
-        //Assert.assertEquals(nuevoEjercicio.getId(), entidad.getId());
+        //Assert.assertEquals(nuevoEjercicio.getCedula(), entidad.getCedula());
     }
     
+    /**
+     * Prueba para consultar la lista de ejercicios
+     */
     @Test
     public void getEjerciciosTest()
     {
@@ -113,16 +132,21 @@ public class EjercicioPersistenceTest
             Assert.assertTrue(found);
         }
     }
-    
+     /**
+     * Prueba para consultar un Ejercicio
+     */
     @Test
     public void getEjercicioTest() {
         EjercicioEntity entity = data.get(0);
         EjercicioEntity nuevaEntity = ejercicioPersistence.find(entity.getId());
         Assert.assertNotNull(nuevaEntity);
         Assert.assertEquals(entity.getNombre(), nuevaEntity.getNombre());
-        Assert.assertEquals(entity.getId(), nuevaEntity.getId());
+        
     }
     
+     /**
+     * Prueba para actualizar un Ejercicio
+     */
     @Test
     public void updateEjercicioTest() {
         EjercicioEntity entity = data.get(0);
@@ -135,9 +159,12 @@ public class EjercicioPersistenceTest
 
         EjercicioEntity resp = em.find(EjercicioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
-    
+
+    /**
+     * Prueba para eliminar un Author.
+     */
     @Test
     public void deleteEjercicioTest() {
         EjercicioEntity entity = data.get(0);

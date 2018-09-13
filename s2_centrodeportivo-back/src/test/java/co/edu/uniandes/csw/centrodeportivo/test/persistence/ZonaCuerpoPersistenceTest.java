@@ -41,15 +41,22 @@ public class ZonaCuerpoPersistenceTest
     
     private List<ZonaCuerpoEntity> data = new ArrayList<>();
     
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el 
+     * archivo beans.xml para resolver la inyeccion de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ZonaCuerpoEntity.class.getPackage())
-                .addPackage(ZonaCuerpoEntity.class.getPackage())
+                .addPackage(ZonaCuerpoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest() {
         try {
@@ -67,12 +74,20 @@ public class ZonaCuerpoPersistenceTest
             }
         }
     }
-
-    private void clearData() {
+    
+    /**
+     * Limpia las tablas que estan implicada en la prueba.
+     */
+    private void clearData()
+    {
         em.createQuery("delete from ZonaCuerpoEntity").executeUpdate();
     }
-
-    private void inserData() {
+    
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas
+     */
+    private void inserData()
+    {
         PodamFactory factory = new PodamFactoryImpl();
         for(int i = 0; i<10 ; i++)
         {
@@ -83,21 +98,27 @@ public class ZonaCuerpoPersistenceTest
         }
     }
     
+    /**
+     * Prueba para crear un zonaCuerpo
+     */
     @Test
-    public void createEjercicioEntity()
+    public void createZonaCuerpoEntity()
     {
         PodamFactory factory =  new PodamFactoryImpl();
-        ZonaCuerpoEntity nuevaZonaCuerpo = factory.manufacturePojo(ZonaCuerpoEntity.class);
-        ZonaCuerpoEntity resultado = zonaCuerpoPersistence.create(nuevaZonaCuerpo);
+        ZonaCuerpoEntity nuevoZonaCuerpo = factory.manufacturePojo(ZonaCuerpoEntity.class);
+        ZonaCuerpoEntity resultado = zonaCuerpoPersistence.create(nuevoZonaCuerpo);
         
         Assert.assertNotNull(resultado);
         ZonaCuerpoEntity entidad = em.find(ZonaCuerpoEntity.class, resultado.getId());
         
-        Assert.assertEquals(nuevaZonaCuerpo.getId(), entidad.getId());
+        //Assert.assertEquals(nuevoZonaCuerpo.getCedula(), entidad.getCedula());
     }
     
+    /**
+     * Prueba para consultar la lista de zonasCuerpo
+     */
     @Test
-    public void getEjerciciosTest()
+    public void getZonasCuerpoTest()
     {
         List<ZonaCuerpoEntity> lista = zonaCuerpoPersistence.findAll();
         Assert.assertEquals(data.size(), lista.size());
@@ -111,18 +132,23 @@ public class ZonaCuerpoPersistenceTest
             Assert.assertTrue(found);
         }
     }
-    
+     /**
+     * Prueba para consultar un ZonaCuerpo
+     */
     @Test
-    public void getEjercicioTest() {
+    public void getZonaCuerpoTest() {
         ZonaCuerpoEntity entity = data.get(0);
         ZonaCuerpoEntity nuevaEntity = zonaCuerpoPersistence.find(entity.getId());
         Assert.assertNotNull(nuevaEntity);
         Assert.assertEquals(entity.getNombre(), nuevaEntity.getNombre());
-        Assert.assertEquals(entity.getId(), nuevaEntity.getId());
+        
     }
     
+     /**
+     * Prueba para actualizar un ZonaCuerpo
+     */
     @Test
-    public void updateEjercicioTest() {
+    public void updateZonaCuerpoTest() {
         ZonaCuerpoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ZonaCuerpoEntity newEntity = factory.manufacturePojo(ZonaCuerpoEntity.class);
@@ -135,12 +161,18 @@ public class ZonaCuerpoPersistenceTest
 
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
-    
+
+    /**
+     * Prueba para eliminar un Author.
+     */
     @Test
-    public void deleteEjercicioTest() {
+    public void deleteZonaCuerpoTest() {
         ZonaCuerpoEntity entity = data.get(0);
         zonaCuerpoPersistence.delete(entity.getId());
         ZonaCuerpoEntity deleted = em.find(ZonaCuerpoEntity.class, entity.getId());
         Assert.assertNull(deleted);
-    } 
+        
+       
+        
+    }
 }

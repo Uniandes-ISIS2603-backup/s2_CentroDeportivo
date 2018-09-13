@@ -25,11 +25,6 @@ public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
     
     private String nombre;
     
-    public ZonaCuerpoEntity()
-    {
-        
-    }
-    
     /**
      * Devuelve el ejercicio que corresponde al zonaCuerpo.
      *

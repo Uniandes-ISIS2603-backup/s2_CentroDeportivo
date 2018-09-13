@@ -53,7 +53,7 @@ public class ZonaCuerpoPersistence {
      
     public void delete(Long zonaCuerpoId) {
         LOGGER.log(Level.INFO, "Borrando la zonaCuerpo con id = {0}", zonaCuerpoId);
-        EjercicioEntity entity = em.find(EjercicioEntity.class, zonaCuerpoId);
+        ZonaCuerpoEntity entity = em.find(ZonaCuerpoEntity.class, zonaCuerpoId);
         em.remove(entity);
         LOGGER.log(Level.INFO, "Saliendo de borrar la zonaCuerpo con id = {0}", zonaCuerpoId);
     }

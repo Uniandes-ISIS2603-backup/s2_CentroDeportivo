@@ -5,15 +5,11 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
-import com.gs.collections.impl.list.fixed.ArrayAdapter;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -36,20 +32,22 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     
     private String explicacion;
     
+    
+    
     @PodamExclude
     @ManyToOne 
     private RutinaEntity rutina;
     
-    @PodamExclude
+   @PodamExclude
     @ManyToOne
-    private MaquinaEntity maquina;
+   private MaquinaEntity maquina;
     
     @PodamExclude
-    @OneToMany(mappedBy = "ejercicio")
+   @OneToMany(mappedBy = "ejercicio")
     private List<ZonaCuerpoEntity> zonasCuerpo = new ArrayList<ZonaCuerpoEntity>();
     
-    @PodamExclude
-    @OneToMany(mappedBy = "ejercicio")
+   @PodamExclude
+   @OneToMany(mappedBy = "ejercicio")
     private List<ImplementoEntity> implementos = new ArrayList<ImplementoEntity>();
 
     public RutinaEntity getRutina() {
@@ -60,7 +58,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable
         this.rutina = rutina;
     }
 
-    public MaquinaEntity getMaquina() {
+   public MaquinaEntity getMaquina() {
         return maquina;
     }
 
@@ -68,7 +66,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable
         this.maquina = maquinaEntity;
     }
 
-    public List<ZonaCuerpoEntity> getZonasCuerpo() {
+   public List<ZonaCuerpoEntity> getZonasCuerpo() {
         return zonasCuerpo;
     }
 
@@ -77,8 +75,8 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     }
 
     public List<ImplementoEntity> getImplementos() {
-        return implementos;
-    }
+       return implementos;
+   }
 
     public void setImplementos(List<ImplementoEntity> implementos) {
         this.implementos = implementos;
@@ -104,19 +102,19 @@ public class EjercicioEntity extends BaseEntity implements Serializable
         this.categoria = categoria;
     }
     
-    public int getDuracion() {
+    public Integer getDuracion() {
         return duracion;
     }
     
-     public void setDuracion(int duracion) {
+     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
      
-    public int getNumeroDeSeries() {
+    public Integer getNumeroDeSeries() {
         return numeroDeSeries;
     }
     
-    public void setNumeroDeSeries(int numeroDeSeries) {
+    public void setNumeroDeSeries(Integer numeroDeSeries) {
         this.numeroDeSeries = numeroDeSeries;
     }
     
