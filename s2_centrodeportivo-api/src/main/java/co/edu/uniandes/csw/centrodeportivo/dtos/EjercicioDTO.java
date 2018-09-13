@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -13,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *aaa
  * @author estudiante
  */
-public class EjercicioDTO 
+public class EjercicioDTO implements Serializable
 {  
     public static final String TIPO_AEROBICO = "aerobico";
     
@@ -34,13 +35,19 @@ public class EjercicioDTO
     
     private String categoria;
     
-    private int duracion;
+    private Integer duracion;
     
-    private int numeroDeSeries;
+    private Integer numeroDeSeries;
     
     private String descripcion;
     
     private String explicacion;
+    
+    
+    public EjercicioDTO()
+    {
+        
+    }
     
     public EjercicioDTO(EjercicioEntity ejercicioEntity) {
 
@@ -80,20 +87,20 @@ public class EjercicioDTO
         this.categoria = categoria;
     }
     
-    public int getDuracion(){
+    public Integer getDuracion(){
         return duracion;
     }
     
-    public void setDuracion(int duracion){
+    public void setDuracion(Integer duracion){
         this.duracion = duracion;
     }
     
-    public int getNumeroDeSeries()
+    public Integer getNumeroDeSeries()
     {
         return numeroDeSeries;
     }
     
-    public void setNumeroDeSeries(int numeroDeSeries){
+    public void setNumeroDeSeries(Integer numeroDeSeries){
         this.numeroDeSeries = numeroDeSeries;
     }
     

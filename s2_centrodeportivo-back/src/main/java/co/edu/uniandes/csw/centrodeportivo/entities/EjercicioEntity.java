@@ -36,11 +36,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     
     private String explicacion;
     
-    
-   // @PodamExclude
-   //  @javax.persistence.ManyToOne()
-   //  MaquinaEntity maquina;
-    
     @PodamExclude
     @ManyToOne 
     private RutinaEntity rutina;

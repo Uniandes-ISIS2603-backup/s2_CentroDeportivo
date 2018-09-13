@@ -26,6 +26,11 @@ public class ZonaCuerpoDTO implements Serializable
      */
     private String nombre;
 
+    public ZonaCuerpoDTO()
+    {
+        
+    }
+    
     public ZonaCuerpoDTO(ZonaCuerpoEntity zonaCuerpoEntity) {
 
         if (zonaCuerpoEntity != null) {

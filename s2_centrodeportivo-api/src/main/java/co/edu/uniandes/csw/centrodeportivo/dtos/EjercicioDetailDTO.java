@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 
-import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,57 +20,63 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
 {
+   /*
+    * Esta lista de tipo ZonaCuerpoDTO contiene las implementos que estan asociadas a un rutina
+     */
     private List<ZonaCuerpoDTO> zonasCuerpo;
-    
-    public EjercicioDetailDTO(EjercicioEntity ejercicioEntity) {
-    super(ejercicioEntity);
-        if (ejercicioEntity != null) {
-            zonasCuerpo = new ArrayList<ZonaCuerpoDTO>();
-            for (ZonaCuerpoEntity entityZonaCuerpos : ejercicioEntity.getZonasCuerpo()) {
-                zonasCuerpo.add(new ZonaCuerpoDTO(entityZonaCuerpos));
-            }
-        }
+    private List<ImplementoDTO> implementos;
+
+    /**
+     * Constructor por defecto
+     */
+    public EjercicioDetailDTO() 
+    {
+        
     }
 
     /**
-     * Convierte un objeto EjercicioDetailDTO a EjercicioEntity incluyendo los
-     * atributos de EjercicioDTO
+     * Devuelve la lista de zonasCuerpo del rutina.
      *
-     * @return Nuevo objeto EjercicioEntity
+     * @return las zonasCuerpo
      */
-    @Override
-    public EjercicioEntity toEntity() {
-        EjercicioEntity ejercicio;
-         ejercicio = super.toEntity();
-        if (zonasCuerpo != null) {
-            List<ZonaCuerpoEntity> zonasCuerpoEntity = new ArrayList<ZonaCuerpoEntity>();
-            for (ZonaCuerpoDTO dtoZonaCuerpo : zonasCuerpo) {
-                zonasCuerpoEntity.add(dtoZonaCuerpo.toEntity());
-            }
-            ejercicio.setZonasCuerpo(zonasCuerpoEntity);
-        }
-        return ejercicio;
-    }
-    
-    /**
-     * Obtiene la lista de zonasCuerpos del ejercicio
-     * @return los zonasCuerpo
-     */
-    public List<ZonaCuerpoDTO> getZonaCuerpos()
+    public List<ZonaCuerpoDTO> getZonasCuerpo() 
     {
         return zonasCuerpo;
     }
-    
-     /* Modificala lista de zonasCuerpos del ejercicio
-     * @param pZonaCuerpos zonasCuerpos nuevos
+
+    /**
+     * Modifica la lista de implementos del rutina.
+     *
+     * @param zonasCuerpo las implementos a modificar
      */
-    public void setZonaCuerpos(List<ZonaCuerpoDTO> pZonaCuerpos)
+    public void setZonasCuerpo(List<ZonaCuerpoDTO> zonasCuerpo) 
     {
-        this.zonasCuerpo = pZonaCuerpos;
+        this.zonasCuerpo = zonasCuerpo;
+    }
+
+    /**
+     * Devuelve la lista de implementos del rutina.
+     *
+     * @return los implementos
+     */
+    public List<ImplementoDTO> getImplementos() 
+    {
+        return implementos;
+    }
+
+    /**
+     * Modifica la lista de implementos del seguimiento.
+     *
+     * @param implementos las implementos a modificar
+     */
+    public void setImplementos(List<ImplementoDTO> implementos) 
+    {
+        this.implementos = implementos;
     }
     
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
