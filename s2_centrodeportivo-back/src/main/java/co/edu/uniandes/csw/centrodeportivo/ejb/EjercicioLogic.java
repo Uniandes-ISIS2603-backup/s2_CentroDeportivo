@@ -23,76 +23,86 @@ public class EjercicioLogic {
     private static final Logger LOGGER = Logger.getLogger(EjercicioLogic.class.getName());
     
     @Inject
-    private EjercicioPersistence persistence;
-    
-     /**
-     * Se encarga de crear una ejercicio en la base de datos.
+    private EjercicioPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+
+    /**
+     * Crea un ejercicio en la persistencia.
      *
-     * @param ejercicioEntity Objeto de tipo EjercicioEntity con los datos nuevos
-     * @return Objeto de EjercicioEntity con los datos nuevos y su ID.
+     * @param ejercicioEntity La entidad que representa el ejercicio a
+     * persistir.
+     * @return La entiddad del ejercicio luego de persistirla.
+     * @throws BusinessLogicException Si el ejercicio a persistir ya existe.
      */
-    public EjercicioEntity createEjercicio(EjercicioEntity ejercicioEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de creación de la ejercicio");
-        EjercicioEntity newEjercicioEntity = persistence.create(ejercicioEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la ejercicio");
-        return newEjercicioEntity;
+    public EjercicioEntity createEjercicio(EjercicioEntity ejercicioEntity) throws BusinessLogicException 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del ejercicio");
+        // Invoca la persistencia para crear el ejercicio
+        persistence.create(ejercicioEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de creación del ejercicio");
+        return ejercicioEntity;
     }
-    
-    
-     /**
-     * Obtiene la lista de las ejercicios.
+
+    /**
      *
-     * @return Colección de objetos de Ejercicioentity.
+     * Obtener todos los ejercicios existentes en la base de datos.
+     *
+     * @return una lista de ejercicios.
      */
     public List<EjercicioEntity> getEjercicios() {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las ejercicios");
-        List<EjercicioEntity> lista = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las ejercicios");
-        return lista;
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los ejercicios");
+        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        List<EjercicioEntity> ejercicios = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los ejercicioes");
+        return ejercicios;
     }
-    
+
     /**
-     * Obtiene los datos de una instancia de Mquina a partir de su ID.
      *
-     * @param ejerciciosId Identificador de la instancia a consultar
-     * @return Instancia de EjercicioEntity con los datos del Author consultado.
+     * Obtener un ejercicio por medio de su id.
+     *
+     * @param ejerciciosId: id del ejercicio para ser buscado.
+     * @return el ejercicio solicitado por medio de su id.
      */
     public EjercicioEntity getEjercicio(Long ejerciciosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la ejercicio con id = {0}", ejerciciosId);
+        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         EjercicioEntity ejercicioEntity = persistence.find(ejerciciosId);
         if (ejercicioEntity == null) {
-            LOGGER.log(Level.SEVERE, "la ejercicio con el id = {0} no existe", ejerciciosId);
+            LOGGER.log(Level.SEVERE, "El ejercicio con el id = {0} no existe", ejerciciosId);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la ejercicio con id = {0}", ejerciciosId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el ejercicio con id = {0}", ejerciciosId);
         return ejercicioEntity;
     }
-    
-     /**
-     * Actualiza la información de una instancia de Author.
+
+    /**
      *
-     * @param ejerciciosId Identificador de la instancia a actualizar
-     * @param ejercicioEntity Instancia de EjercicioEntity con los nuevos datos.
-     * @return Instancia de EjercicioEntity con los datos actualizados.
+     * Actualizar un ejercicio.
+     *
+     * @param ejerciciosId: id del ejercicio para buscarlo en la base de
+     * datos.
+     * @param ejercicioEntity: ejercicio con los cambios para ser actualizado,
+     * por ejemplo el .
+     * @return el ejercicio con los cambios actualizados en la base de datos.
      */
     public EjercicioEntity updateEjercicio(Long ejerciciosId, EjercicioEntity ejercicioEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la mquina con id = {0}", ejerciciosId);
-        EjercicioEntity newEjercicioEntity = persistence.update(ejercicioEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el autor con id = {0}", ejerciciosId);
-        return newEjercicioEntity;
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el ejercicio con id = {0}", ejerciciosId);
+        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        EjercicioEntity newEntity = persistence.update(ejercicioEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el ejercicio con id = {0}", ejercicioEntity.getId());
+        return newEntity;
     }
-    
-     /**
-     * Elimina una instancia de Ejercicio de la base de datos.
+
+    /**
+     * Borrar un ejercicio
      *
-     * @param ejerciciosId Identificador de la instancia a eliminar.
-     * @throws BusinessLogicException si la ejercicio a eliminar no existe.
+     * @param ejerciciosId: id del ejercicio a borrar
+     * @throws BusinessLogicException Si el ejercicio a eliminar tiene un ejercicio asociado.
      */
-    public void deleteEjercicio(Long ejerciciosId)throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la ejercicio con id = {0}", ejerciciosId);
-        if(getEjercicio(ejerciciosId)== null){
-           throw new BusinessLogicException("No se puede borrar la ejercicio con id = "+ejerciciosId+" porque no existe en la base de datos");
-        }
+    public void deleteEjercicio(Long ejerciciosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el ejercicio con id = {0}", ejerciciosId);
+        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        EjercicioEntity ejercicioEntity = persistence.find(ejerciciosId);     
         persistence.delete(ejerciciosId);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la ejercicio con id = {0}", ejerciciosId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el ejercicio con id = {0}", ejerciciosId);
     }
 }

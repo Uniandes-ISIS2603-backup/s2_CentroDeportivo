@@ -44,7 +44,7 @@ public class ZonaCuerpoLogic {
      *
      * @return Colección de objetos de ZonaCuerpoentity.
      */
-    public List<ZonaCuerpoEntity> getZonaCuerpos() {
+    public List<ZonaCuerpoEntity> getZonasCuerpo() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las zonasCuerpo");
         List<ZonaCuerpoEntity> lista = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todas las zonasCuerpo");
