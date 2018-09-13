@@ -16,9 +16,9 @@ import java.io.Serializable;
 public class RutinaDTO implements Serializable {
     
     private Long id;
-    private int identificadorRutina;
+    private Integer identificadorRutina;
     private String nombre;
-    private boolean estadoTerminado;
+    private Boolean estadoTerminado;
    
     public RutinaDTO()
     {

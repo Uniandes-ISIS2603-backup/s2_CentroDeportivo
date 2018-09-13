@@ -18,7 +18,32 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class RutinaEntity extends BaseEntity implements Serializable {
-    
+    private Integer identificadorRutina;
+    private String nombre;
+    private Boolean estadoTerminado;
+
+    public Integer getIdentificadorRutina() {
+        return identificadorRutina;
+    }
+
+    public void setIdentificadorRutina(Integer identificadorRutina) {
+        this.identificadorRutina = identificadorRutina;
+    }
+
+    public Boolean getEstadoTerminado() {
+        return estadoTerminado;
+    }
+
+    public void setEstadoTerminado(Boolean estadoTerminado) {
+        this.estadoTerminado = estadoTerminado;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
      /**
      * Modela la asociacion 1...* entre las clases Especialista y Deportista
      * se especifica fetch para especificar que no se deben cargar las
@@ -60,41 +85,5 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     public void setEjercicios(List<EjercicioEntity> ejercicios)
     {
         this.ejercicios=ejercicios;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private String nombre;
-    private boolean estadoTerminado;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public boolean isEstadoTerminado() {
-        return estadoTerminado;
-    }
-
-    public void setEstadoTerminado(boolean estadoTerminado) {
-        this.estadoTerminado = estadoTerminado;
     }
 }

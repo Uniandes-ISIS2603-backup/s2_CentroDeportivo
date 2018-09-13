@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -23,7 +22,7 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
 
     private String nombre;
     private String especialidad;
-    private int cedula;
+    private Integer cedula;
 
     @PodamExclude
     @OneToMany(mappedBy = "especialista")
@@ -80,8 +79,11 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
         this.especialidad = especialidad;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(Integer cedula) {
         this.cedula=cedula;
+    }
+      public Integer getCedula() {
+        return cedula;
     }
 
     
