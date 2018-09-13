@@ -27,8 +27,8 @@ public class DeportistaDTO implements Serializable {
     private Double medidaCintura;
     private Double medidaBrazos;
     private Integer cedula;
-    private Date ultimaActualizacionDatos;
-    private Date fechaNacimiento;
+    private String ultimaActualizacionDatos;
+    private String fechaNacimiento;
 
     /** 
      * Constructor por defecto.
@@ -78,7 +78,7 @@ public class DeportistaDTO implements Serializable {
      * Devuelve la FECHA DE NACIMIENTO del deportista.      *
      * @return la fecha      *
      */
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -86,7 +86,7 @@ public class DeportistaDTO implements Serializable {
      * Modifica la FECHA DE NACIMIENTO del deportista.      *
      * @param pFecha nueva fecha      *
      */
-    public void setFechaNacimiento(Date pFecha) {
+    public void setFechaNacimiento(String pFecha) {
         this.fechaNacimiento = pFecha;
     }
 
@@ -94,7 +94,7 @@ public class DeportistaDTO implements Serializable {
      * Devuelve la UULTIMA FECHA DE ACTUALIZACION DE DATOS del deportista.      *
      * @return la fecha      *
      */
-    public Date getUltimaActualizacionDatos() {
+    public String getUltimaActualizacionDatos() {
         return ultimaActualizacionDatos;
     }
 
@@ -102,7 +102,7 @@ public class DeportistaDTO implements Serializable {
      * Modifica la ULTIMA FECHA DE CTUALIZACION DE DATOS del deportista.      *
      * @param pFecha nueva fecha      *
      */
-    public void setUltimaActualizacionDatos(Date pFecha) {
+    public void setUltimaActualizacionDatos(String pFecha) {
         this.ultimaActualizacionDatos = pFecha;
     }
 

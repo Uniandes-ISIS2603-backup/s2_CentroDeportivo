@@ -30,10 +30,8 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private Double medidaCintura;
     private Double medidaBrazos;
     private Integer cedula;
-    @Temporal(TemporalType.DATE)
-    private Date ultimaActualizacionDatos;
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    private String ultimaActualizacionDatos;
+    private String fechaNacimiento;
 
     @PodamExclude
     @ManyToOne
@@ -336,7 +334,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
      *
      * @return la fecha *
      */
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
 
         return fechaNacimiento;
 
@@ -347,7 +345,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
      *
      *@pFecha pFecha fecha nueva
      */
-    public void setFechaNacimiento(Date pFecha) {
+    public void setFechaNacimiento(String pFecha) {
 
         this.fechaNacimiento=pFecha;
     }
@@ -357,7 +355,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
      *
      * @return la fecha *
      */
-    public Date getUltimaActualizacionDatos() {
+    public String getUltimaActualizacionDatos() {
         return ultimaActualizacionDatos;
     }
 
@@ -367,7 +365,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
      *
      * @param pUltimaActualizacionDatos fecha nueva
      */
-    public void setUltimaActualizacionDatos(Date pUltimaActualizacionDatos) {
+    public void setUltimaActualizacionDatos(String pUltimaActualizacionDatos) {
         this.ultimaActualizacionDatos = pUltimaActualizacionDatos;
     }
 

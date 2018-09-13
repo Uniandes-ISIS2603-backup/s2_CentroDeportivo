@@ -19,7 +19,7 @@ public class ObjetivoDTO implements Serializable {
     private Long id;
     private String descripcion;
     private Boolean cumplio;
-    private Date fechaLimite;
+    private String fechaLimite;
 
     /**      *
      * Constructor por defecto.      *
@@ -66,7 +66,7 @@ public class ObjetivoDTO implements Serializable {
      * Devuelve la FECHA LIMITE del objetivo.      *
      * @return la fecha limite      *
      */
-    public Date getFechaLimite() {
+    public String getFechaLimite() {
         return fechaLimite;
     }
 
@@ -74,7 +74,7 @@ public class ObjetivoDTO implements Serializable {
      * Modifica la FECHA LIMITE del objetivo.      *
      * @param pFecha la nueva fecha      *
      */
-    public void setId(Date pFecha) {
+    public void setId(String pFecha) {
         this.fechaLimite = pFecha;
     }
 
@@ -120,7 +120,7 @@ public class ObjetivoDTO implements Serializable {
         ObjetivoEntity objetivoEntity = new ObjetivoEntity();
         objetivoEntity.setId(this.id);
         objetivoEntity.setDescripcion(this.descripcion);
-        objetivoEntity.setCumplio();
+        objetivoEntity.setCumplio(this.cumplio);
         objetivoEntity.setFechaLimite(this.fechaLimite);
         return objetivoEntity;
 

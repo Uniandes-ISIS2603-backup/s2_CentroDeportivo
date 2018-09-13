@@ -34,8 +34,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     private String descripcion;
 
     private Boolean cumplio;
-    @Temporal(TemporalType.DATE)
-    private Date fechaLimite;
+    private String fechaLimite;
 
     @PodamExclude
     @ManyToOne
@@ -115,16 +114,17 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
 
     /**
      * Modifica el estado del objetivo.
+     * @param pCumplio nuevo estado
      */
-    public void setCumplio() {
-        this.cumplio = !cumplio;
+    public void setCumplio(Boolean pCumplio) {
+        this.cumplio = pCumplio;
     }
 
     /**
      * Devuelve la fecha limite del objetivo del objetivo.
      * @return fecha
      */
-    public Date getFechaLimite() {
+    public String getFechaLimite() {
         return fechaLimite;
     }
 
@@ -132,7 +132,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
      * Modifica la fecha limite del objetivo. 
      * @param pFechaLimite nueva fecha limite 
      */
-    public void setFechaLimite(Date pFechaLimite) {
+    public void setFechaLimite(String pFechaLimite) {
         this.fechaLimite = pFechaLimite;
     }
     
