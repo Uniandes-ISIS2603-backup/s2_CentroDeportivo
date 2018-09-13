@@ -28,9 +28,9 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     
     private String categoria;
     
-    private int duracion;
+    private Integer duracion;
     
-    private int numeroDeSeries;
+    private Integer numeroDeSeries;
     
     private String descripcion;
     
