@@ -30,7 +30,9 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private Double medidaCintura;
     private Double medidaBrazos;
     private Integer cedula;
+    @Temporal(TemporalType.DATE)
     private Date ultimaActualizacionDatos;
+    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
     @PodamExclude
@@ -339,7 +341,16 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return fechaNacimiento;
 
     }
+/**
+     * *
+     * odifica la FECHA DE NACIMIENTO del deportista.
+     *
+     *@pFecha pFecha fecha nueva
+     */
+    public void setFechaNacimiento(Date pFecha) {
 
+        this.fechaNacimiento=pFecha;
+    }
     /**
      * *
      * Devuelve la ULTIMA FECHA DE CTUALIZACION DE DATOS del deportista.
