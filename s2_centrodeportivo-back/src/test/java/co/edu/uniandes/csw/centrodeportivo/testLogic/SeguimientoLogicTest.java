@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.SeguimientoLogic;
+import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.SeguimientoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -48,6 +49,10 @@ public class SeguimientoLogicTest {
     private UserTransaction utx;
 
     private List<SeguimientoEntity> data = new ArrayList<>();
+    
+    private List<MaquinaEntity> maquinasData = new ArrayList<>();
+    
+    private List<DeportistaEntity> deportistaData = new ArrayList<>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -98,16 +103,26 @@ public class SeguimientoLogicTest {
      * pruebas.
      */
     private void insertData() {
+        /*for(int i = 0 ; i < 3; i++)
+        {
+            MaquinaEntity maquinas = factory.manufacturePojo(MaquinaEntity.class);
+            em.persist(maquinas);
+            maquinasData.add(maquinas);
+        }*/
         for (int i = 0; i < 3; i++) {
             SeguimientoEntity entity = factory.manufacturePojo(SeguimientoEntity.class);
             em.persist(entity);
-            entity.setMaquinas(new ArrayList<>());
             data.add(entity);
-        }
-        SeguimientoEntity seguimiento = data.get(2);
-        MaquinaEntity entity = factory.manufacturePojo(MaquinaEntity.class);
-        em.persist(entity);
-        seguimiento.getMaquinas().add(entity);
+        }        
+        /*MaquinaEntity maquina = factory.manufacturePojo(MaquinaEntity.class);
+        maquina.setSeguimiento(data.get(1));
+        em.persist(maquina);
+        data.get(1).getMaquinas().add(maquina);*/
+        
+        
+        /*em.persist(deportistaEntity);
+        deportistaEntity.setSeguimiento(data.get(0));
+        data.get(0).setDeportista(deportistaEntity);*/
     }
 
     /**
@@ -157,10 +172,10 @@ public class SeguimientoLogicTest {
         SeguimientoEntity resp = em.find(SeguimientoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(entity.getTiempo(), resp.getTiempo());
-        Assert.assertEquals(entity.getCalorias(), resp.getCalorias());
-        Assert.assertEquals(entity.getVelocidadPromedio(), resp.getVelocidadPromedio());
-        Assert.assertEquals(entity.getRitmoCardiacoPromedio(), resp.getRitmoCardiacoPromedio());
+        Assert.assertEquals(pojoEntity.getTiempo(), resp.getTiempo());
+        Assert.assertEquals(pojoEntity.getCalorias(), resp.getCalorias());
+        Assert.assertEquals(pojoEntity.getVelocidadPromedio(), resp.getVelocidadPromedio());
+        Assert.assertEquals(pojoEntity.getRitmoCardiacoPromedio(), resp.getRitmoCardiacoPromedio());
     }
 
     /**
@@ -181,9 +196,9 @@ public class SeguimientoLogicTest {
      *
      * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      */
-    @Test(expected = BusinessLogicException.class)
+    /*@Test(expected = BusinessLogicException.class)
     public void deleteSeguimientoConMaquinaTest() throws BusinessLogicException {
         seguimientoLogic.deleteSeguimiento(data.get(2).getId());
-    }
+    }*/
    
 }

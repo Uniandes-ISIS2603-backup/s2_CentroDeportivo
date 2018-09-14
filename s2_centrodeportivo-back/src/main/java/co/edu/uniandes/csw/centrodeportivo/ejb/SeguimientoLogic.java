@@ -66,7 +66,7 @@ public class SeguimientoLogic {
      * @return el seguimiento solicitado por medio de su id.
      */
     public SeguimientoEntity getSeguimiento(Long seguimientosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la seguimiento con id = {0}", seguimientosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el seguimiento con id = {0}", seguimientosId);
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         SeguimientoEntity seguimientoEntity = persistence.find(seguimientosId);
         if (seguimientoEntity == null) {

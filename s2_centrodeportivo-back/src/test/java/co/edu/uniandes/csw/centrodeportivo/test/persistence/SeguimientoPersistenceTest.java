@@ -173,10 +173,13 @@ public class SeguimientoPersistenceTest {
      *
      */
     @Test
-    public void FindSeguimientoByTimeTest() {
+    public void findSeguimientoByTimeTest() {
         SeguimientoEntity entity = data.get(0);
         SeguimientoEntity newEntity = seguimientoPersistence.findByTime(entity.getTiempo());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getTiempo(), newEntity.getTiempo());
+        
+        newEntity = seguimientoPersistence.findByTime(null);
+        Assert.assertNull(newEntity);
     }
 }

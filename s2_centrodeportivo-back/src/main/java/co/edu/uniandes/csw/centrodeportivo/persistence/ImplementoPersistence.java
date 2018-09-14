@@ -113,16 +113,16 @@ public class ImplementoPersistence {
     /**
      * Busca si hay algún implemento con el nombre que se envía de argumento
      *
-     * @param name: Nombre del implemento que se está buscando
+     * @param nombre: Nombre del implemento que se está buscando
      * @return null si no existe ningún implemento con el nombre del argumento.
      * Si existe alguno devuelve el primero.
      */
-    public ImplementoEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando implemento por nombre ", name);
-        // Se crea un query para buscar implementos con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From ImplementoEntity e where e.name = :name", ImplementoEntity.class);
-        // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
+    public ImplementoEntity findByName(String nombre) {
+        LOGGER.log(Level.INFO, "Consultando implemento por nombre ", nombre);
+        // Se crea un query para buscar implementos con el nombre que recibe el método como argumento. ":nombre" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From ImplementoEntity e where e.nombre = :nombre", ImplementoEntity.class);
+        // Se remplaza el placeholder ":nombre" con el valor del argumento 
+        query = query.setParameter("nombre", nombre);
         // Se invoca el query se obtiene la lista resultado
         List<ImplementoEntity> sameName = query.getResultList();
         ImplementoEntity result;
@@ -133,7 +133,7 @@ public class ImplementoPersistence {
         } else {
             result = sameName.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar implemento por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar implemento por nombre ", nombre);
         return result;
     }
 }

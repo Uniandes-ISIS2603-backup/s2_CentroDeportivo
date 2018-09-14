@@ -172,11 +172,14 @@ public class ImplementoPersistenceTest {
      *
      *
      */
-    /*@Test
+    @Test
     public void FindImplementoByNameTest() {
         ImplementoEntity entity = data.get(0);
         ImplementoEntity newEntity = implementoPersistence.findByName(entity.getNombre());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
-    }*/
+        
+        newEntity = implementoPersistence.findByName(null);
+        Assert.assertNull(newEntity);
+    }
 }
