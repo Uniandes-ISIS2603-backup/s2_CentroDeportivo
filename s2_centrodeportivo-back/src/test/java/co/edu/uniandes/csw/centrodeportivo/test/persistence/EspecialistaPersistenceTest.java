@@ -81,7 +81,7 @@ public class EspecialistaPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+        em.createQuery("delete from EspecialistaEntity").executeUpdate();
     }
 
     /**
@@ -168,19 +168,5 @@ public class EspecialistaPersistenceTest {
         EspecialistaEntity resp = em.find(EspecialistaEntity.class, entity.getId());
 
         org.junit.Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
-    }
-
-    /**
-     * Prueba para consultar un Especialista por nombre.
-     */
-    @Test
-    public void findEspecialistaByNameTest() {
-        EspecialistaEntity entity = data.get(0);
-        EspecialistaEntity newEntity = especialistaPersistence.findByName(entity.getNombre());
-        org.junit.Assert.assertNotNull(newEntity);
-        org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
-
-        newEntity = especialistaPersistence.findByName(null);
-        org.junit.Assert.assertNull(newEntity);
     }
 }
