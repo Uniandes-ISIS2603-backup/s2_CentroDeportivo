@@ -37,7 +37,7 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
      *
      * @param seguimientoEntity La entidad del seguimiento para transformar a DTO.
      */
-    /*public SeguimientoDetailDTO(SeguimientoEntity seguimientoEntity) {
+    public SeguimientoDetailDTO(SeguimientoEntity seguimientoEntity) {
         super(seguimientoEntity);
         if (seguimientoEntity != null) {
             if (seguimientoEntity.getMaquinas() != null) {
@@ -47,14 +47,14 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
                 }
             }
         }
-    }*/
+    }
 
     /**
      * Transformar un DTO a un Entity
      *
      * @return El DTO del seguimiento para transformar a Entity
      */
-    /*@Override
+    @Override
     public SeguimientoEntity toEntity() {
         SeguimientoEntity seguimientoEntity = super.toEntity();
         if (maquinas != null) {
@@ -65,7 +65,7 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
             seguimientoEntity.setMaquinas(maquinasEntity);
         }
         return seguimientoEntity;
-    }*/
+    }
 
     /**
      * Devuelve la lista de máquinas del seguimiento.
