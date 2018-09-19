@@ -46,6 +46,10 @@ public class EjercicioEntity extends BaseEntity implements Serializable
    @OneToMany(mappedBy = "ejercicio")
     private List<ZonaCuerpoEntity> zonasCuerpo = new ArrayList<ZonaCuerpoEntity>();
     
+    @PodamExclude
+   @OneToMany(mappedBy = "ejercicio")
+    private List<MaquinaEntity> maquinas = new ArrayList<MaquinaEntity  >();
+      
    @PodamExclude
    @OneToMany(mappedBy = "ejercicio")
     private List<ImplementoEntity> implementos = new ArrayList<ImplementoEntity>();
@@ -66,12 +70,24 @@ public class EjercicioEntity extends BaseEntity implements Serializable
         this.maquina = maquinaEntity;
     }
 
-   public List<ZonaCuerpoEntity> getZonasCuerpo() {
-        return zonasCuerpo;
+    public List<ZonaCuerpoEntity> getZonasCuerpo()
+    {
+      return this.zonasCuerpo;  
     }
-
-    public void setZonasCuerpo(List<ZonaCuerpoEntity> zonasCuerpo) {
-        this.zonasCuerpo = zonasCuerpo;
+    
+    public void setZonasCuerpo(List<ZonaCuerpoEntity> pZonasCuerpo)
+    {
+        this.zonasCuerpo = pZonasCuerpo;
+    }
+    
+    public List<MaquinaEntity> getMaquinas()
+    {
+      return this.maquinas;  
+    }
+    
+    public void setMaquinas(List<MaquinaEntity> pMaquina)
+    {
+        this.maquinas = pMaquina;
     }
 
     public List<ImplementoEntity> getImplementos() {

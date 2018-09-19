@@ -98,10 +98,23 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
     {
         this.implementos = implementos;
     }
+    @Override
+    public EjercicioEntity toEntity() {
+        EjercicioEntity ejercicios = super.toEntity();
+        if (ejercicios != null) {
+            List<ZonaCuerpoEntity> zonasCuerpoEntity = new ArrayList<ZonaCuerpoEntity>();
+            for (ZonaCuerpoDTO dtoZonaCuerpoEntity : zonasCuerpo) {
+                zonasCuerpoEntity.add(dtoZonaCuerpoEntity.toEntity());
+            }
+            ejercicios.setZonasCuerpo(zonasCuerpoEntity);
+        }
+        return ejercicios;
+    }
     
     @Override
     public String toString() 
     {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+    
 }
