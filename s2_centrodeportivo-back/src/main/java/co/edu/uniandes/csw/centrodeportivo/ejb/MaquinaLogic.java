@@ -18,6 +18,7 @@ import javax.inject.Inject;
  *
  * @author Diany Quintero
  */
+@Stateless
 public class MaquinaLogic 
 {
     private static final Logger LOGGER = Logger.getLogger(MaquinaLogic.class.getName());
@@ -68,7 +69,7 @@ public class MaquinaLogic
     }
     
      /**
-     * Actualiza la información de una instancia de Author.
+     * Actualiza la información de una instancia de Maquina.
      *
      * @param maquinasId Identificador de la instancia a actualizar
      * @param maquinaEntity Instancia de MaquinaEntity con los nuevos datos.

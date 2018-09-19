@@ -5,9 +5,8 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
-import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class ObjetivoPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private List<ObjetivoEntity> data = new ArrayList<>();
+    private List<ObjetivoEntity> data = new ArrayList<ObjetivoEntity>();
     
     
     /**
@@ -93,7 +92,7 @@ public class ObjetivoPersistenceTest {
     private void insertData()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        for(int i = 0; i<10 ; i++)
+        for(int i = 0; i<3 ; i++)
         {
             ObjetivoEntity entidad = factory.manufacturePojo(ObjetivoEntity.class);
             
@@ -112,7 +111,7 @@ public class ObjetivoPersistenceTest {
         ObjetivoEntity nuevoObjetivo = factory.manufacturePojo(ObjetivoEntity.class);
         ObjetivoEntity resultado = objetivoPersistence.create(nuevoObjetivo);
         
-        Assert.assertNull(resultado);
+        Assert.assertNotNull(resultado);
         ObjetivoEntity entidad = em.find(ObjetivoEntity.class, resultado.getId());
         
         Assert.assertEquals(nuevoObjetivo.getId(), entidad.getId());
@@ -144,7 +143,7 @@ public class ObjetivoPersistenceTest {
         ObjetivoEntity entity = data.get(0);
         ObjetivoEntity newEntity = objetivoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
 
     /**

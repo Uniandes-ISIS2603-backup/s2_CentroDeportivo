@@ -158,7 +158,7 @@ public class MaquinaLogicTest {
      * Prueba para actualizar un Editorial.
      */
     @Test
-    public void updateEditorialTest() {
+    public void updateMaquinaTest() {
         MaquinaEntity entity = data.get(0);
         MaquinaEntity pojoEntity = factory.manufacturePojo(MaquinaEntity.class);
         pojoEntity.setId(entity.getId());
@@ -173,7 +173,7 @@ public class MaquinaLogicTest {
      * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      */
     @Test
-    public void deleteEditorialTest() throws BusinessLogicException {
+    public void deleteMaquinaTest() throws BusinessLogicException {
         MaquinaEntity entity = data.get(1);
         maquinaLogic.deleteMaquina(entity.getId());
         MaquinaEntity deleted = em.find(MaquinaEntity.class, entity.getId());

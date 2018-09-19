@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 
+import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.io.Serializable;
@@ -33,7 +36,29 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
     {
         
     }
-
+    
+     /**
+     * Crea un nuevo objeto EjercicioDetailDTO a partir de un objeto
+     * EjercicioEntity incluyecdo los atributos de EjercicioDTO
+     *
+     * @param ejercicioEntity Entidad DeportistaEntity desde la cual se va a
+     * crear el nuevo objeto
+     */
+    public EjercicioDetailDTO(EjercicioEntity ejercicioEntity) {
+        super(ejercicioEntity);
+        if (ejercicioEntity != null) {
+            zonasCuerpo = new ArrayList<ZonaCuerpoDTO>();
+            for (ZonaCuerpoEntity entityZonasCuerpos : ejercicioEntity.getZonasCuerpo()) {
+                zonasCuerpo.add(new ZonaCuerpoDTO(entityZonasCuerpos));
+            }
+            
+            implementos = new ArrayList<ImplementoDTO>();
+            for (ImplementoEntity entityImplementos : ejercicioEntity.getImplementos()) {
+                implementos.add(new ImplementoDTO(entityImplementos));
+            }
+        }
+    }
+   
     /**
      * Devuelve la lista de zonasCuerpo del rutina.
      *

@@ -35,7 +35,7 @@ public class MaquinaDetailDTO extends MaquinaDTO implements Serializable
      * Crea un nuevo objeto MaquinaDetailDTO a partir de un objeto
      * MaquinaEntity incluyecdo los atributos de MaquinaDTO
      *
-     * @param maquinaEntity Entidad DeportistaEntity desde la cual se va a
+     * @param maquinaEntity Entidad Maquinaentity desde la cual se va a
      * crear el nuevo objeto
      */
     public MaquinaDetailDTO(MaquinaEntity maquinaEntity) {
