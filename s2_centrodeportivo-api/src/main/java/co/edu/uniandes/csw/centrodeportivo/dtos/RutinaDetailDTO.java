@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -16,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author Francisco Jose MacAllister
  */
-public class RutinaDetailDTO implements Serializable {
+public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     
     /*
     * Esta lista de tipo EjercicioDTO contiene las máquinas que estan asociadas a un rutina
@@ -30,6 +34,24 @@ public class RutinaDetailDTO implements Serializable {
     public RutinaDetailDTO() 
     {
         
+    }
+
+    public RutinaDetailDTO(RutinaEntity rutinaEntity) {
+        super(rutinaEntity);
+        if (rutinaEntity != null) {
+            if (rutinaEntity.getEjercicios() != null) {
+                ejercicios = new ArrayList<>();
+                for (EjercicioEntity entityEjercicio : rutinaEntity.getEjercicios()) {
+                    ejercicios.add(new EjercicioDTO(entityEjercicio));
+                }
+            }
+            if (rutinaEntity.getObjetivos() != null) {
+                objetivos = new ArrayList<>();
+                for (ObjetivoEntity entityObjetivo : rutinaEntity.getObjetivos()) {
+                    objetivos.add(new ObjetivoDTO(entityObjetivo));
+                }
+            }
+        }
     }
 
     /**
@@ -105,5 +127,13 @@ public class RutinaDetailDTO implements Serializable {
     public void setObjetivos(List<ObjetivoDTO> objetivos) 
     {
         this.objetivos = objetivos;
+    }
+
+    public RutinaEntity toEntity() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setId(Long rutinasId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
