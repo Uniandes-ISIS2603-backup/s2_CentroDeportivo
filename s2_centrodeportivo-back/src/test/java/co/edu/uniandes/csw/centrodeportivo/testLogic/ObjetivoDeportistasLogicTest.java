@@ -169,11 +169,11 @@ public class ObjetivoDeportistasLogicTest {
     }
     
     /**
-     * Prueba para remplazar las instancias de Books asociadas a una instancia
-     * de Editorial.
+     * Prueba para remplazar las instancias de Deportistas asociadas a una instancia
+     * de Objetivo.
      */
     @Test
-    public void replaceBooksTest() {
+    public void replaceDeportistasTest() {
         ObjetivoEntity entity = data.get(0);
         List<DeportistaEntity> list = deportistasData.subList(1, 3);
         objetivoDeportistasLogic.replaceDeportistas(entity.getId(), list);
