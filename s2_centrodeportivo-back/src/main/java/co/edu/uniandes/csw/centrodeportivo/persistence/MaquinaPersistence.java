@@ -93,13 +93,13 @@ public class MaquinaPersistence
     
     /**
      * Borra una maquina de la base de datos recibiendo como argumento el id
-     * de la editorial
+     * de la maquina
      * 
      * @param maquinasId
      */
     public void delete(Long maquinasId) {
         LOGGER.log(Level.INFO, "Borrando la maquina con id = {0}", maquinasId);
-        // Se hace uso de mismo método que esta explicado en public EditorialEntity find(Long id) para obtener la editorial a borrar.
+        // Se hace uso de mismo método que esta explicado en public EditorialEntity find(Long id) para obtener la maquina a borrar.
         MaquinaEntity entity = em.find(MaquinaEntity.class, maquinasId);
         /* Note que una vez obtenido el objeto desde la base de datos llamado "entity", volvemos hacer uso de un método propio del
          EntityManager para eliminar de la base de datos el objeto que encontramos y queremos borrar.

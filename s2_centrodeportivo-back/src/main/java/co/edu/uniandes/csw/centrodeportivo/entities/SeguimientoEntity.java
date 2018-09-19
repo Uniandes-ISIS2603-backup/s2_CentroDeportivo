@@ -30,7 +30,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     private DeportistaEntity deportista;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "seguimiento")
     private List<MaquinaEntity> maquinas = new ArrayList<MaquinaEntity>();
     
     private Integer tiempo;
@@ -70,7 +70,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
      */
     public List<MaquinaEntity> getMaquinas() 
     {
-        return maquinas;
+        return this.maquinas;
     }
 
     /**

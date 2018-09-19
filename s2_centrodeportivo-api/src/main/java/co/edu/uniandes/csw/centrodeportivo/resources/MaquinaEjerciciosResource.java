@@ -53,7 +53,7 @@ public class MaquinaEjerciciosResource {
     @POST
     @Path("{ejerciciosId: \\d+}")
     public EjercicioDTO addEjercicio(@PathParam("maquinasId") Long maquinasId, @PathParam("ejerciciosId") Long ejerciciosId) {
-        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource addEjercicio: input: maquinasId: {0} , booksId: {1}", new Object[]{maquinasId, ejerciciosId});
+        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource addEjercicio: input: maquinasId: {0} , ejerciciosId: {1}", new Object[]{maquinasId, ejerciciosId});
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
             throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
         }
@@ -74,7 +74,7 @@ public class MaquinaEjerciciosResource {
     public List<EjercicioDetailDTO> getEjercicios(@PathParam("maquinasId") Long maquinasId) {
         LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicios: input: {0}", maquinasId);
         List<EjercicioDetailDTO> listaDetailDTOs = ejerciciosListEntity2DTO(maquinaEjerciciosLogic.getEjercicios(maquinasId));
-        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getBooks: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicios: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
     
@@ -83,7 +83,7 @@ public class MaquinaEjerciciosResource {
      *
      * @param maquinasId Identificador de la maquinas que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @param ejerciciosId Identificador del libro que se esta buscando. Este debe
+     * @param ejerciciosId Identificador del ejercicio que se esta buscando. Este debe
      * ser una cadena de dígitos.
      * @return JSON {@link BookDetailDTO} - El ejrcicio buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
@@ -95,9 +95,9 @@ public class MaquinaEjerciciosResource {
     @GET
     @Path("{ejerciciosId: \\d+}")
     public EjercicioDetailDTO getEjercicio(@PathParam("maquinasId") Long maquinasId, @PathParam("ejerciciosId") Long ejerciciosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicio: input: editorialsID: {0} , booksId: {1}", new Object[]{maquinasId, ejerciciosId});
+        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicio: input: maquinasId: {0} , ejerciciosID: {1}", new Object[]{maquinasId, ejerciciosId});
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + "/ejericios/" + ejerciciosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + "/ejercicios/" + ejerciciosId + " no existe.", 404);
         }
         EjercicioDetailDTO ejercicioDetailDTO = new EjercicioDetailDTO (maquinaEjerciciosLogic.getEjercicio(maquinasId, ejerciciosId));
         LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicio: output: {0}", ejercicioDetailDTO.toString());
@@ -107,7 +107,7 @@ public class MaquinaEjerciciosResource {
     /**
      * Remplaza las instancias de Ejercicio asociadas a una instancia de Maquina
      *
-     * @param MaquinasId Identificador de la maquina que se esta
+     * @param maquinasId Identificador de la maquina que se esta
      * remplazando. Este debe ser una cadena de dígitos.
      * @param ejercicios JSONArray {@link BookDTO} El arreglo de ejercicios nuevo para la
      * editorial.
@@ -118,14 +118,14 @@ public class MaquinaEjerciciosResource {
      */
     @PUT
     public List<EjercicioDetailDTO> replaceEjercicios(@PathParam("maquinasId") Long maquinasId, List<EjercicioDetailDTO> ejercicios) {
-        LOGGER.log(Level.INFO, "EditorialBooksResource replaceBooks: input: editorialsId: {0} , books: {1}", new Object[]{maquinasId, ejercicios.toString()});
+        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource replaceEjercicios: input: maquinasId: {0} , ejercicios: {1}", new Object[]{maquinasId, ejercicios.toString()});
         for (EjercicioDTO ejercicio : ejercicios) {
             if (ejercicioLogic.getEjercicio(ejercicio.getId()) == null) {
                 throw new WebApplicationException("El recurso /ejercicios/" + ejercicio.getId() + " no existe.", 404);
             }
         }
         List<EjercicioDetailDTO> listaDetailDTOs = ejerciciosListEntity2DTO(maquinaEjerciciosLogic.replaceEjercicios(maquinasId, ejerciciosListDTO2Entity(ejercicios)));
-        LOGGER.log(Level.INFO, "EditorialBooksResource replaceBooks: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "MaquinaEjerciciosResource replaceEjercicios: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
 

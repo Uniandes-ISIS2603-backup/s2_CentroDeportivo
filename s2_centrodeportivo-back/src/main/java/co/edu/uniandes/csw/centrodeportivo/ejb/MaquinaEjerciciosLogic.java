@@ -53,7 +53,7 @@ public class MaquinaEjerciciosLogic {
      * Retorna todos los ejercicios asociados a una maquina
      *
      * @param maquinasId El ID de la maquina buscada
-     * @return La lista de ejercicios de la editorial
+     * @return La lista de ejercicios de la maquina
      */
     public List<EjercicioEntity> getEjercicios(Long maquinasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar los ejercicios asociados a la maquina con id = {0}", maquinasId);
@@ -63,8 +63,8 @@ public class MaquinaEjerciciosLogic {
     /**
      * Retorna un ejercicio asociado a una maquina
      *
-     * @param maquinasId El id de la editorial a buscar.
-     * @param ejerciciosId El id del libro a buscar
+     * @param maquinasId El id de la maquina a buscar.
+     * @param ejerciciosId El id del ejercicio a buscar
      * @return El ejercicio encontrado dentro de la maquina.
      * @throws BusinessLogicException Si la maquina no se encuentra en la
      * maquina
@@ -77,6 +77,7 @@ public class MaquinaEjerciciosLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el ejercicio con id = {0} de la maquina con id = " + maquinasId, ejerciciosId);
         if (index >= 0) {
             return ejercicios.get(index);
+           
         }
         throw new BusinessLogicException("El ejercicio no está asociado a la maquina");
     }
@@ -84,8 +85,8 @@ public class MaquinaEjerciciosLogic {
     /**
      * Remplazar ejercicios de una maquina
      *
-     * @param ejercicios Lista de libros que serán los de la editorial.
-     * @param maquinasId El id de la editorial que se quiere actualizar.
+     * @param ejercicios Lista de libros que serán los de la maquina.
+     * @param maquinasId El id de la maquina que se quiere actualizar.
      * @return La lista de ejercicios actualizada.
      */
     public List<EjercicioEntity> replaceEjercicios(Long maquinasId, List<EjercicioEntity> ejercicios) {

@@ -51,13 +51,13 @@ public class SeguimientoPersistence {
      * datos, "select u from SeguimientoEntity u" es como un "select * from
      * SeguimientoEntity;" - "SELECT * FROM table_name" en SQL.
      */
-    /*public List<SeguimientoEntity> findAll() {
+    public List<SeguimientoEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los seguimientos");
         // Se crea un query para buscar todos los seguimientos en la base de datos.
         TypedQuery query = em.createQuery("select u from SeguimientoEntity u", SeguimientoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de seguimientos.
         return query.getResultList();
-    }*/
+    }
 	
     /**
      * Busca si hay algún seguimiento con el id que se envía de argumento
