@@ -14,7 +14,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Deportista.
  * @author Leidy Romero
  */
 @Stateless
@@ -30,6 +31,7 @@ public class DeportistaLogic {
      * 
      * @param deportistaEntity Objeto de DeportistaEntity con los datos nuevos
      * @return Objeto de DeportistaEntity con los datos nuevos y su ID.
+     * REGLAS DE NEGOCIO: No deben existir dos deportistas con el mismo numero de cedula
      */
     public DeportistaEntity createDeportista(DeportistaEntity deportistaEntity)
     {
@@ -61,9 +63,9 @@ public class DeportistaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el deportista con id = {0}",deportistasId);
         DeportistaEntity deportistaEntity = persistencia.find(deportistasId);
         if(deportistaEntity == null)
-            LOGGER.log(Level.SEVERE, "No se encontró al deportista identificado con X = {0}");
+            LOGGER.log(Level.SEVERE, "No se encontró al deportista identificado con el id = {0}", deportistasId);
         
-        LOGGER.log(Level.INFO, "Termina proceso de consultar un deportista identificado con id = {0}");
+        LOGGER.log(Level.INFO, "Termina proceso de consultar un deportista identificado con id = {0}", deportistasId);
         return deportistaEntity;
     }
     /**

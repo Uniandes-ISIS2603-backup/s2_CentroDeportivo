@@ -30,6 +30,7 @@ public class ObjetivoLogic {
      * 
      * @param objetivoEntity Objeto de ObjetivoEntity con los datos nuevos
      * @return Objeto de ObjetivoEntity con los datos nuevos y su ID.
+     *REGLAS DE NEGOCIO: No deben existir dos objetivos con la misma descripcion
      */
     public ObjetivoEntity createObjetivo(ObjetivoEntity objetivoEntity)
     {
@@ -72,6 +73,7 @@ public class ObjetivoLogic {
      * @param objetivosId identificador de la instancia a actualizar.
      * @param objetivoEntity instancia de Entity con los nuevos datos.
      * @return Instancia de ObjetivoEntity con los datos actualizados.
+     * REGLA DE NEGOCIO: La descripcion del nuevo objetivo no debe existir en la base de datos.
      */
     public ObjetivoEntity updateObjetivo(Long objetivosId, ObjetivoEntity objetivoEntity)
     {
