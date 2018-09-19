@@ -58,10 +58,10 @@ public class DeportistaLogic {
      */
     public DeportistaEntity getDeportista(Long deportistasId)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar id = {0}",deportistasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el deportista con id = {0}",deportistasId);
         DeportistaEntity deportistaEntity = persistencia.find(deportistasId);
         if(deportistaEntity == null)
-            LOGGER.log(Level.SEVERE, "No se encontró al identificado con X = {0}");
+            LOGGER.log(Level.SEVERE, "No se encontró al deportista identificado con X = {0}");
         
         LOGGER.log(Level.INFO, "Termina proceso de consultar un deportista identificado con id = {0}");
         return deportistaEntity;

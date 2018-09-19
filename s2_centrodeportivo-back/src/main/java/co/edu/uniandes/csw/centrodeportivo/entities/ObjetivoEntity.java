@@ -60,7 +60,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
      * Devuelve los deportistas que en el historial, han completado este objetivo (casos exitosos)
      * @return Collection los deportistas
      */
-    public Collection<DeportistaEntity> getCasosExitosos()
+    public List<DeportistaEntity> getCasosExitosos()
     {
       return this.casosExitosos;  
     }

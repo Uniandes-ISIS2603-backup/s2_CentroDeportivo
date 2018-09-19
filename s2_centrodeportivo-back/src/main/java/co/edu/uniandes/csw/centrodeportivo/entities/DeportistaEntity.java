@@ -53,7 +53,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
      * Devuelve los objetivos del deportista
      * @return Collection los objetivos
      */
-    public Collection<ObjetivoEntity> getObjetivos()
+    public List<ObjetivoEntity> getObjetivos()
     {
       return this.objetivos;  
     }

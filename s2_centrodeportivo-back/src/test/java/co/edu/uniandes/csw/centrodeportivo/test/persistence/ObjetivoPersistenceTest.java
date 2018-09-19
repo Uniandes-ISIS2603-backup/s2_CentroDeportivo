@@ -83,7 +83,7 @@ public class ObjetivoPersistenceTest {
      */
     private void clearData()
     {
-        em.createQuery("delete from ObjetivoaEntity").executeUpdate();
+        em.createQuery("delete from ObjetivoEntity").executeUpdate();
     }
     
     /**
