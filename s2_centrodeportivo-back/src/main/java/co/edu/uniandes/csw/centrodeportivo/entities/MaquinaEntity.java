@@ -38,6 +38,11 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private SeguimientoEntity seguimiento;
+    
+    @PodamExclude
+    @ManyToOne
+    private EjercicioEntity ejercicio;
+    
     /**
      * Devuelve los ejercicios de la maquina
      * @return Collection los objetivos
@@ -58,6 +63,14 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
 
     public void setSeguimiento(SeguimientoEntity seguimiento) {
         this.seguimiento = seguimiento;
+    }
+    
+    public EjercicioEntity getEjercicio() {
+        return ejercicio;
+    }
+
+    public void setEjercicio(EjercicioEntity ejercicio) {
+        this.ejercicio = ejercicio;
     }
     
     public String getNombre() {

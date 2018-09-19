@@ -81,12 +81,12 @@ public class MaquinaPersistence
      * @return una maquina con los cambios aplicados.
      */
     public MaquinaEntity update(MaquinaEntity maquinaEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el objetivo con id = {0}", maquinaEntity.getId());
+        LOGGER.log(Level.INFO, "Actualizando la maquina con id = {0}", maquinaEntity.getId());
         /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
         el deportista con los cambios, esto es similar a 
         "UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
          */
-        LOGGER.log(Level.INFO, "Saliendo de actualizar el objetivo con id = {0}", maquinaEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar la maquina con id = {0}", maquinaEntity.getId());
         return em.merge(maquinaEntity);
     }
     
@@ -98,7 +98,7 @@ public class MaquinaPersistence
      * @param maquinasId
      */
     public void delete(Long maquinasId) {
-        LOGGER.log(Level.INFO, "Borrando editorial con id = {0}", maquinasId);
+        LOGGER.log(Level.INFO, "Borrando la maquina con id = {0}", maquinasId);
         // Se hace uso de mismo método que esta explicado en public EditorialEntity find(Long id) para obtener la editorial a borrar.
         MaquinaEntity entity = em.find(MaquinaEntity.class, maquinasId);
         /* Note que una vez obtenido el objeto desde la base de datos llamado "entity", volvemos hacer uso de un método propio del

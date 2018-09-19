@@ -43,9 +43,9 @@ public class DeportistaLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<DeportistaEntity> data = new ArrayList<>();
+    private List<DeportistaEntity> data = new ArrayList<DeportistaEntity>();
     
-    private List<ObjetivoEntity> objetivosData = new ArrayList<>();
+    private List<ObjetivoEntity> objetivosData = new ArrayList<ObjetivoEntity>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -95,42 +95,26 @@ public class DeportistaLogicTest {
      */
     private void insertData()
     {
-        
-        for (int i = 0; i < 3; i++) {
+         for (int i = 0; i < 10; i++) {
             ObjetivoEntity objetivos = factory.manufacturePojo(ObjetivoEntity.class);
             em.persist(objetivos);
             objetivosData.add(objetivos);
         }
         for (int i = 0; i < 3; i++) {
-            DeportistaEntity entity = factory.manufacturePojo(DeportistaEntity.class);
+            DeportistaEntity entity = factory.manufacturePojo( DeportistaEntity.class);
             em.persist(entity);
             data.add(entity);
             if (i == 0) {
                 objetivosData.get(i).setDeportista(entity);
             }
         }
-        //______________________________________________TODO!!!!!!!!!____________________________________
-//        PodamFactory factory = new PodamFactoryImpl();
-//        for(int i = 0; i<10 ; i++)
-//        {
-//            DeportistaEntity entidad = factory.manufacturePojo(DeportistaEntity.class);
-//            
-//            em.persist (entidad);
-//            entidad.setObjetivos(new ArrayList<>());
-//            data.add (entidad);
-//        }
-//        
-//        DeportistaEntity deportista = data.get(5);
-//        ObjetivoEntity objetivo = factory.manufacturePojo(ObjetivoEntity.class);
-//        objetivo.setDeportista(deportista);
-//        em.persist(objetivo);
-//        deportista.getObjetivos().add(objetivo);
     }
     /**
      * Prueba para crear un deportista.
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      */
     @Test
-    public void CreateDeportistaTest()
+    public void CreateDeportistaTest() throws BusinessLogicException
     {
         DeportistaEntity nuevoDeportistaEntity = factory.manufacturePojo(DeportistaEntity.class);
         DeportistaEntity result = deportistaLogic.createDeportista(nuevoDeportistaEntity);
@@ -189,12 +173,10 @@ public class DeportistaLogicTest {
 
     /**
      * Prueba para eliminar un Deportista
-     *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
     public void deleteDeportistaTest() throws BusinessLogicException {
-        DeportistaEntity entity = data.get(0);
+        DeportistaEntity entity = data.get(1);
         deportistaLogic.deleteDeportista(entity.getId());
         DeportistaEntity deleted = em.find(DeportistaEntity.class, entity.getId());
         Assert.assertNull(deleted);
