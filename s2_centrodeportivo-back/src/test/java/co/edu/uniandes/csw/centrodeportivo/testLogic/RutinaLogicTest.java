@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.RutinaLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.RutinaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +106,7 @@ public class RutinaLogicTest {
      * Prueba para crear un rutina
      */
     @Test
-    public void createRutinaEntity()
+    public void createRutinaEntity() throws BusinessLogicException
     {
         PodamFactory factory =  new PodamFactoryImpl();
         RutinaEntity nuevoRutina = factory.manufacturePojo(RutinaEntity.class);

@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EspecialistaPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,15 +34,19 @@ public class EspecialistaLogic {
      * @param especialistaEntity Objeto de EspecialistaEntity con los datos nuevos
      * @return Objeto de EspecialistaEntity con los datos nuevos y su ID.
      */
-    public EspecialistaEntity createEspecialista(EspecialistaEntity especialistaEntity)
+    public EspecialistaEntity createEspecialista(EspecialistaEntity especialistaEntity) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de creación de un especialista");
-        EspecialistaEntity nuevoEspecialista = persistencia.create(especialistaEntity);
-        LOGGER.log(Level.INFO,"Termina proceso de creación de un especialista");
-        return nuevoEspecialista;
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del especialista");
+        // Invoca la persistencia para crear el especialista
+        if (persistencia.findByName(especialistaEntity.getNombre()) != null) {
+            throw new BusinessLogicException("Ya existe un Especialista con el nombre \"" + especialistaEntity.getNombre() + "\"");
+        }
+        persistencia.create(especialistaEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de creación del especialista");
+        return especialistaEntity;
     }
      /**
-     * Obtiene la lista de los registros de los especialistas.
+     * Obtiene la lista de los especialistas.
      * @return Coleccion de objetos tipo EspecialistaEntity
      */
     public List<EspecialistaEntity> getEspecialistas()
@@ -51,7 +58,7 @@ public class EspecialistaLogic {
     }
     
         /**
-     * Obtiene los datos de una instancia de Especialista a partir de su ID.
+     * Obtiene los datos de un Especialista solicitado a partir de su identificador.
      * @param especialistasId Identificador de la instancia a consultar.
      * @return Instancia de EspecialistaEntity con los datos del especialista encontrado.
      */
@@ -67,7 +74,7 @@ public class EspecialistaLogic {
     }
     
     /**
-     * Actualiza la informacion de una instancia de especialista de la base de datos.
+     * Actualiza la informacion de una especialista  determinado.
      * 
      * @param especialistasId identificador de la instancia a actualizar.
      * @param especialistaEntity instancia de Entity con los nuevos datos.
@@ -80,5 +87,27 @@ public class EspecialistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el especialista identificado con el id = {0}",especialistasId);
         return especialistaActualizado;
     }
+
+   /**
+     * Borrar un especialista
+     *
+     * @param especialistasId: id de la especialista a borrar
+     * @throws BusinessLogicException Si la especialista a eliminar tiene libros.
+     */
+    public void deleteEspecialista(Long especialistasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la especialista con id = {0}", especialistasId);
+        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        List<ObjetivoEntity> objetivos = getEspecialista(especialistasId).getObjetivos();
+        if (objetivos != null && !objetivos.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el especialista con id = " + especialistasId + " porque tiene objetivos asociados");
+        }
+        List<DeportistaEntity> deportistas = getEspecialista(especialistasId).getDeportistas();
+        if (deportistas != null && !deportistas.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el especialista con id = " + especialistasId + " porque tiene deportistas asociados");
+        }
+        persistencia.delete(especialistasId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la especialista con id = {0}", especialistasId);
+    }
+
     
 }

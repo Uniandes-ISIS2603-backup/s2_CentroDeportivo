@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.EspecialistaLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EspecialistaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +106,7 @@ public class EspecialistaLogicTest {
      * Prueba para crear un especialista
      */
     @Test
-    public void createEspecialistaEntity()
+    public void createEspecialistaEntity() throws BusinessLogicException
     {
         PodamFactory factory =  new PodamFactoryImpl();
         EspecialistaEntity nuevoEspecialista = factory.manufacturePojo(EspecialistaEntity.class);
