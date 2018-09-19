@@ -7,11 +7,11 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -40,7 +40,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     private SeguimientoEntity seguimiento;
     
     @PodamExclude
-    @ManyToOne
+    @OneToOne
     private EjercicioEntity ejercicio;
     
     /**
