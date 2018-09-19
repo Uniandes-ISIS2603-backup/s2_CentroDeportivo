@@ -85,7 +85,7 @@ public class DeportistaObjetivosLogic {
      * @return La lista de objetivos actualizada.
      */
     public List<ObjetivoEntity> replaceObjetivos(Long deportistasId, List<ObjetivoEntity> objetivos) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la deportista con id = {0}", deportistasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar al deportista con id = {0}", deportistasId);
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         List<ObjetivoEntity> objetivoList = objetivoPersistence.findAll();
         for (ObjetivoEntity objetivo : objetivoList) {
@@ -95,7 +95,7 @@ public class DeportistaObjetivosLogic {
                 objetivo.setDeportista(null);
             }
         }
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la deportista con id = {0}", deportistasId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar al deportista con id = {0}", deportistasId);
         return objetivos;
     } 
 }

@@ -5,8 +5,11 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -18,7 +21,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Francisco Jose MacAllister
  */
 
-public class EspecialistaDetailDTO implements Serializable {
+public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializable {
     /*
     * Esta lista de tipo DeportistaDTO contiene las máquinas que estan asociadas a un especialista
      */
@@ -38,7 +41,7 @@ public class EspecialistaDetailDTO implements Serializable {
      *
      * @param especialistaEntity La entidad del especialista para transformar a DTO.
      */
-    /*public EspecialistaDetailDTO(EspecialistaEntity especialistaEntity) {
+    public EspecialistaDetailDTO(EspecialistaEntity especialistaEntity) {
         super(especialistaEntity);
         if (especialistaEntity != null) {
             if (especialistaEntity.getDeportistas() != null) {
@@ -47,8 +50,14 @@ public class EspecialistaDetailDTO implements Serializable {
                     deportistas.add(new DeportistaDTO(entityDeportista));
                 }
             }
+            if (especialistaEntity.getObjetivos() != null) {
+                objetivos = new ArrayList<>();
+                for (ObjetivoEntity entityObjetivo : especialistaEntity.getObjetivos()) {
+                    objetivos.add(new ObjetivoDTO(entityObjetivo));
+                }
+            }
         }
-    }*/
+    }
 
     /**
      * Transformar un DTO a un Entity

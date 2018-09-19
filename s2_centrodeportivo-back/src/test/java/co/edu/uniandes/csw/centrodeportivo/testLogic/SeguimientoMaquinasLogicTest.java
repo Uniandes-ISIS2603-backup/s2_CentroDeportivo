@@ -5,12 +5,12 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
-import co.edu.uniandes.csw.centrodeportivo.ejb.MaquinaEjerciciosLogic;
-import co.edu.uniandes.csw.centrodeportivo.ejb.MaquinaLogic;
-import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
+import co.edu.uniandes.csw.centrodeportivo.ejb.SeguimientoLogic;
+import co.edu.uniandes.csw.centrodeportivo.ejb.SeguimientoMaquinasLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.SeguimientoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.persistence.MaquinaPersistence;
+import co.edu.uniandes.csw.centrodeportivo.persistence.SeguimientoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -33,14 +33,14 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Diany Quintero
  */
 @RunWith(Arquillian.class)
-public class MaquinaEjerciciosLogicTest {
+public class SeguimientoMaquinasLogicTest {
     
    private PodamFactory factory = new PodamFactoryImpl();
     
    @Inject 
-   private MaquinaLogic maquinaLogic;
+   private SeguimientoLogic seguimientoLogic;
    @Inject
-   private MaquinaEjerciciosLogic maquinaEjerciciosLogic;
+   private SeguimientoMaquinasLogic seguimientoMaquinasLogic;
    
    @PersistenceContext
    private EntityManager em;
@@ -48,9 +48,9 @@ public class MaquinaEjerciciosLogicTest {
    @Inject
    private UserTransaction utx;
       
-   private List<MaquinaEntity> data = new ArrayList<MaquinaEntity>();
+   private List<SeguimientoEntity> data = new ArrayList<SeguimientoEntity>();
    
-   private List<EjercicioEntity> ejerciciosData = new ArrayList<>();
+   private List<MaquinaEntity> maquinasData = new ArrayList<>();
    
    /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -60,9 +60,9 @@ public class MaquinaEjerciciosLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(MaquinaEntity.class.getPackage())
-                .addPackage(MaquinaLogic.class.getPackage())
-                .addPackage(MaquinaPersistence.class.getPackage())
+                .addPackage(SeguimientoEntity.class.getPackage())
+                .addPackage(SeguimientoLogic.class.getPackage())
+                .addPackage(SeguimientoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -91,8 +91,8 @@ public class MaquinaEjerciciosLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from EjercicioEntity").executeUpdate();
         em.createQuery("delete from MaquinaEntity").executeUpdate();
+        em.createQuery("delete from SeguimientoEntity").executeUpdate();
     }
 
     /**
@@ -101,16 +101,16 @@ public class MaquinaEjerciciosLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            EjercicioEntity ejercicios = factory.manufacturePojo(EjercicioEntity.class);
-            em.persist(ejercicios);
-            ejerciciosData.add(ejercicios);
+            MaquinaEntity maquinas = factory.manufacturePojo(MaquinaEntity.class);
+            em.persist(maquinas);
+            maquinasData.add(maquinas);
         }
         for (int i = 0; i < 3; i++) {
-            MaquinaEntity entity = factory.manufacturePojo(MaquinaEntity.class);
+            SeguimientoEntity entity = factory.manufacturePojo(SeguimientoEntity.class);
             em.persist(entity);
             data.add(entity);
             if (i == 0) {
-                ejerciciosData.get(i).setMaquina(entity);
+                maquinasData.get(i).setSeguimiento(entity);
             }
         }
     }
@@ -119,22 +119,22 @@ public class MaquinaEjerciciosLogicTest {
      * Prueba para asociar un Ejercicio existente a una Maquina.
      */
     @Test
-    public void addEjercicioTest() {
-        MaquinaEntity entity = data.get(0);
-        EjercicioEntity ejercicioEntity = ejerciciosData.get(1);
-        EjercicioEntity response = maquinaEjerciciosLogic.addEjercicio(ejercicioEntity.getId(), entity.getId());
+    public void addMaquinaTest() {
+        SeguimientoEntity entity = data.get(0);
+        MaquinaEntity maquinaEntity = maquinasData.get(1);
+        MaquinaEntity response = seguimientoMaquinasLogic.addMaquina(maquinaEntity.getId(), entity.getId());
 
         Assert.assertNotNull(response);
-        Assert.assertEquals(ejercicioEntity.getId(), response.getId());
+        Assert.assertEquals(maquinaEntity.getId(), response.getId());
     }
     
     /**
-     * Prueba para obtener una colección de instancias de Ejercicios asociadas a una
-     * instancia Maquina.
+     * Prueba para obtener una colección de instancias de Maquina asociadas a una
+     * instancia Seguimiento.
      */
     @Test
-    public void getEjerciciosTest() {
-        List<EjercicioEntity> list = maquinaEjerciciosLogic.getEjercicios(data.get(0).getId());
+    public void getMaquinasTest() {
+        List<MaquinaEntity> list = seguimientoMaquinasLogic.getMaquinas(data.get(0).getId());
         Assert.assertEquals(1, list.size());
     }
     
@@ -145,22 +145,12 @@ public class MaquinaEjerciciosLogicTest {
      * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      */
     @Test
-    public void getEjercicioTest() throws BusinessLogicException {
-        MaquinaEntity entity = data.get(0);
-        EjercicioEntity ejercicioEntity = ejerciciosData.get(0);
-        EjercicioEntity response = maquinaEjerciciosLogic.getEjercicio(entity.getId(), ejercicioEntity.getId());
-
-        Assert.assertEquals(ejercicioEntity.getId(), response.getId());
-        Assert.assertEquals(ejercicioEntity.getCategoria(), response.getCategoria());
-        Assert.assertEquals(ejercicioEntity.getDescripcion(), response.getDescripcion());
-        Assert.assertEquals(ejercicioEntity.getDuracion(), response.getDuracion());
-        Assert.assertEquals(ejercicioEntity.getExplicacion(), response.getExplicacion());
-        Assert.assertEquals(ejercicioEntity.getImplementos(), response.getImplementos());
-        Assert.assertEquals(ejercicioEntity.getMaquina(), response.getMaquina());
-        Assert.assertEquals(ejercicioEntity.getNombre(), response.getNombre());
-        Assert.assertEquals(ejercicioEntity.getNumeroDeSeries(), response.getNumeroDeSeries());
-        Assert.assertEquals(ejercicioEntity.getRutina(), response.getRutina());
-        Assert.assertEquals(ejercicioEntity.getZonasCuerpo(), response.getZonasCuerpo());
+    public void getMaquinaTest() throws BusinessLogicException {
+        SeguimientoEntity entity = data.get(0);
+        MaquinaEntity maquinaEntity = maquinasData.get(0);
+        MaquinaEntity response = seguimientoMaquinasLogic.getMaquina(entity.getId(), maquinaEntity.getId());
+        Assert.assertEquals(maquinaEntity.getId(), response.getId());
+        
     }
 
     /**
@@ -171,9 +161,9 @@ public class MaquinaEjerciciosLogicTest {
      */
     @Test(expected = BusinessLogicException.class)
     public void getEjercicioNoAsociadoTest() throws BusinessLogicException {
-        MaquinaEntity entity = data.get(0);
-        EjercicioEntity ejercicioEntity = ejerciciosData.get(1);
-        maquinaEjerciciosLogic.getEjercicio(entity.getId(), ejercicioEntity.getId());    
+        SeguimientoEntity entity = data.get(0);
+        MaquinaEntity maquinaEntity = maquinasData.get(1);
+        seguimientoMaquinasLogic.getMaquina(entity.getId(), maquinaEntity.getId());    
     }
     
     /**
@@ -182,20 +172,15 @@ public class MaquinaEjerciciosLogicTest {
      */
     @Test
     public void replaceBooksTest() {
-        MaquinaEntity entity = data.get(0);
-        List<EjercicioEntity> list = ejerciciosData.subList(1, 3);
-        maquinaEjerciciosLogic.replaceEjercicios(entity.getId(), list);
+        SeguimientoEntity entity = data.get(0);
+        List<MaquinaEntity> list = maquinasData.subList(1, 3);
+        seguimientoMaquinasLogic.replaceMaquinas(entity.getId(), list);
 
-        entity = maquinaLogic.getMaquina(entity.getId());
-        Assert.assertFalse(entity.getEjercicios().contains(ejerciciosData.get(0)));
-        Assert.assertTrue(entity.getEjercicios().contains(ejerciciosData.get(1)));
-        Assert.assertTrue(entity.getEjercicios().contains(ejerciciosData.get(2)));
+        entity = seguimientoLogic.getSeguimiento(entity.getId());
+        Assert.assertFalse(entity.getMaquinas().contains(maquinasData.get(0)));
+        Assert.assertTrue(entity.getMaquinas().contains(maquinasData.get(1)));
+        Assert.assertTrue(entity.getMaquinas().contains(maquinasData.get(2)));
     }
 
 
-   
-   
-   
-   
-   
 }

@@ -26,6 +26,22 @@ public class EspecialistaDTO implements Serializable {
         
     }
 
+    public EspecialistaDTO(EspecialistaEntity nuevoEspecialistaEntity) {
+         if (nuevoEspecialistaEntity != null) {
+            this.id = nuevoEspecialistaEntity.getId();
+            this.nombre = nuevoEspecialistaEntity.getNombre();
+            this.cedula=nuevoEspecialistaEntity.getCedula();
+            this.especialidad=nuevoEspecialistaEntity.getEspecialidad();
+        }
+    }
+    public long getId()
+    {
+        return id;
+    }
+    public void setId(Long id)
+    {
+        this.id=id;
+    }
     public int getCedula() {
         return cedula;
     }

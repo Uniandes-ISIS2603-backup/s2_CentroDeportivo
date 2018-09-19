@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
+import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
 import java.io.Serializable;
 
 
@@ -25,12 +26,24 @@ public class RutinaDTO implements Serializable {
         
     }
 
+    public RutinaDTO(RutinaEntity createRutina) {
+        if(createRutina!=null)
+        {
+            this.estadoTerminado=createRutina.getEstadoTerminado();
+            this.id=createRutina.getId();
+            this.nombre=createRutina.getNombre();
+        }
+    }
+
     public int getIdentificadorRutina() {
         return identificadorRutina;
     }
 
     public void setIdentificadorRutina(int identificadorRutina) {
         this.identificadorRutina = identificadorRutina;
+    }
+      public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -48,5 +61,11 @@ public class RutinaDTO implements Serializable {
     public void setEstadoTerminado(boolean estadoTerminado) {
         this.estadoTerminado = estadoTerminado;
     }
-    
+     public RutinaEntity toEntity() {
+        RutinaEntity rutinaEntity = new RutinaEntity();      
+        rutinaEntity.setId(this.id);
+        rutinaEntity.setNombre(this.nombre);
+        rutinaEntity.setEstadoTerminado(this.estadoTerminado);
+        return rutinaEntity;
+    }
 }
