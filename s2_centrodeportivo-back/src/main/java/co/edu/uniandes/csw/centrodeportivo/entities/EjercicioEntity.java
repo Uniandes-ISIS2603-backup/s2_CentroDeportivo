@@ -39,7 +39,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     private RutinaEntity rutina;
     
    @PodamExclude
-    @ManyToOne
+    @OneToOne
    private MaquinaEntity maquina;
     
     @PodamExclude
