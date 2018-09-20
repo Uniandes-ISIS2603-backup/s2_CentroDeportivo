@@ -15,6 +15,8 @@ import java.io.Serializable;
 public class MaquinaDTO implements Serializable{
     
     private Long id;
+
+   
     private String nombre;
     private Double calorias;
     private Integer tiempo;
@@ -47,7 +49,9 @@ public class MaquinaDTO implements Serializable{
     public Long getId(){
         return id;
     }
-    
+     public void setId(Long id) {
+        this.id = id;
+    }
     /**
     * Metodo que devuelve las calorias quemadas en la maquina
     * @return calorias quemadas en la maquina

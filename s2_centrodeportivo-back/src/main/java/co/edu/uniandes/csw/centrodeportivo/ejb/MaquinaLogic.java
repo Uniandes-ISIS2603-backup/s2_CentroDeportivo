@@ -34,9 +34,10 @@ public class MaquinaLogic
      */
     public MaquinaEntity createMaquina(MaquinaEntity maquinaEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la maquina");
-        MaquinaEntity newMaquinaEntity = persistence.create(maquinaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la maquina");
-        return newMaquinaEntity;
+        // Invoca la persistencia para crear la editorial
+        persistence.create(maquinaEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de creación de la editorial");
+        return maquinaEntity;
     }
     
     
@@ -88,11 +89,9 @@ public class MaquinaLogic
      * @param maquinasId Identificador de la instancia a eliminar.
      * @throws BusinessLogicException si la maquina a eliminar no existe.
      */
-    public void deleteMaquina(Long maquinasId)throws BusinessLogicException {
+    public void deleteMaquina(Long maquinasId){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la maquina con id = {0}", maquinasId);
-        if(getMaquina(maquinasId)== null){
-           throw new BusinessLogicException("No se puede borrar la maquina con id = "+maquinasId+" porque no existe en la base de datos");
-        }
+        
         persistence.delete(maquinasId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la maquina con id = {0}", maquinasId);
     }

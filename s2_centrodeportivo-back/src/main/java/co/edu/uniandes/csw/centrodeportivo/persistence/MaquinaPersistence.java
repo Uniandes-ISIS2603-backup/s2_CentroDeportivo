@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class MaquinaPersistence 
 {
-    private static final Logger LOGGER = Logger.getLogger(ObjetivoPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MaquinaPersistence.class.getName());
         
     @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
@@ -33,12 +33,12 @@ public class MaquinaPersistence
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public MaquinaEntity create(MaquinaEntity maquinaEntity) {
-    LOGGER.log(Level.INFO, "Creando un objetivo nuevo");
+    LOGGER.log(Level.INFO, "Creando una maquina nueva");
     /* Note que hacemos uso de un método propio de EntityManager para persistir al deportista en la base de datos.
     Es similar a "INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);" en SQL.
      */
     em.persist(maquinaEntity);
-    LOGGER.log(Level.INFO, "Saliendo de crear un objetivo nuevo");
+    LOGGER.log(Level.INFO, "Saliendo de crear una maquina nueva");
     return maquinaEntity;
     }
     

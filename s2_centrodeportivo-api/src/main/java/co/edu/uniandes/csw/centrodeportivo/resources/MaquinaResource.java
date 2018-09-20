@@ -5,10 +5,13 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
 import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDTO;
+import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDetailDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.MaquinaLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -46,29 +49,68 @@ public class MaquinaResource implements Serializable{
     }
     
     @GET
-    public Collection<MaquinaDTO> getMaquinas()
+    public List<MaquinaDetailDTO> getMaquinas()
     {
-        return null;
+        LOGGER.info("MaquinaReosurce getMaquinas: input: void");
+        List<MaquinaDetailDTO> listaMaquinas = listEntity2DetailDTO(maquinaLogic.getMaquinas());
+        LOGGER.log(Level.INFO, "MaquinaReosurce getMaquinas: olistEntity2DetailDTOutput: {0}", listaMaquinas.toString());
+        return listaMaquinas;
     }
     
     @GET
     @Path("{maquinasId: \\d+}")
     public MaquinaDTO getMaquina(@PathParam("maquinasId") Long maquinasId) {
        
-        return null;
-    }
+        LOGGER.log(Level.INFO, "MaquinaResource getMaquina: input: {0}", maquinasId);
+        MaquinaEntity maquinaEntity = maquinaLogic.getMaquina(maquinasId);
+        if (maquinaEntity == null) {
+            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+        }
+        MaquinaDetailDTO detailDTO = new MaquinaDetailDTO(maquinaEntity);
+        LOGGER.log(Level.INFO, "MaquinaResource getMaquina: output: {0}", detailDTO.toString());
+        return detailDTO;    }
     
     @PUT
     @Path("{maquinasId: \\d+}")
     public MaquinaDTO actualizarAtributos(@PathParam("maquinasId") Long maquinasId, MaquinaDTO maquina)
     {
-        return null;
+        LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: input: id:{0} , maquina: {1}", new Object[]{maquinasId, maquina.toString()});
+        maquina.setId(maquinasId);
+        if (maquinaLogic.getMaquina(maquinasId) == null) {
+            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+        }
+        MaquinaDetailDTO detailDTO = new MaquinaDetailDTO(maquinaLogic.updateMaquina(maquinasId, maquina.toEntity()));
+        LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: output: {0}", detailDTO.toString());
+        return detailDTO;
     }
     
     @DELETE
     @Path("{maquinasId: \\d+}")
     public void eliminarMaquina(@PathParam("maquinasId") Long maquinasId)
     {
-  
+        LOGGER.log(Level.INFO, "MaquinaResource deleteMaquina: input: {0}", maquinasId);
+        if (maquinaLogic.getMaquina(maquinasId) == null) {
+            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+        }
+        maquinaLogic.deleteMaquina(maquinasId);
+
+        LOGGER.info("MaquinaResource deleteMaquina: output: void");
     }
+    
+    
+    private List<MaquinaDetailDTO> listEntity2DetailDTO(List<MaquinaEntity> entityList) {
+    List<MaquinaDetailDTO> list = new ArrayList<>();
+    for (MaquinaEntity entity : entityList) {
+        list.add(new MaquinaDetailDTO(entity));
+    }
+        return list;
+    }
+    
+    @Path("{maquinasId: \\d+}/ejercicios")
+    public Class<MaquinaEjerciciosResource> getMaquinaEjerciciosReosurce(@PathParam("maquinasId") Long maquinasId) {
+        if (maquinaLogic.getMaquina(maquinasId) == null) {
+            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+        }
+            return MaquinaEjerciciosResource.class;
+}
 }
