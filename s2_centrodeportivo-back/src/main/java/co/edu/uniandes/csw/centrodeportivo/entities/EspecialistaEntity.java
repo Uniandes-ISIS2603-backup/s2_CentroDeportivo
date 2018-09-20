@@ -25,7 +25,7 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     private Integer cedula;
 
     @PodamExclude
-    @OneToMany(mappedBy = "especialista")
+    @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
     private List<DeportistaEntity> deportistas = new ArrayList<DeportistaEntity>();
 
     /**
@@ -47,7 +47,7 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
      * dos entidades al  mismo tiempo
      */
     @PodamExclude
-    @OneToMany(mappedBy = "especialista")
+    @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
     private List <ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     /**
      * Devuelve los objetivos

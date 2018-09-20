@@ -41,6 +41,7 @@ public class EspecialistaLogic {
         if (persistencia.findByName(especialistaEntity.getNombre()) != null) {
             throw new BusinessLogicException("Ya existe un Especialista con el nombre \"" + especialistaEntity.getNombre() + "\"");
         }
+        
         persistencia.create(especialistaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del especialista");
         return especialistaEntity;
@@ -67,9 +68,10 @@ public class EspecialistaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un especialista identificado con el id = {0}",especialistasId);
         EspecialistaEntity especialistaEntity = persistencia.find(especialistasId);
         if(especialistaEntity == null)
-            LOGGER.log(Level.SEVERE, "No se encontró el especialista identificado con el id = {0}");
-        
-        LOGGER.log(Level.INFO, "Termina proceso de consultar un especialista identificado con el id = {0}");
+        {
+            LOGGER.log(Level.SEVERE, "No se encontró el especialista identificado con el id = {0}", especialistasId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar un especialista identificado con el id = {0}", especialistasId);
         return especialistaEntity;
     }
     
@@ -95,7 +97,7 @@ public class EspecialistaLogic {
      * @throws BusinessLogicException Si la especialista a eliminar tiene libros.
      */
     public void deleteEspecialista(Long especialistasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la especialista con id = {0}", especialistasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el especialista con id = {0}", especialistasId);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         List<ObjetivoEntity> objetivos = getEspecialista(especialistasId).getObjetivos();
         if (objetivos != null && !objetivos.isEmpty()) {
@@ -106,7 +108,7 @@ public class EspecialistaLogic {
             throw new BusinessLogicException("No se puede borrar el especialista con id = " + especialistasId + " porque tiene deportistas asociados");
         }
         persistencia.delete(especialistasId);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la especialista con id = {0}", especialistasId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el especialista con id = {0}", especialistasId);
     }
 
     

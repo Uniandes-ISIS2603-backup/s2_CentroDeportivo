@@ -177,11 +177,11 @@ public class RutinaResource {
      */
     @GET
     @Path("{RutinasId: \\d+}/Objetivo")
-    public Class<RutinaObjetivoResource> getRutinaObjetivoResource(@PathParam("RutinasId") Long RutinasId) {
+    public Class<RutinaObjetivosResource> getRutinaObjetivosResource(@PathParam("RutinasId") Long RutinasId) {
         if (rutinaLogic.getRutina(RutinasId) == null) {
             throw new WebApplicationException("El recurso /Rutinas/" + RutinasId + " no existe.", 404);
         }
-        return RutinaObjetivoResource.class;
+        return RutinaObjetivosResource.class;
     }
 
     

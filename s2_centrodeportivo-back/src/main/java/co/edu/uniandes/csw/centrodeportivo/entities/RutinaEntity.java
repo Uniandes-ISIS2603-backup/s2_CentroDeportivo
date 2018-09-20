@@ -50,7 +50,7 @@ public class RutinaEntity extends BaseEntity implements Serializable {
      * dos entidades al  mismo tiempo
      */
     @PodamExclude
-    @OneToMany(mappedBy = "rutina")
+    @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
     private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     
     
@@ -70,7 +70,7 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     
     
     @PodamExclude
-    @javax.persistence.OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
+    @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
     List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
     
     

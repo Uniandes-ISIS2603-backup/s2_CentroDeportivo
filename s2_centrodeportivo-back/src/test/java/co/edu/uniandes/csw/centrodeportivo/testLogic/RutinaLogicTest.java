@@ -105,7 +105,6 @@ public class RutinaLogicTest {
     /**
      * Prueba para crear un rutina
      */
-    @Test
     public void createRutinaEntity() throws BusinessLogicException
     {
         PodamFactory factory =  new PodamFactoryImpl();
