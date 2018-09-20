@@ -8,8 +8,11 @@ package co.edu.uniandes.csw.centrodeportivo.resources;
 import co.edu.uniandes.csw.centrodeportivo.dtos.SeguimientoDetailDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.SeguimientoDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.SeguimientoLogic;
+import co.edu.uniandes.csw.centrodeportivo.entities.SeguimientoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -34,83 +37,58 @@ import javax.ws.rs.WebApplicationException;
 public class SeguimientoResource {
     
     private static final Logger LOGGER = Logger.getLogger(SeguimientoResource.class.getName());
-    
+
     @Inject
-    private SeguimientoLogic seguimientoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    
+    private SeguimientoLogic seguimientoLogic;
+
     /**
-     * Crea un nuevo seguimiento con la informacion que se recibe en el cuerpo de
-     * la petición y se regresa un objeto identico con un id auto-generado por
-     * la base de datos.
+     * Crea un nuevo seguimiento con la informacion que se recibe en el cuerpo de la
+     * petición y se regresa un objeto idéntico con un id auto-generado por la
+     * base de datos.
      *
-     * @param seguimiento {@link SeguimientoDTO} - El seguimiento que se desea
-     * guardar.
-     * @return JSON {@link SeguimientoDTO} - El seguimiento guardado con el atributo
-     * id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando ya existe el seguimiento.
+     * @param seguimiento {@link SeguimientoDTO} - EL seguimiento que se desea guardar.
+     * @return JSON {@link SeguimientoDTO} - El seguimiento guardado con el atributo id
+     * autogenerado.
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe el seguimiento 
      */
     @POST
-    public SeguimientoDTO crearSeguimiento(SeguimientoDTO seguimiento) throws BusinessLogicException
-    {
-        /*LOGGER.log(Level.INFO, "SeguimientoResource createSeguimiento: input: {0}", seguimiento.toString());
-        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        SeguimientoEntity seguimientoEntity = seguimiento.toEntity();
-        // Invoca la lógica para crear el seguimiento nuevo
-        SeguimientoEntity nuevoSeguimientoEntity = SeguimientoLogic.createSeguimiento(seguimientoEntity);
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        SeguimientoDTO nuevoSeguimientoDTO = new SeguimientoDTO(nuevoSeguimientoEntity);
-        LOGGER.log(Level.INFO, "SeguimientoResource createSeguimiento: output: {0}", nuevoSeguimientoDTO.toString());
-        return nuevoSeguimientoDTO;*/
-        return seguimiento;
+    public SeguimientoDTO createSeguimiento(SeguimientoDTO seguimiento) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "SeguimientoResource createSeguimiento: input: {0}", seguimiento.toString());
+        SeguimientoDTO seguimientoDTO = new SeguimientoDTO(seguimientoLogic.createSeguimiento(seguimiento.toEntity()));
+        LOGGER.log(Level.INFO, "SeguimientoResource createSeguimiento: output: {0}", seguimientoDTO.toString());
+        return seguimientoDTO;
     }
-    
-    /**
-     * Busca y devuelve todos los seguimientos que existen en la aplicacion.
-     *
-     * @return JSONArray {@link SeguimientoDetailDTO} - Los seguimientos
-     * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
-     */
-    /*@GET
-    public List<SeguimientoDetailDTO> getSeguimientos() {
-        /*LOGGER.info("EditorialResource getEditorials: input: void");
-        List<SeguimientoDetailDTO> listaSeguimientos = listEntity2DetailDTO(seguimientoLogic.getSeguimientos());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaSeguimientos.toString());
-        return listaSeguimientos;
-        return null;
-    }*/
-    
+
     /**
      * Busca el seguimiento con el id asociado recibido en la URL y lo devuelve.
      *
-     * @param seguimientosId Identificador del seguimiento que se esta buscando.
-     * Este debe ser una cadena de dígitos.
+     * @param seguimientosId Identificador del seguimiento que se esta buscando. Este debe
+     * ser una cadena de dígitos.
      * @return JSON {@link SeguimientoDetailDTO} - El seguimiento buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el seguimiento.
      */
     @GET
     @Path("{seguimientosId: \\d+}")
-    public SeguimientoDetailDTO getSeguimiento(@PathParam("seguimientosId") Long seguimientosId) throws WebApplicationException {
-        /*LOGGER.log(Level.INFO, "SeguimientoResource getSeguimiento: input: {0}", seguimientosId);
+    public SeguimientoDetailDTO getSeguimiento(@PathParam("seguimientosId") Long seguimientosId) {
+        LOGGER.log(Level.INFO, "SeguimientoResource getSeguimiento: input: {0}", seguimientosId);
         SeguimientoEntity seguimientoEntity = seguimientoLogic.getSeguimiento(seguimientosId);
         if (seguimientoEntity == null) {
-            throw new WebApplicationException("El recurso /editorials/" + seguimientosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /seguimientos/" + seguimientosId + " no existe.", 404);
         }
         SeguimientoDetailDTO detailDTO = new SeguimientoDetailDTO(seguimientoEntity);
         LOGGER.log(Level.INFO, "SeguimientoResource getSeguimiento: output: {0}", detailDTO.toString());
-        return detailDTO;*/
-        return null;
+        return detailDTO;
     }
-    
+
     /**
-     * Actualiza el seguimiento con el id recibido en la URL con la información
-     * que se recibe en el cuerpo de la petición.
+     * Actualiza el seguimiento con el id recibido en la URL con la información que se
+     * recibe en el cuerpo de la petición.
      *
-     * @param seguimientosId Identificador del seguimiento que se desea
-     * actualizar. Este debe ser una cadena de dígitos.
-     * @param seguimiento {@link SeguimientoDetailDTO} El seguimiento que se desea
-     * guardar.
+     * @param seguimientosId Identificador del seguimiento que se desea actualizar. Este
+     * debe ser una cadena de dígitos.
+     * @param seguimiento {@link SeguimientoDetailDTO} El seguimiento que se desea guardar.
      * @return JSON {@link SeguimientoDetailDTO} - El seguimiento guardado.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el seguimiento a
@@ -118,24 +96,68 @@ public class SeguimientoResource {
      */
     @PUT
     @Path("{seguimientosId: \\d+}")
-    public SeguimientoDetailDTO updateSeguimiento(@PathParam("seguimientosId") Long seguimientosId, SeguimientoDetailDTO seguimiento) throws WebApplicationException 
-    {
-        return null;
+    public SeguimientoDetailDTO updateSeguimiento(@PathParam("seguimientosId") Long seguimientosId, SeguimientoDetailDTO seguimiento) {
+        LOGGER.log(Level.INFO, "SeguimientoResource updateSeguimiento: input: seguimientosId: {0} , seguimiento: {1}", new Object[]{seguimientosId, seguimiento.toString()});
+        seguimiento.setId(seguimientosId);
+        if (seguimientoLogic.getSeguimiento(seguimientosId) == null) {
+            throw new WebApplicationException("El recurso /seguimientos/" + seguimientosId + " no existe.", 404);
+        }
+        SeguimientoDetailDTO detailDTO = new SeguimientoDetailDTO(seguimientoLogic.updateSeguimiento(seguimientosId, seguimiento.toEntity()));
+        LOGGER.log(Level.INFO, "SeguimientoResource updateSeguimiento: output: {0}", detailDTO.toString());
+        return detailDTO;
     }
-    
+
     /**
      * Borra el seguimiento con el id asociado recibido en la URL.
      *
-     * @param seguimientosId Identificador del seguimiento que se desea borrar.
-     * Este debe ser una cadena de dígitos.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede eliminar el seguimiento.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el seguimiento.
+     * @param seguimientosId Identificador del seguimiento que se desea borrar. Este debe
+     * ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+     * Error de lógica que se genera cuando no se encuentra el seguimiento a borrar.
      */
     @DELETE
     @Path("{seguimientosId: \\d+}")
     public void deleteSeguimiento(@PathParam("seguimientosId") Long seguimientosId) throws BusinessLogicException {
-        
+        LOGGER.log(Level.INFO, "SeguimientoResource deleteSeguimiento: input: {0}", seguimientosId);
+        if (seguimientoLogic.getSeguimiento(seguimientosId) == null) {
+            throw new WebApplicationException("El recurso /seguimientos/" + seguimientosId + " no existe.", 404);
+        }
+        seguimientoLogic.deleteSeguimiento(seguimientosId);
+        LOGGER.info("SeguimientoResource deleteSeguimiento: output: void");
+    }
+
+    /**
+     * Conexión con el servicio de máquinas para un seguimiento.
+     * {@link SeguimientoMaquinasResource}
+     *
+     * Este método conecta la ruta de /seguimientos con las rutas de /maquinas que
+     * dependen del seguimiento, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de los libros.
+     *
+     * @param seguimientosId El ID del seguimiento con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de máquinas para ese seguimiento en particular.
+     */
+    @Path("{seguimientosId: \\d+}/books")
+    public Class<SeguimientoMaquinasResource> getSeguimientoMaquinasResource(@PathParam("seguimientosId") Long seguimientosId) {
+        if (seguimientoLogic.getSeguimiento(seguimientosId) == null) {
+            throw new WebApplicationException("El recurso /seguimientos/" + seguimientosId + " no existe.", 404);
+        }
+        return SeguimientoMaquinasResource.class;
+    }
+
+    /**
+     * Convierte una lista de SeguimientoEntity a una lista de SeguimientoDetailDTO.
+     *
+     * @param entityList Lista de SeguimientoEntity a convertir.
+     * @return Lista de SeguimientoDetailDTO convertida.
+     */
+    private List<SeguimientoDetailDTO> listEntity2DTO(List<SeguimientoEntity> entityList) {
+        List<SeguimientoDetailDTO> list = new ArrayList<>();
+        for (SeguimientoEntity entity : entityList) {
+            list.add(new SeguimientoDetailDTO(entity));
+        }
+        return list;
     }
 }

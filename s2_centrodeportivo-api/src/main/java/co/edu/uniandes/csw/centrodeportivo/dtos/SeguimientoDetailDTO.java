@@ -23,13 +23,16 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
     * Esta lista de tipo MaquinaDTO contiene las máquinas que estan asociadas a un seguimiento
      */
     private List<MaquinaDTO> maquinas;
+    
+    // relación uno a uno deportista
+    private DeportistaDTO deportista;
 
     /**
      * Constructor por defecto
      */
     public SeguimientoDetailDTO() 
     {
-        
+        super();
     }
 
     /**
@@ -40,19 +43,24 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
     public SeguimientoDetailDTO(SeguimientoEntity seguimientoEntity) {
         super(seguimientoEntity);
         if (seguimientoEntity != null) {
-            if (seguimientoEntity.getMaquinas() != null) {
+            if (seguimientoEntity.getMaquinas() != null)
+            {
                 maquinas = new ArrayList<>();
                 for (MaquinaEntity entityMaquina : seguimientoEntity.getMaquinas()) {
                     maquinas.add(new MaquinaDTO(entityMaquina));
                 }
             }
+            if (seguimientoEntity.getDeportista() != null) {
+                this.deportista = new DeportistaDTO(seguimientoEntity.getDeportista());
+            }
         }
     }
 
     /**
-     * Transformar un DTO a un Entity
+     * Convierte un objeto SeguimientoDetailDTO a SeguimientoEntity incluyendo los
+     * atributos de SeguimientoDTO.
      *
-     * @return El DTO del seguimiento para transformar a Entity
+     * @return Nueva objeto SeguimientoEntity.
      */
     @Override
     public SeguimientoEntity toEntity() {

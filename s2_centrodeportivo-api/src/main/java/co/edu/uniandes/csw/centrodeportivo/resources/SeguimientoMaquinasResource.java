@@ -26,9 +26,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * Clase que implementa el recurso "maquina/{id}/ejercicios".
+ * Clase que implementa el recurso "seguimiento/{id}/maquinas".
  *
- * @author Diany Quintero
+ * @author Diany Quintero y Lina Cardozo
  */
 public class SeguimientoMaquinasResource {
     
@@ -41,21 +41,21 @@ public class SeguimientoMaquinasResource {
     private MaquinaLogic maquinasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     /**
-     * Guarda una maquina dentro de un ejercicio con la informacion que recibe
-     * la URL. Se devuelve el ejercicio que se guarda en la editorial.
+     * Guarda una maquina dentro de un seguimiento con la informacion que recibe
+     * la URL. Se devuelve la máquina que se guarda en el seguimiento.
      *
-     * @param seguimientosId Identificador del seguimiento que se esta
+     * @param seguimientosId Identificador del seguimiento que se está
      * actualizando. Este debe ser una cadena de dígitos.
-     * @param maquinasId Identificador de la maquina que se desea guardar. Este debe
+     * @param maquinasId Identificador de la máquina que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link BookDTO} - El ejercicio guardado en la editorial.
+     * @return JSON {@link BookDTO} - La máquina guardada en el seguimiento.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el ejercicio.
+     * Error de lógica que se genera cuando no se encuentra la máquina.
      */
     @POST
     @Path("{maquinasId: \\d+}")
     public MaquinaDTO addMaquina(@PathParam("seguimientosId") Long seguimientosId, @PathParam("maquinasId") Long maquinasId) {
-        LOGGER.log(Level.INFO, "SeguimientoMaquinasResource addMaquina: input: seguimientosId: {0} , mauinasId: {1}", new Object[]{seguimientosId, maquinasId});
+        LOGGER.log(Level.INFO, "SeguimientoMaquinasResource addMaquina: input: seguimientosId: {0} , maquinasId: {1}", new Object[]{seguimientosId, maquinasId});
         if (maquinasLogic.getMaquina(maquinasId) == null) {
             throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
         }
@@ -65,12 +65,12 @@ public class SeguimientoMaquinasResource {
     }
 
     /**
-     * Busca y devuelve todos las maquinas que existen en el seguimiento.
+     * Busca y devuelve todas las máquinas que existen en el seguimiento.
      *
-     * @param seguimientosId Identificador de la maquina que se esta buscando.
+     * @param seguimientosId Identificador de la máquina que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSONArray {@link BookDetailDTO} - Los ejercicios encontrados en la
-     * editorial. Si no hay ninguno retorna una lista vacía.
+     * @return JSONArray {@link BookDetailDTO} - Las máquinas encontradas en el
+     * seguimiento. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<MaquinaDetailDTO> getMaquinas(@PathParam("seguimientosId") Long seguimientosId) {
@@ -81,18 +81,18 @@ public class SeguimientoMaquinasResource {
     }
     
     /**
-     * Busca la maquina con el id asociado dentro del Seguimiento con id asociado.
+     * Busca la máquina con el id asociado dentro del seguimiento con id asociado.
      *
-     * @param seguimientosId Identificador del seguimiento que se esta buscando.
+     * @param seguimientosId Identificador del seguimiento que se está buscando.
      * Este debe ser una cadena de dígitos.
-     * @param maquinasId Identificador de la maquina que se esta buscando. Este debe
+     * @param maquinasId Identificador de la máquina que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link BookDetailDTO} - El ejrcicio buscado
+     * @return JSON {@link maquinaDetailDTO} - La máquina buscada
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el ejercicio.
+     * Error de lógica que se genera cuando no se encuentra la máquina.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el ejercicio en la
-     * maquina.
+     * Error de lógica que se genera cuando no se encuentra la máquina en el
+     * seguimiento.
      */
     @GET
     @Path("{maquinasId: \\d+}")
@@ -107,32 +107,32 @@ public class SeguimientoMaquinasResource {
     }
     
     /**
-     * Remplaza las instancias de maquina asociadas a una instancia de Seguimiento
+     * Remplaza las instancias de Maquina asociadas a una instancia de Seguimiento
      *
-     * @param seguimientosId Identificador de la maquina que se esta
+     * @param seguimientosId Identificador del seguimiento que se está
      * remplazando. Este debe ser una cadena de dígitos.
-     * @param maquinas JSONArray {@link BookDTO} El arreglo de ejercicios nuevo para la
-     * editorial.
-     * @return JSON {@link BookDTO} - El arreglo de ejercicios guardado en la
-     * maquina.
+     * @param maquinas JSONArray {@link BookDTO} El arreglo de máquinas nuevo para el
+     * seguimiento.
+     * @return JSON {@link BookDTO} - El arreglo de máquinas guardado en el
+     * seguimiento.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el ejercicio.
+     * Error de lógica que se genera cuando no se encuentra la máquina.
      */
     @PUT
-    public List<MaquinaDetailDTO> replaceEjercicios(@PathParam("seguimientosId") Long seguimientosId, List<MaquinaDetailDTO> maquinas) {
-        LOGGER.log(Level.INFO, "EditorialBooksResource replaceBooks: input: editorialsId: {0} , books: {1}", new Object[]{seguimientosId, maquinas.toString()});
-        for (MaquinaDTO maquina : maquinas) {
+    public List<MaquinaDetailDTO> replaceMaquinas(@PathParam("seguimientosId") Long seguimientosId, List<MaquinaDetailDTO> maquinas) {
+        LOGGER.log(Level.INFO, "SeguimientoMaquinasResource replaceMaquinas: input: seguimientosId: {0} , maquinas: {1}", new Object[]{seguimientosId, maquinas.toString()});
+        for (MaquinaDetailDTO maquina : maquinas) {
             if (maquinasLogic.getMaquina(maquina.getId()) == null) {
                 throw new WebApplicationException("El recurso /maquinas/" + maquina.getId() + " no existe.", 404);
             }
         }
         List<MaquinaDetailDTO> listaDetailDTOs = maquinasListEntity2DTO(seguimientoMaquinasLogic.replaceMaquinas(seguimientosId, maquinasListDTO2Entity(maquinas)));
-        LOGGER.log(Level.INFO, "EditorialBooksResource replaceBooks: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "SeguimientoMaquinasResource replaceMaquinas: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
 
     /**
-     * Convierte una lista de MaquinaEntity a una lista de EjecicioDetailDTO.
+     * Convierte una lista de MaquinaEntity a una lista de MaquinaDetailDTO.
      *
      * @param entityList Lista de MaquinaEntity a convertir.
      * @return Lista de MaquinaDTO convertida.
@@ -159,5 +159,3 @@ public class SeguimientoMaquinasResource {
         return list;
     }
 }
-
-

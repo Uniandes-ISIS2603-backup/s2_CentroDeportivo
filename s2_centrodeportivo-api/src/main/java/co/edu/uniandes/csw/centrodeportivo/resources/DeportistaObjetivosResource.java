@@ -29,8 +29,8 @@ import javax.ws.rs.WebApplicationException;
  * Clase que implementa el recurso "deportista/{id}/objetivos".
  * @author Leidy Romero
  */
-public class DeportistaObjetivos {
-    private static final Logger LOGGER = Logger.getLogger(DeportistaObjetivos.class.getName());
+public class DeportistaObjetivosResource {
+    private static final Logger LOGGER = Logger.getLogger(DeportistaObjetivosResource.class.getName());
 
     @Inject
     private DeportistaObjetivosLogic deportistaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.

@@ -140,20 +140,20 @@ public class EjercicioResource {
     }
 
     /**
-     * Conexión con el servicio de libros para una ejercicio.
+     * Conexión con el servicio de zonas del cuerpo para una ejercicio.
      * {@link EjercicioZonasCuerpoResource}
      *
-     * Este método conecta la ruta de /ejercicios con las rutas de /books que
-     * dependen de la ejercicio, es una redirección al servicio que maneja el
-     * segmento de la URL que se encarga de los libros de una ejercicio.
+     * Este método conecta la ruta de /ejercicios con las rutas de /zonasCuerpo que
+     * dependen del ejercicio, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de las zonas del cuerpo de un ejercicio.
      *
-     * @param ejerciciosId El ID de la ejercicio con respecto a la cual se
+     * @param ejerciciosId El ID del ejercicio con respecto al cual se
      * accede al servicio.
-     * @return El servicio de libros para esta ejercicio en paricular.
+     * @return El servicio de zonas del cuerpo para este ejercicio en paricular.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra la ejercicio.
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
-    @Path("{ejerciciosId: \\d+}/books")
+    @Path("{ejerciciosId: \\d+}/zonasCuerpo")
     public Class<EjercicioZonasCuerpoResource> getEjercicioZonasCuerpoResource(@PathParam("ejerciciosId") Long ejerciciosId) {
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
             throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
@@ -161,6 +161,28 @@ public class EjercicioResource {
         return EjercicioZonasCuerpoResource.class;
     }
 
+    /**
+     * Conexión con el servicio de implementos para un ejercicio.
+     * {@link EjercicioImplementosResource}
+     *
+     * Este método conecta la ruta de /ejercicios con las rutas de /implementos que
+     * dependen de la ejercicio, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los implementos de un ejercicio.
+     *
+     * @param ejerciciosId El ID del ejercicio con respecto al cual se
+     * accede al servicio.
+     * @return El servicio de implementos para este ejercicio en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
+     */
+    @Path("{ejerciciosId: \\d+}/implementos")
+    public Class<EjercicioImplementosResource> getEjercicioImplementosResource(@PathParam("ejerciciosId") Long ejerciciosId) {
+        if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
+            throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
+        }
+        return EjercicioImplementosResource.class;
+    }
+    
     /**
      * Convierte una lista de entidades a DTO.
      *
