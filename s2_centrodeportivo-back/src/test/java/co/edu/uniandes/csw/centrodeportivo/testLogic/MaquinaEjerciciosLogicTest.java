@@ -181,7 +181,7 @@ public class MaquinaEjerciciosLogicTest {
      * de Editorial.
      */
     @Test
-    public void replaceBooksTest() {
+    public void replaceEjerciciosTest() {
         MaquinaEntity entity = data.get(0);
         List<EjercicioEntity> list = ejerciciosData.subList(1, 3);
         maquinaEjerciciosLogic.replaceEjercicios(entity.getId(), list);

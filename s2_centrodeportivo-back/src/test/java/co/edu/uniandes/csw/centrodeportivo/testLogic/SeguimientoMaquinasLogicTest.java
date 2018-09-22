@@ -167,11 +167,11 @@ public class SeguimientoMaquinasLogicTest {
     }
     
     /**
-     * Prueba para remplazar las instancias de Books asociadas a una instancia
-     * de Editorial.
+     * Prueba para remplazar las instancias de Maquinas asociadas a una instancia
+     * de Seguimiento.
      */
     @Test
-    public void replaceBooksTest() {
+    public void replaceMaquinasTest() {
         SeguimientoEntity entity = data.get(0);
         List<MaquinaEntity> list = maquinasData.subList(1, 3);
         seguimientoMaquinasLogic.replaceMaquinas(entity.getId(), list);

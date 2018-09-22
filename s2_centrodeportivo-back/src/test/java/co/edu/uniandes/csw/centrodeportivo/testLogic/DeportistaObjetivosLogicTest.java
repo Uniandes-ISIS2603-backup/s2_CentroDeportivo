@@ -166,7 +166,6 @@ public class DeportistaObjetivosLogicTest {
         ObjetivoEntity objetivoEntity = objetivosData.get(1);
         deportistaObjetivosLogic.getObjetivo(entity.getId(), objetivoEntity.getId());    
     }
-    
     /**
      * Prueba para remplazar las instancias de Objetivos asociadas a una instancia
      * de Deportista.
@@ -178,9 +177,6 @@ public class DeportistaObjetivosLogicTest {
         deportistaObjetivosLogic.replaceObjetivos(entity.getId(), list);
 
         entity = deportistaLogic.getDeportista(entity.getId());
-        System.out.println(entity.getObjetivos().contains(objetivosData.get(1)));
-        System.out.println(entity.getObjetivos().contains(objetivosData.get(2)));
-        
         Assert.assertFalse(entity.getObjetivos().contains(objetivosData.get(0)));
         Assert.assertTrue(entity.getObjetivos().contains(objetivosData.get(1)));
         Assert.assertTrue(entity.getObjetivos().contains(objetivosData.get(2)));

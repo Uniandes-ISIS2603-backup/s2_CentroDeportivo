@@ -76,26 +76,26 @@ public class DeportistaObjetivosLogic {
         }
         throw new BusinessLogicException("El objetivo no está asociado a la deportista");
     }
-    
-    /**
+     /**
      * Remplazar objetivos de una deportista
      *
      * @param objetivos Lista de libros que serán los de la deportista.
      * @param deportistasId El id de la deportista que se quiere actualizar.
-     * @return La lista de objetivos actualizada.
+     * @return La lista de libros actualizada.
      */
     public List<ObjetivoEntity> replaceObjetivos(Long deportistasId, List<ObjetivoEntity> objetivos) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar al deportista con id = {0}", deportistasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el deportista con id = {0}", deportistasId);
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         List<ObjetivoEntity> objetivoList = objetivoPersistence.findAll();
+        
         for (ObjetivoEntity objetivo : objetivoList) {
             if (objetivos.contains(objetivo)) {
                 objetivo.setDeportista(deportistaEntity);
-            } else if (objetivo.getDeportista()!= null && objetivo.getDeportista().equals(deportistaEntity)) {
+            } else if (objetivo.getDeportista() != null && objetivo.getDeportista().equals(deportistaEntity)) {
                 objetivo.setDeportista(null);
             }
         }
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar al deportista con id = {0}", deportistasId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la deportista con id = {0}", deportistasId);
         return objetivos;
-    } 
+    }
 }

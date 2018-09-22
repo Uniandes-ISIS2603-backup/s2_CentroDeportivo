@@ -167,8 +167,7 @@ public class ObjetivoDeportistasLogicTest {
         DeportistaEntity deportistaEntity = deportistasData.get(1);
         objetivoDeportistasLogic.getDeportista(entity.getId(), deportistaEntity.getId());    
     }
-    
-    /**
+/**
      * Prueba para remplazar las instancias de Deportistas asociadas a una instancia
      * de Objetivo.
      */

@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.apache.commons.lang3.SystemUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -95,18 +96,15 @@ public class DeportistaLogicTest {
      */
     private void insertData()
     {
-         for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             ObjetivoEntity objetivos = factory.manufacturePojo(ObjetivoEntity.class);
             em.persist(objetivos);
             objetivosData.add(objetivos);
         }
         for (int i = 0; i < 3; i++) {
-            DeportistaEntity entity = factory.manufacturePojo( DeportistaEntity.class);
+            DeportistaEntity entity = factory.manufacturePojo(DeportistaEntity.class);
             em.persist(entity);
             data.add(entity);
-            if (i == 0) {
-                objetivosData.get(i).setDeportista(entity);
-            }
         }
     }
     /**
