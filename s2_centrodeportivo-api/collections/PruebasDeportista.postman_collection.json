@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "33763f3e-29b6-4384-9032-153eb7c34fbb",
+		"_postman_id": "6c50559e-0640-4aff-b110-f696f14e00ae",
 		"name": "PruebasDeportista",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,17 +9,25 @@
 			"name": "CrearDeportista",
 			"request": {
 				"method": "POST",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"nombre\": \"Leidy Romero\",\n\t\t\"sexo\":true,\n\t\t\"altura\":1.62,\n\t\t\"presionSanguinea\":60,\n\t\t\"peso\":56,\n\t\t\"ritmoCardiaco\":70,\n\t\t\"medidaPiernas\":1.20,\n\t\t\"medidaCintura\":1,\n\t\t\"medidaBrazos\":1,\n\t\t\"cedula\":1233906000,\n\t\t\"ultimaActualizacionDatos\":\"2018 09 21\",\n\t\t\"fechaNacimiento\":\"1999 04 02\"\n}"
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/deportistas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
 						"deportistas"
 					]
@@ -33,16 +41,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/deportistas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
 						"deportistas"
 					]
@@ -56,18 +67,22 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/deportistas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
-						"deportistas"
+						"deportistas",
+						"1"
 					]
 				},
 				"description": "Retorna nulo."
@@ -78,17 +93,25 @@
 			"name": "ActualizarDeportista",
 			"request": {
 				"method": "PUT",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/deportistas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
 						"deportistas"
 					]
@@ -101,19 +124,28 @@
 			"name": "EliminarDeportista",
 			"request": {
 				"method": "DELETE",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/deportistas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
-						"deportistas"
+						"deportistas",
+						"1"
 					]
 				}
 			},

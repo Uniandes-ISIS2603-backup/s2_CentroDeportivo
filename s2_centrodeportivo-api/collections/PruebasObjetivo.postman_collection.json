@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fc75c437-0b73-40bb-a03b-a6376d59be07",
+		"_postman_id": "0833ac02-7818-4625-ba01-76b5adfddd29",
 		"name": "PruebasObjetivo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,17 +9,25 @@
 			"name": "CrearUnObjetivo",
 			"request": {
 				"method": "POST",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Mejorar condición física\",\n\t\t\"cumplio\":false,\n\t\t\"fechaLimite\":\"2018 09 25\"\n}"
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/objetivos",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/objetivos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
 						"objetivos"
 					]
@@ -33,18 +41,21 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/objetivos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
-						"deportistas"
+						"objetivos"
 					]
 				},
 				"description": "Retorna nulo"
@@ -56,18 +67,22 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/objetivos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
-						"deportistas"
+						"objetivos",
+						"1"
 					]
 				},
 				"description": "Retorna nulo."
@@ -78,19 +93,28 @@
 			"name": "ActualizarUnObjetivo",
 			"request": {
 				"method": "PUT",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_ludis-api/api/deportistas",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/objetivos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"s2_ludis-api",
+						"s2_centrodeportivo-api",
 						"api",
-						"deportistas"
+						"objetivos",
+						"1"
 					]
 				},
 				"description": "Retorna nulo."
