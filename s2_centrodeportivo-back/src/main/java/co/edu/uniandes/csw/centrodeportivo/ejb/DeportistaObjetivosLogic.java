@@ -66,11 +66,11 @@ public class DeportistaObjetivosLogic {
      * deportista
      */
     public ObjetivoEntity getObjetivo(Long deportistasId, Long objetivosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el objetivo con id = {0} de la deportista con id = " + deportistasId, objetivosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el objetivo con id = {1} del deportista con id = {0}" + deportistasId, objetivosId);
         List<ObjetivoEntity> objetivos = deportistaPersistence.find(deportistasId).getObjetivos();
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
         int index = objetivos.indexOf(objetivoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo con id = {0} de la deportista con id = " + deportistasId, objetivosId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo con id = {1} del deportista con id = {0}" + deportistasId, objetivosId);
         if (index >= 0) {
             return objetivos.get(index);
         }
@@ -79,15 +79,14 @@ public class DeportistaObjetivosLogic {
      /**
      * Remplazar objetivos de una deportista
      *
-     * @param objetivos Lista de libros que serán los de la deportista.
+     * @param objetivos Lista de objetivos que serán los de la deportista.
      * @param deportistasId El id de la deportista que se quiere actualizar.
-     * @return La lista de libros actualizada.
+     * @return La lista de objetivos actualizada.
      */
     public List<ObjetivoEntity> replaceObjetivos(Long deportistasId, List<ObjetivoEntity> objetivos) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el deportista con id = {0}", deportistasId);
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         List<ObjetivoEntity> objetivoList = objetivoPersistence.findAll();
-        
         for (ObjetivoEntity objetivo : objetivoList) {
             if (objetivos.contains(objetivo)) {
                 objetivo.setDeportista(deportistaEntity);

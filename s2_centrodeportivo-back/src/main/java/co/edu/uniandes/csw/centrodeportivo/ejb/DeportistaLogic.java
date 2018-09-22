@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,11 +32,14 @@ public class DeportistaLogic {
      * 
      * @param deportistaEntity Objeto de DeportistaEntity con los datos nuevos
      * @return Objeto de DeportistaEntity con los datos nuevos y su ID.
-     * REGLAS DE NEGOCIO: No deben existir dos deportistas con el mismo numero de cedula
+     * @throws BusinessLogicException si ya existe un deportista identificado con la cedula
      */
-    public DeportistaEntity createDeportista(DeportistaEntity deportistaEntity)
+    public DeportistaEntity createDeportista(DeportistaEntity deportistaEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de un deportista");
+        if (persistencia.findByCedula(deportistaEntity.getCedula()) != null) {
+            throw new BusinessLogicException("Ya existe un deportista con la cédula \"" + deportistaEntity.getCedula() + "\"");
+        }
         DeportistaEntity nuevoDeportista = persistencia.create(deportistaEntity);
         LOGGER.log(Level.INFO,"Termina proceso de creación de un deportista");
         return nuevoDeportista;

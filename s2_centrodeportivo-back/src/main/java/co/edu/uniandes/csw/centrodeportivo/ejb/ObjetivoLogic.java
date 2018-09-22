@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,11 +31,14 @@ public class ObjetivoLogic {
      * 
      * @param objetivoEntity Objeto de ObjetivoEntity con los datos nuevos
      * @return Objeto de ObjetivoEntity con los datos nuevos y su ID.
-     *REGLAS DE NEGOCIO: No deben existir dos objetivos con la misma descripcion
+     * @throws BusinessLogicException si ya existe un objetivo con la descripcion
      */
-    public ObjetivoEntity createObjetivo(ObjetivoEntity objetivoEntity)
+    public ObjetivoEntity createObjetivo(ObjetivoEntity objetivoEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de un objetivo");
+        if (persistencia.findByDescripcion(objetivoEntity.getDescripcion()) != null) {
+            throw new BusinessLogicException("Ya existe un onjetivo con la descripción \"" + objetivoEntity.getDescripcion() + "\"");
+        }
         ObjetivoEntity nuevoObjetivo = persistencia.create(objetivoEntity);
         LOGGER.log(Level.INFO,"Termina proceso de creación de un objetivo");
         return nuevoObjetivo;

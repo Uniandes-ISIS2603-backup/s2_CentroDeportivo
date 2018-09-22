@@ -66,11 +66,11 @@ public class ObjetivoDeportistasLogic {
      * objetivo
      */
     public DeportistaEntity getDeportista(Long objetivosId, Long deportistasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el deportista con id = {0} de la objetivo con id = " + objetivosId, deportistasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el deportista con id = {1} de la objetivo con id = {0}" + objetivosId, deportistasId);
         List<DeportistaEntity> deportistas = objetivoPersistence.find(objetivosId).getCasosExitosos();
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         int index = deportistas.indexOf(deportistaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el deportista con id = {0} de la objetivo con id = " + objetivosId, deportistasId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el deportista con id = {1} de la objetivo con id = {0}" + objetivosId, deportistasId);
         if (index >= 0) {
             return deportistas.get(index);
         }
@@ -79,9 +79,9 @@ public class ObjetivoDeportistasLogic {
  /**
      * Remplazar deportistas de una objetivo
      *
-     * @param deportistas Lista de libros que serán los de la objetivo.
+     * @param deportistas Lista de deportistas que serán los de la objetivo.
      * @param objetivosId El id de la objetivo que se quiere actualizar.
-     * @return La lista de libros actualizada.
+     * @return La lista de deportistas actualizada.
      */
     public List<DeportistaEntity> replaceDeportistas(Long objetivosId, List<DeportistaEntity> deportistas) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el objetivo con id = {0}", objetivosId);

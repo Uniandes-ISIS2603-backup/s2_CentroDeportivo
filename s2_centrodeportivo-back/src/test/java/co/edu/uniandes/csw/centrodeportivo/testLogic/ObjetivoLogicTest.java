@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.ObjetivoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,9 +103,10 @@ public class ObjetivoLogicTest {
     }
     /**
      * Prueba para crear un objetivo
+     * @throws BusinessLogicException Si el objetivo con esra descripcion ya existe
      */
     @Test
-    public void createObjetivoEntity()
+    public void createObjetivoEntity() throws BusinessLogicException
     {
         PodamFactory factory =  new PodamFactoryImpl();
         ObjetivoEntity nuevoObjetivo = factory.manufacturePojo(ObjetivoEntity.class);

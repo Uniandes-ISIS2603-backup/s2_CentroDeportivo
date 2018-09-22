@@ -41,7 +41,7 @@ public class ImplementoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del implemento");
         // Invoca la persistencia para crear el implemento
         if (persistence.findByName(implementoEntity.getNombre()) != null) {
-            throw new BusinessLogicException("Ya existe una Editorial con el nombre \"" + implementoEntity.getNombre() + "\"");
+            throw new BusinessLogicException("Ya existe un implemento con el nombre \"" + implementoEntity.getNombre() + "\"");
         }
         persistence.create(implementoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del implemento");

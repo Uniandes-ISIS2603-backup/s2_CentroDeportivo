@@ -88,5 +88,30 @@ public class ObjetivoPersistence {
         LOGGER.log(Level.INFO, "Saliendo de actualizar el objetivo con id = {0}", objetivoEntity.getId());
         return em.merge(objetivoEntity);
     }
-
+/**
+     * Busca si hay algún objetivo con la descripcion que se envía de argumento
+     *
+     * @param descripcion: Descripcion del objetivo que se está buscando
+     * @return null si no existe ningún objetivo con la descripcion del argumento.
+     * Si existe alguno devuelve el primero.
+     */
+    public ObjetivoEntity findByDescripcion(String descripcion) {
+        LOGGER.log(Level.INFO, "Consultando obejtivo por descripcion ", descripcion);
+        // Se crea un query para buscar objetivo con la descripcion que recibe el método como argumento. ":descripcion" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select obj From ObjetivoEntity obj where obj.descripcion = :descripcion", ObjetivoEntity.class);
+        // Se remplaza el placeholder ":descripcion" con el valor del argumento 
+        query = query.setParameter("descripcion", descripcion);
+        // Se invoca el query se obtiene la lista resultado
+        List<ObjetivoEntity> sameDescripcion = query.getResultList();
+        ObjetivoEntity result;
+        if (sameDescripcion == null) {
+            result = null;
+        } else if (sameDescripcion.isEmpty()) {
+            result = null;
+        } else {
+            result = sameDescripcion.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar objetiu}vo por descripcion ", descripcion);
+        return result;
+    }
 }
