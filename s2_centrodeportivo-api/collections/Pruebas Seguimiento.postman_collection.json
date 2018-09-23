@@ -1,12 +1,26 @@
 {
 	"info": {
-		"_postman_id": "6edbb1c9-0f16-4178-afd1-0711ff9581e4",
+		"_postman_id": "5849b833-3e82-42dd-ab87-072d03e72bcf",
 		"name": "Pruebas Seguimiento",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "abde14e0-afe5-4647-90d8-0d65a4112e67",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_s\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -17,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"tiempo\": 120,\n\t\"calorias\": 135,\n\t\"velocidadPromedio\": 10,\n\t\"ritmoCardiacoPromedio\": 175\n}"
+					"raw": "{\n\t\"tiempo\": \"{{$randomInt}}\",\n\t\"calorias\": \"{{$randomInt}}\",\n\t\"velocidadPromedio\": \"{{$randomInt}}\",\n\t\"ritmoCardiacoPromedio\": \"{{$randomInt}}\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos",
@@ -42,10 +56,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3573d2cd-bb11-4dd4-a892-fa8d5dd172f0",
+						"id": "20058f6b-44f5-45ed-98f3-24bb8e4c5468",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"tests['No genera error en el Get'] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -53,9 +67,12 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/{{nuevo_id_s}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -64,8 +81,8 @@
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
-						"implementos",
-						"1"
+						"seguimientos",
+						"{{nuevo_id_s}}"
 					]
 				},
 				"description": "Retorna null."
@@ -74,6 +91,18 @@
 		},
 		{
 			"name": "Actualizar un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a8e0f00-5aa1-4e74-a5a3-2f2b891b674d",
+						"type": "text/javascript",
+						"exec": [
+							"tests['No genera error en el Put'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -87,7 +116,7 @@
 					"raw": "{\n\t\"tiempo\": 125,\n\t\"calorias\": 140,\n\t\"velocidadPromedio\": 15,\n\t\"ritmoCardiacoPromedio\": 180\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/1",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/{{nuevo_id_s}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -97,7 +126,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"seguimientos",
-						"1"
+						"{{nuevo_id_s}}"
 					]
 				},
 				"description": "Actualiza un implemento."
@@ -106,6 +135,18 @@
 		},
 		{
 			"name": "Eliminar un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7cd4ff7c-a5eb-4075-88ee-17bf0ef5c29f",
+						"type": "text/javascript",
+						"exec": [
+							"tests['No genera error en el Delete'] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -114,7 +155,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/1",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/{{nuevo_id_s}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -124,7 +165,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"seguimientos",
-						"1"
+						"{{nuevo_id_s}}"
 					]
 				},
 				"description": "Elimina el implemento con el id dado."

@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "d8abf2c5-8cd8-493e-be5b-f635974e4362",
 		"name": "Pruebas Implemento",
+		"description": "Colección de datos para los recursos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,12 +12,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cfa1e69c-d765-4d8c-b84e-acc9456ce4a1",
+						"id": "a7b951fc-abdb-4077-a34a-2b6a873d8785",
 						"type": "text/javascript",
 						"exec": [
-							"/*tests['No crea con el mismo nombre'] = responseCode.code === 412",
-							"tests['Mensaje correcto de error'] = responseBody.has(\"Ya existe un implemento con el nombre\")",
-							"*/"
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_nombre_i\", data.nombre);",
+							"postman.setGlobalVariable(\"nuevo_id_i\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -31,22 +33,22 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Colchoneta\"\n}"
+					"raw": "{\n\t\"nombre\": \"Pesas {{$randomInt}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
 						"implementos"
 					]
 				},
-				"description": "Crea un implemento y lo retorna."
+				"description": "Crea un nuevo implemento. El recurso solo tiene un atributo \"nombre\" que debe ser único. El id es inicializado por la BD y se debe ver en la respuesta de la aplicación.\n\nPara la prueba se crea un entero aleatorio que se concatena con el string \"Pesas\" y de esta forma evitar duplicados.\nEl nombre y el id se guardan en variables para ser usados en la prueba del nombre duplicado y para obtener, actualizar y borrar el implemento al final de la colección."
 			},
 			"response": [
 				{
@@ -126,15 +128,59 @@
 			]
 		},
 		{
+			"name": "Crear un implemento con el mismo nombre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64f0c394-1d10-4e55-aa12-3e23179f7a61",
+						"type": "text/javascript",
+						"exec": [
+							"tests['No crea con el mismo nombre'] = responseCode.code === 412",
+							"tests['Mensaje correcto de error'] = responseBody.has(\"Ya existe un implemento con el nombre\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"{{nuevo_nombre_i}}\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos"
+					]
+				},
+				"description": "Crea un implemento con el mismo nombre de uno que ya existe."
+			},
+			"response": []
+		},
+		{
 			"name": "Obtener un implemento",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3573d2cd-bb11-4dd4-a892-fa8d5dd172f0",
+						"id": "27bb849e-773b-4831-ac73-4090cb043fad",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"tests['No genera error en el Get'] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -144,7 +190,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -154,7 +200,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"implementos",
-						"1"
+						"{{nuevo_id_i}}"
 					]
 				},
 				"description": "Retorna null."
@@ -163,6 +209,18 @@
 		},
 		{
 			"name": "Obtener todos los implementos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "46ca3f1a-8a00-44ac-b69e-c5896bf14561",
+						"type": "text/javascript",
+						"exec": [
+							"tests['No genera error en el Get'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -186,6 +244,19 @@
 		},
 		{
 			"name": "Actualizar un implemento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f58827c7-d652-49bc-97fa-8b61a78717ac",
+						"type": "text/javascript",
+						"exec": [
+							"tests['No genera error en el Put'] = responseCode.code === 200;",
+							"/*tests['No existe el implemento buscado'] = responseCode.code === 404;*/"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -196,10 +267,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Pesas 1\"\n}"
+					"raw": "{\n\t\"nombre\": \"Pesas\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -209,7 +280,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"implementos",
-						"1"
+						"{{nuevo_id_i}}"
 					]
 				},
 				"description": "Actualiza un implemento."
@@ -218,6 +289,18 @@
 		},
 		{
 			"name": "Eliminar un implemento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49413b1a-b665-4d92-a783-1d870fe7ec0a",
+						"type": "text/javascript",
+						"exec": [
+							"tests['No genera error en el Delete'] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -226,17 +309,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
 						"implementos",
-						"1"
+						"{{nuevo_id_i}}"
 					]
 				},
 				"description": "Elimina el implemento con el id dado."
