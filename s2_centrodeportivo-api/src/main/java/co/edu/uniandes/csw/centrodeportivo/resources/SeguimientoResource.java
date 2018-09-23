@@ -139,7 +139,7 @@ public class SeguimientoResource {
      * servicio.
      * @return El servicio de máquinas para ese seguimiento en particular.
      */
-    @Path("{seguimientosId: \\d+}/books")
+    @Path("{seguimientosId: \\d+}/maquinas")
     public Class<SeguimientoMaquinasResource> getSeguimientoMaquinasResource(@PathParam("seguimientosId") Long seguimientosId) {
         if (seguimientoLogic.getSeguimiento(seguimientosId) == null) {
             throw new WebApplicationException("El recurso /seguimientos/" + seguimientosId + " no existe.", 404);
