@@ -21,6 +21,13 @@ public class ObjetivoDetailDTO extends ObjetivoDTO implements Serializable{
     private List<DeportistaDTO> casosExitosos;
     
     /**
+     * Constructor por defecto
+     */
+    public ObjetivoDetailDTO() {
+        super();
+    }
+    
+    /**
      * Crea un nuevo objeto ObjetivoDetailDTO a partir de un objeto
      * ObjetivoEntity incluyecdo los atributos de ObjetivoDTO
      *
