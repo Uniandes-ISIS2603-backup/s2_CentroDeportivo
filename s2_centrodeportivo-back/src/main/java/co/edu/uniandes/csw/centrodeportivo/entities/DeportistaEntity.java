@@ -70,9 +70,9 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     {
        return seguimiento;
     }
-    public void setObjetivos(Collection<ObjetivoEntity> pObjetivos)
+    public void setObjetivos(List<ObjetivoEntity> pObjetivos)
     {
-        this.objetivos = (List<ObjetivoEntity>) pObjetivos;
+        this.objetivos = pObjetivos;
     }
     
     public ObjetivoEntity getObjetivo()

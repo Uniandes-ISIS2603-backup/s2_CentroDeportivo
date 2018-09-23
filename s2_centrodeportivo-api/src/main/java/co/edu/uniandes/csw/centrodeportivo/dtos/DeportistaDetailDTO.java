@@ -21,6 +21,14 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
     private List<ObjetivoDTO> objetivos;
 
     /**
+     * Constructor por defecto
+     */
+    public DeportistaDetailDTO() 
+    {
+        super();
+    }
+    
+    /**
      * Crea un nuevo objeto DepoortistaDetailDTO a partir de un objeto
      * DeportistaEntity incluyecdo los atributos de DeportistaDTO
      *
@@ -30,9 +38,12 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
     public DeportistaDetailDTO(DeportistaEntity deportistaEntity) {
         super(deportistaEntity);
         if (deportistaEntity != null) {
-            objetivos = new ArrayList<ObjetivoDTO>();
-            for (ObjetivoEntity entityObjetivos : deportistaEntity.getObjetivos()) {
-                objetivos.add(new ObjetivoDTO(entityObjetivos));
+            if (deportistaEntity.getObjetivos() != null)
+            {
+                objetivos = new ArrayList<>();
+                for (ObjetivoEntity entityObjetivos : deportistaEntity.getObjetivos()) {
+                    objetivos.add(new ObjetivoDTO(entityObjetivos));
+                }
             }
         }
     }
@@ -47,7 +58,7 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
     public DeportistaEntity toEntity() {
         DeportistaEntity deportista = super.toEntity();
         if (objetivos != null) {
-            List<ObjetivoEntity> objetivosEntity = new ArrayList<ObjetivoEntity>();
+            List<ObjetivoEntity> objetivosEntity = new ArrayList<>();
             for (ObjetivoDTO dtoObjetivo : objetivos) {
                 objetivosEntity.add(dtoObjetivo.toEntity());
             }
