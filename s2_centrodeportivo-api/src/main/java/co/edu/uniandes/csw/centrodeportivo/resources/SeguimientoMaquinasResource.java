@@ -7,8 +7,6 @@ package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.MaquinaDetailDTO;
-import co.edu.uniandes.csw.centrodeportivo.ejb.EjercicioLogic;
-import co.edu.uniandes.csw.centrodeportivo.ejb.MaquinaEjerciciosLogic;
 import co.edu.uniandes.csw.centrodeportivo.ejb.MaquinaLogic;
 import co.edu.uniandes.csw.centrodeportivo.ejb.SeguimientoMaquinasLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;

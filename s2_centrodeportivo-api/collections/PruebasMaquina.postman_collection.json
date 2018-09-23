@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bbcc0267-1130-46be-a2bf-0385cf250da2",
+		"_postman_id": "66975a85-3a1c-4910-9973-6d37bac8f168",
 		"name": "PruebasMaquina",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,7 +10,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas",
 					"protocol": "http",
@@ -33,9 +36,12 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/8",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/29",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -45,7 +51,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"8"
+						"29"
 					]
 				},
 				"description": "Se espera null"
@@ -64,32 +70,8 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{}"
+					"raw": "{\n\t\"calorias\":\"200\",\n\t\"velocidad\":\"50\",\n\t\"velocidadPromedio\": \"50\",\n\t\"tiempo\":\"100\"\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/9",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_centrodeportivo-api",
-						"api",
-						"maquinas",
-						"9"
-					]
-				},
-				"description": "Se espera null"
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar una máquina",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {},
 				"url": {
 					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/30",
 					"protocol": "http",
@@ -109,11 +91,46 @@
 			"response": []
 		},
 		{
+			"name": "Eliminar una máquina",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas",
+						"27"
+					]
+				},
+				"description": "Se espera null"
+			},
+			"response": []
+		},
+		{
 			"name": "Crear una maquina",
 			"request": {
 				"method": "POST",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"caminadora\",\n\t\"calorias\":\"0\",\n\t\"velocidad\":\"0\",\n\t\"tiempo\":\"0\",\n\t\"velocidadPromedio\":\"0\"\n}"
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas",
 					"protocol": "http",

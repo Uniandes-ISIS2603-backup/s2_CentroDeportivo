@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "51be06cc-1328-4337-8c21-d698183ec80a",
+		"name": "PruebasMaquinaEjercicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Asociar un ejercicio a una maquina",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/31/ejercicios/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas",
+						"31",
+						"ejercicios",
+						"2"
+					]
+				},
+				"description": "Se espera la información del ejercicio asociado a la máquina"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los ejercicios asociados a una maquina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/31/ejercicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas",
+						"31",
+						"ejercicios"
+					]
+				},
+				"description": "Lista de los ejercicios de una maquina"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un ejercicio asociado a una maquina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/31/ejercicios/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas",
+						"31",
+						"ejercicios",
+						"2"
+					]
+				},
+				"description": "Se espera el ejercicio asociado a la maquina"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los ejercicios asociados a una maquina",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 2,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 3,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 4,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 5,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 6,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 7,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 8,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    }\n\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/32/ejercicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas",
+						"32",
+						"ejercicios"
+					]
+				},
+				"description": "Se espera la nueva lista con los ejercicios nuevos asociados a la maquina"
+			},
+			"response": []
+		}
+	]
+}
