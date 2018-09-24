@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "4e2578a1-528b-4cd1-8a05-5085607cd381",
+		"name": "PruebasSeguimientoMaquinas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar una maquina a un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "928d4fa6-7fc0-4443-a233-d9e9bee4761e",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/{{nuevo_id_m}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas",
+						"{{nuevo_id_m}}"
+					]
+				},
+				"description": "**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una maquina que no existe a un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61f6f75c-5759-40b8-bcbc-108b4d97ea7c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No agrega una maquina que no existe a un seguimiento\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /maquinas/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las maquinas de un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d18b9656-0423-4a04-8243-67449808ef26",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"Seguimiento count with maquina\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una maquina de un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb5201f8-e084-4a67-a336-861c386fef34",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/{{nuevo_id_m}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas",
+						"{{nuevo_id_m}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una maquina no asociada de un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "390cec1b-8afd-4706-9e66-94c83b135089",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se puede obtener una maquina que no esta asociada\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"La maquina no está asociada al Seguimiento\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/40",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas",
+						"40"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una maquina que no existe de un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a35cce9-06b3-4d40-a86a-fc03f1adc1a2",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se puede obtener una maquinas que no existe\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/ejercicios/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"ejercicios",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar maquinas a un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7f75e8e-b8e0-4156-8d66-16942aaade2c",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 31,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 9,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 10,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 48,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 3,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 4,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n\t{\n\t\t\"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 40,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\t]\n\t}    \n    \n    \n    \n    \n    \n    \n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar maquinas que no existen a un seguimiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c23bec5-f53a-461e-b72a-cd1003582891",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se pueden asociar las maquinas ya que estos no existen\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /maquinas/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 0,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": []\n    }\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"seguimientos",
+						"2",
+						"maquinas"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6d42efd8-dffe-448d-9d05-23d87320be0e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a70d8e8b-94c2-49c2-b372-e7a40f8cc251",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
