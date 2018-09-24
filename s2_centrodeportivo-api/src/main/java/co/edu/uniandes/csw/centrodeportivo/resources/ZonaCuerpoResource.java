@@ -5,8 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
-    import co.edu.uniandes.csw.centrodeportivo.dtos.ZonaCuerpoDTO;
-import co.edu.uniandes.csw.centrodeportivo.ejb.ZonaCuerpoEjercicioLogic;
+import co.edu.uniandes.csw.centrodeportivo.dtos.ZonaCuerpoDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.ZonaCuerpoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -39,8 +38,7 @@ public class ZonaCuerpoResource
     private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoResource.class.getName());
     @Inject
     ZonaCuerpoLogic zonaCuerpoLogic;
-    @Inject
-    ZonaCuerpoEjercicioLogic zonaCuerpoEjercicioLogic;
+    
     
     @POST
     public ZonaCuerpoDTO createZonaCuerpo(ZonaCuerpoDTO zonaCuerpo) throws BusinessLogicException
@@ -95,7 +93,7 @@ public class ZonaCuerpoResource
         if (entity == null) {
             throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + " no existe.", 404);
         }
-        zonaCuerpoEjercicioLogic.removeEjercicio(zonasCuerpoId);
+        
         zonaCuerpoLogic.deleteZonaCuerpo(zonasCuerpoId);
         LOGGER.info("ZonaCuerpoResource deleteZonaCuerpo: output: void");
     }
@@ -106,5 +104,12 @@ public class ZonaCuerpoResource
             list.add(new ZonaCuerpoDTO(entity));
         }
         return list;
+    }
+    @Path("{zonasCuerpoId: \\d+}/ejercicios")
+    public Class<ZonaCuerpoEjercicioResource> getZonaCuerpoEjercicioResource(@PathParam("zonasCuerpoId") Long zonasCuerpoId) {
+        if (zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId) == null) {
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + " no existe.", 404);
+        }
+        return ZonaCuerpoEjercicioResource.class;
     }
 }

@@ -33,14 +33,15 @@ public class ZonaCuerpoLogic {
      */
     public ZonaCuerpoEntity createZonaCuerpo(ZonaCuerpoEntity zonaCuerpoEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la zonaCuerpo");
-        ZonaCuerpoEntity newZonaCuerpoEntity = persistence.create(zonaCuerpoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la zonaCuerpo");
-        return newZonaCuerpoEntity;
+        // Invoca la persistencia para crear la editorial
+        persistence.create(zonaCuerpoEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de creación de la editorial");
+        return zonaCuerpoEntity;
     }
     
     
      /**
-     * Obtiene la lista de las zonaCuerpos.
+     * Obtiene la lista de las zonasCuerpo.
      *
      * @return Colección de objetos de ZonaCuerpoentity.
      */
@@ -68,7 +69,7 @@ public class ZonaCuerpoLogic {
     }
     
      /**
-     * Actualiza la información de una instancia de Author.
+     * Actualiza la información de una instancia de ZonaCuerpo.
      *
      * @param zonasCuerpoId Identificador de la instancia a actualizar
      * @param zonaCuerpoEntity Instancia de ZonaCuerpoEntity con los nuevos datos.
@@ -87,11 +88,9 @@ public class ZonaCuerpoLogic {
      * @param zonasCuerpoId Identificador de la instancia a eliminar.
      * @throws BusinessLogicException si la zonaCuerpo a eliminar no existe.
      */
-    public void deleteZonaCuerpo(Long zonasCuerpoId)throws BusinessLogicException {
+    public void deleteZonaCuerpo(Long zonasCuerpoId){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la zonaCuerpo con id = {0}", zonasCuerpoId);
-        if(getZonaCuerpo(zonasCuerpoId)== null){
-           throw new BusinessLogicException("No se puede borrar la zonaCuerpo con id = "+zonasCuerpoId+" porque no existe en la base de datos");
-        }
+        
         persistence.delete(zonasCuerpoId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la zonaCuerpo con id = {0}", zonasCuerpoId);
     }

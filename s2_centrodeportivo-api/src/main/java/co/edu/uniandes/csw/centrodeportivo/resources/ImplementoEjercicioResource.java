@@ -11,7 +11,10 @@ import co.edu.uniandes.csw.centrodeportivo.ejb.EjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.ejb.ImplementoEjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -28,7 +31,6 @@ import javax.ws.rs.WebApplicationException;
  * @ejercicio estudiante
  */
 public class ImplementoEjercicioResource {
-   
     private static final Logger LOGGER = Logger.getLogger(ImplementoEjercicioResource.class.getName());
 
     @Inject

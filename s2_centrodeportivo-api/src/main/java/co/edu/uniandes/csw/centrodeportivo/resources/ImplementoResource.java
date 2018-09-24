@@ -190,4 +190,13 @@ public class ImplementoResource {
         }
         return list;
     }
+    
+    
+    @Path("{implementosId: \\d+}/ejercicios")
+    public Class<ImplementoEjercicioResource> getImplementoEjercicioResource(@PathParam("implementosId") Long implementosId) {
+        if (implementoLogic.getImplemento(implementosId) == null) {
+            throw new WebApplicationException("El recurso /implementos/" + implementosId + " no existe.", 404);
+        }
+        return ImplementoEjercicioResource.class;
+    }
 }

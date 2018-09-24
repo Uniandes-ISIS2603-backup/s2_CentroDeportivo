@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.ImplementoEjercicioLogic;
-import co.edu.uniandes.csw.centrodeportivo.ejb.EjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -30,11 +29,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @ejercicio Daniel Pardo
+ * @author estudiante
  */
 @RunWith(Arquillian.class)
 public class ImplementoEjercicioLogicTest {
-     private PodamFactory factory = new PodamFactoryImpl();
+    private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
     private ImplementoEjercicioLogic implementoEjercicioLogic;
@@ -151,7 +150,7 @@ public class ImplementoEjercicioLogicTest {
     /**
      * Prueba para desasociar un Implemento existente de un Ejercicio existente.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      */
     @Test
     public void removeImplementoTest() throws BusinessLogicException {
@@ -162,7 +161,7 @@ public class ImplementoEjercicioLogicTest {
     /**
      * Prueba para desasociar un Implemento existente de un Ejercicio existente.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
     public void removeImplementoSinEjercicioTest() throws BusinessLogicException {

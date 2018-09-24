@@ -43,15 +43,15 @@ public class EjercicioEntity extends BaseEntity implements Serializable
    private MaquinaEntity maquina;
     
     @PodamExclude
-   @OneToMany(mappedBy = "ejercicio")
+   @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
     private List<ZonaCuerpoEntity> zonasCuerpo = new ArrayList<ZonaCuerpoEntity>();
     
     @PodamExclude
-   @OneToMany(mappedBy = "ejercicio")
+   @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
     private List<MaquinaEntity> maquinas = new ArrayList<MaquinaEntity  >();
       
    @PodamExclude
-   @OneToMany(mappedBy = "ejercicio")
+   @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
     private List<ImplementoEntity> implementos = new ArrayList<ImplementoEntity>();
 
     public RutinaEntity getRutina() {

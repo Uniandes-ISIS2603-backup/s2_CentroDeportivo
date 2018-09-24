@@ -139,49 +139,9 @@ public class EjercicioResource {
         LOGGER.info("EjercicioResource deleteEjercicio: output: void");
     }
 
-    /**
-     * Conexión con el servicio de zonas del cuerpo para una ejercicio.
-     * {@link EjercicioZonasCuerpoResource}
-     *
-     * Este método conecta la ruta de /ejercicios con las rutas de /zonasCuerpo que
-     * dependen del ejercicio, es una redirección al servicio que maneja el
-     * segmento de la URL que se encarga de las zonas del cuerpo de un ejercicio.
-     *
-     * @param ejerciciosId El ID del ejercicio con respecto al cual se
-     * accede al servicio.
-     * @return El servicio de zonas del cuerpo para este ejercicio en paricular.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el ejercicio.
-     */
-    @Path("{ejerciciosId: \\d+}/zonasCuerpo")
-    public Class<EjercicioZonasCuerpoResource> getEjercicioZonasCuerpoResource(@PathParam("ejerciciosId") Long ejerciciosId) {
-        if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
-        }
-        return EjercicioZonasCuerpoResource.class;
-    }
+    
 
-    /**
-     * Conexión con el servicio de implementos para un ejercicio.
-     * {@link ImplementoEjercicioResource}
-     *
-     * Este método conecta la ruta de /ejercicios con las rutas de /implementos que
-     * dependen de la ejercicio, es una redirección al servicio que maneja el
-     * segmento de la URL que se encarga de los implementos de un ejercicio.
-     *
-     * @param ejerciciosId El ID del ejercicio con respecto al cual se
-     * accede al servicio.
-     * @return El servicio de implementos para este ejercicio en paricular.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el ejercicio.
-     */
-    @Path("{ejerciciosId: \\d+}/implementos")
-    public Class<ImplementoEjercicioResource> getEjercicioImplementosResource(@PathParam("ejerciciosId") Long ejerciciosId) {
-        if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
-        }
-        return ImplementoEjercicioResource.class;
-    }
+    
     
     /**
      * Convierte una lista de entidades a DTO.

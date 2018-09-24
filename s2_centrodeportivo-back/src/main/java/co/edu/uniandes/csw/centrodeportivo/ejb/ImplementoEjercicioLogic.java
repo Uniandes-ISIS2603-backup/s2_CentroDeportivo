@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EjercicioPersistence;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ImplementoPersistence;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -18,12 +17,11 @@ import javax.inject.Inject;
 
 /**
  *
- * @ejercicio estudiante
+ * @author estudiante
  */
 @Stateless
 public class ImplementoEjercicioLogic {
-    
-     private static final Logger LOGGER = Logger.getLogger(ImplementoEjercicioLogic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ImplementoEjercicioLogic.class.getName());
 
     @Inject
     private EjercicioPersistence ejercicioPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.

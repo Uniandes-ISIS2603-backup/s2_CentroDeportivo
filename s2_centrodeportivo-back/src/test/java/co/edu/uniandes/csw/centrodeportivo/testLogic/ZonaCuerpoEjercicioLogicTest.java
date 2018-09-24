@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.ZonaCuerpoEjercicioLogic;
-import co.edu.uniandes.csw.centrodeportivo.ejb.ZonaCuerpoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -30,14 +29,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Daniel Pardo
+ * @author estudiante
  */
 @RunWith(Arquillian.class)
 public class ZonaCuerpoEjercicioLogicTest {
-     private PodamFactory factory = new PodamFactoryImpl();
+    private PodamFactory factory = new PodamFactoryImpl();
 
-    @Inject
-    private ZonaCuerpoLogic zonaCuerpoLogic;
     @Inject
     private ZonaCuerpoEjercicioLogic zonaCuerpoEjercicioLogic;
 
@@ -60,7 +57,7 @@ public class ZonaCuerpoEjercicioLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(EjercicioEntity.class.getPackage())
-                .addPackage(ZonaCuerpoLogic.class.getPackage())
+                .addPackage(ZonaCuerpoEjercicioLogic.class.getPackage())
                 .addPackage(EjercicioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -91,6 +88,7 @@ public class ZonaCuerpoEjercicioLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from ZonaCuerpoEntity").executeUpdate();
+        
         em.createQuery("delete from EjercicioEntity").executeUpdate();
     }
 
@@ -115,26 +113,60 @@ public class ZonaCuerpoEjercicioLogicTest {
     }
 
     /**
+     * Prueba para asociar un ZonasCuerpo existente a un Ejercicio.
+     */
+    @Test
+    public void addEjercicioTest() {
+        EjercicioEntity entity = data.get(0);
+        ZonaCuerpoEntity zonaCuerpoEntity = zonasCuerpoData.get(1);
+        EjercicioEntity response = zonaCuerpoEjercicioLogic.addEjercicio(entity.getId(), zonaCuerpoEntity.getId());
+
+        Assert.assertNotNull(response);
+        Assert.assertEquals(entity.getId(), response.getId());
+    }
+
+    /**
+     * Prueba para consultar un Ejercicio.
+     */
+    @Test
+    public void getEjercicioTest() {
+        ZonaCuerpoEntity entity = zonasCuerpoData.get(0);
+        EjercicioEntity resultEntity = zonaCuerpoEjercicioLogic.getEjercicio(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getEjercicio().getId(), resultEntity.getId());
+    }
+
+    /**
      * Prueba para remplazar las instancias de ZonasCuerpo asociadas a una instancia
      * de Ejercicio.
      */
     @Test
     public void replaceEjercicioTest() {
-        ZonaCuerpoEntity entity = zonasCuerpoData.get(0);
-        zonaCuerpoEjercicioLogic.replaceEjercicio(entity.getId(), data.get(1).getId());
-        entity = zonaCuerpoLogic.getZonaCuerpo(entity.getId());
-        Assert.assertEquals(entity.getEjercicio(), data.get(1));
+        EjercicioEntity entity = data.get(0);
+        zonaCuerpoEjercicioLogic.replaceEjercicio(zonasCuerpoData.get(1).getId(), entity.getId());
+        entity = zonaCuerpoEjercicioLogic.getEjercicio(zonasCuerpoData.get(1).getId());
+        Assert.assertTrue(entity.getZonasCuerpo().contains(zonasCuerpoData.get(1)));
     }
 
     /**
-     * Prueba para desasociar un ZonaCuerpo existente de un Ejercicio existente
+     * Prueba para desasociar un ZonaCuerpo existente de un Ejercicio existente.
      *
-     * @throws co.edu.uniandes.csw.zonasCuerpotore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     
      */
     @Test
-    public void removeZonasCuerpoTest() throws BusinessLogicException {
+    public void removeZonaCuerpoTest() throws BusinessLogicException {
         zonaCuerpoEjercicioLogic.removeEjercicio(zonasCuerpoData.get(0).getId());
-        ZonaCuerpoEntity response = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoData.get(0).getId());
-        Assert.assertNull(response.getEjercicio());
+        Assert.assertNull(zonaCuerpoEjercicioLogic.getEjercicio(zonasCuerpoData.get(0).getId()));
+    }
+
+    /**
+     * Prueba para desasociar un ZonaCuerpo existente de un Ejercicio existente.
+     *
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void removeZonaCuerpoSinEjercicioTest() throws BusinessLogicException {
+        zonaCuerpoEjercicioLogic.removeEjercicio(zonasCuerpoData.get(1).getId());
     }
 }
