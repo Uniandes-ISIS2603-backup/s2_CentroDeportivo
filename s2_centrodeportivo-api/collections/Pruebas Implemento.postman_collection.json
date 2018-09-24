@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d8abf2c5-8cd8-493e-be5b-f635974e4362",
+		"_postman_id": "9167a297-b1a9-486e-b572-7cb6fb3a47e8",
 		"name": "Pruebas Implemento",
 		"description": "Colección de datos para los recursos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -59,8 +59,7 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -188,14 +187,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -224,14 +226,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -270,12 +275,12 @@
 					"raw": "{\n\t\"nombre\": \"Pesas\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",

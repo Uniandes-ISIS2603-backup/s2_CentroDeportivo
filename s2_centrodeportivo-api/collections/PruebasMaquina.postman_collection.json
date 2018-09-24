@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "66975a85-3a1c-4910-9973-6d37bac8f168",
+		"_postman_id": "c4c8005d-b5b3-4041-b090-ef2e8e970682",
 		"name": "PruebasMaquina",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -41,7 +41,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/29",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -51,7 +51,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"29"
+						"3"
 					]
 				},
 				"description": "Se espera null"
@@ -73,7 +73,7 @@
 					"raw": "{\n\t\"calorias\":\"200\",\n\t\"velocidad\":\"50\",\n\t\"velocidadPromedio\": \"50\",\n\t\"tiempo\":\"100\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/30",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -83,7 +83,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"30"
+						"3"
 					]
 				},
 				"description": "Se espera null"
@@ -100,7 +100,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/27",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -110,7 +110,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"27"
+						"2"
 					]
 				},
 				"description": "Se espera null"
