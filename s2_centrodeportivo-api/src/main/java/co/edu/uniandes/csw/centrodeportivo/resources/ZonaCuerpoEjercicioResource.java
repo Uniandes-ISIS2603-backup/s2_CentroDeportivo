@@ -40,16 +40,16 @@ public class ZonaCuerpoEjercicioResource {
     private EjercicioLogic ejercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     /**
-     * Guarda un ejercicio dentro de un premio con la informacion que recibe el la
+     * Guarda un ejercicio dentro de un zonaCuerpo con la informacion que recibe el la
      * URL.
      *
-     * @param zonasCuerpoId Identificador de el premio que se esta actualizando. Este
+     * @param zonasCuerpoId Identificador de el zonaCuerpo que se esta actualizando. Este
      * debe ser una cadena de dígitos.
-     * @param ejerciciosId Identificador del autor que se desea guardar. Este debe
+     * @param ejerciciosId Identificador del ejercicio que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link EjercicioDTO} - El autor guardado en el premio.
+     * @return JSON {@link EjercicioDTO} - El ejercicio guardado en el zonaCuerpo.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
     @POST
     @Path("{ejerciciosId: \\d+}")
@@ -64,13 +64,13 @@ public class ZonaCuerpoEjercicioResource {
     }
 
     /**
-     * Busca el autor dentro de el premio con id asociado.
+     * Busca el ejercicio dentro de el zonaCuerpo con id asociado.
      *
-     * @param zonasCuerpoId Identificador de el premio que se esta buscando. Este
+     * @param zonasCuerpoId Identificador de el zonaCuerpo que se esta buscando. Este
      * debe ser una cadena de dígitos.
-     * @return JSON {@link EjercicioDetailDTO} - El autor buscado
+     * @return JSON {@link EjercicioDetailDTO} - El ejercicio buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando el premio no tiene autor.
+     * Error de lógica que se genera cuando el zonaCuerpo no tiene ejercicio.
      */
     @GET
     public EjercicioDetailDTO getEjercicio(@PathParam("zonasCuerpoId") Long zonasCuerpoId) {
@@ -87,13 +87,13 @@ public class ZonaCuerpoEjercicioResource {
     /**
      * Remplaza la instancia de Ejercicio asociada a una instancia de ZonaCuerpo
      *
-     * @param zonasCuerpoId Identificador de el premio que se esta actualizando. Este
+     * @param zonasCuerpoId Identificador de el zonaCuerpo que se esta actualizando. Este
      * debe ser una cadena de dígitos.
      * @param ejerciciosId Identificador de el ejercicio que se esta remplazando. Este
      * debe ser una cadena de dígitos.
-     * @return JSON {@link EjercicioDetailDTO} - El autor actualizado
+     * @return JSON {@link EjercicioDetailDTO} - El ejercicio actualizado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
     @PUT
     @Path("{ejerciciosId: \\d+}")
@@ -108,11 +108,9 @@ public class ZonaCuerpoEjercicioResource {
     }
 
     /**
-     * Elimina la conexión entre el autor y el premio recibido en la URL.
+     * Elimina la conexión entre el ejercicio y el zonaCuerpo recibido en la URL.
      *
-     * @param zonasCuerpoId El ID del premio al cual se le va a desasociar el autor
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     * Error de lógica que se genera cuando el premio no tiene autor.
+     * @param zonasCuerpoId El ID del zonaCuerpo al cual se le va a desasociar el ejercicio
      */
     @DELETE
     public void removeEjercicio(@PathParam("zonasCuerpoId") Long zonasCuerpoId) throws BusinessLogicException {

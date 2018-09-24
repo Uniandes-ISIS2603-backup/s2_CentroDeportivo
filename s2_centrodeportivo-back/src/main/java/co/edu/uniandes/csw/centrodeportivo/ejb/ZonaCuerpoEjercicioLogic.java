@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Pardo
  */
 @Stateless
 public class ZonaCuerpoEjercicioLogic {
@@ -31,66 +31,66 @@ public class ZonaCuerpoEjercicioLogic {
     private ZonaCuerpoPersistence zonaCuerpoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
-     * Agregar un autor a un premio
+     * Agregar un ejercicio a un zonaCuerpo
      *
-     * @param zonasCuerpoId El id premio a guardar
-     * @param ejerciciosId El id del autor al cual se le va a guardar el premio.
-     * @return El premio que fue agregado al autor.
+     * @param zonasCuerpoId El id zonaCuerpo a guardar
+     * @param ejerciciosId El id del ejercicio al cual se le va a guardar el zonaCuerpo.
+     * @return El zonaCuerpo que fue agregado al ejercicio.
      */
     public EjercicioEntity addEjercicio(Long ejerciciosId, Long zonasCuerpoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar el autor con id = {0} al premio con id = " + zonasCuerpoId, ejerciciosId);
-        EjercicioEntity autorEntity = ejercicioPersistence.find(ejerciciosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar el ejercicio con id = {0} al zonaCuerpo con id = " + zonasCuerpoId, ejerciciosId);
+        EjercicioEntity ejercicioEntity = ejercicioPersistence.find(ejerciciosId);
         ZonaCuerpoEntity zonaCuerpoEntity = zonaCuerpoPersistence.find(zonasCuerpoId);
-        zonaCuerpoEntity.setEjercicio(autorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + zonasCuerpoId, ejerciciosId);
+        zonaCuerpoEntity.setEjercicio(ejercicioEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al zonaCuerpo con id = " + zonasCuerpoId, ejerciciosId);
         return ejercicioPersistence.find(ejerciciosId);
     }
 
     /**
      *
-     * Obtener un premio por medio de su id y el de su autor.
+     * Obtener un zonaCuerpo por medio de su id y el de su ejercicio.
      *
-     * @param zonasCuerpoId id del premio a ser buscado.
-     * @return el autor solicitada por medio de su id.
+     * @param zonasCuerpoId id del zonaCuerpo a ser buscado.
+     * @return el ejercicio solicitada por medio de su id.
      */
     public EjercicioEntity getEjercicio(Long zonasCuerpoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el autor del premio con id = {0}", zonasCuerpoId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el ejercicio del zonaCuerpo con id = {0}", zonasCuerpoId);
         EjercicioEntity ejercicioEntity = zonaCuerpoPersistence.find(zonasCuerpoId).getEjercicio();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el autor del premio con id = {0}", zonasCuerpoId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el ejercicio del zonaCuerpo con id = {0}", zonasCuerpoId);
         return ejercicioEntity;
     }
 
     /**
-     * Remplazar autor de un premio
+     * Remplazar ejercicio de un zonaCuerpo
      *
-     * @param zonasCuerpoId el id del premio que se quiere actualizar.
-     * @param ejerciciosId El id del nuebo autor asociado al premio.
-     * @return el nuevo autor asociado.
+     * @param zonasCuerpoId el id del zonaCuerpo que se quiere actualizar.
+     * @param ejerciciosId El id del nuebo ejercicio asociado al zonaCuerpo.
+     * @return el nuevo ejercicio asociado.
      */
     public EjercicioEntity replaceEjercicio(Long zonasCuerpoId, Long ejerciciosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el autor del premio premio con id = {0}", zonasCuerpoId);
-        EjercicioEntity autorEntity = ejercicioPersistence.find(ejerciciosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el ejercicio del zonaCuerpo zonaCuerpo con id = {0}", zonasCuerpoId);
+        EjercicioEntity ejercicioEntity = ejercicioPersistence.find(ejerciciosId);
         ZonaCuerpoEntity zonaCuerpoEntity = zonaCuerpoPersistence.find(zonasCuerpoId);
-        zonaCuerpoEntity.setEjercicio(autorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + zonasCuerpoId, ejerciciosId);
+        zonaCuerpoEntity.setEjercicio(ejercicioEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al zonaCuerpo con id = " + zonasCuerpoId, ejerciciosId);
         return ejercicioPersistence.find(ejerciciosId);
     }
 
     /**
-     * Borrar el autor de un premio
+     * Borrar el ejercicio de un zonaCuerpo
      *
-     * @param zonasCuerpoId El premio que se desea borrar del autor.
-     * @throws BusinessLogicException si el premio no tiene autor
+     * @param zonasCuerpoId El zonaCuerpo que se desea borrar del ejercicio.
+     * @throws BusinessLogicException si el zonaCuerpo no tiene ejercicio
      */
     public void removeEjercicio(Long zonasCuerpoId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el autor del premio con id = {0}", zonasCuerpoId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el ejercicio del zonaCuerpo con id = {0}", zonasCuerpoId);
         ZonaCuerpoEntity zonaCuerpoEntity = zonaCuerpoPersistence.find(zonasCuerpoId);
         if (zonaCuerpoEntity.getEjercicio() == null) {
-            throw new BusinessLogicException("El premio no tiene autor");
+            throw new BusinessLogicException("El zonaCuerpo no tiene ejercicio");
         }
         EjercicioEntity ejercicioEntity = ejercicioPersistence.find(zonaCuerpoEntity.getEjercicio().getId());
         zonaCuerpoEntity.setEjercicio(null);
         ejercicioEntity.getZonasCuerpo().remove(zonaCuerpoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el autor con id = {0} del premio con id = " + zonasCuerpoId, ejercicioEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el ejercicio con id = {0} del zonaCuerpo con id = " + zonasCuerpoId, ejercicioEntity.getId());
     }
 }
