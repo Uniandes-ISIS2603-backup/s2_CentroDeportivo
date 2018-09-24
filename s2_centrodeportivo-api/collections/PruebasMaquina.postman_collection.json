@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "66975a85-3a1c-4910-9973-6d37bac8f168",
+		"_postman_id": "194fad1d-bf3d-4ce5-8692-0dd8494ae8b4",
 		"name": "PruebasMaquina",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,12 +11,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "feaf2d53-7b6e-4dc4-a021-8600115b9358",
+						"id": "f380cd08-e290-4edd-8948-a9df09b60e90",
 						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
-							"tests[\"editorials count\"] = data.length > 1;"
+							"tests[\"maquinas count\"] = data.length > 1;"
 						]
 					}
 				}
@@ -69,7 +69,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/29",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,7 +79,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"29"
+						"{{nuevo_id_m}}"
 					]
 				},
 				"description": "Se espera null"
@@ -115,7 +115,7 @@
 					"raw": "{\n\t\"calorias\":\"290\",\n\t\"velocidad\":\"50\",\n\t\"velocidadPromedio\": \"50\",\n\t\"tiempo\":\"100\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/30",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -125,7 +125,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"30"
+						"{{nuevo_id_m}}"
 					]
 				},
 				"description": "Se espera null"
@@ -234,7 +234,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/350",
 					"protocol": "http",

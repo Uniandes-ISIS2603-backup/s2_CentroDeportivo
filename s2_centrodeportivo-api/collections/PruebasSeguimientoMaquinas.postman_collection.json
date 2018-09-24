@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4e2578a1-528b-4cd1-8a05-5085607cd381",
+		"_postman_id": "b83fcc41-6f67-409c-ba70-96eeeb325b26",
 		"name": "PruebasSeguimientoMaquinas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -204,7 +204,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/40",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -216,7 +216,7 @@
 						"seguimientos",
 						"2",
 						"maquinas",
-						"40"
+						"1"
 					]
 				}
 			},
@@ -244,7 +244,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/ejercicios/0",
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -255,7 +255,7 @@
 						"api",
 						"seguimientos",
 						"2",
-						"ejercicios",
+						"maquinas",
 						"0"
 					]
 				}
