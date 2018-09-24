@@ -163,7 +163,7 @@ public class EjercicioResource {
 
     /**
      * Conexión con el servicio de implementos para un ejercicio.
-     * {@link EjercicioImplementosResource}
+     * {@link ImplementoEjercicioResource}
      *
      * Este método conecta la ruta de /ejercicios con las rutas de /implementos que
      * dependen de la ejercicio, es una redirección al servicio que maneja el
@@ -176,11 +176,11 @@ public class EjercicioResource {
      * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
     @Path("{ejerciciosId: \\d+}/implementos")
-    public Class<EjercicioImplementosResource> getEjercicioImplementosResource(@PathParam("ejerciciosId") Long ejerciciosId) {
+    public Class<ImplementoEjercicioResource> getEjercicioImplementosResource(@PathParam("ejerciciosId") Long ejerciciosId) {
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
             throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
         }
-        return EjercicioImplementosResource.class;
+        return ImplementoEjercicioResource.class;
     }
     
     /**
