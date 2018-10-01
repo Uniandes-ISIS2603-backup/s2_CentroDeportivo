@@ -4,8 +4,17 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
     <class>co.edu.uniandes.csw.bookstore.entities.EditorialEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.SeguimientoEntity</class>
+    <class>co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
- <shared-cache-mode>NONE</shared-cache-mode>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
       <property name="eclipselink.target-database" value="Derby"/>
