@@ -33,12 +33,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/{{nuevo_id_m}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/{{nuevo_id_m}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -80,12 +80,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -122,12 +122,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -163,12 +163,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/{{nuevo_id_m}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/{{nuevo_id_m}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -204,12 +204,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -244,12 +244,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -291,12 +291,12 @@
 					"raw": "[\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 31,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 9,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 10,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 48,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 3,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 4,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n\t{\n\t\t\"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 40,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\t]\n\t}    \n    \n    \n    \n    \n    \n    \n]"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -336,12 +336,12 @@
 					"raw": "[{\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 0,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": []\n    }\n]"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",

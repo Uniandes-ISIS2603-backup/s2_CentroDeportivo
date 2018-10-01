@@ -20,12 +20,12 @@
 					"raw": "{\n\t\"id\": 1,\n\t\"cedula\": 37473473,\n\t\"nombre\": \"Lol\",\n\t\"especialidad\": \"Lel\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/especialistas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -43,12 +43,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/especialistas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -65,12 +65,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/especialistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -96,12 +96,12 @@
 					"raw": "{\n\t\"id\": 1,\n\t\"cedula\": 37473473,\n\t\"nombre\": \"Jose Manuel Roberto Andrade\",\n\t\"especialidad\": \"Yoga y karate\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/especialistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -119,12 +119,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/especialistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",

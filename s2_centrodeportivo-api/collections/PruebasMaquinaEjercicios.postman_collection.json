@@ -33,12 +33,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/6",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/6",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -80,12 +80,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -127,12 +127,12 @@
 					"raw": "[\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 3,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 4,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    }\n]"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -172,12 +172,12 @@
 					"raw": "[{\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 0,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    }\n]"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -213,12 +213,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -254,12 +254,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/5",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/5",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -295,12 +295,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/9",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
@@ -335,12 +335,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
