@@ -47,7 +47,7 @@ public class ZonaCuerpoPersistence {
    
     public ZonaCuerpoEntity update(ZonaCuerpoEntity zonaCuerpoEntity) {
         LOGGER.log(Level.INFO, "Actualizando la zona del cuerpo con id = {0}", zonaCuerpoEntity.getId());
-        LOGGER.log(Level.INFO, "Saliendo de actualizar el ejercicio con id = {0}", zonaCuerpoEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizarla zonaCuerpo con id = {0}", zonaCuerpoEntity.getId());
         return em.merge(zonaCuerpoEntity);
     }
      

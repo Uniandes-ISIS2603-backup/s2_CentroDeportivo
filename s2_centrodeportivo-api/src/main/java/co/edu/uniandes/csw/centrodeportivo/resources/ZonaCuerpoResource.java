@@ -58,8 +58,8 @@ public class ZonaCuerpoResource
     }
     
     @GET
-    @Path("{ejerciciosId: \\d+}")
-    public ZonaCuerpoDTO getZonaCuerpo(@PathParam("ejerciciosId") Long zonasCuerpoId) throws WebApplicationException
+    @Path("{zonasCuerpoId: \\d+}")
+    public ZonaCuerpoDTO getZonaCuerpo(@PathParam("zonasCuerpoId") Long zonasCuerpoId) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonaCuerpo: input: {0}", zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
@@ -72,7 +72,7 @@ public class ZonaCuerpoResource
     }
    
     @PUT
-    @Path("{ejerciciosId: \\d+}")
+    @Path("{zonasCuerpoId: \\d+}")
     public ZonaCuerpoDTO updateZonaCuerpo(@PathParam("zonasCuerpoId") Long zonasCuerpoId, ZonaCuerpoDTO zonaCuerpo) throws WebApplicationException {
 
         LOGGER.log(Level.INFO, "ZonaCuerpoResource updateZonaCuerpo: input: zonasCuerpoId: {0} , zonaCuerpo: {1}", new Object[]{zonasCuerpoId, zonaCuerpo.toString()});

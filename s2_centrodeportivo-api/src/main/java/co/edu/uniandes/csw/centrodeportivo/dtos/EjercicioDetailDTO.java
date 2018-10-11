@@ -34,7 +34,7 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
      */
     public EjercicioDetailDTO() 
     {
-        
+      
     }
     
      /**
