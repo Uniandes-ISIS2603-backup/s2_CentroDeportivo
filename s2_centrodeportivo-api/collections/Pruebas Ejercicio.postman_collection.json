@@ -1,27 +1,12 @@
 {
 	"info": {
-		"_postman_id": "3668bebe-f693-457c-8b3a-bc180ecc7e2c",
+		"_postman_id": "9456e978-ad08-4e6d-a47a-f3985e6e0c4e",
 		"name": "Pruebas Ejercicio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear Ejercicio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d535fc89-fe6f-419e-9de9-5916ed831d41",
-						"type": "text/javascript",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"nuevo_id_e\",data.id);",
-							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
-							"console.log(data.id);"
-						]
-					}
-				}
-			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -87,7 +72,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -97,7 +82,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"ejercicios",
-						"{{nuevo_id_e}}"
+						"1"
 					]
 				},
 				"description": "Obtiene el ejercicio con id 1\n"
@@ -116,10 +101,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"peso Muerto\",\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+					"raw": "{\n\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -129,7 +114,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"ejercicios",
-						"{{nuevo_id_e}}"
+						"1"
 					]
 				},
 				"description": "Actualiza el ejercicio con id 1"
@@ -146,7 +131,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -155,8 +140,7 @@
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
-						"ejercicios",
-						"{{nuevo_id_e}}"
+						"ejercicios"
 					]
 				},
 				"description": "Borra el ejercicio."
