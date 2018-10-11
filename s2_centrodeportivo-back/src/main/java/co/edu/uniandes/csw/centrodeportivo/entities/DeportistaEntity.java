@@ -38,7 +38,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private EspecialistaEntity especialista;
     
     @PodamExclude
-    @OneToMany(mappedBy = "deportista", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "deportista")
     private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
     
     @PodamExclude

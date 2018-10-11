@@ -5,8 +5,7 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.testLogic;
 
-import co.edu.uniandes.csw.centrodeportivo.ejb.ObjetivoDeportistasLogic;
-import co.edu.uniandes.csw.centrodeportivo.ejb.ObjetivoLogic;
+import co.edu.uniandes.csw.centrodeportivo.ejb.DeportistaObjetivoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -33,25 +32,24 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Leidy Romero
  */
 @RunWith(Arquillian.class)
-public class ObjetivoDeportistasLogicTest {
-    private PodamFactory factory = new PodamFactoryImpl();
+public class DeportistaObjetivoLogicTest {
     
-   @Inject 
-   private ObjetivoLogic objetivoLogic;
-   @Inject
-   private ObjetivoDeportistasLogic objetivoDeportistasLogic;
-   
-   @PersistenceContext
-   private EntityManager em;
-   
-   @Inject
-   private UserTransaction utx;
-      
-   private List<ObjetivoEntity> data = new ArrayList<ObjetivoEntity>();
-   
-   private List<DeportistaEntity> deportistasData = new ArrayList<>();
-   
-   /**
+    private PodamFactory factory = new PodamFactoryImpl();
+
+    @Inject
+    private DeportistaObjetivoLogic deportistaObjetivoLogic;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
+
+    private List<ObjetivoEntity> data = new ArrayList<ObjetivoEntity>();
+
+    private List<DeportistaEntity> deportistasData = new ArrayList();
+
+    /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
      * archivo beans.xml para resolver la inyección de dependencias.
@@ -60,7 +58,7 @@ public class ObjetivoDeportistasLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ObjetivoEntity.class.getPackage())
-                .addPackage(ObjetivoLogic.class.getPackage())
+                .addPackage(DeportistaObjetivoLogic.class.getPackage())
                 .addPackage(ObjetivoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -113,73 +111,61 @@ public class ObjetivoDeportistasLogicTest {
             }
         }
     }
-    
+
     /**
-     * Prueba para asociar un Deportista existente a una Objetivo.
+     * Prueba para asociar un Deportistas existente a un Objetivo.
      */
     @Test
-    public void addDeportistaTest() {
+    public void addObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
         DeportistaEntity deportistaEntity = deportistasData.get(1);
-        DeportistaEntity response = objetivoDeportistasLogic.addDeportista(deportistaEntity.getId(), entity.getId());
+        ObjetivoEntity response = deportistaObjetivoLogic.addObjetivo(entity.getId(), deportistaEntity.getId());
 
         Assert.assertNotNull(response);
-        Assert.assertEquals(deportistaEntity.getId(), response.getId());
+        Assert.assertEquals(entity.getId(), response.getId());
     }
-    
+
     /**
-     * Prueba para obtener una colección de instancias de Deportistas asociadas a una
-     * instancia Objetivo.
+     * Prueba para consultar un Objetivo.
      */
     @Test
-    public void getDeportistasTest() {
-        List<DeportistaEntity> list = objetivoDeportistasLogic.getDeportistas(data.get(0).getId());
-
-        Assert.assertEquals(1, list.size());
-    }
-    
-    /**
-     * Prueba para obtener una instancia de Deportista asociada a una instancia
-     * Objetivo.
-     *
-     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
-     */
-    @Test
-    public void getDeportistaTest() throws BusinessLogicException {
-        ObjetivoEntity entity = data.get(0);
-        DeportistaEntity deportistaEntity = deportistasData.get(0);
-        DeportistaEntity response = objetivoDeportistasLogic.getDeportista(entity.getId(), deportistaEntity.getId());
-
-        Assert.assertEquals(deportistaEntity.getId(), response.getId());
-        Assert.assertEquals(deportistaEntity.getCedula(), response.getCedula());
-
+    public void getObjetivoTest() {
+        DeportistaEntity entity = deportistasData.get(0);
+        ObjetivoEntity resultEntity = deportistaObjetivoLogic.getObjetivo(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getObjetivo().getId(), resultEntity.getId());
     }
 
     /**
-     * Prueba para obtener una instancia de Deportista asociada a una instancia
-     * Objetivo que no le pertenece.
-     *
-     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void getDeportistaNoAsociadoTest() throws BusinessLogicException {
-        ObjetivoEntity entity = data.get(0);
-        DeportistaEntity deportistaEntity = deportistasData.get(1);
-        objetivoDeportistasLogic.getDeportista(entity.getId(), deportistaEntity.getId());    
-    }
-/**
      * Prueba para remplazar las instancias de Deportistas asociadas a una instancia
      * de Objetivo.
      */
     @Test
-    public void replaceDeportistasTest() {
+    public void replaceObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
-        List<DeportistaEntity> list = deportistasData.subList(1, 3);
-        objetivoDeportistasLogic.replaceDeportistas(entity.getId(), list);
-
-        entity = objetivoLogic.getObjetivo(entity.getId());
-        Assert.assertFalse(entity.getCasosExitosos().contains(deportistasData.get(0)));
+        deportistaObjetivoLogic.replaceObjetivo(deportistasData.get(1).getId(), entity.getId());
+        entity = deportistaObjetivoLogic.getObjetivo(deportistasData.get(1).getId());
         Assert.assertTrue(entity.getCasosExitosos().contains(deportistasData.get(1)));
-        Assert.assertTrue(entity.getCasosExitosos().contains(deportistasData.get(2)));
+    }
+
+    /**
+     * Prueba para desasociar un Deportista existente de un Objetivo existente.
+     *
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     */
+    @Test
+    public void removeDeportistaTest() throws BusinessLogicException {
+        deportistaObjetivoLogic.removeObjetivo(deportistasData.get(0).getId());
+        Assert.assertNull(deportistaObjetivoLogic.getObjetivo(deportistasData.get(0).getId()));
+    }
+
+    /**
+     * Prueba para desasociar un Deportista existente de un Objetivo existente.
+     *
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void removeDeportistaSinObjetivoTest() throws BusinessLogicException {
+        deportistaObjetivoLogic.removeObjetivo(deportistasData.get(1).getId());
     }
 }

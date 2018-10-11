@@ -65,9 +65,9 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
       return this.casosExitosos;  
     }
     
-    public void setCasosExitosos(Collection<DeportistaEntity> pDeportistas)
+    public void setCasosExitosos(List<DeportistaEntity> pDeportistas)
     {
-      this.casosExitosos = (List<DeportistaEntity>) pDeportistas;  
+      this.casosExitosos = pDeportistas;  
     }
     
     public void setDeportista(DeportistaEntity pDeportista)
