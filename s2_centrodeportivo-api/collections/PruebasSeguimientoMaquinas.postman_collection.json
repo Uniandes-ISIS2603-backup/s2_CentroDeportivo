@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b83fcc41-6f67-409c-ba70-96eeeb325b26",
+		"_postman_id": "23508f71-1d92-43bc-98eb-7b50e5cab097",
 		"name": "PruebasSeguimientoMaquinas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -204,7 +204,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/8",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -216,7 +216,7 @@
 						"seguimientos",
 						"2",
 						"maquinas",
-						"1"
+						"8"
 					]
 				}
 			},
@@ -288,10 +288,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 31,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 9,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 10,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 48,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 3,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 4,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n\t{\n\t\t\"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 40,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\t]\n\t}    \n    \n    \n    \n    \n    \n    \n]"
+					"raw": "[\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 1,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 9,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 10,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n    {\n        \"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 3,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 3,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            },\n            {\n                \"categoria\": \"relajacion\",\n                \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n                \"duracion\": 2,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"id\": 4,\n                \"nombre\": \"peso Muerto\",\n                \"numeroDeSeries\": 3\n            }\n        ]\n    },\n\t{\n\t\t\"type\": \"maquinaDetailDTO\",\n        \"calorias\": 0,\n        \"id\": 5,\n        \"nombre\": \"caminadora\",\n        \"tiempo\": 0,\n        \"velocidad\": 0,\n        \"velocidadPromedio\": 0,\n        \"ejercicios\": [\t]\n\t}\n    \n]"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/seguimientos/2/maquinas/",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -302,7 +302,8 @@
 						"api",
 						"seguimientos",
 						"2",
-						"maquinas"
+						"maquinas",
+						""
 					]
 				}
 			},

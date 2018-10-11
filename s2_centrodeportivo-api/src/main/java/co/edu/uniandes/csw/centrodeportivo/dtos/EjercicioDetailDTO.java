@@ -100,15 +100,22 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
     }
     @Override
     public EjercicioEntity toEntity() {
-        EjercicioEntity ejercicios = super.toEntity();
-        if (ejercicios != null) {
-            List<ZonaCuerpoEntity> zonasCuerpoEntity = new ArrayList<ZonaCuerpoEntity>();
-            for (ZonaCuerpoDTO dtoZonaCuerpoEntity : zonasCuerpo) {
-                zonasCuerpoEntity.add(dtoZonaCuerpoEntity.toEntity());
+        EjercicioEntity ejercicioEntity = super.toEntity();
+        if (implementos != null) {
+            List<ImplementoEntity> implementosEntity = new ArrayList<>();
+            for (ImplementoDTO dtoImplemento : implementos) {
+                implementosEntity.add(dtoImplemento.toEntity());
             }
-            ejercicios.setZonasCuerpo(zonasCuerpoEntity);
+            ejercicioEntity.setImplementos(implementosEntity);
         }
-        return ejercicios;
+        if (zonasCuerpo != null) {
+            List<ZonaCuerpoEntity> zonasCuerpoEntity = new ArrayList<>();
+            for (ZonaCuerpoDTO dtoZonaCuerpo : zonasCuerpo) {
+                zonasCuerpoEntity.add(dtoZonaCuerpo.toEntity());
+            }
+            ejercicioEntity.setZonasCuerpo(zonasCuerpoEntity);
+        }
+        return ejercicioEntity;
     }
     
     @Override

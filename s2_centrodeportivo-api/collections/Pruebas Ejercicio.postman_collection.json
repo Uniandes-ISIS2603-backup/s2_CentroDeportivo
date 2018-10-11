@@ -1,12 +1,27 @@
 {
 	"info": {
-		"_postman_id": "e77ad113-a1ae-48ed-882d-12d4c8c4f6b1",
+		"_postman_id": "3668bebe-f693-457c-8b3a-bc180ecc7e2c",
 		"name": "Pruebas Ejercicio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear Ejercicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d535fc89-fe6f-419e-9de9-5916ed831d41",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -41,7 +56,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
 					"protocol": "http",
@@ -64,9 +82,12 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -76,7 +97,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"ejercicios",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				},
 				"description": "Obtiene el ejercicio con id 1\n"
@@ -95,10 +116,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 1,\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+					"raw": "{\n\t\"nombre\": \"peso Muerto\",\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -108,7 +129,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"ejercicios",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				},
 				"description": "Actualiza el ejercicio con id 1"
@@ -120,9 +141,12 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -131,7 +155,8 @@
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
-						"ejercicios"
+						"ejercicios",
+						"{{nuevo_id_e}}"
 					]
 				},
 				"description": "Borra el ejercicio."
