@@ -1,12 +1,26 @@
 {
 	"info": {
-		"_postman_id": "3ae41aeb-52ff-4f8e-b57c-aafe16e6bf42",
+		"_postman_id": "dd7efef5-9bce-4602-9e28-2fce23f6242f",
 		"name": "PruebasZonaCuerpo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear Zona Cuerpo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89241afe-7baa-4aa2-89e9-8d48c12e4827",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_s\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -38,6 +52,20 @@
 		},
 		{
 			"name": "Obtener ZonaCuerpo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e85aa881-3b1b-4c76-8093-eb5244c09a44",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -64,7 +92,20 @@
 			"response": []
 		},
 		{
-			"name": "Obtener zona cuerpo 1",
+			"name": "Obtener zona cuerpo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a025771-eab0-453b-a626-f75bd9802f0f",
+						"exec": [
+							"tests[\"No se debería obtener una zonaCuerpo con un id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /zonasCuerpo/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -73,7 +114,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -83,10 +124,9 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"1"
+						"0"
 					]
-				},
-				"description": "obtiene la zona cuerpo con id 1"
+				}
 			},
 			"response": []
 		},
@@ -97,11 +137,12 @@
 					"listen": "test",
 					"script": {
 						"id": "12decf7d-b4cc-484c-a80b-053bdc5569fa",
-						"type": "text/javascript",
 						"exec": [
-							"tests['No genera error en el Put'] = responseCode.code === 200;",
-							"/*tests['No existe la zonaCuerpo buscada'] = responseCode.code === 404;*/"
-						]
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -136,7 +177,63 @@
 			"response": []
 		},
 		{
+			"name": "Actulizar ZonaCuerpo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12decf7d-b4cc-484c-a80b-053bdc5569fa",
+						"exec": [
+							"tests[\"No se debería actualizar una zonaCuerpo con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /zonasCuerpo/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"nombre\": \"brazo\" \n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_centrodeportivo-api/api/zonasCuerpo/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Borrar ZonaCuerpo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10d07a9c-cfdb-4b50-924d-20e28e662dbc",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -145,7 +242,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/13",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -154,10 +251,50 @@
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
-						"zonasCuerpo"
+						"zonasCuerpo",
+						"13"
 					]
 				},
 				"description": "Borra la zona del cuerpo"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar ZonaCuerpo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1eb1692b-e585-4c35-8d68-746807eef85c",
+						"exec": [
+							"tests[\"No se debería borrar un zonasCuerpo con un id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /zonasCuerpo/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo",
+						"0"
+					]
+				}
 			},
 			"response": []
 		}
