@@ -18,6 +18,7 @@ public class MaquinaDTO implements Serializable{
 
    
     private String nombre;
+    private String referencia;
     private Double calorias;
     private Integer tiempo;
     private Double velocidad;
@@ -27,6 +28,7 @@ public class MaquinaDTO implements Serializable{
     {
         
     }
+    
     
     public MaquinaDTO(MaquinaEntity maquinaEntity)
     {
@@ -38,6 +40,7 @@ public class MaquinaDTO implements Serializable{
             this.tiempo = maquinaEntity.getTiempo();
             this.velocidad = maquinaEntity.getVelocidad();
             this.velocidadPromedio = maquinaEntity.getVelocidadPromedio();
+            this.referencia = maquinaEntity.getReferencia();
         }
     }
     
@@ -138,6 +141,25 @@ public class MaquinaDTO implements Serializable{
         this.velocidadPromedio = pVelocidadPromedio;
     }  
     
+    /**
+    * Metodo que devuelve la referencia de la maquina
+    * @return la velocidad promedio
+    */
+    public String getReferencia() {
+        return referencia;
+    }
+
+    
+     /**
+    *
+    * Metodo que cambia la referencia promedio
+     * @param pReferencia
+    */
+    public void setReferencia(String pReferencia) {
+        this.referencia = pReferencia;
+    }
+    
+    
     /**      *
      * Convertir DTO a Entity      *
      *
@@ -153,6 +175,7 @@ public class MaquinaDTO implements Serializable{
         maquinaEntity.setTiempo(this.tiempo);
         maquinaEntity.setVelocidad(this.velocidad);
         maquinaEntity.setVelocidadPromedio(this.velocidadPromedio);
+        maquinaEntity.setReferencia(this.referencia);
         return maquinaEntity;
     }
 }   

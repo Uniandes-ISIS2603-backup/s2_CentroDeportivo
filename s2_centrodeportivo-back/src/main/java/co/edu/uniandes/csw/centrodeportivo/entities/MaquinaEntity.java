@@ -23,6 +23,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     
  
     private String nombre;
+    private String referencia;
     private Double calorias;
     private Integer tiempo;
     private Double velocidad;
@@ -72,13 +73,21 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     public void setEjercicio(EjercicioEntity ejercicio) {
         this.ejercicio = ejercicio;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
     public Double getCalorias() {
@@ -112,6 +121,8 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     public void setVelocidadPromedio(Double velocidadPromedio) {
         this.velocidadPromedio = velocidadPromedio;
     }
+    
+    
     
     
 }

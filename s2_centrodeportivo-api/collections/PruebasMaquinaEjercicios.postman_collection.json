@@ -1,10 +1,142 @@
 {
 	"info": {
-		"_postman_id": "a3328e8e-469f-4467-9789-006ad4fe48a2",
+		"_postman_id": "6fcb30f1-43ca-490d-b071-5d420b88cb97",
 		"name": "PruebasMaquinaEjercicios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear una maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1efd9596-14e6-4675-b59f-c0bcf9f87774",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_m3\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"eliptica\",\n\t\"referencia\": \"15859\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un ejercicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52efc9af-84da-4eab-8cf9-58be1f704d47",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_ejercicio\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n                \"categoria\": \"tonificacion\",\n                \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n                \"duracion\": 60,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"nombre\": \"cardio\",\n                \"numeroDeSeries\": 1\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un ejercicio 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4d9b1a3-653c-40d0-b14f-d04952bbb390",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_ejercicio2\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n                \"categoria\": \"tonificacion\",\n                \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n                \"duracion\": 60,\n                \"explicacion\": \"Levantar el peso y luego soltarlo\",\n                \"nombre\": \"cardio\",\n                \"numeroDeSeries\": 1\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Agregar un ejercicio a una maquina",
 			"event": [
@@ -33,7 +165,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/6",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios/{{nuevo_id_ejercicio}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -43,9 +175,9 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios",
-						"6"
+						"{{nuevo_id_ejercicio}}"
 					]
 				},
 				"description": "**Código http esperado: 200**"
@@ -80,7 +212,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -90,7 +222,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios",
 						"0"
 					]
@@ -124,10 +256,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 3,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 4,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    }\n]"
+					"raw": "[\n\t{\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"tonificacion\",\n        \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n        \"duracion\": 60,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 15,\n        \"nombre\": \"cardio\",\n        \"numeroDeSeries\": 1,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"tonificacion\",\n        \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n        \"duracion\": 60,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 16,\n        \"nombre\": \"cardio\",\n        \"numeroDeSeries\": 1,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"tonificacion\",\n        \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n        \"duracion\": 60,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 17,\n        \"nombre\": \"cardio\",\n        \"numeroDeSeries\": 1,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"tonificacion\",\n        \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n        \"duracion\": 60,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 18,\n        \"nombre\": \"cardio\",\n        \"numeroDeSeries\": 1,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    },\n    {\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"tonificacion\",\n        \"descripcion\": \"Ejercicio para calentamiento para los musculos\",\n        \"duracion\": 60,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 19,\n        \"nombre\": \"cardio\",\n        \"numeroDeSeries\": 1,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    }\n]"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -137,7 +269,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios"
 					]
 				}
@@ -172,7 +304,7 @@
 					"raw": "[{\n        \"type\": \"ejercicioDetailDTO\",\n        \"categoria\": \"relajacion\",\n        \"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n        \"duracion\": 2,\n        \"explicacion\": \"Levantar el peso y luego soltarlo\",\n        \"id\": 0,\n        \"nombre\": \"peso Muerto\",\n        \"numeroDeSeries\": 3,\n        \"implementos\": [],\n        \"zonasCuerpo\": []\n    }\n]"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -182,7 +314,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios"
 					]
 				}
@@ -213,7 +345,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -223,7 +355,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios"
 					]
 				}
@@ -254,7 +386,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/5",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios/{{nuevo_id_ejercicio2}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -264,9 +396,9 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios",
-						"5"
+						"{{nuevo_id_ejercicio2}}"
 					]
 				}
 			},
@@ -295,7 +427,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios/{{nuevo_id_ejercicio}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -305,9 +437,9 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios",
-						"9"
+						"{{nuevo_id_ejercicio}}"
 					]
 				}
 			},
@@ -335,7 +467,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}/ejercicios/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m3}}/ejercicios/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -345,7 +477,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"{{nuevo_id_m}}",
+						"{{nuevo_id_m3}}",
 						"ejercicios",
 						"0"
 					]

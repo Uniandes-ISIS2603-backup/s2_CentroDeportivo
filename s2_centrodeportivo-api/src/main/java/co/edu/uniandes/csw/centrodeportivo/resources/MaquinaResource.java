@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.centrodeportivo.ejb.MaquinaLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

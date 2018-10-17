@@ -1,10 +1,99 @@
 {
 	"info": {
-		"_postman_id": "194fad1d-bf3d-4ce5-8692-0dd8494ae8b4",
+		"_postman_id": "974891a2-87ae-4dea-87f3-954ffb14f2cc",
 		"name": "PruebasMaquina",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear una maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb3e7461-f7e0-468e-8780-e7d9998c4a67",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_m\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"caminadora\",\n\t\"referencia\": \"1589\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas"
+					]
+				},
+				"description": "Se espara la indormacion de la maquina que se creo\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una maquina 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a02f715-5caa-4351-9722-bdd58c670c90",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id2_m\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"eliptica\",\n\t\"referencia\" : \"14723\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Devuelve todas las máquinas",
 			"event": [
@@ -82,7 +171,48 @@
 						"{{nuevo_id_m}}"
 					]
 				},
-				"description": "Se espera null"
+				"description": "Se espera la información de la maquina"
+			},
+			"response": []
+		},
+		{
+			"name": "Dar una máquina 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b13fe4b2-a7b0-44ea-bd31-0024994f906d",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id2_m}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"maquinas",
+						"{{nuevo_id2_m}}"
+					]
+				},
+				"description": "Se espera la información de la maquina"
 			},
 			"response": []
 		},
@@ -112,7 +242,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"calorias\":\"290\",\n\t\"velocidad\":\"50\",\n\t\"velocidadPromedio\": \"50\",\n\t\"tiempo\":\"100\"\n}"
+					"raw": "{\n\t\"calorias\":\"290\",\n\t\"referencia\": \"1234\",\n\t\"velocidad\":\"50\",\n\t\"velocidadPromedio\": \"50\",\n\t\"tiempo\":\"100\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}",
@@ -154,7 +284,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/37",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/{{nuevo_id_m}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -164,55 +294,10 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"37"
+						"{{nuevo_id_m}}"
 					]
 				},
 				"description": "Se espera null"
-			},
-			"response": []
-		},
-		{
-			"name": "Crear una maquina",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "eb3e7461-f7e0-468e-8780-e7d9998c4a67",
-						"type": "text/javascript",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"nuevo_id_m\", data.id);",
-							"tests['No genera error en el Post'] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"caminadora\",\n\t\"calorias\":\"0\",\n\t\"velocidad\":\"0\",\n\t\"tiempo\":\"0\",\n\t\"velocidadPromedio\":\"0\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_centrodeportivo-api",
-						"api",
-						"maquinas"
-					]
-				},
-				"description": "Se espara la indormacion de la maquina que se creo\n"
 			},
 			"response": []
 		},
@@ -222,11 +307,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "25dbbfe6-7b75-4aad-83b6-f9886120c8c8",
+						"id": "1a47cdf0-2947-4e3d-8c2c-e1cb7858e0c5",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /maquinas/350 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /maquinas/0 no existe.\");"
 						]
 					}
 				}
@@ -239,7 +324,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/350",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/maquinas/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -249,7 +334,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"maquinas",
-						"350"
+						"0"
 					]
 				},
 				"description": "Se espera un error 404\n"
