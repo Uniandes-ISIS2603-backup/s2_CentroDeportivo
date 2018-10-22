@@ -111,7 +111,7 @@ public class ObjetivoPersistence {
         } else {
             result = sameDescripcion.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar objetiu}vo por descripcion ", descripcion);
+        LOGGER.log(Level.INFO, "Saliendo de consultar objetivo por descripcion ", descripcion);
         return result;
     }
 }
