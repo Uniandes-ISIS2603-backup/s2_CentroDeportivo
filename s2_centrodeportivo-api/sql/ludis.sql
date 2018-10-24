@@ -1,3 +1,4 @@
+delete from SeguimientoEntity;
 delete from DeportistaEntity;
 delete from EjercicioEntity;
 delete from EspecialistaEntity;
@@ -5,21 +6,20 @@ delete from ImplementoEntity;
 delete from MaquinaEntity;
 delete from ObjetivoEntity;
 delete from RutinaEntity;
-delete from SeguimientoEntity;
 delete from ZonacuerpoEntity;
 delete from SeguimientoEntity_MaquinaEntity;
 
  -- POBLAMIENTO TABLA DEPORTISTA
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (1, 1, 'Jessee Templeton', 1, 1.59, 80.46, 82, 265, 1.69, 1.11, 1.76, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (2, 2, 'Brandise Beaven', 0, 1.25, 86.6, 92, 117, 1.33, 3.63, 1.9, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (3, 3, 'Jamie Archambault', 0, 1.81, 124.72, 66, 126, 1.85, 3.84, 1.59, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (4, 4, 'Terrie Jovanovic', 0, 1.47, 93.27, 61, 180, 1.39, 1.31, 1.29, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (5, 5, 'Melinde De Laci', 0, 1.41, 96.26, 61, 280, 2.0, 3.64, 1.03, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (6, 6, 'Edwina Perell', 0, 1.94, 126.24, 70, 109, 1.05, 1.88, 1.35, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (7, 7, 'Broddie Starking', 1, 1.74, 98.19, 44, 251, 1.42, 1.55, 1.0,'1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (8, 8, 'Vasili McAulay', 1, 1.83, 106.82, 29, 211, 1.89, 3.47, 1.17, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (9, 9, 'Ingelbert Daud', 1, 1.1, 104.18, 51, 117, 1.4, 1.91, 1.77, '1985-11-20 00:00:00');
-insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (10, 10, 'Estel Pitcher', 0, 1.08, 83.28, 48, 40, 1.9, 2.36, 1.29, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (1, 11, 'Jessee Templeton', 1, 1.59, 80.46, 82, 265, 1.69, 1.11, 1.76, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (2, 12, 'Brandise Beaven', 0, 1.25, 86.6, 92, 117, 1.33, 3.63, 1.9, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (3, 13, 'Jamie Archambault', 0, 1.81, 124.72, 66, 126, 1.85, 3.84, 1.59, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (4, 14, 'Terrie Jovanovic', 0, 1.47, 93.27, 61, 180, 1.39, 1.31, 1.29, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (5, 15, 'Melinde De Laci', 0, 1.41, 96.26, 61, 280, 2.0, 3.64, 1.03, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (6, 16, 'Edwina Perell', 0, 1.94, 126.24, 70, 109, 1.05, 1.88, 1.35, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (7, 17, 'Broddie Starking', 1, 1.74, 98.19, 44, 251, 1.42, 1.55, 1.0,'1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (8, 18, 'Vasili McAulay', 1, 1.83, 106.82, 29, 211, 1.89, 3.47, 1.17, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (9, 19, 'Ingelbert Daud', 1, 1.1, 104.18, 51, 117, 1.4, 1.91, 1.77, '1985-11-20 00:00:00');
+insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) values (10, 20, 'Estel Pitcher', 0, 1.08, 83.28, 48, 40, 1.9, 2.36, 1.29, '1985-11-20 00:00:00');
 
  --POBLAMIENTO TABLA EJERCICIO
 insert into ejercicioEntity (id, nombre, categoria, duracion, numeroDeSeries, descripcion, explicacion) values (1, '', 'pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi', 1, 1, 'pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor', 'dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac');
