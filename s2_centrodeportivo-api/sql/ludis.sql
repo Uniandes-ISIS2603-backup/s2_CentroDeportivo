@@ -46,16 +46,16 @@ insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (9, 'Wh
 insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (10, 'Alberto', 'Alberto Chiechio', 99999999);
 
  --POBLAMIENTO TABLA IMPLEMENTO
-insert into ImplementoEntity (id, nombre) values (331, 'dui vel');
-insert into ImplementoEntity (id, nombre) values (201, 'ultrices');
-insert into ImplementoEntity (id, nombre) values (146, 'aliquet');
-insert into ImplementoEntity (id, nombre) values (240, 'ante');
-insert into ImplementoEntity (id, nombre) values (265, 'vel');
-insert into ImplementoEntity (id, nombre) values (112, 'vulputate justo');
-insert into ImplementoEntity (id, nombre) values (360, 'blandit mi');
-insert into ImplementoEntity (id, nombre) values (321, 'faucibus accumsan');
-insert into ImplementoEntity (id, nombre) values (102, 'vivamus vestibulum');
-insert into ImplementoEntity (id, nombre) values (466, 'eu felis');
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (331, 'dui vel', 32);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (201, 'ultrices', 32);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (146, 'aliquet', 15);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (240, 'ante', 32);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (265, 'vel', 27);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (112, 'vulputate justo', 33);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (360, 'blandit mi', 25);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (321, 'faucibus accumsan', 16);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (102, 'vivamus vestibulum', 32);
+insert into ImplementoEntity (id, nombre, cantidadExistencias) values (466, 'eu felis', 10);
 
  --POBLAMIENTO TABLA ZONA_CUERPO
 insert into zonaCuerpoEntity (id, nombre) values (1, 'dis parturient');

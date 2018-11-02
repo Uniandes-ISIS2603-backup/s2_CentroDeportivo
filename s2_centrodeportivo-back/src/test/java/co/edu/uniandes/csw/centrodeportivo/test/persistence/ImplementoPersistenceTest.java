@@ -138,7 +138,7 @@ public class ImplementoPersistenceTest {
 
         ImplementoEntity entity = em.find(ImplementoEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
     /**
@@ -165,6 +165,7 @@ public class ImplementoPersistenceTest {
         ImplementoEntity newEntity = implementoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getCantidadExistencias(), newEntity.getCantidadExistencias());
     }
     
     /**

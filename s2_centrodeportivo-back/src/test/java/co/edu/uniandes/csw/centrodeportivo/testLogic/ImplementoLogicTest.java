@@ -115,6 +115,7 @@ public class ImplementoLogicTest {
         ImplementoEntity entity = em.find(ImplementoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getCantidadExistencias(), entity.getCantidadExistencias());
     }
 
     /**
@@ -158,6 +159,7 @@ public class ImplementoLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+        Assert.assertEquals(entity.getCantidadExistencias(), resultEntity.getCantidadExistencias());
     }
 
     /**
@@ -172,6 +174,7 @@ public class ImplementoLogicTest {
         ImplementoEntity resp = em.find(ImplementoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(pojoEntity.getCantidadExistencias(), resp.getCantidadExistencias());
     }
 
     /**

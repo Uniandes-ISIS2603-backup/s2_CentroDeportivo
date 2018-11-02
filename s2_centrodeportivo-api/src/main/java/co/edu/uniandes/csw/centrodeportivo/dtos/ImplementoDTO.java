@@ -16,6 +16,7 @@ public class ImplementoDTO implements Serializable {
     
     private Long id;
     private String nombre;
+    private Integer cantidadExistencias;
     
     /**
      * Constructor por defecto
@@ -35,6 +36,7 @@ public class ImplementoDTO implements Serializable {
         if (implementoEntity != null) {
             this.id = implementoEntity.getId();
             this.nombre = implementoEntity.getNombre();
+            this.cantidadExistencias = implementoEntity.getCantidadExistencias();
         }
     }
     
@@ -77,6 +79,24 @@ public class ImplementoDTO implements Serializable {
     {
         return nombre;
     }
+
+    /**
+     * Devuelve la cantidad de existencias del implemento.
+     *
+     * @return cantidad de existencias del implemento
+     */
+    public Integer getCantidadExistencias() {
+        return cantidadExistencias;
+    }
+    
+    /**
+     * Modifica la cantidad de existencias del implemento.
+     *
+     * @param cantidadExistencias El nombre a modificar
+     */
+    public void setCantidadExistencias(Integer cantidadExistencias) {
+        this.cantidadExistencias = cantidadExistencias;
+    }
     
      /**
      * Convertir DTO a Entity
@@ -87,6 +107,7 @@ public class ImplementoDTO implements Serializable {
         ImplementoEntity implementoEntity = new ImplementoEntity();
         implementoEntity.setId(this.id);
         implementoEntity.setNombre(this.nombre);
+        implementoEntity.setCantidadExistencias(this.cantidadExistencias);
         return implementoEntity;
     }
     

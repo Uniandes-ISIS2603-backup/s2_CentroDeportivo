@@ -11,10 +11,7 @@ import co.edu.uniandes.csw.centrodeportivo.ejb.EjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.ejb.ImplementoEjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -111,7 +108,7 @@ public class ImplementoEjercicioResource {
      * Elimina la conexión entre el ejercicio y el implemento recibido en la URL.
      *
      * @param implementosId El ID del implemento al cual se le va a desasociar el ejercicio
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
      * Error de lógica que se genera cuando el implemento no tiene ejercicio.
      */
     @DELETE

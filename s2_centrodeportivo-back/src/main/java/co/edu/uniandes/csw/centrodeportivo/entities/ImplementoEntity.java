@@ -27,6 +27,8 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     
     private String nombre;
     
+    private Integer cantidadExistencias;
+    
     public ImplementoEntity()
     {
         
@@ -72,4 +74,22 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
         this.nombre = nombre;
     }
 
+    /**
+     * Devuelve la cantidad de existencias del implemento.
+     *
+     * @return cantidad de existencias del implemento
+     */
+    public Integer getCantidadExistencias() {
+        return cantidadExistencias;
+    }
+
+    /**
+     * Modifica la cantidad de existencias del implemento.
+     *
+     * @param cantidadExistencias La cantidad de existencias a modificar
+     */
+    public void setCantidadExistencias(Integer cantidadExistencias) {
+        this.cantidadExistencias = cantidadExistencias;
+    }
+    
 }
