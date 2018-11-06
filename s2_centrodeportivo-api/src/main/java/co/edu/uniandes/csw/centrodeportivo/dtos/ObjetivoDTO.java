@@ -17,8 +17,8 @@ public class ObjetivoDTO implements Serializable {
 
     private Long id;
     private String descripcion;
-    private Boolean cumplio;
-    private String fechaLimite;
+    public Boolean cumplio;
+    public String fechaLimite;
 
     /**      *
      * Constructor por defecto.      *

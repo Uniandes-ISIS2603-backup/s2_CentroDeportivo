@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.ejb;
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +24,7 @@ public class ObjetivoDeportistaLogic {
    private static final Logger LOGGER = Logger.getLogger(ObjetivoDeportistaLogic.class.getName());
 
     @Inject
-    private DeportistaPersistenc deportistaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    private DeportistaPersistence deportistaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     @Inject
     private ObjetivoPersistence objetivoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.

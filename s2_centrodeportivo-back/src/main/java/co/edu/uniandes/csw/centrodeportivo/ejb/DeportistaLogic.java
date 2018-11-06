@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +25,7 @@ public class DeportistaLogic {
     private static final Logger LOGGER = Logger.getLogger(DeportistaLogic.class.getName());
 
     @Inject
-    private DeportistaPersistenc persistencia;
+    private DeportistaPersistence persistencia;
 
     /**
      * Metodo que se encarga de crear un deportista en la base de datos.

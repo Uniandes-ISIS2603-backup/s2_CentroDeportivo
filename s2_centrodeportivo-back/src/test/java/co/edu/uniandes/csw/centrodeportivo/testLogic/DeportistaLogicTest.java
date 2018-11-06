@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.testLogic;
 import co.edu.uniandes.csw.centrodeportivo.ejb.DeportistaLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.*;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -58,7 +58,7 @@ public class DeportistaLogicTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(DeportistaEntity.class.getPackage())
                 .addPackage(DeportistaLogic.class.getPackage())
-                .addPackage(DeportistaPersistenc.class.getPackage())
+                .addPackage(DeportistaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
