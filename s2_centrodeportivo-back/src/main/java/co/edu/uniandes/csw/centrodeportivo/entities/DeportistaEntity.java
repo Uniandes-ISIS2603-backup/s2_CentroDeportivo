@@ -1,21 +1,28 @@
 /* 
+
 * To change this license header, choose License Headers in Project Properties. 
+
 * To change this template file, choose Tools | Templates 
+
 * and open the template in the editor. 
+
  */
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.*;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
-/**
- * @author Leidy Romero
+/**  *
+ *
+ *
+ * @author Leidy Romero  *
  */
 @Entity
 public class DeportistaEntity extends BaseEntity implements Serializable {
@@ -33,7 +40,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     private String ultimaActualizacionDatos;
     private String fechaNacimiento;
 
-    @PodamExclude
+   @PodamExclude
     @ManyToOne
     private EspecialistaEntity especialista;
     
@@ -49,7 +56,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     @OneToOne(mappedBy = "deportista")
     private SeguimientoEntity seguimiento;
     
-    /**
+     /**
      * Devuelve los objetivos del deportista
      * @return Collection los objetivos
      */
@@ -348,6 +355,10 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     public void setFechaNacimiento(String pFecha) {
 
         this.fechaNacimiento=pFecha;
+    }
+    public void setCedula(Integer pCedula) {
+
+        this.cedula=pCedula;
     }
     /**
      * *

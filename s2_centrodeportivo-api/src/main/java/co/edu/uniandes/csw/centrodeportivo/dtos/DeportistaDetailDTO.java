@@ -1,19 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+* To change this license header, choose License Headers in Project Properties. 
+* To change this template file, choose Tools | Templates 
+* and open the template in the editor. 
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
-import java.util.List;
-import co.edu.uniandes.csw.centrodeportivo.entities.*;
 import java.io.Serializable;
+import co.edu.uniandes.csw.centrodeportivo.entities.*;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
  * @author Leidy Romero
  */
 public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
@@ -27,13 +26,12 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
     {
         super();
     }
-    
-    /**
-     * Crea un nuevo objeto DepoortistaDetailDTO a partir de un objeto
-     * DeportistaEntity incluyecdo los atributos de DeportistaDTO
+
+    /**      *
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en      *
+     * la entidad que viene de argumento.      *
      *
-     * @param deportistaEntity Entidad DeportistaEntity desde la cual se va a
-     * crear el nuevo objeto
+     * @param deportistaEntity: Es la entidad que se va a convertir a DTO      *
      */
     public DeportistaDetailDTO(DeportistaEntity deportistaEntity) {
         super(deportistaEntity);
@@ -47,16 +45,14 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
             }
         }
     }
-
-    /**
-     * Convierte un objeto DeportistaDetailDTO a DeportistaEntity incluyendo los
-     * atributos de DeportistaDTO
+    /**      *
+     * Convertir DTO a Entity      *
      *
-     * @return Nuevo objeto DeportistaEntity
+     *
+     * @return Un Entity con los valores del DTO      *
      */
-    @Override
     public DeportistaEntity toEntity() {
-        DeportistaEntity deportista = super.toEntity();
+      DeportistaEntity deportista = super.toEntity();
         if (objetivos != null) {
             List<ObjetivoEntity> objetivosEntity = new ArrayList<>();
             for (ObjetivoDTO dtoObjetivo : objetivos) {
@@ -65,9 +61,9 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
             deportista.setObjetivos(objetivosEntity);
         }
         return deportista;
+
     }
-    
-    /**
+/**
      * Obtiene la lista de objetivos del deportista
      * @return los objetivos
      */
@@ -83,9 +79,12 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
     {
         this.objetivos = pObjetivos;
     }
-    
     @Override
+
     public String toString() {
+
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+
     }
+
 }
