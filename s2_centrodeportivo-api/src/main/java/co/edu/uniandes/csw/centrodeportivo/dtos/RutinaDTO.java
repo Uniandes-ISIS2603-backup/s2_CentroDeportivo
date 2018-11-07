@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 
@@ -16,10 +18,10 @@ import java.io.Serializable;
  */
 public class RutinaDTO implements Serializable {
     
-    private Long id;
-    private Integer identificadorRutina;
-    private String nombre;
-    private Boolean estadoTerminado;
+    public Long id;
+    public Integer identificadorRutina;
+    public String nombre;
+    public Boolean estadoTerminado;
    
     public RutinaDTO()
     {
@@ -45,6 +47,10 @@ public class RutinaDTO implements Serializable {
       public void setId(Long id) {
         this.id = id;
     }
+      public long getID()
+      {
+          return this.id;
+      }
 
     public String getNombre() {
         return nombre;
@@ -54,7 +60,7 @@ public class RutinaDTO implements Serializable {
         this.nombre = nombre;
     }
 
-    public boolean isEstadoTerminado() {
+    public boolean getEstadoTerminado() {
         return estadoTerminado;
     }
 
@@ -67,5 +73,9 @@ public class RutinaDTO implements Serializable {
         rutinaEntity.setNombre(this.nombre);
         rutinaEntity.setEstadoTerminado(this.estadoTerminado);
         return rutinaEntity;
+    }
+      @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 
@@ -16,10 +18,10 @@ import java.io.Serializable;
  */
 
 public class EspecialistaDTO implements Serializable {
-    private Long id;
-    private int cedula;
-    private String nombre;
-    private String especialidad;
+    public Long id;
+    public int cedula;
+    public String nombre;
+    public String especialidad;
     
     public EspecialistaDTO()
     {
@@ -75,5 +77,8 @@ public class EspecialistaDTO implements Serializable {
         return especialistaEntity;
 
     }
-   
+   @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

@@ -67,9 +67,9 @@ public class RutinaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un rutina identificado con el id = {0}",rutinasId);
         RutinaEntity rutinaEntity = persistencia.find(rutinasId);
         if(rutinaEntity == null)
-            LOGGER.log(Level.SEVERE, "No se encontró el rutina identificado con el id = {0}");
+            LOGGER.log(Level.SEVERE, "No se encontró la rutina identificada con el id = {0}");
         
-        LOGGER.log(Level.INFO, "Termina proceso de consultar un rutina identificado con el id = {0}");
+        LOGGER.log(Level.INFO, "Termina proceso de consultar un rutina identificada con el id = {0}");
         return rutinaEntity;
     }
     

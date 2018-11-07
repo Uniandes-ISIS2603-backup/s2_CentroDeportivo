@@ -18,10 +18,18 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class RutinaEntity extends BaseEntity implements Serializable {
-    private Integer identificadorRutina;
-    private String nombre;
-    private Boolean estadoTerminado;
+    public Integer identificadorRutina;
+    public String nombre;
+    public Boolean estadoTerminado;
 
+     @PodamExclude
+    @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
+    private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
+     
+     @PodamExclude
+    @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
+    List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
+     
     public Integer getIdentificadorRutina() {
         return identificadorRutina;
     }
@@ -44,14 +52,8 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-     /**
-     * Modela la asociacion 1...* entre las clases Especialista y Deportista
-     * se especifica fetch para especificar que no se deben cargar las
-     * dos entidades al  mismo tiempo
-     */
-    @PodamExclude
-    @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
-    private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
+    
+   
     
     
     /**
@@ -69,9 +71,7 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     
     
     
-    @PodamExclude
-    @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
-    List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
+    
     
     
     /**

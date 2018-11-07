@@ -38,7 +38,7 @@ import javax.ws.rs.WebApplicationException;
 public class EspecialistaResource {
      private static final Logger LOGGER = Logger.getLogger(EspecialistaResource.class.getName());
  @Inject
-    EspecialistaLogic especialistaLogic;
+    private EspecialistaLogic especialistaLogic;
     
     @POST
     public EspecialistaDTO createEspecialista(EspecialistaDTO especialista) throws BusinessLogicException {
@@ -49,7 +49,7 @@ public class EspecialistaResource {
         EspecialistaEntity nuevoEspecialistaEntity = especialistaLogic.createEspecialista(especialistaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         EspecialistaDTO nuevoEspecialistaDTO = new EspecialistaDTO(nuevoEspecialistaEntity);
-        //LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: output: {0}", nuevoEspecialistaDTO.toString());
+        LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: output: {0}", nuevoEspecialistaDTO.toString());
         return nuevoEspecialistaDTO;
     }
 /**

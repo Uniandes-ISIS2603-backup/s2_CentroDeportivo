@@ -20,47 +20,15 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class EspecialistaEntity extends BaseEntity implements Serializable {
   
 
-    private String nombre;
-    private String especialidad;
-    private Integer cedula;
+    public String nombre;
+    public String especialidad;
+    public Integer cedula;
 
     @PodamExclude
     @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
     private List<DeportistaEntity> deportistas = new ArrayList<DeportistaEntity>();
-
-    /**
-     * Devuelve los deportistas que son asesorados por este deportista
-     * @return Collection los deportistas
-     */
-    public List<DeportistaEntity> getDeportistas()
-    {
-      return this.deportistas;  
-    }
-    public void setDeportistas(List<DeportistaEntity> deportistas)
-    {
-        this.deportistas=deportistas;
-    }
-    
-     /**
-     * Modela la asociacion 1...* entre las clases Especialista y Objetivo
-     * se especifica fetch para especificar que no se deben cargar las
-     * dos entidades al  mismo tiempo
-     */
-    @PodamExclude
-    @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
     private List <ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
-    /**
-     * Devuelve los objetivos
-     * @return Collection los objetivos
-     */
-    public List<ObjetivoEntity> getObjetivos()
-    {
-      return this.objetivos;  
-    }
-    public void getObjetivos(List<ObjetivoEntity> listaObjetivos)
-    {
-      objetivos=listaObjetivos;  
-    }
+   
     
     
     public String getNombre() {
@@ -86,5 +54,24 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
         return cedula;
     }
 
-    
+     /**
+     * Devuelve los deportistas que son asesorados por este deportista
+     * @return Collection los deportistas
+     */
+    public List<DeportistaEntity> getDeportistas()
+    {
+      return deportistas;  
+    }
+    public void setDeportistas(List<DeportistaEntity> deportistas)
+    {
+        deportistas=deportistas;
+    }
+     public List<ObjetivoEntity> getObjetivos()
+    {
+      return objetivos;  
+    }
+    public void setObjetivos(List<ObjetivoEntity> listaObjetivos)
+    {
+      objetivos=listaObjetivos;  
+    }
 }

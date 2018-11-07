@@ -34,16 +34,16 @@ insert into ejercicioEntity (id, nombre, categoria, duracion, numeroDeSeries, de
 insert into ejercicioEntity (id, nombre, categoria, duracion, numeroDeSeries, descripcion, explicacion) values (10, 'quam turpis adipiscing', 'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum', 10, 10, 'duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim', 'aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi');
 
  --POBLAMIENTO TABLA ESPECIALISTA
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (1, 'Farrel', 'Farrel Upstone', 99999999);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (2, 'Bellina', 'Bellina Addlestone', 99999999);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (3, 'Willie', 'Willie Stave', 99999999);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (4, 'Tilda', 'Tilda Ianne', 100000000);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (5, 'Elsi', 'Elsi Purches', 100000000);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (6, 'Lauryn', 'Lauryn Larkin', 100000000);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (7, 'Angy', 'Angy Drissell', 100000000);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (8, 'Lawrence', 'Lawrence Bothie', 99999999);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (9, 'Whit', 'Whit Ford', 100000000);
-insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (10, 'Alberto', 'Alberto Chiechio', 99999999);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (1, 'Accounting', 'Farrel Upstone', 8056768);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (2, 'Accounting', 'Bellina Addlestone', 1667650);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (3, 'Accounting', 'Willie Stave', 750498);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (4, 'Legal', 'Tilda Ianne', 3744463);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (5, 'Legal', 'Elsi Purches', 3355656);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (6, 'Legal', 'Lauryn Larkin', 3056820);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (7, 'Human Resources', 'Angy Drissell', 168751);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (8, 'Human Resources', 'Lawrence Bothie', 8582383);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (9, 'Human Resources', 'Whit Ford', 721831);
+insert into especialistaEntity (id, Especialidad, nombre, Cedula) values (10, 'Human Resources', 'Alberto Chiechio', 5985083);
 
  --POBLAMIENTO TABLA IMPLEMENTO
 insert into ImplementoEntity (id, nombre, cantidadExistencias) values (1, 'dui vel', 32);

@@ -27,9 +27,7 @@ public class EspecialistaPersistence {
     
      public EspecialistaEntity create(EspecialistaEntity especialistaEntity) {
         LOGGER.log(Level.INFO, "Creando un nuevo especialista");
-        /* Note que hacemos uso de un método propio de EntityManager para persistir al especialista en la base de datos.
-        Es similar a "INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);" en SQL.
-         */
+        
         em.persist(especialistaEntity);
         LOGGER.log(Level.INFO, "Saliendo de crear un nuevo especialista");
         return especialistaEntity;

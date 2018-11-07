@@ -152,7 +152,7 @@ public class RutinaResource {
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la rutina.
      */
-    @GET
+   
     @Path("{rutinasId: \\d+}/ejercicios")
     public Class<RutinaEjerciciosResource> getRutinaEjerciciosResource(@PathParam("rutinasId") Long rutinasId) {
         if (rutinaLogic.getRutina(rutinasId) == null) {
@@ -175,7 +175,7 @@ public class RutinaResource {
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la Rutina.
      */
-    @GET
+    
     @Path("{RutinasId: \\d+}/Objetivo")
     public Class<RutinaObjetivosResource> getRutinaObjetivosResource(@PathParam("RutinasId") Long RutinasId) {
         if (rutinaLogic.getRutina(RutinasId) == null) {
