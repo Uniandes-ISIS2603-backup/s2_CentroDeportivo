@@ -2,33 +2,41 @@
 * To change this license header, choose License Headers in Project Properties. 
 * To change this template file, choose Tools | Templates 
 * and open the template in the editor. 
- */
-package co.edu.uniandes.csw.centrodeportivo.resources;
+*/ 
+package co.edu.uniandes.csw.centrodeportivo.resources; 
 
-import co.edu.uniandes.csw.centrodeportivo.dtos.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.*;
-import co.edu.uniandes.csw.centrodeportivo.exceptions.*;
-import co.edu.uniandes.csw.centrodeportivo.entities.*;
-import co.edu.uniandes.csw.centrodeportivo.ejb.*;
+import co.edu.uniandes.csw.centrodeportivo.dtos.DeportistaDTO;
+import co.edu.uniandes.csw.centrodeportivo.dtos.DeportistaDetailDTO;
+import co.edu.uniandes.csw.centrodeportivo.ejb.DeportistaLogic;
+import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped; 
 import javax.inject.Inject;
-/**
- * Clase que implementa el recurso "deportistas".
- * @author Leidy Romero
- */
-@Path("deportistas")
-@Produces("application/json")
-@Consumes("application/json")
-@RequestScoped
+import javax.ws.rs.Consumes; 
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path; 
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces; 
+import javax.ws.rs.WebApplicationException;
 
-public class DeportistaResource {
-    
+/** 
+* Clase que implementa el recurso "deportistas". 
+* @author Leidy Romero 
+*/ 
+@Path("deportistas") 
+@Produces("application/json") 
+@Consumes("application/json") 
+@RequestScoped 
+public class DeportistaResource { 
+
     private static final Logger LOGGER = Logger.getLogger(DeportistaResource.class.getName());
     @Inject
     DeportistaLogic deportistaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias. 
@@ -57,9 +65,9 @@ public class DeportistaResource {
         LOGGER.log(Level.INFO, "DeportistaResource createDeportista: output: {0}", nuevoDeportistaDTO.toString()); 
         return nuevoDeportistaDTO; 
     }
-
+    
     /**
-     * Busca y devuelve todos los deportistas que existen en la aplicacion.
+     * Busca y devuelve todas los deportistas que existen en la aplicacion.
      *
      * @return JSONArray {@link DeportistaDTO} - Los deportistas encontrados en
      * la aplicación. Si no hay ninguna retorna una lista vacía.
@@ -71,15 +79,15 @@ public class DeportistaResource {
         LOGGER.log(Level.INFO, "DeportistaResource getDeportistas: output: {0}", listaDeportistas.toString()); 
         return listaDeportistas; 
     }
-
-    /**
+    
+     /**
      * Busca el deportista con el id asociado recibido en la URL y la devuelve.
      *
      * @param deportistasId Identificador del deportista que se esta buscando.
      * Este debe ser una cadena de dígitos.
      * @return JSON {@link DeportistaDTO} - El deportista buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra al deportista.
+     * Error de lógica que se genera cuando no se encuentra el deportista.
      */
     @GET
     @Path("{deportistasId: \\d+}")
@@ -93,8 +101,7 @@ public class DeportistaResource {
         LOGGER.log(Level.INFO, "DeportistaResource getDeportista: output: {0}", detailDTO.toString()); 
         return detailDTO; 
     }
-
-    /**
+       /**
      * Actualiza el deportista con el id recibido en la URL con la informacion
      * que se recibe en el cuerpo de la petición.
      *
@@ -121,34 +128,12 @@ public class DeportistaResource {
         return detailDTO; 
     }
     
-     /**
-     * Borra el deportista con el id asociado recibido en la URL.
-     *
-     * @param deportistasId Identificador del deportista que se desea borrar.
-     * Este debe ser una cadena de dígitos.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede eliminar al deportista.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra al deportista.
-     */
-    @DELETE
-    @Path("{deportistasId: \\d+}")
-    public void deleteDeportista(@PathParam("deportistasId") Long deportistasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "DeportistaResource deleteDeportista: input: {0}", deportistasId);
-        if (deportistaLogic.getDeportista(deportistasId) == null) {
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
-        }
-        deportistaLogic.deleteDeportista(deportistasId);
-        LOGGER.info("DeportistaResource deleteDeportista: output: void");
-    }
-    
-     /**
+    /**
      * Convierte una lista de Entity a una lista de DetailDTO.
      *
      * @param entityList Lista de Entity a convertir.
      * @return Lista de DetailDTO convertida.
      */
-
     private List<DeportistaDetailDTO> listEntity2DetailDTO(List<DeportistaEntity> entityList) {
         List<DeportistaDetailDTO> list = new ArrayList<>();
         for (DeportistaEntity entity : entityList) {
@@ -156,4 +141,8 @@ public class DeportistaResource {
         }
         return list;
     }
-}
+    
+    
+    //ELIMINAR?
+    
+} 

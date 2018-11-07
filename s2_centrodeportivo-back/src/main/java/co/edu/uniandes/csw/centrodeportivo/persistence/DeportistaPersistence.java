@@ -26,8 +26,7 @@ public class DeportistaPersistence {
     @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
     
-    
-     /**
+    /**
      * Método para persisitir la entidad en la base de datos.
      *
      * @param deportistaEntity objeto deportista que se creará en la base de datos
@@ -65,7 +64,7 @@ public class DeportistaPersistence {
      * @return un deportista.
      */
     public DeportistaEntity find(Long deportistasId) {
-        LOGGER.log(Level.INFO, "Consultando al deportista con id={0}", deportistasId);
+        LOGGER.log(Level.INFO, "Consultando el deportista con id={0}", deportistasId);
         /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
         el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
         Suponga que es algo similar a "select * from DeportistaEntity where id=id;" - "SELECT * FROM table_name WHERE condition;" en SQL.
@@ -76,21 +75,20 @@ public class DeportistaPersistence {
      * Actualiza la informacion de un deportista.
      *
      * @param deportistaEntity: el deportista que viene con los nuevos cambios.
-     * Por ejemplo la presion sanguinea pudo cambiar. En ese caso, se haria uso del método
+     * Por ejemplo el estado pudo cambiar. En ese caso, se haria uso del método
      * update.
      * @return un deportista con los cambios aplicados.
      */
     public DeportistaEntity update(DeportistaEntity deportistaEntity) {
-        LOGGER.log(Level.INFO, "Actualizando al deportista con id = {0}", deportistaEntity.getId());
+        LOGGER.log(Level.INFO, "Actualizando el deportista con id = {0}", deportistaEntity.getId());
         /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
         el deportista con los cambios, esto es similar a 
         "UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
          */
-        LOGGER.log(Level.INFO, "Saliendo de actualizar al deportista con id = {0}", deportistaEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar el deportista con id = {0}", deportistaEntity.getId());
         return em.merge(deportistaEntity);
     }
-	
-    /**
+/**
      *
      * Borra al deportista de la base de datos recibiendo como argumento su id
      *
