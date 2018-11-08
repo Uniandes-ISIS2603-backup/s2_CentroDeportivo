@@ -24,7 +24,12 @@ public class EspecialistaPersistence {
     
     @PersistenceContext(unitName = "LudisPU")
     protected EntityManager em;
-    
+    /**
+     * Método para persisitir la entidad en la base de datos.
+     *
+     * @param especialistaEntity objeto especialista que se creará en la base de datos
+     * @return devuelve la entidad creada con un id dado por la base de datos.
+     */
      public EspecialistaEntity create(EspecialistaEntity especialistaEntity) {
         LOGGER.log(Level.INFO, "Creando un nuevo especialista");
         
@@ -32,7 +37,13 @@ public class EspecialistaPersistence {
         LOGGER.log(Level.INFO, "Saliendo de crear un nuevo especialista");
         return especialistaEntity;
     }
-     
+     /**
+     * Devuelve todas las especialistaes de la base de datos.
+     *
+     * @return una lista con todas las especialistaes que encuentre en la base de
+     * datos, "select u from EspecialistaEntity u" es como un "select * from
+     * EspecialistaEntity;" - "SELECT * FROM table_name" en SQL.
+     */
       public List<EspecialistaEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los especialistas");
         // Se crea un query para buscar todos los especialistas en la base de datos.
@@ -40,6 +51,12 @@ public class EspecialistaPersistence {
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de especialistas.
         return query.getResultList();
     }
+      /**
+     * Busca si hay alguna especialista con el id que se envía de argumento
+     *
+     * @param especialistasId: id correspondiente a la especialista buscada.
+     * @return una especialista.
+     */
        public EspecialistaEntity find(Long especialistaId) {
         LOGGER.log(Level.INFO, "Consultando el especialista con id={0}", especialistaId);
         /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
@@ -48,6 +65,14 @@ public class EspecialistaPersistence {
          */
         return em.find(EspecialistaEntity.class, especialistaId);
     }
+        /**
+     * Actualiza una especialista.
+     *
+     * @param especialistaEntity: la especialista que viene con los nuevos cambios.
+     * Por ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
+     * update.
+     * @return una especialista con los cambios aplicados.
+     */
        public EspecialistaEntity update(EspecialistaEntity especialistaEntity) {
         LOGGER.log(Level.INFO, "Actualizando el especialista con id = {0}", especialistaEntity.getId());
         /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
@@ -57,14 +82,20 @@ public class EspecialistaPersistence {
         LOGGER.log(Level.INFO, "Saliendo de actualizar el especialista con id = {0}", especialistaEntity.getId());
         return em.merge(especialistaEntity);
     }
-
+/**
+     *
+     * Borra una especialista de la base de datos recibiendo como argumento el id
+     * de la especialista
+     *
+     * @param especialistasId: id correspondiente a la especialista a borrar.
+     */
      public void delete(Long especialistaId) {
         LOGGER.log(Level.INFO, "Borrando especialista con id = {0}", especialistaId);
-        // Se hace uso de mismo método que esta explicado en public EditorialEntity find(Long id) para obtener la especialista a borrar.
+        // Se hace uso de mismo método que esta explicado en public EspecialistaEntity find(Long id) para obtener la especialista a borrar.
         EspecialistaEntity entity = em.find(EspecialistaEntity.class, especialistaId);
         /* Note que una vez obtenido el objeto desde la base de datos llamado "entity", volvemos hacer uso de un método propio del
          EntityManager para eliminar de la base de datos el objeto que encontramos y queremos borrar.
-         Es similar a "delete from EditorialEntity where id=id;" - "DELETE FROM table_name WHERE condition;" en SQL.*/
+         Es similar a "delete from EspecialistaEntity where id=id;" - "DELETE FROM table_name WHERE condition;" en SQL.*/
         em.remove(entity);
         LOGGER.log(Level.INFO, "Saliendo de borrar el especialista con id = {0}", especialistaId);
     }

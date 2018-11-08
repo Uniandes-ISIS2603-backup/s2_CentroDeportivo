@@ -29,26 +29,45 @@ public class RutinaEntity extends BaseEntity implements Serializable {
      @PodamExclude
     @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
     List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
-     
+     /**
+     *pide indentificador unico de rutina por deportista
+     * 
+     */
     public Integer getIdentificadorRutina() {
         return identificadorRutina;
     }
-
+/**
+     * asigna identificado unoco de rutina por deportista
+     * 
+     */
     public void setIdentificadorRutina(Integer identificadorRutina) {
         this.identificadorRutina = identificadorRutina;
     }
-
+/**
+     * pide estado a rutina
+     * 
+     */
     public Boolean getEstadoTerminado() {
         return estadoTerminado;
     }
-
+/**
+     * asigna estado a rutina
+     * 
+     */
     public void setEstadoTerminado(Boolean estadoTerminado) {
         this.estadoTerminado = estadoTerminado;
     }
+    /**
+     * pide nombre a rutina
+     * 
+     */
     public String getNombre() {
         return nombre;
     }
-
+/**
+     * asigna nombre a rutina
+     * 
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -57,13 +76,17 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     
     
     /**
-     * Devuelve los deportistas que son asesorados por este deportista
+     * Devuelve los objetivos de esta rutina
      * @return Collection los deportistas
      */
     public List<ObjetivoEntity> getObjetivos()
     {
       return this.objetivos;  
     }
+    /**
+     * asigna los objetivos de esta rutina
+     * 
+     */
     public void setObjetivos(List<ObjetivoEntity> deportistas)
     {
         this.objetivos=deportistas;

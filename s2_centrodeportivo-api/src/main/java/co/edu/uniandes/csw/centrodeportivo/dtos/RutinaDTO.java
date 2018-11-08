@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
- *
+ * Objeto de transferencia de datos de rutina
  * @author Francisco Jose MacAllister
  */
 public class RutinaDTO implements Serializable {
@@ -22,12 +22,19 @@ public class RutinaDTO implements Serializable {
     public Integer identificadorRutina;
     public String nombre;
     public Boolean estadoTerminado;
-   
+     /**
+     * Constructor por defecto
+     */
     public RutinaDTO()
     {
         
     }
-
+/**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param rutinaEntity: Es la entidad que se va a convertir a DTO
+     */
     public RutinaDTO(RutinaEntity createRutina) {
         if(createRutina!=null)
         {
@@ -36,37 +43,76 @@ public class RutinaDTO implements Serializable {
             this.nombre=createRutina.getNombre();
         }
     }
-
+/**
+     * Devuelve el identificador unico  de la rutina asociada al deportista.
+     *
+     * @return the identificadorRutina
+     */
     public int getIdentificadorRutina() {
         return identificadorRutina;
     }
-
+/**
+     * Modifica el identificador unico  de la rutina asociada al deportista.
+     *
+     * @param identificadorRutina the id to set
+     */
     public void setIdentificadorRutina(int identificadorRutina) {
         this.identificadorRutina = identificadorRutina;
     }
+    /**
+     * Modifica el ID de la rutina.
+     *
+     * @param id the id to set
+     */
       public void setId(Long id) {
         this.id = id;
     }
-      public long getID()
+      /**
+     * Devuelve el ID de la rutina.
+     *
+     * @return the id
+     */
+      public Long getID()
       {
           return this.id;
       }
-
+/**
+     * Devuelve el nombre de la rutina.
+     *
+     * @return the name
+     */
     public String getNombre() {
         return nombre;
     }
-
+/**
+     * Modifica el nombre de la rutina.
+     *
+     * @param name the name to set
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/**
+     * Devuelve el estado de terminacion  de la rutina.
+     *
+     * @return estadoTerminado
+     */
     public boolean getEstadoTerminado() {
         return estadoTerminado;
     }
-
+/**
+     * Modifica el estado de terminación de una rutina.
+     *
+     * @param estadoTerminado
+     */
     public void setEstadoTerminado(boolean estadoTerminado) {
         this.estadoTerminado = estadoTerminado;
     }
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
      public RutinaEntity toEntity() {
         RutinaEntity rutinaEntity = new RutinaEntity();      
         rutinaEntity.setId(this.id);

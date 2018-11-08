@@ -30,46 +30,77 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     private List <ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
    
     
-    
+    /**
+     * pide nombre de Especialista
+     * 
+     */
     public String getNombre() {
         return nombre;
     }
-
+/**
+     * Asigna nombre a Especialista
+     * 
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/**
+     * pide especialidad de Especialista
+     * 
+     */
     public String getEspecialidad() {
         return especialidad;
     }
-
+/**
+     * Asigna especialidad a Especialista
+     * 
+     */
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-
+/**
+     * Asigna cedula a Especialista
+     * 
+     */
     public void setCedula(Integer cedula) {
         this.cedula=cedula;
     }
+    /**
+     *pide cedula de especialista Especialista
+     * 
+     */
       public Integer getCedula() {
         return cedula;
     }
 
      /**
-     * Devuelve los deportistas que son asesorados por este deportista
+     * Devuelve los deportistas que son asesorados por este Especialista
      * @return Collection los deportistas
      */
     public List<DeportistaEntity> getDeportistas()
     {
       return deportistas;  
     }
+    /**
+     * Asigna deprotistas a especialista Especialista
+     * 
+     */
     public void setDeportistas(List<DeportistaEntity> deportistas)
     {
         deportistas=deportistas;
     }
+    /**
+     * Devuelve los objetivos de este Especialista
+     * @return Collection los deportistas
+     */
      public List<ObjetivoEntity> getObjetivos()
     {
       return objetivos;  
     }
+     /**
+     * Asigna objetivos a especialista Especialista
+     * 
+     */
     public void setObjetivos(List<ObjetivoEntity> listaObjetivos)
     {
       objetivos=listaObjetivos;  
