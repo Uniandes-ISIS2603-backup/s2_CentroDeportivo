@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.centrodeportivo.test.persistence;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
 import javax.inject.Inject;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;

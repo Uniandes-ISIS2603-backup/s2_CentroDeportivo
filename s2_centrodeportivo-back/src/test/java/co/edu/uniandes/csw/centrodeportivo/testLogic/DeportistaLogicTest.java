@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Leidy Romero
  */
 @RunWith(Arquillian.class)
-public class DeportistaPersistenceTest {
+public class DeportistaLogicTest {
     
     @Inject
     private DeportistaPersistence deportistaPersistence;
