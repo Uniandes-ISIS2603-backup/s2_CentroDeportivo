@@ -7,15 +7,25 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
+ *Clase que modela el implemento
  * @author Lina Cardozo
  */
 public class ImplementoDTO implements Serializable {
-    
+    /**
+     * Id del implemento
+     */
     private Long id;
+    /**
+     * Nombre del implemento
+     */
     private String nombre;
+    /**
+     * Cantidad existencias del implemento
+     */
     private Integer cantidadExistencias;
     
     /**
@@ -110,5 +120,14 @@ public class ImplementoDTO implements Serializable {
         implementoEntity.setCantidadExistencias(this.cantidadExistencias);
         return implementoEntity;
     }
-    
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
+    @Override
+    public String toString() {
+
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+
+    }
 }

@@ -28,7 +28,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase que modela el recurso rutina.
  * @author Francisco Jose MacAllister
  */
 @Path("rutinas")

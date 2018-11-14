@@ -13,10 +13,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
+ * Clase que modela el detail del deportista
  * @author Leidy Romero
  */
 public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
-
+    /**
+     * Lista de objetivos del deportista
+     */
     private List<ObjetivoDTO> objetivos;
 
     /**
@@ -46,9 +49,7 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
         }
     }
     /**      *
-     * Convertir DTO a Entity      *
-     *
-     *
+     * Convertir DTO a Entity 
      * @return Un Entity con los valores del DTO      *
      */
     public DeportistaEntity toEntity() {
@@ -63,7 +64,7 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
         return deportista;
 
     }
-/**
+    /**
      * Obtiene la lista de objetivos del deportista
      * @return los objetivos
      */
@@ -72,15 +73,18 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
         return objetivos;
     }
     
-     /* Modificala lista de objetivos del deportista
+     /** Modificala lista de objetivos del deportista
      * @param pObjetivos objetivos nuevos
      */
     public void setObjetivos(List<ObjetivoDTO> pObjetivos)
     {
         this.objetivos = pObjetivos;
     }
+    /**
+     * Retorna el string de la clase
+     * @return el string
+     */
     @Override
-
     public String toString() {
 
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

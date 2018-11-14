@@ -5,11 +5,8 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
-
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
-import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
-import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,8 +15,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
- * @author estudiante
+ *Clase que modela el detalle del ejercicio
+ * @author Daniel Pardo
  */
 public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
 {
@@ -27,6 +24,9 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
     * Esta lista de tipo ZonaCuerpoDTO contiene las implementos que estan asociadas a un rutina
      */
     private List<ZonaCuerpoDTO> zonasCuerpo;
+    /**
+     * Lista de implementos 
+     */
     private List<ImplementoDTO> implementos;
 
     /**
@@ -98,6 +98,10 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
     {
         this.implementos = implementos;
     }
+    /**
+     * Convertir DTO a Entity 
+     * @return Un Entity con los valores del DTO
+     */
     @Override
     public EjercicioEntity toEntity() {
         EjercicioEntity ejercicioEntity = super.toEntity();
@@ -117,11 +121,13 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
         }
         return ejercicioEntity;
     }
-    
+    /**
+     * Retorna el string de la clase
+     * @return string
+     */
     @Override
     public String toString() 
     {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
-    
+    } 
 }

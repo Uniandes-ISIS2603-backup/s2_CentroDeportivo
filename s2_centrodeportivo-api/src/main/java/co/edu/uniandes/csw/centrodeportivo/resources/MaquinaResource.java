@@ -52,7 +52,7 @@ public class MaquinaResource implements Serializable{
     {
         LOGGER.info("MaquinaReosurce getMaquinas: input: void");
         List<MaquinaDetailDTO> listaMaquinas = listEntity2DetailDTO(maquinaLogic.getMaquinas());
-        LOGGER.log(Level.INFO, "MaquinaReosurce getMaquinas: olistEntity2DetailDTOutput: {0}", listaMaquinas.toString());
+        LOGGER.log(Level.INFO, "MaquinaReosurce getMaquinas: output: {0}", listaMaquinas.toString());
         return listaMaquinas;
     }
     

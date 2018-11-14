@@ -17,7 +17,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 /**
- *aa
+ * Clase que modela el recurso ejercicio
  * @author Daniel Pardo
  */
 @Path("ejercicios")

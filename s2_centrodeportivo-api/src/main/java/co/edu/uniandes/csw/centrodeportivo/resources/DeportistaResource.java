@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,14 +29,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /** 
-* Clase que implementa el recurso "deportistas". 
+* Clase que modela el recurso "deportistas". 
 * @author Leidy Romero 
 */ 
 @Path("deportistas") 
 @Produces("application/json") 
 @Consumes("application/json") 
 @RequestScoped 
-public class DeportistaResource { 
+public class DeportistaResource implements Serializable{ 
 
     private static final Logger LOGGER = Logger.getLogger(DeportistaResource.class.getName());
     @Inject
@@ -97,7 +98,7 @@ public class DeportistaResource {
         if (deportistaEntity == null)  
             throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404); 
          
-        DeportistaDTO detailDTO = new DeportistaDTO(deportistaEntity); 
+        DeportistaDetailDTO detailDTO = new DeportistaDetailDTO(deportistaEntity); 
         LOGGER.log(Level.INFO, "DeportistaResource getDeportista: output: {0}", detailDTO.toString()); 
         return detailDTO; 
     }
@@ -123,7 +124,7 @@ public class DeportistaResource {
         if (deportistaLogic.getDeportista(deportistasId) == null)  
             throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
 
-        DeportistaDTO detailDTO = new DeportistaDTO(deportistaLogic.updateDeportista(deportistasId, deportista.toEntity())); 
+        DeportistaDetailDTO detailDTO = new DeportistaDetailDTO(deportistaLogic.updateDeportista(deportistasId, deportista.toEntity())); 
         LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: output: {0}", detailDTO.toString()); 
         return detailDTO; 
     }
@@ -142,7 +143,13 @@ public class DeportistaResource {
         return list;
     }
     
-    
+     @Path("{deportistasId: \\d+}/objetivos")
+    public Class<DeportistaObjetivoResource> getDeportistaObjetivosReosurce(@PathParam("deportistasId") Long deportistasId) {
+        if (deportistaLogic.getDeportista(deportistasId) == null) {
+            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+        }
+            return DeportistaObjetivoResource.class;
+    }
     //ELIMINAR?
     
 } 

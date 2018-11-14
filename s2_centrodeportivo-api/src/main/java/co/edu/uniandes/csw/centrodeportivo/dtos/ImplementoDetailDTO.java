@@ -11,11 +11,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
+ *Clase que modela el detalle del implemento
  * @author Lina Cardozo
  */
 public class ImplementoDetailDTO extends ImplementoDTO implements Serializable {
-
+    /**
+     * Ejercicio del implemento
+     */
     private EjercicioDTO ejercicio;
 
     /**
@@ -73,7 +75,10 @@ public class ImplementoDetailDTO extends ImplementoDTO implements Serializable {
     public EjercicioDTO getEjercicio() {
         return ejercicio;
     }
-
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

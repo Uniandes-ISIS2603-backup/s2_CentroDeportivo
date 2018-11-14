@@ -142,7 +142,13 @@ public class ObjetivoResource {
         return list;
     }
     
-    
+     @Path("{objetivosId: \\d+}/deportistas")
+    public Class<ObjetivoDeportistaResource> getObjetivoDeportistasReosurce(@PathParam("objetivosId") Long objetivosId) {
+        if (objetivoLogic.getObjetivo(objetivosId) == null) {
+            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404);
+        }
+            return ObjetivoDeportistaResource.class;
+}
     //ELIMINAR?
     
 } 

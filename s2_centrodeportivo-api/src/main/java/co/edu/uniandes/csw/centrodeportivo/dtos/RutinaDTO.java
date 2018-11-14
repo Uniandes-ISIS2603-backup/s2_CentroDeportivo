@@ -17,10 +17,21 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Francisco Jose MacAllister
  */
 public class RutinaDTO implements Serializable {
-    
+    /**
+     * Identificador unico de la rutina
+     */
     public Long id;
+    /**
+     * Identificador de la rutina repetible por deportista
+     */
     public Integer identificadorRutina;
+    /**
+     * Nombre de la rutina
+     */
     public String nombre;
+    /**
+     * Estado de la rutina
+     */
     public Boolean estadoTerminado;
      /**
      * Constructor por defecto
@@ -29,11 +40,11 @@ public class RutinaDTO implements Serializable {
     {
         
     }
-/**
+    /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
-     * @param rutinaEntity: Es la entidad que se va a convertir a DTO
+     * @param createRutina Es la entidad que se va a convertir a DTO
      */
     public RutinaDTO(RutinaEntity createRutina) {
         if(createRutina!=null)
@@ -43,7 +54,7 @@ public class RutinaDTO implements Serializable {
             this.nombre=createRutina.getNombre();
         }
     }
-/**
+    /**
      * Devuelve el identificador unico  de la rutina asociada al deportista.
      *
      * @return the identificadorRutina
@@ -51,7 +62,7 @@ public class RutinaDTO implements Serializable {
     public int getIdentificadorRutina() {
         return identificadorRutina;
     }
-/**
+    /**
      * Modifica el identificador unico  de la rutina asociada al deportista.
      *
      * @param identificadorRutina the id to set
@@ -64,19 +75,19 @@ public class RutinaDTO implements Serializable {
      *
      * @param id the id to set
      */
-      public void setId(Long id) {
-        this.id = id;
+    public void setId(Long id) {
+      this.id = id;
+  }
+    /**
+    * Devuelve el ID de la rutina.
+    *
+    * @return the id
+    */
+    public Long getId()
+    {
+        return this.id;
     }
-      /**
-     * Devuelve el ID de la rutina.
-     *
-     * @return the id
-     */
-      public Long getID()
-      {
-          return this.id;
-      }
-/**
+    /**
      * Devuelve el nombre de la rutina.
      *
      * @return the name
@@ -84,15 +95,15 @@ public class RutinaDTO implements Serializable {
     public String getNombre() {
         return nombre;
     }
-/**
+    /**
      * Modifica el nombre de la rutina.
      *
-     * @param name the name to set
+     * @param nombre the name to set
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-/**
+    /**
      * Devuelve el estado de terminacion  de la rutina.
      *
      * @return estadoTerminado
@@ -100,7 +111,7 @@ public class RutinaDTO implements Serializable {
     public boolean getEstadoTerminado() {
         return estadoTerminado;
     }
-/**
+    /**
      * Modifica el estado de terminación de una rutina.
      *
      * @param estadoTerminado
@@ -120,6 +131,10 @@ public class RutinaDTO implements Serializable {
         rutinaEntity.setEstadoTerminado(this.estadoTerminado);
         return rutinaEntity;
     }
+     /**
+      * Retorna el string del DTO
+      * @return string
+      */
       @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

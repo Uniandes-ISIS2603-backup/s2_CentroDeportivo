@@ -15,12 +15,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
- * @author estudiante
+ * Clase que modela el detalle de la maquina
+ * @author dy.quintero
  */
 public class MaquinaDetailDTO extends MaquinaDTO implements Serializable
 {
-    
+    /**
+     * Lista de ejercicios de la maquina
+     */
     private List<EjercicioDTO> ejercicios;
 
     /**

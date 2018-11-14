@@ -14,20 +14,20 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-
-
 /**
- *
+ * Clase que modela el detalle de la rutina.
  * @author Francisco Jose MacAllister
  */
 public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     
-    /*
+    /**
     * Esta lista de tipo EjercicioDTO contiene las máquinas que estan asociadas a un rutina
      */
     private List<EjercicioDTO> ejercicios;
+    /**
+     * Lista de tipo ObjetivoDTO que contiene los objetivos asociaciados a la rutina.
+     */
     private List<ObjetivoDTO> objetivos;
-
     /**
      * Constructor por defecto
      */
@@ -35,7 +35,11 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     {
         
     }
-
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param rutinaEntity La entidad del rutina para transformar a DTO.
+     */
     public RutinaDetailDTO(RutinaEntity rutinaEntity) {
         super(rutinaEntity);
         if (rutinaEntity != null) {
@@ -53,42 +57,6 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
             }
         }
     }
-
-    /**
-     * Constructor para transformar un Entity a un DTO
-     *
-     * @param rutinaEntity La entidad del rutina para transformar a DTO.
-     */
-    /*public RutinaDetailDTO(RutinaEntity rutinaEntity) {
-        super(rutinaEntity);
-        if (rutinaEntity != null) {
-            if (rutinaEntity.getEjercicios() != null) {
-                ejercicios = new ArrayList<>();
-                for (EjercicioEntity entityEjercicio : rutinaEntity.getEjercicios()) {
-                    ejercicios.add(new EjercicioDTO(entityEjercicio));
-                }
-            }
-        }
-    }*/
-
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return El DTO del rutina para transformar a Entity
-     */
-    /*@Override
-    public RutinaEntity toEntity() {
-        RutinaEntity rutinaEntity = super.toEntity();
-        if (ejercicios != null) {
-            List<EjercicioEntity> ejerciciosEntity = new ArrayList<>();
-            for (EjercicioDTO dtoEjercicio : ejercicios) {
-                ejerciciosEntity.add(dtoEjercicio.toEntity());
-            }
-            rutinaEntity.setEjercicios(ejerciciosEntity);
-        }
-        return rutinaEntity;
-    }*/
-
     /**
      * Devuelve la lista de máquinas del rutina.
      *
@@ -98,7 +66,6 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     {
         return ejercicios;
     }
-
     /**
      * Modifica la lista de máquinas del rutina.
      *
@@ -108,7 +75,6 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     {
         this.ejercicios = ejercicios;
     }
-
     @Override
     public String toString() 
     {
@@ -118,7 +84,6 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     {
         return objetivos;
     }
-
     /**
      * Modifica la lista de máquinas del seguimiento.
      *
@@ -130,10 +95,22 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     }
 
     public RutinaEntity toEntity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RutinaEntity rutinaEntity = super.toEntity();
+        if (objetivos != null) {
+            List<ObjetivoEntity> objetivosEntity = new ArrayList<>();
+            for (ObjetivoDTO dtoObjetivo : objetivos) {
+                objetivosEntity.add(dtoObjetivo.toEntity());
+            }
+            rutinaEntity.setObjetivos(objetivosEntity);
+        }
+        if (ejercicios != null) {
+            List<EjercicioEntity> ejerciciosEntity = new ArrayList<>();
+            for (EjercicioDTO dtoEjercicio : ejercicios) {
+                ejerciciosEntity.add(dtoEjercicio.toEntity());
+            }
+            rutinaEntity.setEjercicios(ejerciciosEntity);
+        }
+        return rutinaEntity;
     }
 
-    public void setId(Long rutinasId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
