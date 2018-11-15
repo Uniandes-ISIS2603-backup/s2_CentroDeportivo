@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
@@ -10,18 +10,22 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-
-
 /**
  *
  * @author Francisco Jose MacAllister
  */
 
 public class EspecialistaDTO implements Serializable {
+    
+    //El id del especialista
     public Long id;
+    //La cédula del especialista
     public int cedula;
+    //El nombre del especialista
     public String nombre;
+    //La especialidad del especialista
     public String especialidad;
+    
     /**
      * Constructor por defecto
      */
@@ -29,14 +33,14 @@ public class EspecialistaDTO implements Serializable {
     {
         
     }
-/**
+    /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
-     * @param especialistaEntity: Es la entidad que se va a convertir a DTO
+     * @param nuevoEspecialistaEntity: Es la entidad que se va a convertir a DTO
      */
     public EspecialistaDTO(EspecialistaEntity nuevoEspecialistaEntity) {
-         if (nuevoEspecialistaEntity != null) {
+        if (nuevoEspecialistaEntity != null) {
             this.id = nuevoEspecialistaEntity.getId();
             this.nombre = nuevoEspecialistaEntity.getNombre();
             this.cedula=nuevoEspecialistaEntity.getCedula();
@@ -44,67 +48,60 @@ public class EspecialistaDTO implements Serializable {
         }
     }
     /**
-     * Devuelve el ID de la especialista.
+     * Devuelve el ID del especialista.
      *
-     * @return the id
+     * @return El id del especialista
      */
     public Long getId()
     {
         return id;
     }
     /**
-     * Modifica el ID de la especialista.
+     * Modifica el ID del especialista.
      *
-     * @param id the id to set
+     * @param id El nuevo id del especialista
      */
     public void setId(Long id)
     {
         this.id=id;
     }
     /**
-     * pide cedula al especialista.
-     *
-     * 
+     * @return La cédula del especialista
      */
     public int getCedula() {
         return cedula;
     }
-/**
-     * Asigna cedula al especialista.
-     *
-     * 
+    /**
+     * Asigna cédula al especialista.
+     * @param pCedula La cédula nueva a asignar
      */
     public void setCedula(int pCedula) {
-        this.cedula=pCedula;
+        this.cedula = pCedula;
     }
-/**
-     * Devuelve el nombre de la especialista.
+    /**
+     * Devuelve el nombre del especialista.
      *
-     * @return the name
+     * @return El nombre del especialista
      */
     public String getNombre() {
         return nombre;
     }
-/**
-     * Modifica el nombre de la especialista.
-     *
-     * @param name the name to set
+    /**
+     * Modifica el nombre del especialista.
+     * @param nombre El nuevo nombre del especialista
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-/**
-     * pide especialidad al especialista.
-     *
-     * 
+    /**
+     * @return La especialidad del especialista
      */
     public String getEspecialidad() {
         return especialidad;
     }
-/**
+    /**
      * Asigna especialidad al especialista.
-     *
-     * 
+     * @param especialidad La nueva especialidad del especialista
      */
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
@@ -115,16 +112,16 @@ public class EspecialistaDTO implements Serializable {
      * @return Un Entity con los valores del DTO
      */
     public EspecialistaEntity toEntity() {
-
+        
         EspecialistaEntity especialistaEntity = new EspecialistaEntity();
         especialistaEntity.setId(this.id);
         especialistaEntity.setCedula(this.cedula);
         especialistaEntity.setNombre(this.nombre);
         especialistaEntity.setEspecialidad(this.especialidad);
         return especialistaEntity;
-
+        
     }
-   @Override
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }

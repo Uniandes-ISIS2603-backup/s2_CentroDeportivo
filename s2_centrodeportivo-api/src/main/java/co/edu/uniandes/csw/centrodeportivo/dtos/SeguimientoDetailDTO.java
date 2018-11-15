@@ -94,6 +94,24 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
     {
         this.maquinas = maquinas;
     }
+    
+    /**
+     * Devuelve el deportista asociado a este seguimiento
+     *
+     * @return DTO del deportista
+     */
+    public DeportistaDTO getDeportista() {
+        return deportista;
+    }
+
+    /**
+     * Modifica el deportista asociado a este seguimiento.
+     *
+     * @param deportista El deportista nuevo asociado al seguimiento
+     */
+    public void setDeportista(DeportistaDTO deportista) {
+        this.deportista = deportista;
+    }
 
     @Override
     public String toString() 
