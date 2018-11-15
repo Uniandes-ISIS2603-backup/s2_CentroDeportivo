@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.ejb;
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EspecialistaPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class EspecialistaDeportistasLogic {
      private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasLogic.class.getName());
 
     @Inject
-    private DeportistaPersistence deportistaPersistence;
+    private DeportistaPersistenc deportistaPersistence;
 
     @Inject
     private EspecialistaPersistence especialistaPersistence;

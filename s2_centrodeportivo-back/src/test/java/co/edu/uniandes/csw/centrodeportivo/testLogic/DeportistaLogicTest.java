@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
 import javax.inject.Inject;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
-import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistence;
+import co.edu.uniandes.csw.centrodeportivo.persistence.DeportistaPersistenc;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class DeportistaLogicTest {
     
     @Inject
-    private DeportistaPersistence deportistaPersistence;
+    private DeportistaPersistenc deportistaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -51,7 +51,7 @@ public class DeportistaLogicTest {
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(DeportistaEntity.class.getPackage())
-                .addPackage(DeportistaPersistence.class.getPackage())
+                .addPackage(DeportistaPersistenc.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

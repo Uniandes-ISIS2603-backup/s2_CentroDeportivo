@@ -63,8 +63,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     public List<ObjetivoEntity> getObjetivos()
     {
       return this.objetivos;  
-    }
-    
+    }  
     public void setObjetivo(ObjetivoEntity pObjetivo)
     {
         this.objetivo = pObjetivo;
@@ -81,12 +80,10 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     {
         this.objetivos = pObjetivos;
     }
-    
     public ObjetivoEntity getObjetivo()
     {
        return objetivo;
     }
-    
     public void setEspecialista(EspecialistaEntity pEspecialista)
     {
         this.especialista = pEspecialista;
@@ -95,7 +92,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     {
        return especialista;
     }
-    
     /**
      * Devuelve el NOMBRE del deportista.
      *
@@ -104,7 +100,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     public String getNombre() {
         return nombre;
     }
-
     /**
      * Modifica el NOMBRE del deportista.
      *
@@ -113,7 +108,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     public void setNombre(String pNombre) {
         this.nombre = pNombre;
     }
-
     /**
      * *
      * Devuelve el SEXO del deportista
@@ -125,7 +119,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return sexo;
 
     }
-
     /**
      * *
      * Modifica el SEXO del deportista.
@@ -138,7 +131,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.sexo = pSexo;
 
     }
-
     /**
      * *
      * Devuelve la ALTURA del deportista.
@@ -151,7 +143,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return altura;
 
     }
-
     /**
      * *
      * Modifica la ALTURA del deportista.
@@ -164,7 +155,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.altura = pAltura;
 
     }
-
     /**
      * *
      * Devuelve el RITMO CARDIACO del deportista.
@@ -177,7 +167,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return ritmoCardiaco;
 
     }
-
     /**
      * *
      * Modifica el RITMO CARDIACO del deportista.
@@ -190,7 +179,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.ritmoCardiaco = pRitmo;
 
     }
-
     /**
      * *
      * Devuelve la MEDIDA DE CINTURA del deportista.
@@ -203,7 +191,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return medidaCintura;
 
     }
-
     /**
      * *
      * Modifica la MEDIDA DE LA CINTURA del deportista.
@@ -216,7 +203,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.medidaCintura = pMedida;
 
     }
-
     /**
      * *
      * Devuelve la MEDIDA DE PIERNAS del deportista.
@@ -229,7 +215,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return medidaPiernas;
 
     }
-
     /**
      * *
      * Modifica la MEDIDA DE PIERNAS del deportista.
@@ -242,7 +227,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.medidaPiernas = pMedida;
 
     }
-
     /**
      * *
      * Devuelve la MEDIDA DE BRAZOS del deportista.
@@ -255,7 +239,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return medidaBrazos;
 
     }
-
     /**
      * *
      * Modifica la MEDIDA DE BRAZOS del deportista.
@@ -268,7 +251,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.medidaBrazos = pMedida;
 
     }
-
     /**
      * *
      * Devuelve el numero de identificacion del deportista.
@@ -281,7 +263,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return cedula;
 
     }
-
     /**
      * *
      * Devuelve el PESO del deportista.
@@ -294,7 +275,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return peso;
 
     }
-
     /**
      * *
      * Modifica el PESO del deportista.
@@ -307,7 +287,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.peso = pPeso;
 
     }
-
     /**
      * *
      * Devuelve la PRESION SANGUINEA del deportista.
@@ -320,7 +299,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return presionSanguinea;
 
     }
-
     /**
      * *
      * Modifica la PRESION SANGUINEA del deportista.
@@ -333,7 +311,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         this.presionSanguinea = pPresion;
 
     }
-
     /**
      * *
      * Devuelve la FECHA DE NACIMIENTO del deportista.
@@ -346,7 +323,7 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
         return fechaNacimiento;
 
     }
-/**
+    /**
      * *
      * odifica la FECHA DE NACIMIENTO del deportista.
      *
@@ -369,7 +346,6 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     public String getUltimaActualizacionDatos() {
         return ultimaActualizacionDatos;
     }
-
     /**
      * *
      * Modifica la ULTIMA FECHA DE ACTUALIZACION DE DATOS del deportista.
