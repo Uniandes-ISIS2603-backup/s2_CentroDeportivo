@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *Clase que modela el implemento
+ * Clase que modela el implemento
  * @author Lina Cardozo
  */
 public class ImplementoDTO implements Serializable {

@@ -23,6 +23,7 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     public String nombre;
     public String especialidad;
     public Integer cedula;
+    public String imagen;
 
     @PodamExclude
     @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
@@ -71,6 +72,21 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
      */
       public Integer getCedula() {
         return cedula;
+    }
+      
+    /**
+     * Asigna imagen al especialista.
+     * @param imagen La nueva imagen del especialista
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    /**
+     * @return La imagen del especialista
+     */
+    public String getImagen() {
+        return imagen;
     }
 
      /**

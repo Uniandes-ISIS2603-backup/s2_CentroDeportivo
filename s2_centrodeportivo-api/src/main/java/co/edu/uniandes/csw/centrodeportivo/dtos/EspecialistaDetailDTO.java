@@ -17,8 +17,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
- *
- * @especialista Francisco Jose MacAllister
+ * Clase que extiende de {@link EspecialistaDTO} para manejar las relaciones entre los
+ * EspecialistaDTO y otros DTOs. Para conocer el contenido de un Especialista vaya a la
+ * documentacion de {@link EspecialistaDTO}
+ * @author Francisco Jose MacAllister
  */
 
 public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializable {
@@ -65,9 +67,8 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
     /**
      * Convierte un objeto EspecialistaDetailDTO a EspecialistaEntity incluyendo los
      * atributos de EspecialistaDTO.
-     *
+
      * @return Nuevo objeto EspecialistaEntity.
-     *
      */
     @Override
     public EspecialistaEntity toEntity() {
@@ -90,9 +91,9 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
     }
 
     /**
-     * Devuelve la lista de máquinas del especialista.
+     * Devuelve la lista de deportistas del especialista.
      *
-     * @return las máquinas
+     * @return Los deportistas del especialista
      */
     public List<DeportistaDTO> getDeportistas() 
     {
@@ -100,20 +101,20 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
     }
 
     /**
-     * Modifica la lista de máquinas del especialista.
+     * Modifica la lista de deportistas del especialista.
      *
-     * @param deportistas las máquinas a modificar
+     * @param deportistas las deportistas a modificar
      */
     public void setDeportistas(List<DeportistaDTO> deportistas) 
     {
         this.deportistas = deportistas;
     }
 
-    @Override
-    public String toString() 
-    {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+    /**
+     * Devuelve la lista de objetivos del especialista.
+     *
+     * @return Los objetivos del especialista
+     */
     public List<ObjetivoDTO> getObjetivos() 
     {
         return objetivos;
@@ -122,10 +123,16 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
     /**
      * Modifica la lista de máquinas del seguimiento.
      *
-     * @param objetivos las máquinas a modificar
+     * @param objetivos los objetivos a modificar
      */
     public void setObjetivos(List<ObjetivoDTO> objetivos) 
     {
         this.objetivos = objetivos;
+    }
+    
+    @Override
+    public String toString() 
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

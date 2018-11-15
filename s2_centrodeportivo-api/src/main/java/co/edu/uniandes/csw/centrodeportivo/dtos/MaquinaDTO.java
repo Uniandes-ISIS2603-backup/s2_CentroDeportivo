@@ -11,8 +11,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *Clase que modela la maquina
- * @author dy.quintero
+ * Clase que modela la máquina
+ * @author Diany Quintero
  */
 public class MaquinaDTO implements Serializable{
     /**

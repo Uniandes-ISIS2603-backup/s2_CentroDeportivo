@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
+ * Clase que modela un especialista.
  * @author Francisco Jose MacAllister
  */
 
@@ -25,6 +25,8 @@ public class EspecialistaDTO implements Serializable {
     public String nombre;
     //La especialidad del especialista
     public String especialidad;
+    //La imagen del especialista
+    public String imagen;
     
     /**
      * Constructor por defecto
@@ -45,6 +47,7 @@ public class EspecialistaDTO implements Serializable {
             this.nombre = nuevoEspecialistaEntity.getNombre();
             this.cedula=nuevoEspecialistaEntity.getCedula();
             this.especialidad=nuevoEspecialistaEntity.getEspecialidad();
+            this.imagen = nuevoEspecialistaEntity.getImagen();
         }
     }
     /**
@@ -80,7 +83,6 @@ public class EspecialistaDTO implements Serializable {
     }
     /**
      * Devuelve el nombre del especialista.
-     *
      * @return El nombre del especialista
      */
     public String getNombre() {
@@ -99,6 +101,7 @@ public class EspecialistaDTO implements Serializable {
     public String getEspecialidad() {
         return especialidad;
     }
+   
     /**
      * Asigna especialidad al especialista.
      * @param especialidad La nueva especialidad del especialista
@@ -106,6 +109,22 @@ public class EspecialistaDTO implements Serializable {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+    
+     /**
+     * Asigna imagen al especialista.
+     * @param imagen La nueva imagen del especialista
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    /**
+     * @return La imagen del especialista
+     */
+    public String getImagen() {
+        return imagen;
+    }
+    
     /**
      * Convertir DTO a Entity
      *
@@ -118,9 +137,11 @@ public class EspecialistaDTO implements Serializable {
         especialistaEntity.setCedula(this.cedula);
         especialistaEntity.setNombre(this.nombre);
         especialistaEntity.setEspecialidad(this.especialidad);
+        especialistaEntity.setImagen(this.imagen);
         return especialistaEntity;
         
     }
+    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
