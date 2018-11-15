@@ -18,14 +18,17 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
- * @author Francisco Jose MacAllister
+ * @especialista Francisco Jose MacAllister
  */
 
 public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializable {
     /*
-    * Esta lista de tipo DeportistaDTO contiene las máquinas que estan asociadas a un especialista
+    * Esta lista de tipo DeportistaDTO contiene los deportistas que estan asociados a un especialista
      */
     private List<DeportistaDTO> deportistas;
+    /*
+    * Esta lista de tipo ObjetivoDTO contiene los objetivos que estan asociados a un especialista
+     */
     private List<ObjetivoDTO> objetivos;
 
     /**
@@ -60,11 +63,13 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
     }
 
     /**
-     * Transformar un DTO a un Entity
+     * Convierte un objeto EspecialistaDetailDTO a EspecialistaEntity incluyendo los
+     * atributos de EspecialistaDTO.
      *
-     * @return El DTO del especialista para transformar a Entity
+     * @return Nuevo objeto EspecialistaEntity.
+     *
      */
-    /*@Override
+    @Override
     public EspecialistaEntity toEntity() {
         EspecialistaEntity especialistaEntity = super.toEntity();
         if (deportistas != null) {
@@ -74,8 +79,15 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
             }
             especialistaEntity.setDeportistas(deportistasEntity);
         }
+        if (objetivos != null) {
+            List<ObjetivoEntity> objetivosEntity = new ArrayList<>();
+            for (ObjetivoDTO dtoObjetivo : objetivos) {
+                objetivosEntity.add(dtoObjetivo.toEntity());
+            }
+            especialistaEntity.setObjetivos(objetivosEntity);
+        }
         return especialistaEntity;
-    }*/
+    }
 
     /**
      * Devuelve la lista de máquinas del especialista.

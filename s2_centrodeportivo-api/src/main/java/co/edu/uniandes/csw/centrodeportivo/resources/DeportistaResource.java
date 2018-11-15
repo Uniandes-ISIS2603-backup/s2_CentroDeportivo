@@ -92,7 +92,7 @@ public class DeportistaResource implements Serializable{
      */
     @GET
     @Path("{deportistasId: \\d+}")
-    public DeportistaDTO getDeportista(@PathParam("deportistasId") Long deportistasId) throws WebApplicationException {
+    public DeportistaDetailDTO getDeportista(@PathParam("deportistasId") Long deportistasId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "DeportistaResource getDeportista: input: {0}", deportistasId);
         DeportistaEntity deportistaEntity = deportistaLogic.getDeportista(deportistasId); 
         if (deportistaEntity == null)  

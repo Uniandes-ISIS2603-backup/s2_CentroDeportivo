@@ -58,7 +58,7 @@ public class MaquinaResource implements Serializable{
     
     @GET
     @Path("{maquinasId: \\d+}")
-    public MaquinaDTO getMaquina(@PathParam("maquinasId") Long maquinasId) {
+    public MaquinaDetailDTO getMaquina(@PathParam("maquinasId") Long maquinasId) throws WebApplicationException {
        
         LOGGER.log(Level.INFO, "MaquinaResource getMaquina: input: {0}", maquinasId);
         MaquinaEntity maquinaEntity = maquinaLogic.getMaquina(maquinasId);
@@ -67,7 +67,8 @@ public class MaquinaResource implements Serializable{
         }
         MaquinaDetailDTO detailDTO = new MaquinaDetailDTO(maquinaEntity);
         LOGGER.log(Level.INFO, "MaquinaResource getMaquina: output: {0}", detailDTO.toString());
-        return detailDTO;    }
+        return detailDTO;    
+    }
     
     @PUT
     @Path("{maquinasId: \\d+}")

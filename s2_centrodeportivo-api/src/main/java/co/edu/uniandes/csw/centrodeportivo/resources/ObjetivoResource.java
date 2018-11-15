@@ -91,13 +91,13 @@ public class ObjetivoResource {
      */
     @GET
     @Path("{objetivosId: \\d+}")
-    public ObjetivoDTO getObjetivo(@PathParam("objetivosId") Long objetivosId) throws WebApplicationException {
+    public ObjetivoDetailDTO getObjetivo(@PathParam("objetivosId") Long objetivosId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: input: {0}", objetivosId);
         ObjetivoEntity objetivoEntity = objetivoLogic.getObjetivo(objetivosId); 
         if (objetivoEntity == null)  
             throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404); 
          
-        ObjetivoDTO detailDTO = new ObjetivoDTO(objetivoEntity); 
+        ObjetivoDetailDTO detailDTO = new ObjetivoDetailDTO(objetivoEntity); 
         LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: output: {0}", detailDTO.toString()); 
         return detailDTO; 
     }

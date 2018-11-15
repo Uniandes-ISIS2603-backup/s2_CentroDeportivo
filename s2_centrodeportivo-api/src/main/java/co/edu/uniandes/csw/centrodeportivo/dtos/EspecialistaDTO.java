@@ -20,7 +20,7 @@ public class EspecialistaDTO implements Serializable {
     //El id del especialista
     public Long id;
     //La cédula del especialista
-    public int cedula;
+    public Integer cedula;
     //El nombre del especialista
     public String nombre;
     //La especialidad del especialista
@@ -68,14 +68,14 @@ public class EspecialistaDTO implements Serializable {
     /**
      * @return La cédula del especialista
      */
-    public int getCedula() {
+    public Integer getCedula() {
         return cedula;
     }
     /**
      * Asigna cédula al especialista.
      * @param pCedula La cédula nueva a asignar
      */
-    public void setCedula(int pCedula) {
+    public void setCedula(Integer pCedula) {
         this.cedula = pCedula;
     }
     /**
