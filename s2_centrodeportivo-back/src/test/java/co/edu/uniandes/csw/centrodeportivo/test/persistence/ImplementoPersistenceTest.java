@@ -166,6 +166,7 @@ public class ImplementoPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
         Assert.assertEquals(entity.getCantidadExistencias(), newEntity.getCantidadExistencias());
+        Assert.assertEquals(entity.getImagen(), newEntity.getImagen());
     }
     
     /**

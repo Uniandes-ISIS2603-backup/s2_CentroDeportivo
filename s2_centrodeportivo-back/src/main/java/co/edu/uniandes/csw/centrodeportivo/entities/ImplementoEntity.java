@@ -29,6 +29,8 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     
     private Integer cantidadExistencias;
     
+    private String imagen;
+    
     public ImplementoEntity()
     {
         
@@ -90,6 +92,26 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
      */
     public void setCantidadExistencias(Integer cantidadExistencias) {
         this.cantidadExistencias = cantidadExistencias;
+    }
+    
+    /**
+     * Devuelve la imagen del implemento.
+     *
+     * @return imagen del implemento
+     */
+    public String getImagen()
+    {
+        return imagen;
+    }
+    
+    /**
+     * Modifica la imagen del implemento.
+     *
+     * @param imagen La imagen a modificar
+     */
+    public void setImagen(String imagen)
+    {
+        this.imagen = imagen;
     }
     
 }

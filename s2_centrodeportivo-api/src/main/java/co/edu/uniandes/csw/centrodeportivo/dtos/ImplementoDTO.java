@@ -24,9 +24,13 @@ public class ImplementoDTO implements Serializable {
      */
     private String nombre;
     /**
-     * Cantidad existencias del implemento
+     * Cantidad de existencias del implemento
      */
     private Integer cantidadExistencias;
+    /**
+     * Imagen del implemento
+     */
+    private String imagen;
     
     /**
      * Constructor por defecto
@@ -47,6 +51,7 @@ public class ImplementoDTO implements Serializable {
             this.id = implementoEntity.getId();
             this.nombre = implementoEntity.getNombre();
             this.cantidadExistencias = implementoEntity.getCantidadExistencias();
+            this.imagen = implementoEntity.getImagen();
         }
     }
     
@@ -108,6 +113,26 @@ public class ImplementoDTO implements Serializable {
         this.cantidadExistencias = cantidadExistencias;
     }
     
+    /**
+     * Modifica la imagen del implemento.
+     *
+     * @param imagen La imagen a modificar
+     */
+    public void setImagen(String imagen)
+    {
+        this.imagen = imagen;
+    }
+    
+    /**
+     * Devuelve la imagen del implemento.
+     *
+     * @return imagen del implemento
+     */
+    public String getImagen()
+    {
+        return imagen;
+    }
+    
      /**
      * Convertir DTO a Entity
      *
@@ -118,6 +143,7 @@ public class ImplementoDTO implements Serializable {
         implementoEntity.setId(this.id);
         implementoEntity.setNombre(this.nombre);
         implementoEntity.setCantidadExistencias(this.cantidadExistencias);
+        implementoEntity.setImagen(this.imagen);
         return implementoEntity;
     }
     /**
