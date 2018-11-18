@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
@@ -33,7 +33,7 @@ public class RutinaDTO implements Serializable {
      * Estado de la rutina
      */
     public Boolean estadoTerminado;
-     /**
+    /**
      * Constructor por defecto
      */
     public RutinaDTO()
@@ -76,13 +76,13 @@ public class RutinaDTO implements Serializable {
      * @param id the id to set
      */
     public void setId(Long id) {
-      this.id = id;
-  }
+        this.id = id;
+    }
     /**
-    * Devuelve el ID de la rutina.
-    *
-    * @return the id
-    */
+     * Devuelve el ID de la rutina.
+     *
+     * @return the id
+     */
     public Long getId()
     {
         return this.id;
@@ -124,18 +124,18 @@ public class RutinaDTO implements Serializable {
      *
      * @return Un Entity con los valores del DTO
      */
-     public RutinaEntity toEntity() {
-        RutinaEntity rutinaEntity = new RutinaEntity();      
+    public RutinaEntity toEntity() {
+        RutinaEntity rutinaEntity = new RutinaEntity();
         rutinaEntity.setId(this.id);
         rutinaEntity.setNombre(this.nombre);
         rutinaEntity.setEstadoTerminado(this.estadoTerminado);
         return rutinaEntity;
     }
-     /**
-      * Retorna el string del DTO
-      * @return string
-      */
-      @Override
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }

@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 import co.edu.uniandes.csw.centrodeportivo.dtos.EjercicioDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.EjercicioDetailDTO;
@@ -26,10 +26,10 @@ import javax.ws.rs.*;
 @RequestScoped
 public class EjercicioResource {
     private static final Logger LOGGER = Logger.getLogger(EjercicioResource.class.getName());
-
+    
     @Inject
     EjercicioLogic ejercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     /**
      * Crea una nueva ejercicio con la informacion que se recibe en el cuerpo de
      * la petición y se regresa un objeto identico con un id auto-generado por
@@ -54,7 +54,7 @@ public class EjercicioResource {
         LOGGER.log(Level.INFO, "EjercicioResource createEjercicio: output: {0}", nuevoEjercicioDTO.toString());
         return nuevoEjercicioDTO;
     }
-
+    
     /**
      * Busca y devuelve todas las ejercicioes que existen en la aplicacion.
      *
@@ -68,7 +68,7 @@ public class EjercicioResource {
         LOGGER.log(Level.INFO, "EjercicioResource getEjercicios: output: {0}", listaEjercicioes.toString());
         return listaEjercicioes;
     }
-
+    
     /**
      * Busca la ejercicio con el id asociado recibido en la URL y la devuelve.
      *
@@ -90,7 +90,7 @@ public class EjercicioResource {
         LOGGER.log(Level.INFO, "EjercicioResource getEjercicio: output: {0}", detailDTO.toString());
         return detailDTO;
     }
-
+    
     /**
      * Actualiza la ejercicio con el id recibido en la URL con la informacion
      * que se recibe en el cuerpo de la petición.
@@ -115,9 +115,9 @@ public class EjercicioResource {
         EjercicioDetailDTO detailDTO = new EjercicioDetailDTO(ejercicioLogic.updateEjercicio(ejerciciosId, ejercicio.toEntity()));
         LOGGER.log(Level.INFO, "EjercicioResource updateEjercicio: output: {0}", detailDTO.toString());
         return detailDTO;
-
+        
     }
-
+    
     /**
      * Borra la ejercicio con el id asociado recibido en la URL.
      *
@@ -138,10 +138,6 @@ public class EjercicioResource {
         ejercicioLogic.deleteEjercicio(ejerciciosId);
         LOGGER.info("EjercicioResource deleteEjercicio: output: void");
     }
-
-    
-
-    
     
     /**
      * Convierte una lista de entidades a DTO.
@@ -160,5 +156,5 @@ public class EjercicioResource {
         }
         return list;
     }
-
+    
 }

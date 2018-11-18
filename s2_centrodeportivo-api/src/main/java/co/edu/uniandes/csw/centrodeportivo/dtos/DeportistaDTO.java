@@ -1,8 +1,8 @@
-/* 
-* To change this license header, choose License Headers in Project Properties. 
-* To change this template file, choose Tools | Templates 
-* and open the template in the editor. 
- */
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import java.io.Serializable;
@@ -68,7 +68,7 @@ public class DeportistaDTO implements Serializable {
      */
     public Integer cedula;
     /**
-     * Constructor por defecto. 
+     * Constructor por defecto.
      */
     public DeportistaDTO() {
     }
@@ -79,9 +79,9 @@ public class DeportistaDTO implements Serializable {
      * @param deportistaEntity: Es la entidad que se va a convertir a DTO      *
      */
     public DeportistaDTO(DeportistaEntity deportistaEntity) {
-
+        
         if (deportistaEntity != null) {
-
+            
             this.id = deportistaEntity.getId();
             this.nombre = deportistaEntity.getNombre();
             this.sexo = deportistaEntity.getSexo();
@@ -96,14 +96,14 @@ public class DeportistaDTO implements Serializable {
             this.cedula = deportistaEntity.getCedula();
             this.fechaNacimiento = deportistaEntity.getFechaNacimiento();
         }
-
+        
     }
     /**      *
-     * Convertir DTO a Entity      
+     * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO      *
      */
     public DeportistaEntity toEntity() {
-
+        
         DeportistaEntity deportistaEntity = new DeportistaEntity();
         deportistaEntity.setId(this.id);
         deportistaEntity.setNombre(this.nombre);
@@ -119,7 +119,7 @@ public class DeportistaDTO implements Serializable {
         deportistaEntity.setCedula(this.cedula);
         deportistaEntity.setFechaNacimiento(this.fechaNacimiento);
         return deportistaEntity;
-
+        
     }
     /**
      * Cambia el id por el recibido por parametro
@@ -206,7 +206,7 @@ public class DeportistaDTO implements Serializable {
         this.ritmoCardiaco = ritmoCardiaco;
     }
     /**
-     * Cambia la cedula por la recibida 
+     * Cambia la cedula por la recibida
      * @param cedula nueva cedula
      */
     public void setCedula(Integer cedula) {
@@ -263,14 +263,14 @@ public class DeportistaDTO implements Serializable {
     }
     /**
      * Retorna el peso del deportista
-     * @return peso 
+     * @return peso
      */
     public Double getPeso() {
         return peso;
     }
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public Double getMedidaPiernas() {
         return medidaPiernas;
@@ -310,8 +310,8 @@ public class DeportistaDTO implements Serializable {
      */
     @Override
     public String toString() {
-
+        
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-
+        
     }
 }

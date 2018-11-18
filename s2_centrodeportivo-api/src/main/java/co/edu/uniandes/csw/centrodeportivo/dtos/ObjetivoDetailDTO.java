@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import java.util.List;
@@ -13,11 +13,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
+ * Clase que extiende de {@link ObjetivoDTO} para manejar las relaciones entre los
+ * ObjetivoDTO y otros DTOs. Para conocer el contenido de un Objetivo vaya a la
+ * documentacion de {@link ObjetivoDTO}
  *
  * @author Leidy Romero
  */
 public class ObjetivoDetailDTO extends ObjetivoDTO implements Serializable{
-   
+    
+    // relación cero o muchos casos exitosos (deportistas)
     private List<DeportistaDTO> casosExitosos;
     
     /**
@@ -47,7 +51,7 @@ public class ObjetivoDetailDTO extends ObjetivoDTO implements Serializable{
         }
     }
     
-     /**
+    /**
      * Convierte un objeto ObjetivoDetailDTO a ObjetivoEntity incluyendo los
      * atributos de ObjetivoDTO
      *
@@ -75,16 +79,22 @@ public class ObjetivoDetailDTO extends ObjetivoDTO implements Serializable{
         return casosExitosos;
     }
     
-     /* Modificala lista de casos exitosos del objetivo
-     * @param pDeportistas deportistas nuevos
-     */
+    /* Modificala lista de casos exitosos del objetivo
+    * @param pDeportistas deportistas nuevos
+    */
     public void setCasosExitosos(List<DeportistaDTO> pDeportistas)
     {
         this.casosExitosos = pDeportistas;
     }
     
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
     @Override
     public String toString() {
+        
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+        
     }
 }

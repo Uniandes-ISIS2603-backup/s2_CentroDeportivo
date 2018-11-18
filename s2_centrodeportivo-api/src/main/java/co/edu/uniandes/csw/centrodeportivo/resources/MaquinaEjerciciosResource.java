@@ -162,5 +162,3 @@ public class MaquinaEjerciciosResource {
         return list;
     }
 }
-
-

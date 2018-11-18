@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.EjercicioDTO;
@@ -27,20 +27,21 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * Clase que implementa el recurso "implemento/{id}/ejercicio".
  *
- * @ejercicio estudiante
+ * @author Daniel Pardo y Lina Cardozo
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ImplementoEjercicioResource {
     private static final Logger LOGGER = Logger.getLogger(ImplementoEjercicioResource.class.getName());
-
+    
     @Inject
     private ImplementoEjercicioLogic implementoEjercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private EjercicioLogic ejercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     /**
      * Guarda un ejercicio dentro de un implemento con la informacion que recibe el la
      * URL.
@@ -64,7 +65,7 @@ public class ImplementoEjercicioResource {
         LOGGER.log(Level.INFO, "ImplementoEjercicioResource addEjercicio: output: {0}", ejercicioDTO.toString());
         return ejercicioDTO;
     }
-
+    
     /**
      * Busca el ejercicio dentro de el implemento con id asociado.
      *
@@ -85,7 +86,7 @@ public class ImplementoEjercicioResource {
         LOGGER.log(Level.INFO, "ImplementoEjercicioResource getEjercicio: output: {0}", ejercicioDetailDTO.toString());
         return ejercicioDetailDTO;
     }
-
+    
     /**
      * Remplaza la instancia de Ejercicio asociada a una instancia de Implemento
      *
@@ -108,7 +109,7 @@ public class ImplementoEjercicioResource {
         LOGGER.log(Level.INFO, "ImplementoEjercicioResource replaceEjercicio: output: {0}", ejercicioDetailDTO.toString());
         return ejercicioDetailDTO;
     }
-
+    
     /**
      * Elimina la conexión entre el ejercicio y el implemento recibido en la URL.
      *

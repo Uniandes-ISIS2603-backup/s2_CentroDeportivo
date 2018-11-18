@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -24,15 +24,15 @@ public class MaquinaDetailDTO extends MaquinaDTO implements Serializable
      * Lista de ejercicios de la maquina
      */
     private List<EjercicioDTO> ejercicios;
-
+    
     /**
      * Constructor por defecto
      */
-    public MaquinaDetailDTO() 
+    public MaquinaDetailDTO()
     {
         
     }
-
+    
     /**
      * Crea un nuevo objeto MaquinaDetailDTO a partir de un objeto
      * MaquinaEntity incluyecdo los atributos de MaquinaDTO
@@ -68,25 +68,36 @@ public class MaquinaDetailDTO extends MaquinaDTO implements Serializable
         }
         return maquina;
     }
-
-   
+    
+    
     /**
      * Devuelve la lista de ejercicios de la maquina
      *
      * @return lista de ejercicios
      */
-    public List<EjercicioDTO> getEjercicios() 
+    public List<EjercicioDTO> getEjercicios()
     {
         return ejercicios;
     }
-
+    
     /**
      * Modifica la lista de ejercicios de la maquina
      *
-     * @param ejercicios nueva lista de ejercicios 
+     * @param ejercicios nueva lista de ejercicios
      */
-    public void setEjercicios(List<EjercicioDTO> ejercicios) 
+    public void setEjercicios(List<EjercicioDTO> ejercicios)
     {
         this.ejercicios = ejercicios;
-    }  
+    }
+    
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
+    @Override
+    public String toString() {
+        
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+        
+    }
 }

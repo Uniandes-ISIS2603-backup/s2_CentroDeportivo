@@ -28,7 +28,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
+ * Clase que implementa el recurso "rutina/{id}/objetivos".
+ * 
  * @author Francisco Jose MacAllister
  */
 @Consumes(MediaType.APPLICATION_JSON)
@@ -43,16 +44,16 @@ class RutinaObjetivosResource {
     private ObjetivoLogic objetivoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     /**
-     * Guarda un libro dentro de una rutina con la informacion que recibe el
-     * la URL. Se devuelve el libro que se guarda en la rutina.
+     * Guarda un objetivo dentro de una rutina con la información que recibe el
+     * la URL. Se devuelve el objetivo que se guarda en la rutina.
      *
      * @param rutinasId Identificador de la rutina que se esta
      * actualizando. Este debe ser una cadena de dígitos.
-     * @param objetivosId Identificador del libro que se desea guardar. Este debe
+     * @param objetivosId Identificador del objetivo que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link ObjetivoDTO} - El libro guardado en la rutina.
+     * @return JSON {@link ObjetivoDTO} - El objetivo guardado en la rutina.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
      */
     @POST
     @Path("{objetivosId: \\d+}")
@@ -67,11 +68,11 @@ class RutinaObjetivosResource {
     }
 
     /**
-     * Busca y devuelve todos los libros que existen en la rutina.
+     * Busca y devuelve todos los objetivos que existen en la rutina.
      *
      * @param rutinasId Identificador de la rutina que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSONArray {@link ObjetivoDetailDTO} - Los libros encontrados en la
+     * @return JSONArray {@link ObjetivoDetailDTO} - Los objetivos encontrados en la
      * rutina. Si no hay ninguno retorna una lista vacía.
      */
     @GET
@@ -83,17 +84,17 @@ class RutinaObjetivosResource {
     }
 
     /**
-     * Busca el libro con el id asociado dentro de la rutina con id asociado.
+     * Busca el objetivo con el id asociado dentro de la rutina con id asociado.
      *
      * @param rutinasId Identificador de la rutina que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @param objetivosId Identificador del libro que se esta buscando. Este debe
+     * @param objetivosId Identificador del objetivo que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link ObjetivoDetailDTO} - El libro buscado
+     * @return JSON {@link ObjetivoDetailDTO} - El objetivo buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro en la
+     * Error de lógica que se genera cuando no se encuentra el objetivo en la
      * rutina.
      */
     @GET
@@ -113,12 +114,12 @@ class RutinaObjetivosResource {
      *
      * @param rutinasId Identificador de la rutina que se esta
      * remplazando. Este debe ser una cadena de dígitos.
-     * @param objetivos JSONArray {@link ObjetivoDTO} El arreglo de libros nuevo para la
+     * @param objetivos JSONArray {@link ObjetivoDTO} El arreglo de objetivos nuevo para la
      * rutina.
-     * @return JSON {@link ObjetivoDTO} - El arreglo de libros guardado en la
+     * @return JSON {@link ObjetivoDTO} - El arreglo de objetivos guardado en la
      * rutina.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
      */
     @PUT
     public List<ObjetivoDetailDTO> replaceObjetivos(@PathParam("rutinasId") Long rutinasId, List<ObjetivoDetailDTO> objetivos) {

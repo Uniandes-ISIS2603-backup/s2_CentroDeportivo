@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Clase que define el recurso deportista objetivo
+ * Clase que define el recurso "deportista/{id}/objetivo"
  * @author Leidy Romero
  */
 @Consumes(MediaType.APPLICATION_JSON)

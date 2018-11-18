@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 
@@ -28,31 +28,33 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * Clase que implementa el recurso "especialistas/{id}/deportistas".
  *
  * @author Francisco Jose MacAllister
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 class EspecialistaDeportistasResource {
-     private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasResource.class.getName());
-
+    
+    private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasResource.class.getName());
+    
     @Inject
     private EspecialistaDeportistasLogic especialistaDeportistasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private DeportistaLogic deportistaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     /**
-     * Guarda un libro dentro de una especialista con la informacion que recibe el
-     * la URL. Se devuelve el libro que se guarda en la especialista.
+     * Guarda un deportista dentro de una especialista con la informacion que recibe el
+     * la URL. Se devuelve el deportista que se guarda en la especialista.
      *
      * @param especialistasId Identificador de la especialista que se esta
      * actualizando. Este debe ser una cadena de dígitos.
-     * @param deportistasId Identificador del libro que se desea guardar. Este debe
+     * @param deportistasId Identificador del deportista que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link DeportistaDTO} - El libro guardado en la especialista.
+     * @return JSON {@link DeportistaDTO} - El deportista guardado en la especialista.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el deportista.
      */
     @POST
     @Path("{deportistasId: \\d+}")
@@ -65,13 +67,13 @@ class EspecialistaDeportistasResource {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource addDeportista: output: {0}", deportistaDTO.toString());
         return deportistaDTO;
     }
-
+    
     /**
-     * Busca y devuelve todos los libros que existen en la especialista.
+     * Busca y devuelve todos los deportistas que existen en la especialista.
      *
      * @param especialistasId Identificador de la especialista que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSONArray {@link DeportistaDetailDTO} - Los libros encontrados en la
+     * @return JSONArray {@link DeportistaDetailDTO} - Los deportistas encontrados en la
      * especialista. Si no hay ninguno retorna una lista vacía.
      */
     @GET
@@ -81,19 +83,19 @@ class EspecialistaDeportistasResource {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportistas: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
-
+    
     /**
-     * Busca el libro con el id asociado dentro de la especialista con id asociado.
+     * Busca el deportista con el id asociado dentro de la especialista con id asociado.
      *
      * @param especialistasId Identificador de la especialista que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @param deportistasId Identificador del libro que se esta buscando. Este debe
+     * @param deportistasId Identificador del deportista que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link DeportistaDetailDTO} - El libro buscado
+     * @return JSON {@link DeportistaDetailDTO} - El deportista buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el deportista.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro en la
+     * Error de lógica que se genera cuando no se encuentra el deportista en la
      * especialista.
      */
     @GET
@@ -107,18 +109,18 @@ class EspecialistaDeportistasResource {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportista: output: {0}", deportistaDetailDTO.toString());
         return deportistaDetailDTO;
     }
-
+    
     /**
      * Remplaza las instancias de Deportista asociadas a una instancia de Especialista
      *
      * @param especialistasId Identificador de la especialista que se esta
      * remplazando. Este debe ser una cadena de dígitos.
-     * @param deportistas JSONArray {@link DeportistaDTO} El arreglo de libros nuevo para la
+     * @param deportistas JSONArray {@link DeportistaDTO} El arreglo de deportistas nuevo para la
      * especialista.
-     * @return JSON {@link DeportistaDTO} - El arreglo de libros guardado en la
+     * @return JSON {@link DeportistaDTO} - El arreglo de deportistas guardado en la
      * especialista.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el deportista.
      */
     @PUT
     public List<DeportistaDetailDTO> replaceDeportistas(@PathParam("especialistasId") Long especialistasId, List<DeportistaDetailDTO> deportistas) {
@@ -132,7 +134,7 @@ class EspecialistaDeportistasResource {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource replaceDeportistas: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
-
+    
     /**
      * Convierte una lista de DeportistaEntity a una lista de DeportistaDetailDTO.
      *
@@ -146,7 +148,7 @@ class EspecialistaDeportistasResource {
         }
         return list;
     }
-
+    
     /**
      * Convierte una lista de DeportistaDetailDTO a una lista de DeportistaEntity.
      *

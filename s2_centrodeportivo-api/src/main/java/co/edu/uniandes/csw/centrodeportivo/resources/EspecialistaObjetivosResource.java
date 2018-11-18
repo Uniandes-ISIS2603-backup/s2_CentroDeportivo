@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.ejb.EspecialistaObjetivosLogic;
@@ -28,33 +28,35 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
+ * Clase que implementa el recurso "especialistas/{id}/objetivos".
  *
  * @author Francisco Jose MacAllister
  */
-@Path("especialistaObjetivos") 
-@Produces("application/json") 
-@Consumes("application/json") 
-@RequestScoped 
-class EspecialistaObjetivosResource {
-     private static final Logger LOGGER = Logger.getLogger(EspecialistaObjetivosResource.class.getName());
-
+@Path("especialistaObjetivos")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
+public class EspecialistaObjetivosResource {
+    
+    private static final Logger LOGGER = Logger.getLogger(EspecialistaObjetivosResource.class.getName());
+    
     @Inject
     private EspecialistaObjetivosLogic especialistaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private ObjetivoLogic objetivoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     /**
-     * Guarda un libro dentro de una especialista con la informacion que recibe el
-     * la URL. Se devuelve el libro que se guarda en la especialista.
+     * Guarda un objetivo dentro de una especialista con la informacion que recibe el
+     * la URL. Se devuelve el objetivo que se guarda en la especialista.
      *
      * @param especialistasId Identificador de la especialista que se esta
      * actualizando. Este debe ser una cadena de dígitos.
-     * @param objetivosId Identificador del libro que se desea guardar. Este debe
+     * @param objetivosId Identificador del objetivo que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link ObjetivoDTO} - El libro guardado en la especialista.
+     * @return JSON {@link ObjetivoDTO} - El objetivo guardado en el especialista.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
      */
     @POST
     @Path("{objetivosId: \\d+}")
@@ -67,13 +69,13 @@ class EspecialistaObjetivosResource {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource addObjetivo: output: {0}", objetivoDTO.toString());
         return objetivoDTO;
     }
-
+    
     /**
-     * Busca y devuelve todos los libros que existen en la especialista.
+     * Busca y devuelve todos los objetivos que existen en la especialista.
      *
-     * @param especialistasId Identificador de la especialista que se esta buscando.
+     * @param especialistasId Identificador del especialista que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSONArray {@link ObjetivoDetailDTO} - Los libros encontrados en la
+     * @return JSONArray {@link ObjetivoDetailDTO} - Los objetivos encontrados en el
      * especialista. Si no hay ninguno retorna una lista vacía.
      */
     @GET
@@ -83,17 +85,17 @@ class EspecialistaObjetivosResource {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource getObjetivos: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
-
+    
     /**
-     * Busca el libro con el id asociado dentro de la especialista con id asociado.
+     * Busca el objetivo con el id asociado dentro de la especialista con id asociado.
      *
      * @param especialistasId Identificador de la especialista que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @param objetivosId Identificador del libro que se esta buscando. Este debe
+     * @param objetivosId Identificador del objetivo que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link ObjetivoDetailDTO} - El libro buscado
+     * @return JSON {@link ObjetivoDetailDTO} - El objetivo buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el libro en la
      * especialista.
@@ -109,18 +111,18 @@ class EspecialistaObjetivosResource {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource getObjetivo: output: {0}", objetivoDetailDTO.toString());
         return objetivoDetailDTO;
     }
-
+    
     /**
      * Remplaza las instancias de Objetivo asociadas a una instancia de Especialista
      *
      * @param especialistasId Identificador de la especialista que se esta
      * remplazando. Este debe ser una cadena de dígitos.
-     * @param objetivos JSONArray {@link ObjetivoDTO} El arreglo de libros nuevo para la
+     * @param objetivos JSONArray {@link ObjetivoDTO} El arreglo de objetivos nuevo para la
      * especialista.
-     * @return JSON {@link ObjetivoDTO} - El arreglo de libros guardado en la
+     * @return JSON {@link ObjetivoDTO} - El arreglo de objetivos guardado en la
      * especialista.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
      */
     @PUT
     public List<ObjetivoDetailDTO> replaceObjetivos(@PathParam("especialistasId") Long especialistasId, List<ObjetivoDetailDTO> objetivos) {
@@ -134,7 +136,7 @@ class EspecialistaObjetivosResource {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource replaceObjetivos: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
-
+    
     /**
      * Convierte una lista de ObjetivoEntity a una lista de ObjetivoDetailDTO.
      *
@@ -148,7 +150,7 @@ class EspecialistaObjetivosResource {
         }
         return list;
     }
-
+    
     /**
      * Convierte una lista de ObjetivoDetailDTO a una lista de ObjetivoEntity.
      *

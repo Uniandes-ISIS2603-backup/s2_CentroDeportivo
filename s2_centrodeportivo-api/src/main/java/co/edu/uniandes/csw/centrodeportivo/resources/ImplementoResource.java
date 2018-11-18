@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * Clase que modela el recurso implemento
+ * Clase que modela el recurso "implementos"
  * @author Lina Cardozo
  */
 @Path("implementos")
@@ -152,28 +152,6 @@ public class ImplementoResource {
     }
     
     /**
-     * Conexión con el servicio de implementos para un ejercicio.
-     * {@link ImplementoEjercicioResource}
-     *
-     * Este método conecta la ruta de /implementos con las rutas de /ejercicio que
-     * dependen del implemento, es una redirección al servicio que maneja el
-     * segmento de la URL que se encarga del ejecicio correspondiente al implemento.
-     *
-     * @param implementosId El ID del implemento con respecto a la cual se accede al
-     * servicio.
-     * @return El servicio de ejercicio para este implemento en paricular.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se el premio.
-     */
-    /*@Path("{implementosId: \\d+}/author")
-    public Class<EjercicioImplementosResource> getEjercicioImplementosResource(@PathParam("implementosId") Long implementosId) {
-        if (implementoLogic.getImplemento(implementosId) == null) {
-            throw new WebApplicationException("El recurso /implementos/" + implementosId + " no existe.", 404);
-        }
-        return ImplementoEjercicioResource.class;
-    }*/
-    
-    /**
      * Convierte una lista de entidades a DTO.
      *
      * Este método convierte una lista de objetos ImplementoEntity a una lista de
@@ -191,7 +169,20 @@ public class ImplementoResource {
         return list;
     }
     
-    
+    /**
+     * Conexión con el servicio de implementos para un ejercicio.
+     * {@link PrizeAuthorResource}
+     *
+     * Este método conecta la ruta de /implementos con las rutas de /ejercicio que
+     * dependen del implemento, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga del ejercicio del implemento.
+     *
+     * @param implementosId El ID de la ejercicio con respecto a la cual se accede al
+     * servicio.
+     * @return El servicio de ejercicio para este implemento en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el implemento.
+     */
     @Path("{implementosId: \\d+}/ejercicios")
     public Class<ImplementoEjercicioResource> getImplementoEjercicioResource(@PathParam("implementosId") Long implementosId) {
         if (implementoLogic.getImplemento(implementosId) == null) {

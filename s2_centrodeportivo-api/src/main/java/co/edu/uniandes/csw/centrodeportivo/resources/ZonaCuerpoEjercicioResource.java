@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.EjercicioDTO;
@@ -11,10 +11,7 @@ import co.edu.uniandes.csw.centrodeportivo.ejb.EjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.ejb.ZonaCuerpoEjercicioLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.centrodeportivo.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.centrodeportivo.mappers.WebApplicationExceptionMapper;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -30,29 +27,30 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * Clase que implementa el recurso "zonaCuerpo/{id}/ejercicio".
  *
  * @author Daniel Pardo
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ZonaCuerpoEjercicioResource {
-   private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoEjercicioResource.class.getName());
-
+    private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoEjercicioResource.class.getName());
+    
     @Inject
     private ZonaCuerpoEjercicioLogic zonaCuerpoEjercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private EjercicioLogic ejercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     /**
-     * Guarda un ejercicio dentro de un zonaCuerpo con la informacion que recibe el la
+     * Guarda un ejercicio dentro de una zonaCuerpo con la información que recibe el la
      * URL.
      *
-     * @param zonasCuerpoId Identificador de el zonaCuerpo que se esta actualizando. Este
+     * @param zonasCuerpoId Identificador de la zonaCuerpo que se está actualizando. Este
      * debe ser una cadena de dígitos.
      * @param ejerciciosId Identificador del ejercicio que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link EjercicioDTO} - El ejercicio guardado en el zonaCuerpo.
+     * @return JSON {@link EjercicioDTO} - El ejercicio guardado en la zonaCuerpo.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
@@ -67,15 +65,15 @@ public class ZonaCuerpoEjercicioResource {
         LOGGER.log(Level.INFO, "ZonaCuerpoEjercicioResource addEjercicio: output: {0}", ejercicioDTO.toString());
         return ejercicioDTO;
     }
-
+    
     /**
-     * Busca el ejercicio dentro de el zonaCuerpo con id asociado.
+     * Busca el ejercicio dentro de la zonaCuerpo con id asociado.
      *
-     * @param zonasCuerpoId Identificador de el zonaCuerpo que se esta buscando. Este
+     * @param zonasCuerpoId Identificador de la zonaCuerpo que se está buscando. Este
      * debe ser una cadena de dígitos.
      * @return JSON {@link EjercicioDetailDTO} - El ejercicio buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando el zonaCuerpo no tiene ejercicio.
+     * Error de lógica que se genera cuando la zonaCuerpo no tiene ejercicio.
      */
     @GET
     public EjercicioDetailDTO getEjercicio(@PathParam("zonasCuerpoId") Long zonasCuerpoId) {
@@ -88,9 +86,9 @@ public class ZonaCuerpoEjercicioResource {
         LOGGER.log(Level.INFO, "ZonaCuerpoEjercicioResource getEjercicio: output: {0}", ejercicioDetailDTO.toString());
         return ejercicioDetailDTO;
     }
-
+    
     /**
-     * Remplaza la instancia de Ejercicio asociada a una instancia de ZonaCuerpo
+     * Reemplaza la instancia de Ejercicio asociada a una instancia de ZonaCuerpo
      *
      * @param zonasCuerpoId Identificador de el zonaCuerpo que se esta actualizando. Este
      * debe ser una cadena de dígitos.
@@ -111,11 +109,13 @@ public class ZonaCuerpoEjercicioResource {
         LOGGER.log(Level.INFO, "ZonaCuerpoEjercicioResource replaceEjercicio: output: {0}", ejercicioDetailDTO.toString());
         return ejercicioDetailDTO;
     }
-
+    
     /**
-     * Elimina la conexión entre el ejercicio y el zonaCuerpo recibido en la URL.
+     * Elimina la conexión entre el ejercicio y la zonaCuerpo recibido en la URL.
      *
-     * @param zonasCuerpoId El ID del zonaCuerpo al cual se le va a desasociar el ejercicio
+     * @param zonasCuerpoId El ID de la zonaCuerpo a la cual se le va a desasociar el ejercicio
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     * Error de lógica que se genera cuando la zona del cuerpo no tiene ejercicio.
      */
     @DELETE
     public void removeEjercicio(@PathParam("zonasCuerpoId") Long zonasCuerpoId) throws BusinessLogicException {

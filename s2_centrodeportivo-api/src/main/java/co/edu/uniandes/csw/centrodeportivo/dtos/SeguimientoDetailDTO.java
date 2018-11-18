@@ -113,6 +113,10 @@ public class SeguimientoDetailDTO extends SeguimientoDTO implements Serializable
         this.deportista = deportista;
     }
 
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
     @Override
     public String toString() 
     {

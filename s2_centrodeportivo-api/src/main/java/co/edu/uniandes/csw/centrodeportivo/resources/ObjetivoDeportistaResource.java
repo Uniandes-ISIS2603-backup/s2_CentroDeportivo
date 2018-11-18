@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Clase que implementa el recurso "deportista/{id}/objetivos".
+ * Clase que implementa el recurso "deportista/{id}/objetivo".
  * @author Leidy Romero
  */
 @Consumes(MediaType.APPLICATION_JSON)

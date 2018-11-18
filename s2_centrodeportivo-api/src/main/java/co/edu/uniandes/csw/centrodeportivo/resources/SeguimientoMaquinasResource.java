@@ -44,14 +44,14 @@ public class SeguimientoMaquinasResource {
     private MaquinaLogic maquinasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     /**
-     * Guarda una maquina dentro de un seguimiento con la informacion que recibe
+     * Guarda una máquina dentro de un seguimiento con la informacion que recibe
      * la URL. Se devuelve la máquina que se guarda en el seguimiento.
      *
      * @param seguimientosId Identificador del seguimiento que se está
      * actualizando. Este debe ser una cadena de dígitos.
      * @param maquinasId Identificador de la máquina que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link BookDTO} - La máquina guardada en el seguimiento.
+     * @return JSON {@link MaquinaDTO} - La máquina guardada en el seguimiento.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la máquina.
      */
@@ -72,7 +72,7 @@ public class SeguimientoMaquinasResource {
      *
      * @param seguimientosId Identificador de la máquina que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSONArray {@link BookDetailDTO} - Las máquinas encontradas en el
+     * @return JSONArray {@link MaquinaDetailDTO} - Las máquinas encontradas en el
      * seguimiento. Si no hay ninguna retorna una lista vacía.
      */
     @GET
@@ -90,7 +90,7 @@ public class SeguimientoMaquinasResource {
      * Este debe ser una cadena de dígitos.
      * @param maquinasId Identificador de la máquina que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link maquinaDetailDTO} - La máquina buscada
+     * @return JSON {@link MaquinaDetailDTO} - La máquina buscada
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la máquina.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
@@ -114,9 +114,9 @@ public class SeguimientoMaquinasResource {
      *
      * @param seguimientosId Identificador del seguimiento que se está
      * remplazando. Este debe ser una cadena de dígitos.
-     * @param maquinas JSONArray {@link BookDTO} El arreglo de máquinas nuevo para el
+     * @param maquinas JSONArray {@link MaquinaDetailDTO} El arreglo de máquinas nuevo para el
      * seguimiento.
-     * @return JSON {@link BookDTO} - El arreglo de máquinas guardado en el
+     * @return JSON {@link MaquinaDetailDTO} - El arreglo de máquinas guardado en el
      * seguimiento.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la máquina.

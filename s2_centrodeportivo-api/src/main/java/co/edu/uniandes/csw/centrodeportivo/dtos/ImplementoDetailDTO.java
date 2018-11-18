@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
@@ -19,14 +19,14 @@ public class ImplementoDetailDTO extends ImplementoDTO implements Serializable {
      * Ejercicio del implemento
      */
     private EjercicioDTO ejercicio;
-
+    
     /**
      * Constructor por defecto
      */
     public ImplementoDetailDTO() {
         super();
     }
-
+    
     /**
      * Crea un objeto ImplementoDetailDTO a partir de un objeto ImplementoEntity
      * incluyendo los atributos de ImplementoDTO.
@@ -41,7 +41,7 @@ public class ImplementoDetailDTO extends ImplementoDTO implements Serializable {
             this.ejercicio = new EjercicioDTO(implementoEntity.getEjercicio());
         }
     }
-
+    
     /**
      * Convierte un objeto ImplementoDetailDTO a ImplementoEntity incluyendo los atributos
      * de ImplementoDTO.
@@ -57,7 +57,7 @@ public class ImplementoDetailDTO extends ImplementoDTO implements Serializable {
         }
         return implementoEntity;
     }
-
+    
     /**
      * Modifica el ejercicio asociado a este implemento.
      *
@@ -66,7 +66,7 @@ public class ImplementoDetailDTO extends ImplementoDTO implements Serializable {
     public void setEjercicio(EjercicioDTO ejercicio) {
         this.ejercicio = ejercicio;
     }
-
+    
     /**
      * Devuelve el ejercicio asociado a este implemento
      *

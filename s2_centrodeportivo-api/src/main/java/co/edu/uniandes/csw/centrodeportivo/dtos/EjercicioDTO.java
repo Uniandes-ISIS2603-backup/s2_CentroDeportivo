@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Daniel Pardo
  */
 public class EjercicioDTO implements Serializable
-{  
+{
     /**
      * Constante para el tipo de ejercicio aerobico
      */
@@ -28,7 +28,7 @@ public class EjercicioDTO implements Serializable
      * Constante para el tipo de ejercicio flexibilidad
      */
     public static final String TIPO_FEXIBILIDAD = "flexibilidad";
-     /**
+    /**
      * Constante para el tipo de ejercicio equilibrio
      */
     public static final String TIPO_EQUILIBRIO = "equilibrio";
@@ -73,14 +73,14 @@ public class EjercicioDTO implements Serializable
      */
     public EjercicioDTO()
     { }
-    /** 
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en      
-     * la entidad que viene de argumento.      
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
      *
-     * @param ejercicioEntity: Es la entidad que se va a convertir a DTO  
+     * @param ejercicioEntity: Es la entidad que se va a convertir a DTO
      */
     public EjercicioDTO(EjercicioEntity ejercicioEntity) {
-
+        
         if (ejercicioEntity != null) {
             this.id = ejercicioEntity.getId();
             this.nombre = ejercicioEntity.getNombre();
@@ -88,7 +88,7 @@ public class EjercicioDTO implements Serializable
             this.duracion = ejercicioEntity.getDuracion();
             this.numeroDeSeries = ejercicioEntity.getNumeroDeSeries();
             this.descripcion = ejercicioEntity.getDescripcion();
-            this.explicacion = ejercicioEntity.getExplicacion();    
+            this.explicacion = ejercicioEntity.getExplicacion();
         }
     }
     /**
@@ -100,7 +100,7 @@ public class EjercicioDTO implements Serializable
     }
     /**
      * Cambia el id del ejercicio por el recibido por parametro
-     * @param id 
+     * @param id
      */
     public void setId(Long id)
     {
@@ -115,7 +115,7 @@ public class EjercicioDTO implements Serializable
     }
     /**
      * Cambia el nombre del ejercicio por el recibido por parametro
-     * @param nombre 
+     * @param nombre
      */
     public void setNombre(String nombre){
         this.nombre = nombre;
@@ -129,7 +129,7 @@ public class EjercicioDTO implements Serializable
     }
     /**
      * Cambia la categoria del ejercicio por la recibida por parametro
-     * @param categoria 
+     * @param categoria
      */
     public void setCategoria(String categoria){
         this.categoria = categoria;
@@ -191,9 +191,9 @@ public class EjercicioDTO implements Serializable
     public void setExplicacion(String explicacion){
         this.explicacion = explicacion;
     }
-    /** 
-     * Convertir DTO a Entity      
-     * @return Un Entity con los valores del DTO 
+    /**
+     * Convertir DTO a Entity
+     * @return Un Entity con los valores del DTO
      */
     public EjercicioEntity toEntity() {
         EjercicioEntity ejercicioEntity = new EjercicioEntity();
@@ -214,5 +214,5 @@ public class EjercicioDTO implements Serializable
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-
+    
 }

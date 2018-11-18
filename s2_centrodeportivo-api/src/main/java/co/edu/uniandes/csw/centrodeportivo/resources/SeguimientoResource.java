@@ -27,7 +27,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase que implementa el recurso "seguimientos".
+ * 
  * @author Lina Cardozo
  */
 @Path("seguimientos")
@@ -39,10 +40,10 @@ public class SeguimientoResource {
     private static final Logger LOGGER = Logger.getLogger(SeguimientoResource.class.getName());
 
     @Inject
-    private SeguimientoLogic seguimientoLogic;
+    private SeguimientoLogic seguimientoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     /**
-     * Crea un nuevo seguimiento con la informacion que se recibe en el cuerpo de la
+     * Crea un nuevo seguimiento con la información que se recibe en el cuerpo de la
      * petición y se regresa un objeto idéntico con un id auto-generado por la
      * base de datos.
      *

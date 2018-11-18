@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
@@ -94,7 +94,7 @@ public class ImplementoDTO implements Serializable {
     {
         return nombre;
     }
-
+    
     /**
      * Devuelve la cantidad de existencias del implemento.
      *
@@ -133,7 +133,7 @@ public class ImplementoDTO implements Serializable {
         return imagen;
     }
     
-     /**
+    /**
      * Convertir DTO a Entity
      *
      * @return Un Entity con los valores del DTO
@@ -152,8 +152,8 @@ public class ImplementoDTO implements Serializable {
      */
     @Override
     public String toString() {
-
+        
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-
+        
     }
 }

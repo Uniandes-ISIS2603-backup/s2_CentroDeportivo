@@ -1,8 +1,8 @@
-/* 
-* To change this license header, choose License Headers in Project Properties. 
-* To change this template file, choose Tools | Templates 
-* and open the template in the editor. 
- */
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import java.io.Serializable;
@@ -21,15 +21,15 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
      * Lista de objetivos del deportista
      */
     private List<ObjetivoDTO> objetivos;
-
+    
     /**
      * Constructor por defecto
      */
-    public DeportistaDetailDTO() 
+    public DeportistaDetailDTO()
     {
         super();
     }
-
+    
     /**      *
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en      *
      * la entidad que viene de argumento.      *
@@ -49,11 +49,11 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
         }
     }
     /**      *
-     * Convertir DTO a Entity 
+     * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO      *
      */
     public DeportistaEntity toEntity() {
-      DeportistaEntity deportista = super.toEntity();
+        DeportistaEntity deportista = super.toEntity();
         if (objetivos != null) {
             List<ObjetivoEntity> objetivosEntity = new ArrayList<>();
             for (ObjetivoDTO dtoObjetivo : objetivos) {
@@ -62,7 +62,7 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
             deportista.setObjetivos(objetivosEntity);
         }
         return deportista;
-
+        
     }
     /**
      * Obtiene la lista de objetivos del deportista
@@ -73,7 +73,7 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
         return objetivos;
     }
     
-     /** Modificala lista de objetivos del deportista
+    /** Modifica la lista de objetivos del deportista
      * @param pObjetivos objetivos nuevos
      */
     public void setObjetivos(List<ObjetivoDTO> pObjetivos)
@@ -86,9 +86,9 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
      */
     @Override
     public String toString() {
-
+        
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-
+        
     }
-
+    
 }

@@ -14,7 +14,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * Clase que modela un especialista.
  * @author Francisco Jose MacAllister
  */
-
 public class EspecialistaDTO implements Serializable {
     
     //El id del especialista
@@ -101,7 +100,7 @@ public class EspecialistaDTO implements Serializable {
     public String getEspecialidad() {
         return especialidad;
     }
-   
+    
     /**
      * Asigna especialidad al especialista.
      * @param especialidad La nueva especialidad del especialista
@@ -110,7 +109,7 @@ public class EspecialistaDTO implements Serializable {
         this.especialidad = especialidad;
     }
     
-     /**
+    /**
      * Asigna imagen al especialista.
      * @param imagen La nueva imagen del especialista
      */
@@ -142,6 +141,10 @@ public class EspecialistaDTO implements Serializable {
         
     }
     
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

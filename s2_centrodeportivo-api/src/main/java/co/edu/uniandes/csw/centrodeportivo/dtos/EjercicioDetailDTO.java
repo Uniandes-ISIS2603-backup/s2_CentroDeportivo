@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -20,24 +20,24 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
 {
-   /*
+    /*
     * Esta lista de tipo ZonaCuerpoDTO contiene las implementos que estan asociadas a un rutina
-     */
+    */
     private List<ZonaCuerpoDTO> zonasCuerpo;
     /**
-     * Lista de implementos 
+     * Lista de implementos
      */
     private List<ImplementoDTO> implementos;
-
+    
     /**
      * Constructor por defecto
      */
-    public EjercicioDetailDTO() 
+    public EjercicioDetailDTO()
     {
-      
+        
     }
     
-     /**
+    /**
      * Crea un nuevo objeto EjercicioDetailDTO a partir de un objeto
      * EjercicioEntity incluyecdo los atributos de EjercicioDTO
      *
@@ -58,48 +58,48 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
             }
         }
     }
-   
+    
     /**
      * Devuelve la lista de zonasCuerpo del rutina.
      *
      * @return las zonasCuerpo
      */
-    public List<ZonaCuerpoDTO> getZonasCuerpo() 
+    public List<ZonaCuerpoDTO> getZonasCuerpo()
     {
         return zonasCuerpo;
     }
-
+    
     /**
      * Modifica la lista de implementos del rutina.
      *
      * @param zonasCuerpo las implementos a modificar
      */
-    public void setZonasCuerpo(List<ZonaCuerpoDTO> zonasCuerpo) 
+    public void setZonasCuerpo(List<ZonaCuerpoDTO> zonasCuerpo)
     {
         this.zonasCuerpo = zonasCuerpo;
     }
-
+    
     /**
      * Devuelve la lista de implementos del rutina.
      *
      * @return los implementos
      */
-    public List<ImplementoDTO> getImplementos() 
+    public List<ImplementoDTO> getImplementos()
     {
         return implementos;
     }
-
+    
     /**
      * Modifica la lista de implementos del seguimiento.
      *
      * @param implementos las implementos a modificar
      */
-    public void setImplementos(List<ImplementoDTO> implementos) 
+    public void setImplementos(List<ImplementoDTO> implementos)
     {
         this.implementos = implementos;
     }
     /**
-     * Convertir DTO a Entity 
+     * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO
      */
     @Override
@@ -126,8 +126,8 @@ public class EjercicioDetailDTO extends EjercicioDTO implements Serializable
      * @return string
      */
     @Override
-    public String toString() 
+    public String toString()
     {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    } 
+    }
 }

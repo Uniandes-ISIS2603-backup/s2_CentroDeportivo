@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.RutinaDTO;
@@ -36,11 +36,11 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class RutinaResource {
-     private static final Logger LOGGER = Logger.getLogger(RutinaResource.class.getName());
-      
+    private static final Logger LOGGER = Logger.getLogger(RutinaResource.class.getName());
+    
     @Inject
-    RutinaLogic rutinaLogic;
-      @POST
+            RutinaLogic rutinaLogic;
+    @POST
     public RutinaDTO createRutina(RutinaDTO rutina) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "RutinaResource createRutina: input: {0}", rutina.toString());
@@ -106,9 +106,9 @@ public class RutinaResource {
      */
     @PUT
     @Path("{rutinasId: \\d+}")
-    public RutinaDetailDTO updateRutina(@PathParam("rutinasId") Long rutinasId, RutinaDetailDTO rutina) throws WebApplicationException 
+    public RutinaDetailDTO updateRutina(@PathParam("rutinasId") Long rutinasId, RutinaDetailDTO rutina) throws WebApplicationException
     {
-          LOGGER.log(Level.INFO, "RutinaResource updateRutina: input: id:{0} , rutina: {1}", new Object[]{rutinasId, rutina.toString()});
+        LOGGER.log(Level.INFO, "RutinaResource updateRutina: input: id:{0} , rutina: {1}", new Object[]{rutinasId, rutina.toString()});
         rutina.setId(rutinasId);
         if (rutinaLogic.getRutina(rutinasId) == null) {
             throw new WebApplicationException("El recurso /rutinas/" + rutinasId + " no existe.", 404);
@@ -131,7 +131,7 @@ public class RutinaResource {
     @DELETE
     @Path("{rutinasId: \\d+}")
     public void deleteRutina(@PathParam("rutinasId") Long rutinasId) throws BusinessLogicException {
-         LOGGER.log(Level.INFO, "RutinaResource deleteRutina: input: {0}", rutinasId);
+        LOGGER.log(Level.INFO, "RutinaResource deleteRutina: input: {0}", rutinasId);
         if (rutinaLogic.getRutina(rutinasId) == null) {
             throw new WebApplicationException("El recurso /rutinas/" + rutinasId + " no existe.", 404);
         }
@@ -152,7 +152,7 @@ public class RutinaResource {
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la rutina.
      */
-   
+    
     @Path("{rutinasId: \\d+}/ejercicios")
     public Class<RutinaEjerciciosResource> getRutinaEjerciciosResource(@PathParam("rutinasId") Long rutinasId) {
         if (rutinaLogic.getRutina(rutinasId) == null) {
@@ -161,7 +161,7 @@ public class RutinaResource {
         return RutinaEjerciciosResource.class;
     }
     
-   /**
+    /**
      * Conexión con el servicio de libros para una Rutina.
      * {@link RutinaObjetivoResource}
      *
@@ -183,8 +183,13 @@ public class RutinaResource {
         }
         return RutinaObjetivosResource.class;
     }
-
     
+    /**
+     * Convierte una lista de RutinaEntity a una lista de RutinaDetailDTO.
+     *
+     * @param entityList Lista de RutinaEntity a convertir.
+     * @return Lista de RutinaDetailDTO convertida.
+     */
     private List<RutinaDetailDTO> listRutinaEntity2DTO(List<RutinaEntity> entityList) {
         List<RutinaDetailDTO> list = new ArrayList();
         for (RutinaEntity entity : entityList) {

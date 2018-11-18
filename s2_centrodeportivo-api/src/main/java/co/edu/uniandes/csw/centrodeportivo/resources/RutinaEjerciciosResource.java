@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.EjercicioDTO;
@@ -27,31 +27,32 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * Clase que implementa el recurso "rutina/{id}/ejercicios".
  *
  * @author Francisco Jose MacAlliter
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-class RutinaEjerciciosResource {
-     private static final Logger LOGGER = Logger.getLogger(RutinaEjerciciosResource.class.getName());
-
+public class RutinaEjerciciosResource {
+    private static final Logger LOGGER = Logger.getLogger(RutinaEjerciciosResource.class.getName());
+    
     @Inject
     private RutinaEjerciciosLogic rutinaEjerciciosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private EjercicioLogic ejercicioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    
     /**
-     * Guarda un libro dentro de una rutina con la informacion que recibe el
-     * la URL. Se devuelve el libro que se guarda en la rutina.
+     * Guarda un ejercicio dentro de una rutina con la informacion que recibe el
+     * la URL. Se devuelve el ejercicio que se guarda en la rutina.
      *
-     * @param rutinasId Identificador de la rutina que se esta
+     * @param rutinasId Identificador de la rutina que se está
      * actualizando. Este debe ser una cadena de dígitos.
-     * @param ejerciciosId Identificador del libro que se desea guardar. Este debe
+     * @param ejerciciosId Identificador del ejercicio que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link EjercicioDTO} - El libro guardado en la rutina.
+     * @return JSON {@link EjercicioDTO} - El ejercicio guardado en la rutina.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
     @POST
     @Path("{ejerciciosId: \\d+}")
@@ -64,13 +65,13 @@ class RutinaEjerciciosResource {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource addEjercicio: output: {0}", ejercicioDTO.toString());
         return ejercicioDTO;
     }
-
+    
     /**
-     * Busca y devuelve todos los libros que existen en la rutina.
+     * Busca y devuelve todos los ejercicios que existen en la rutina.
      *
      * @param rutinasId Identificador de la rutina que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSONArray {@link EjercicioDetailDTO} - Los libros encontrados en la
+     * @return JSONArray {@link EjercicioDetailDTO} - Los ejercicios encontrados en la
      * rutina. Si no hay ninguno retorna una lista vacía.
      */
     @GET
@@ -80,19 +81,19 @@ class RutinaEjerciciosResource {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicios: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
-
+    
     /**
-     * Busca el libro con el id asociado dentro de la rutina con id asociado.
+     * Busca el ejercicio con el id asociado dentro de la rutina con id asociado.
      *
      * @param rutinasId Identificador de la rutina que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @param ejerciciosId Identificador del libro que se esta buscando. Este debe
+     * @param ejerciciosId Identificador del ejercicio que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link EjercicioDetailDTO} - El libro buscado
+     * @return JSON {@link EjercicioDetailDTO} - El ejercicio buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro en la
+     * Error de lógica que se genera cuando no se encuentra el ejercicio en la
      * rutina.
      */
     @GET
@@ -106,18 +107,18 @@ class RutinaEjerciciosResource {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicio: output: {0}", ejercicioDetailDTO.toString());
         return ejercicioDetailDTO;
     }
-
+    
     /**
      * Remplaza las instancias de Ejercicio asociadas a una instancia de Rutina
      *
      * @param rutinasId Identificador de la rutina que se esta
      * remplazando. Este debe ser una cadena de dígitos.
-     * @param ejercicios JSONArray {@link EjercicioDTO} El arreglo de libros nuevo para la
+     * @param ejercicios JSONArray {@link EjercicioDTO} El arreglo de ejercicios nuevo para la
      * rutina.
-     * @return JSON {@link EjercicioDTO} - El arreglo de libros guardado en la
+     * @return JSON {@link EjercicioDTO} - El arreglo de ejercicios guardado en la
      * rutina.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el ejercicio.
      */
     @PUT
     public List<EjercicioDetailDTO> replaceEjercicios(@PathParam("rutinasId") Long rutinasId, List<EjercicioDetailDTO> ejercicios) {
@@ -131,7 +132,7 @@ class RutinaEjerciciosResource {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource replaceEjercicios: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
-
+    
     /**
      * Convierte una lista de EjercicioEntity a una lista de EjercicioDetailDTO.
      *
@@ -145,7 +146,7 @@ class RutinaEjerciciosResource {
         }
         return list;
     }
-
+    
     /**
      * Convierte una lista de EjercicioDetailDTO a una lista de EjercicioEntity.
      *

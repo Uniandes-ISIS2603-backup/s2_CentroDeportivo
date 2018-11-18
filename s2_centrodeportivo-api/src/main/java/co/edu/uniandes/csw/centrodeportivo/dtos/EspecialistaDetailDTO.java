@@ -130,6 +130,10 @@ public class EspecialistaDetailDTO extends EspecialistaDTO implements Serializab
         this.objetivos = objetivos;
     }
     
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
     @Override
     public String toString() 
     {

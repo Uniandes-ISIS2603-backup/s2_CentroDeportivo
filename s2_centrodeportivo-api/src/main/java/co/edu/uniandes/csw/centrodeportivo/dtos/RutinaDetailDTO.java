@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -18,10 +18,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * Clase que modela el detalle de la rutina.
  * @author Francisco Jose MacAllister
  */
-public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
+public class RutinaDetailDTO extends RutinaDTO implements Serializable {
     
     /**
-    * Esta lista de tipo EjercicioDTO contiene las máquinas que estan asociadas a un rutina
+     * Esta lista de tipo EjercicioDTO contiene las ejercicios que estan asociadas a un rutina
      */
     private List<EjercicioDTO> ejercicios;
     /**
@@ -31,7 +31,7 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
     /**
      * Constructor por defecto
      */
-    public RutinaDetailDTO() 
+    public RutinaDetailDTO()
     {
         
     }
@@ -58,42 +58,50 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
         }
     }
     /**
-     * Devuelve la lista de máquinas del rutina.
+     * Devuelve la lista de ejercicios de la rutina.
      *
-     * @return las máquinas
+     * @return los ejercicios
      */
-    public List<EjercicioDTO> getEjercicios() 
+    public List<EjercicioDTO> getEjercicios()
     {
         return ejercicios;
     }
     /**
-     * Modifica la lista de máquinas del rutina.
+     * Modifica la lista de ejercicios del rutina.
      *
-     * @param ejercicios las máquinas a modificar
+     * @param ejercicios los ejercicios a modificar
      */
-    public void setEjercicios(List<EjercicioDTO> ejercicios) 
+    public void setEjercicios(List<EjercicioDTO> ejercicios)
     {
         this.ejercicios = ejercicios;
     }
-    @Override
-    public String toString() 
-    {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
-    public List<ObjetivoDTO> getObjetivos() 
+    
+    /**
+     * Devuelve la lista de objetivos de la rutina.
+     *
+     * @return los objetivos
+     */
+    public List<ObjetivoDTO> getObjetivos()
     {
         return objetivos;
     }
     /**
-     * Modifica la lista de máquinas del seguimiento.
+     * Modifica la lista de objetivos del seguimiento.
      *
-     * @param objetivos las máquinas a modificar
+     * @param objetivos los objetivos a modificar
      */
-    public void setObjetivos(List<ObjetivoDTO> objetivos) 
+    public void setObjetivos(List<ObjetivoDTO> objetivos)
     {
         this.objetivos = objetivos;
     }
-
+    
+    /**
+     * Convierte un objeto RutinaDTO a RutinaEntity.
+     *
+     * @return Nuevo objeto RutinaEntity.
+     *
+     */
+    @Override
     public RutinaEntity toEntity() {
         RutinaEntity rutinaEntity = super.toEntity();
         if (objetivos != null) {
@@ -112,5 +120,14 @@ public class RutinaDetailDTO  extends RutinaDTO implements Serializable {
         }
         return rutinaEntity;
     }
-
+    
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

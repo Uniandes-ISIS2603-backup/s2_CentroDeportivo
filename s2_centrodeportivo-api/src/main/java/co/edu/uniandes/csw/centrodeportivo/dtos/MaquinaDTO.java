@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.|
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.|
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * Clase que modela la máquina
  * @author Diany Quintero
  */
-public class MaquinaDTO implements Serializable{
+public class MaquinaDTO implements Serializable {
     /**
      * Id de la maquina
      */
@@ -56,10 +56,10 @@ public class MaquinaDTO implements Serializable{
     }
     
     /**
-    *
-    * Retorna el id unico de una maquina
+     *
+     * Retorna el id unico de una maquina
      * @return id
-    */
+     */
     public Long getId(){
         return id;
     }
@@ -67,50 +67,50 @@ public class MaquinaDTO implements Serializable{
      * Cambia el id de la maquina por el recibido por parametro
      * @param id nuevo
      */
-     public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     /**
-    * Metodo que devuelve el nombre de la maquina
-    * @return la velocidad promedio
-    */
+     * Metodo que devuelve el nombre de la maquina
+     * @return la velocidad promedio
+     */
     public String getNombre() {
         return nombre;
     }
-     /**
-    *
-    * Metodo que cambia el nombre de la maquina
+    /**
+     *
+     * Metodo que cambia el nombre de la maquina
      * @param nombre
-    */
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }  
+    }
     /**
-    * Metodo que devuelve la referencia de la maquina
-    * @return la velocidad promedio
-    */
+     * Metodo que devuelve la referencia de la maquina
+     * @return la velocidad promedio
+     */
     public String getReferencia() {
         return referencia;
     }
-     /**
-    *
-    * Metodo que cambia la referencia promedio
+    /**
+     *
+     * Metodo que cambia la referencia promedio
      * @param pReferencia
-    */
+     */
     public void setReferencia(String pReferencia) {
         this.referencia = pReferencia;}
     /**
-    * Metodo que devuelve la ruta de la imagen de la maquina
-    * @return ruta de la imagen
-    */
+     * Metodo que devuelve la ruta de la imagen de la maquina
+     * @return ruta de la imagen
+     */
     public String getImagen() {
         return imagen;
     }
     /**
-    *
-    * Metodo que cambia la ruta de la imagen
-    * @param pImagen
-    */
+     *
+     * Metodo que cambia la ruta de la imagen
+     * @param pImagen
+     */
     public void setImagen(String pImagen) {
         this.imagen = pImagen;
     }
@@ -119,7 +119,7 @@ public class MaquinaDTO implements Serializable{
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO      *
      */
-    public MaquinaEntity toEntity() 
+    public MaquinaEntity toEntity()
     {
         MaquinaEntity maquinaEntity = new MaquinaEntity();
         maquinaEntity.setId(this.id);
@@ -128,14 +128,14 @@ public class MaquinaDTO implements Serializable{
         maquinaEntity.setImagen(this.imagen);
         return maquinaEntity;
     }
-     /**
+    /**
      * Retorna el string del DTO
      * @return string
      */
     @Override
     public String toString() {
-
+        
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-
+        
     }
-}   
+}

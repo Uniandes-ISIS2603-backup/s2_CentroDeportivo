@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.EspecialistaDTO;
@@ -28,18 +28,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
+ * Clase que implementa el recurso "especialistas".
  *
- * @author estudiante
+ * @author Francisco Jose Macallister
  */
 @Path("especialistas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class EspecialistaResource {
-     private static final Logger LOGGER = Logger.getLogger(EspecialistaResource.class.getName());
- @Inject
+    
+    private static final Logger LOGGER = Logger.getLogger(EspecialistaResource.class.getName());
+    @Inject
     private EspecialistaLogic especialistaLogic;
     
+    /**
+     * Crea un nuevo especialista con la informacion que se recibe en el cuerpo de la
+     * petición y se regresa un objeto identico con un id auto-generado por la
+     * base de datos.
+     *
+     * @param especialista {@link EspecialistaDTO} - EL especialista que se desea guardar.
+     * @return JSON {@link EspecialistaDTO} - El especialista guardado con el atributo id
+     * autogenerado.
+     */
     @POST
     public EspecialistaDTO createEspecialista(EspecialistaDTO especialista) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: input: {0}", especialista.toString());
@@ -52,7 +63,8 @@ public class EspecialistaResource {
         LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: output: {0}", nuevoEspecialistaDTO.toString());
         return nuevoEspecialistaDTO;
     }
-/**
+    
+    /**
      * Busca y devuelve todos los especialistas que existen en la aplicacion.
      *
      * @return JSONArray {@link EspecialistaDetailDTO} - Los especialistas
@@ -105,7 +117,7 @@ public class EspecialistaResource {
      */
     @PUT
     @Path("{especialistasId: \\d+}")
-    public EspecialistaDetailDTO updateEspecialista(@PathParam("especialistasId") Long especialistasId, EspecialistaDetailDTO especialista) throws WebApplicationException 
+    public EspecialistaDetailDTO updateEspecialista(@PathParam("especialistasId") Long especialistasId, EspecialistaDetailDTO especialista) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "EspecialistaResource updateEspecialista: input: id:{0} , especialista: {1}", new Object[]{especialistasId, especialista.toString()});
         especialista.setId(especialistasId);
@@ -130,16 +142,16 @@ public class EspecialistaResource {
     @DELETE
     @Path("{especialistasId: \\d+}")
     public void deleteEspecialista(@PathParam("especialistasId") Long especialistasId) throws BusinessLogicException {
-          LOGGER.log(Level.INFO, "EspecialistaResource deleteEspecialista: input: {0}", especialistasId);
+        LOGGER.log(Level.INFO, "EspecialistaResource deleteEspecialista: input: {0}", especialistasId);
         if (especialistaLogic.getEspecialista(especialistasId) == null) {
             throw new WebApplicationException("El recurso /especialistas/" + especialistasId + " no existe.", 404);
         }
         especialistaLogic.deleteEspecialista(especialistasId);
         LOGGER.info("EspecialistaResource deleteEspecialista: output: void");
     }
-
-   
-        /**
+    
+    
+    /**
      * Convierte una lista de entidades a DTO.
      *
      * Este método convierte una lista de objetos EspecialistaEntity a una lista de
@@ -155,7 +167,7 @@ public class EspecialistaResource {
             list.add(new EspecialistaDetailDTO(entity));
         }
         return list;
-    
+        
     }
     
     /**
@@ -180,7 +192,7 @@ public class EspecialistaResource {
         }
         return EspecialistaObjetivosResource.class;
     }
-
+    
     /**
      * Conexión con el servicio de deportistas para una especialista.
      * {@link EspecialistaDeportistasResource}
@@ -203,6 +215,5 @@ public class EspecialistaResource {
         }
         return EspecialistaDeportistasResource.class;
     }
-
     
 }

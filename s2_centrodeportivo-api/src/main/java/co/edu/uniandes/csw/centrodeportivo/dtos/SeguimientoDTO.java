@@ -1,23 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.SeguimientoEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
+ * SeguimientoDTO Objeto de transferencia de datos de Seguimientos. Los DTO contienen las
+ * representaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
  * @author Lina Cardozo
  */
 public class SeguimientoDTO implements Serializable {
     
+    //El id del seguimiento
     private Long id;
+    //El tiempo del seguimiento
     private Integer tiempo;
+    //Las calorías del seguimiento
     private Double calorias;
+    //La velocidad promedio del seguimiento
     private Double velocidadPromedio;
+    //El ritmo cardiaco promedio del seguimiento
     private Double ritmoCardiacoPromedio;
     
     /**
@@ -29,7 +39,7 @@ public class SeguimientoDTO implements Serializable {
     }
     
     /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
      * @param seguimientoEntity
@@ -43,13 +53,13 @@ public class SeguimientoDTO implements Serializable {
             this.velocidadPromedio = seguimientoEntity.getVelocidadPromedio();
         }
     }
-
+    
     /**
      * Devuelve el ID del seguimiento.
      *
      * @return el Id del seguimiento
      */
-    public Long getId() 
+    public Long getId()
     {
         return id;
     }
@@ -93,7 +103,7 @@ public class SeguimientoDTO implements Serializable {
     {
         return ritmoCardiacoPromedio;
     }
-
+    
     /**
      * Modifica el ID del seguimiento.
      *
@@ -102,7 +112,7 @@ public class SeguimientoDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     /**
      * Modifica el tiempo invertido por el deportista.
      *
@@ -111,7 +121,7 @@ public class SeguimientoDTO implements Serializable {
     public void setTiempo(Integer tiempo) {
         this.tiempo = tiempo;
     }
-
+    
     /**
      * Modifica la cantidad de calorías quemadas por el deportista.
      *
@@ -120,7 +130,7 @@ public class SeguimientoDTO implements Serializable {
     public void setCalorias(Double calorias) {
         this.calorias = calorias;
     }
-
+    
     /**
      * Modifica la velocidad promedio del deportista.
      *
@@ -129,7 +139,7 @@ public class SeguimientoDTO implements Serializable {
     public void setVelocidadPromedio(Double velocidadPromedio) {
         this.velocidadPromedio = velocidadPromedio;
     }
-
+    
     /**
      * Modifica el ritmo cardíaco promedio del deportista.
      *
@@ -139,7 +149,7 @@ public class SeguimientoDTO implements Serializable {
         this.ritmoCardiacoPromedio = ritmoCardiacoPromedio;
     }
     
-     /**
+    /**
      * Convertir DTO a Entity
      *
      * @return Un Entity con los valores del DTO
@@ -154,4 +164,14 @@ public class SeguimientoDTO implements Serializable {
         return seguimientoEntity;
     }
     
+    /**
+     * Retorna el string del DTO
+     * @return string
+     */
+    @Override
+    public String toString() {
+        
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+        
+    }
 }
