@@ -92,16 +92,13 @@ insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite) values (9, 'P
 insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite) values (10, 'Function-based maximized project', 0, '1985-11-20 00:00:00');
 
  --POBLAMIENTO TABLA MAQUINA
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (1, 'Mitsubishi', '12334', 50.73, 48.04, 87.58, 13.26);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (2, 'Pontiac', '4542', 8.81, 70.22, 83.68, 8.61);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (3, 'Toyota', '3526', 72.45, 8.33, 53.09, 3.7);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (4, 'Saturn', '325345', 95.11, 13.93, 18.71, 96.0);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (5, 'Lexus', '45234', 99.47, 13.48, 25.17, 10.01);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (6, 'Chevrolet', '234553', 87.85, 48.42, 82.91, 50.0);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (7, 'Volkswagen', '2353', 3.1, 90.9, 76.94, 9.18);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (8, 'Honda', '4534', 51.36, 80.49, 34.8, 9.83);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (9, 'Land Rover', '423523', 12.5, 44.11, 35.09, 69.39);
-insert into MAQUINAENTITY (id, nombre, referencia, calorias, tiempo, velocidad, velocidadPromedio) values (10, 'Toyota', '435342', 45.6, 62.33, 49.36, 69.25);
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (1, 'Caminadora', '12334', 'https://bodytech.com.co/uploads/complementaryservice/72a941c8e0574edfa2d77a182c1b5961/bodytech_zona_cardiovascular.jpg' );
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (2, 'Eliptica', '4542', 'http://thedailywrite.net/wp-content/uploads/2018/02/spin.jpg' );
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (3, 'Multifuerza', '3526', 'https://bodytech.com.co/uploads/complementaryservice/da5773daf4e246b783922d904ac78bd1/bodytech_zona_musculacion.jpg' );
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (4, 'Maquina para abdomen', '325345', 'https://bodytech.com.co/uploads/complementaryservice/59931bdc633c4e36b5f815e4b2e490c2/bodytech_abdomen_estiramiento1920x622.jpg' );
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (5, 'Multifuerza', '25896', 'https://www.telegraph.co.uk/content/dam/luxury/2017/03/21/Gym_2-xlarge_trans_NvBQzQNjv4BqgsaO8O78rhmZrDxTlQBjdGcv5yZLmao6LolmWYJrXns.jpg' );
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (6, 'Caminadora', '98756', 'http://www.fitness4all.es/arturo-soria/wp-content/uploads/sites/2/2014/03/gym1.jpg' );
+insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (7, 'Eliptica', '2353', 'https://d2s0f1q6r2lxto.cloudfront.net/pub/ProTips/wp-content/uploads/2016/12/intro-to-spinning-and-indoor-cycling.jpg' );
 
 
 
@@ -117,14 +114,3 @@ insert into rutinaEntity (id, estadoTerminado, nombre, identificadorRutina) valu
 insert into rutinaEntity (id, estadoTerminado, nombre, identificadorRutina) values (9, 1, 'Idle', 9);
 insert into rutinaEntity (id, estadoTerminado, nombre, identificadorRutina) values (10, 1, 'Marsie', 10);
 
- --POBLAMIENTO TABLA SEGUIMIENTO
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (261, 84.5, 111.3, 33.1, 46.6, 1);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (366, 230.1, 183.2, 7.0, 122.6, 2);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (476, 181.1, 156.4, 33.8, 140.9, 3);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (468, 169.2, 161.9, 15.7, 132.2, 4);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (326, 117.5, 196.9, 8.0, 32.8, 5);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (379, 214.1, 94.2, 23.9, 119.1, 6);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (415, 91.5, 96.6, 17.1, 68.7, 7);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (421, 174.5, 136.8, 49.9, 69.6, 8);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (249, 84.6, 69.5, 21.4, 47.9, 9);
-insert into SeguimientoEntity (id, calorias, ritmocardiacopromedio, tiempo, velocidadpromedio, deportista_id) values (203, 87.5, 114.9, 47.0, 163.8, 10);

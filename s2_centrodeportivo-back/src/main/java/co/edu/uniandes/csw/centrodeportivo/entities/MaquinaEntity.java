@@ -24,10 +24,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
  
     private String nombre;
     private String referencia;
-    private Double calorias;
-    private Integer tiempo;
-    private Double velocidad;
-    private Double velocidadPromedio;
+    private String imagen;
 
     /**
      * Modela la asociacion 1...* entre las clases Maquina y (hacia) Ejercicio
@@ -90,37 +87,14 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
         this.referencia = referencia;
     }
 
-    public Double getCalorias() {
-        return calorias;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setCalorias(Double calorias) {
-        this.calorias = calorias;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
-
-    public Integer getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(Integer tiempo) {
-        this.tiempo = tiempo;
-    }
-
-    public Double getVelocidad() {
-        return velocidad;
-    }
-
-    public void setVelocidad(Double velocidad) {
-        this.velocidad = velocidad;
-    }
-
-    public Double getVelocidadPromedio() {
-        return velocidadPromedio;
-    }
-
-    public void setVelocidadPromedio(Double velocidadPromedio) {
-        this.velocidadPromedio = velocidadPromedio;
-    }
+    
     
     
     
