@@ -38,11 +38,12 @@ public class DeportistaObjetivoLogic {
      * @return El deportista que fue agregado al objetivo.
      */
     public ObjetivoEntity addObjetivo(Long objetivosId, Long deportistasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar el objetivo con id = {0} al deportista con id = " + deportistasId, objetivosId);
+        Long[] array = {objetivosId, deportistasId};
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar el objetivo con id = {0} al deportista con id = {1}" , array);
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         deportistaEntity.setObjetivo(objetivoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el objetivo con id = {0} al deportista con id = " + deportistasId, objetivosId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el objetivo con id = {0} al deportista con id = {1}",array);
         return objetivoPersistence.find(objetivosId);
     }
 
@@ -72,7 +73,8 @@ public class DeportistaObjetivoLogic {
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         deportistaEntity.setObjetivo(objetivoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el objetivo con id = {0} al deportista con id = " + deportistasId, objetivosId);
+        Long[] array = {deportistasId, objetivosId};
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el objetivo con id = {1} al deportista con id = {0}", array);
         return objetivoPersistence.find(objetivosId);
     }
 
@@ -91,6 +93,7 @@ public class DeportistaObjetivoLogic {
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(deportistaEntity.getObjetivo().getId());
         deportistaEntity.setObjetivo(null);
         objetivoEntity.getCasosExitosos().remove(deportistaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el objetivo con id = {0} del deportista con id = " + deportistasId, objetivoEntity.getId());
+        Long[] array = {objetivoEntity.getId(), deportistasId};
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el objetivo con id = {0} del deportista con id = {1}", array);
     }
 }

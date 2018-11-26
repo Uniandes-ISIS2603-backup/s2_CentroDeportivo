@@ -38,6 +38,8 @@ class EspecialistaDeportistasResource {
     
     private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasResource.class.getName());
     
+    private String NO_EXISTE = " no existe.";
+    
     @Inject
     private EspecialistaDeportistasLogic especialistaDeportistasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
@@ -61,10 +63,10 @@ class EspecialistaDeportistasResource {
     public DeportistaDTO addDeportista(@PathParam("especialistasId") Long especialistasId, @PathParam("deportistasId") Long deportistasId) {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource addDeportista: input: especialistasID: {0} , deportistasId: {1}", new Object[]{especialistasId, deportistasId});
         if (deportistaLogic.getDeportista(deportistasId) == null) {
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /deportistas/" + deportistasId +  NO_EXISTE, 404);
         }
         DeportistaDTO deportistaDTO = new DeportistaDTO(especialistaDeportistasLogic.addDeportista(deportistasId, especialistasId));
-        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource addDeportista: output: {0}", deportistaDTO.toString());
+        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource addDeportista: output: {0}", deportistaDTO);
         return deportistaDTO;
     }
     
@@ -80,7 +82,7 @@ class EspecialistaDeportistasResource {
     public List<DeportistaDetailDTO> getDeportistas(@PathParam("especialistasId") Long especialistasId) {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportistas: input: {0}", especialistasId);
         List<DeportistaDetailDTO> listaDetailDTOs = deportistasListEntity2DTO(especialistaDeportistasLogic.getDeportistas(especialistasId));
-        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportistas: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportistas: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
     
@@ -103,10 +105,10 @@ class EspecialistaDeportistasResource {
     public DeportistaDetailDTO getDeportista(@PathParam("especialistasId") Long especialistasId, @PathParam("deportistasId") Long deportistasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportista: input: especialistasID: {0} , deportistasId: {1}", new Object[]{especialistasId, deportistasId});
         if (deportistaLogic.getDeportista(deportistasId) == null) {
-            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + "/deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + "/deportistas/" + deportistasId +  NO_EXISTE, 404);
         }
         DeportistaDetailDTO deportistaDetailDTO = new DeportistaDetailDTO(especialistaDeportistasLogic.getDeportista(especialistasId, deportistasId));
-        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportista: output: {0}", deportistaDetailDTO.toString());
+        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource getDeportista: output: {0}", deportistaDetailDTO );
         return deportistaDetailDTO;
     }
     
@@ -124,14 +126,14 @@ class EspecialistaDeportistasResource {
      */
     @PUT
     public List<DeportistaDetailDTO> replaceDeportistas(@PathParam("especialistasId") Long especialistasId, List<DeportistaDetailDTO> deportistas) {
-        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource replaceDeportistas: input: especialistasId: {0} , deportistas: {1}", new Object[]{especialistasId, deportistas.toString()});
+        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource replaceDeportistas: input: especialistasId: {0} , deportistas: {1}", new Object[]{especialistasId, deportistas });
         for (DeportistaDetailDTO deportista : deportistas) {
             if (deportistaLogic.getDeportista(deportista.getId()) == null) {
-                throw new WebApplicationException("El recurso /deportistas/" + deportista.getId() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /deportistas/" + deportista.getId() +  NO_EXISTE, 404);
             }
         }
         List<DeportistaDetailDTO> listaDetailDTOs = deportistasListEntity2DTO(especialistaDeportistasLogic.replaceDeportistas(especialistasId, deportistasListDTO2Entity(deportistas)));
-        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource replaceDeportistas: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "EspecialistaDeportistasResource replaceDeportistas: output: {0}", listaDetailDTOs );
         return listaDetailDTOs;
     }
     

@@ -43,7 +43,7 @@ public class ObjetivoDetailDTO extends ObjetivoDTO implements Serializable{
         super(objetivoEntity);
         if(objetivoEntity != null)
         {
-            casosExitosos = new ArrayList<DeportistaDTO>();
+            casosExitosos = new ArrayList<>();
             for(DeportistaEntity entityDeportista: objetivoEntity.getCasosExitosos())
             {
                 casosExitosos.add(new DeportistaDTO(entityDeportista));
@@ -61,7 +61,7 @@ public class ObjetivoDetailDTO extends ObjetivoDTO implements Serializable{
     public ObjetivoEntity toEntity() {
         ObjetivoEntity objetivo = super.toEntity();
         if (casosExitosos != null) {
-            List<DeportistaEntity> deportistasEntity = new ArrayList<DeportistaEntity>();
+            List<DeportistaEntity> deportistasEntity = new ArrayList<>();
             for (DeportistaDTO dtoDeportista : casosExitosos) {
                 deportistasEntity.add(dtoDeportista.toEntity());
             }

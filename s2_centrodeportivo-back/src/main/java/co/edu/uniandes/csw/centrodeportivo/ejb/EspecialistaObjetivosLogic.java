@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.centrodeportivo.ejb;
-
-import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.EspecialistaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -72,11 +70,12 @@ public class EspecialistaObjetivosLogic {
      * especialista
      */
     public ObjetivoEntity getObjetivo(Long especialistasId, Long objetivosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el objetivo con id = {0} de la especialista con id = " + especialistasId, objetivosId);
+        Long[] array ={especialistasId, objetivosId};
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el objetivo con id = {1] de la especialista con id ={0} ", array);
         List<ObjetivoEntity> objetivos = especialistaPersistence.find(especialistasId).getObjetivos();
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
         int index = objetivos.indexOf(objetivoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo con id = {0} de la especialista con id = " + especialistasId, objetivosId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo con id = {1} de la especialista con id = {0}" + especialistasId, objetivosId);
         if (index >= 0) {
             return objetivos.get(index);
         }
