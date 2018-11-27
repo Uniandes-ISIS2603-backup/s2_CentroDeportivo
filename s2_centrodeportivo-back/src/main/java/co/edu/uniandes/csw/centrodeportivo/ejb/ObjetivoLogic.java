@@ -86,4 +86,15 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el objetivo identificado con el id = {0}",objetivosId);
         return objetivoActualizado;
     }
+     /**
+     * Elimina una instancia de un objetivo de la base de datos.
+     *
+     * @param objetivosId Identificador de la instancia a eliminar.
+     */
+    public void deleteObjetivo(Long objetivosId)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el objetivo con id = {0}", objetivosId);
+        persistencia.delete(objetivosId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el objetivo con id = {0}", objetivosId);
+    }
 }

@@ -114,4 +114,20 @@ public class ObjetivoPersistence {
         LOGGER.log(Level.INFO, "Saliendo de consultar objetivo por descripcion ={0}", descripcion);
         return result;
     }
+    /**
+     *
+     * Borra el objetivo de la base de datos recibiendo como argumento su id
+     *
+     * @param objetivosId: id correspondiente al objetivo a borrar.
+     */
+    public void delete(Long objetivosId) {
+        LOGGER.log(Level.INFO, "Borrando al objetivo con id = {0}", objetivosId);
+        // Se hace uso de mismo método que esta explicado en public ObjetivoEntity find(Long id) para obtener al deportista a borrar.
+        ObjetivoEntity entity = em.find(ObjetivoEntity.class, objetivosId);
+        /* Note que una vez obtenido el objeto desde la base de datos llamado "entity", volvemos hacer uso de un método propio del
+         EntityManager para eliminar de la base de datos el objeto que encontramos y queremos borrar.
+         Es similar a "delete from DeportistaEntity where id=id;" - "DELETE FROM table_name WHERE condition;" en SQL.*/
+        em.remove(entity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar al objetivo con id = {0}", objetivosId);
+    }
 }
