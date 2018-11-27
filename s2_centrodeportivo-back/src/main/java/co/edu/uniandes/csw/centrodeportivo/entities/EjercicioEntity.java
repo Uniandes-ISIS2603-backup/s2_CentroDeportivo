@@ -45,9 +45,9 @@ public class EjercicioEntity extends BaseEntity implements Serializable
     @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
     private List<ZonaCuerpoEntity> zonasCuerpo = new ArrayList<ZonaCuerpoEntity>();
     
-    @PodamExclude
-    @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
-    private List<MaquinaEntity> maquinas = new ArrayList<MaquinaEntity  >();
+    //@PodamExclude
+  //  @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
+//    private List<MaquinaEntity> maquinas = new ArrayList<MaquinaEntity  >();
     
     @PodamExclude
     @OneToMany(mappedBy = "ejercicio",fetch=FetchType.LAZY)
@@ -114,20 +114,20 @@ public class EjercicioEntity extends BaseEntity implements Serializable
      *
      * @return Lista de entidades de tipo Maquina
      */
-    public List<MaquinaEntity> getMaquinas()
-    {
-        return this.maquinas;
-    }
+   // public List<MaquinaEntity> getMaquinas()
+    //{
+      //  return this.maquinas;
+    //}
     
     /**
      * Modifica las máquinas de un ejercicio.
      *
      * @param pMaquinas Las nuevas máquinas.
      */
-    public void setMaquinas(List<MaquinaEntity> pMaquinas)
-    {
-        this.maquinas = pMaquinas;
-    }
+   // public void setMaquinas(List<MaquinaEntity> pMaquinas)
+    //{
+      //  this.maquinas = pMaquinas;
+    //}
     
     /**
      * Devuelve los implementos de un ejercicio
