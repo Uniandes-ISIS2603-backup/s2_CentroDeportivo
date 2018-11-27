@@ -21,7 +21,6 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
      * Lista de objetivos del deportista
      */
     private List<ObjetivoDTO> objetivos;
-    
     /**
      * Constructor por defecto
      */

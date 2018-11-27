@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
-import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

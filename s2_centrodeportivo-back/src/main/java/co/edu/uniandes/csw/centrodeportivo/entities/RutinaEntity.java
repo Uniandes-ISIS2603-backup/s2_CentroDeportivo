@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
@@ -13,98 +13,113 @@ import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa una rutina en la persistencia y permite su serialización
  *
  * @author Francisco Jose MacAllister
  */
 @Entity
 public class RutinaEntity extends BaseEntity implements Serializable {
-    public Integer identificadorRutina;
-    public String nombre;
-    public Boolean estadoTerminado;
-
-     @PodamExclude
+    
+    @PodamExclude
     @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
     private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
-     
-     @PodamExclude
+    
+    @PodamExclude
     @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
-    List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
-     /**
-     *pide indentificador unico de rutina por deportista
-     * 
+    private List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
+    
+    private Integer identificadorRutina;
+    private String nombre;
+    private Boolean estadoTerminado;
+    
+    /**
+     * Devuelve el identificador único de la rutina
+     *
+     * @return Identificador de la rutina
      */
     public Integer getIdentificadorRutina() {
         return identificadorRutina;
     }
-/**
-     * asigna identificado unoco de rutina por deportista
-     * 
+    
+    /**
+     * Asigna identificador único a la rutina
+     *
+     * @param identificadorRutina Identificador nuevo de la rutina
      */
     public void setIdentificadorRutina(Integer identificadorRutina) {
         this.identificadorRutina = identificadorRutina;
     }
-/**
-     * pide estado a rutina
-     * 
+    
+    /**
+     * Retorna el estado de la rutina
+     *
+     * @return Estado de la rutina
      */
     public Boolean getEstadoTerminado() {
         return estadoTerminado;
     }
-/**
-     * asigna estado a rutina
-     * 
+    
+    /**
+     * Modifica el estado de la rutina
+     *
+     * @param estadoTerminado Nuevo estado de la rutina
      */
     public void setEstadoTerminado(Boolean estadoTerminado) {
         this.estadoTerminado = estadoTerminado;
     }
+    
     /**
-     * pide nombre a rutina
-     * 
+     * Devuelve el nombre de la rutina
+     *
+     * @return Nombre de la rutina
      */
     public String getNombre() {
         return nombre;
     }
-/**
-     * asigna nombre a rutina
-     * 
+    
+    /**
+     * Modifica el nombre de la rutina
+     *
+     * @param nombre Nuevo nombre de la rutina
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
     
-   
-    
-    
     /**
      * Devuelve los objetivos de esta rutina
-     * @return Collection los deportistas
+     * @return Lista de objetivos asociados a la rutina
      */
     public List<ObjetivoEntity> getObjetivos()
     {
-      return this.objetivos;  
+        return this.objetivos;
     }
+    
     /**
-     * asigna los objetivos de esta rutina
-     * 
+     * Modifica los objetivos de esta rutina
+     *
+     * @param objetivos Los nuevos objetivos
      */
-    public void setObjetivos(List<ObjetivoEntity> deportistas)
+    public void setObjetivos(List<ObjetivoEntity> objetivos)
     {
-        this.objetivos=deportistas;
+        this.objetivos=objetivos;
     }
     
-    
-    
-    
-    
-    
     /**
-     * Devuelve los deportistas que son asesorados por este deportista
-     * @return Collection los deportistas
+     * Devuelve los ejercicios asociados a la rutina
+     *
+     * @return Ejercicios asociados a la rutina
      */
     public List<EjercicioEntity> getEjercicios()
     {
-      return this.ejercicios;  
+        return this.ejercicios;
     }
+    
+    /**
+     * Modifica los ejercicios asociados a la rutina
+     *
+     * @param ejercicios Los nuevos ejercicios
+     */
     public void setEjercicios(List<EjercicioEntity> ejercicios)
     {
         this.ejercicios=ejercicios;

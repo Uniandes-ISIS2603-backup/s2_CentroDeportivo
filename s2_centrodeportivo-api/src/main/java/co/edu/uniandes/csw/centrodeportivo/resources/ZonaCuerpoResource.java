@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.centrodeportivo.resources;
 import co.edu.uniandes.csw.centrodeportivo.dtos.ZonaCuerpoDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.ZonaCuerpoLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
-import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;

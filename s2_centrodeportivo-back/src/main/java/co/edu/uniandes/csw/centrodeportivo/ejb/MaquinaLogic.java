@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.MaquinaEntity;
-import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.MaquinaPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,18 +14,20 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Maquina.
  *
  * @author Diany Quintero
  */
 @Stateless
-public class MaquinaLogic 
+public class MaquinaLogic
 {
     private static final Logger LOGGER = Logger.getLogger(MaquinaLogic.class.getName());
     
     @Inject
-    private MaquinaPersistence persistence;
+    private MaquinaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
-     /**
+    /**
      * Se encarga de crear una maquina en la base de datos.
      *
      * @param maquinaEntity Objeto de tipo MaquinaEntity con los datos nuevos
@@ -40,8 +41,7 @@ public class MaquinaLogic
         return maquinaEntity;
     }
     
-    
-     /**
+    /**
      * Obtiene la lista de las maquinas.
      *
      * @return Colección de objetos de Maquinaentity.
@@ -69,7 +69,7 @@ public class MaquinaLogic
         return maquinaEntity;
     }
     
-     /**
+    /**
      * Actualiza la información de una instancia de Maquina.
      *
      * @param maquinasId Identificador de la instancia a actualizar
@@ -83,11 +83,10 @@ public class MaquinaLogic
         return newMaquinaEntity;
     }
     
-     /**
+    /**
      * Elimina una instancia de Maquina de la base de datos.
      *
      * @param maquinasId Identificador de la instancia a eliminar.
-     * @throws BusinessLogicException si la maquina a eliminar no existe.
      */
     public void deleteMaquina(Long maquinasId){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la maquina con id = {0}", maquinasId);

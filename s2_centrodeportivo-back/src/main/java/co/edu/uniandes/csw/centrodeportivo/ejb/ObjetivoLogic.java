@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
@@ -15,6 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Objetivo.
  *
  * @author Leidy Romero
  */
@@ -23,12 +25,12 @@ public class ObjetivoLogic {
     
     private static final Logger LOGGER = Logger.getLogger(ObjetivoLogic.class.getName());
     
-    @Inject 
-    private ObjetivoPersistence persistencia;
+    @Inject
+    private ObjetivoPersistence persistencia; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
-     /**
+    /**
      * Metodo que se encarga de crear un objetivo en la base de datos.
-     * 
+     *
      * @param objetivoEntity Objeto de ObjetivoEntity con los datos nuevos
      * @return Objeto de ObjetivoEntity con los datos nuevos y su ID.
      * @throws BusinessLogicException si ya existe un objetivo con la descripcion
@@ -43,7 +45,8 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO,"Termina proceso de creación de un objetivo");
         return nuevoObjetivo;
     }
-     /**
+    
+    /**
      * Obtiene la lista de los registros de los objetivos.
      * @return Coleccion de objetos tipo ObjetivoEntity
      */
@@ -55,7 +58,7 @@ public class ObjetivoLogic {
         return lista;
     }
     
-        /**
+    /**
      * Obtiene los datos de una instancia de Objetivo a partir de su ID.
      * @param objetivosId Identificador de la instancia a consultar.
      * @return Instancia de ObjetivoEntity con los datos del objetivo encontrado.
@@ -73,7 +76,7 @@ public class ObjetivoLogic {
     
     /**
      * Actualiza la informacion de una instancia de objetivo de la base de datos.
-     * 
+     *
      * @param objetivosId identificador de la instancia a actualizar.
      * @param objetivoEntity instancia de Entity con los nuevos datos.
      * @return Instancia de ObjetivoEntity con los datos actualizados.
@@ -86,6 +89,7 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el objetivo identificado con el id = {0}",objetivosId);
         return objetivoActualizado;
     }
+<<<<<<< HEAD
      /**
      * Elimina una instancia de un objetivo de la base de datos.
      *
@@ -98,3 +102,6 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar el objetivo con id = {0}", objetivosId);
     }
 }
+=======
+}
+>>>>>>> e6666b15e4e9856c0329e34b324144f617fa5ef8

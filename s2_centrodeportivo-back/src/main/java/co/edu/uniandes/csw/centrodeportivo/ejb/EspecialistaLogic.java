@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
@@ -17,20 +17,22 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Especialista.
  *
  * @author Francisco Jose MacAllister
  */
 @Stateless
 public class EspecialistaLogic {
-
- private static final Logger LOGGER = Logger.getLogger(EspecialistaLogic.class.getName());
     
-    @Inject 
-    private EspecialistaPersistence persistencia;
+    private static final Logger LOGGER = Logger.getLogger(EspecialistaLogic.class.getName());
     
-     /**
+    @Inject
+    private EspecialistaPersistence persistencia; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
+    /**
      * Metodo que se encarga de crear un especialista en la base de datos.
-     * 
+     *
      * @param especialistaEntity Objeto de EspecialistaEntity con los datos nuevos
      * @return Objeto de EspecialistaEntity con los datos nuevos y su ID.
      */
@@ -46,7 +48,7 @@ public class EspecialistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de creación del especialista");
         return especialistaEntity;
     }
-     /**
+    /**
      * Obtiene la lista de los especialistas.
      * @return Coleccion de objetos tipo EspecialistaEntity
      */
@@ -58,7 +60,7 @@ public class EspecialistaLogic {
         return lista;
     }
     
-        /**
+    /**
      * Obtiene los datos de un Especialista solicitado a partir de su identificador.
      * @param especialistasId Identificador de la instancia a consultar.
      * @return Instancia de EspecialistaEntity con los datos del especialista encontrado.
@@ -77,7 +79,7 @@ public class EspecialistaLogic {
     
     /**
      * Actualiza la informacion de una especialista  determinado.
-     * 
+     *
      * @param especialistasId identificador de la instancia a actualizar.
      * @param especialistaEntity instancia de Entity con los nuevos datos.
      * @return Instancia de EspecialistaEntity con los datos actualizados.
@@ -89,8 +91,8 @@ public class EspecialistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el especialista identificado con el id = {0}",especialistasId);
         return especialistaActualizado;
     }
-
-   /**
+    
+    /**
      * Borrar un especialista
      *
      * @param especialistasId: id de la especialista a borrar
@@ -110,6 +112,5 @@ public class EspecialistaLogic {
         persistencia.delete(especialistasId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el especialista con id = {0}", especialistasId);
     }
-
     
 }

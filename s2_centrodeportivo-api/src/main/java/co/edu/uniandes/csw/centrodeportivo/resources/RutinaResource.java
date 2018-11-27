@@ -38,7 +38,7 @@ public class RutinaResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaResource.class.getName());
      private String NO_EXISTE = " no existe.";
     @Inject
-            RutinaLogic rutinaLogic;
+    RutinaLogic rutinaLogic;
     @POST
     public RutinaDTO createRutina(RutinaDTO rutina) throws BusinessLogicException
     {

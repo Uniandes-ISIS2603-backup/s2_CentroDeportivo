@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.centrodeportivo.dtos;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
-import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

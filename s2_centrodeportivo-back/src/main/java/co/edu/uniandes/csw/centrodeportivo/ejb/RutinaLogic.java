@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -17,6 +17,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Rutina.
  *
  * @author Francisco Jose MacAllister
  */
@@ -24,12 +26,12 @@ import javax.inject.Inject;
 public class RutinaLogic {
     private static final Logger LOGGER = Logger.getLogger(RutinaLogic.class.getName());
     
-    @Inject 
-    private RutinaPersistence persistencia;
+    @Inject
+    private RutinaPersistence persistencia; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
-     /**
+    /**
      * Metodo que se encarga de crear un rutina en la base de datos.
-     * 
+     *
      * @param rutinaEntity Objeto de RutinaEntity con los datos nuevos
      * @return Objeto de RutinaEntity con los datos nuevos y su ID.
      */
@@ -45,7 +47,8 @@ public class RutinaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de creación del rutina");
         return rutinaEntity;
     }
-     /**
+    
+    /**
      * Obtiene la lista de los registros de los rutinas.
      * @return Coleccion de objetos tipo RutinaEntity
      */
@@ -57,7 +60,7 @@ public class RutinaLogic {
         return lista;
     }
     
-        /**
+    /**
      * Obtiene los datos de una instancia de Rutina a partir de su ID.
      * @param rutinasId Identificador de la instancia a consultar.
      * @return Instancia de RutinaEntity con los datos del rutina encontrado.
@@ -75,7 +78,7 @@ public class RutinaLogic {
     
     /**
      * Actualiza la informacion de una instancia de rutina de la base de datos.
-     * 
+     *
      * @param rutinasId identificador de la instancia a actualizar.
      * @param rutinaEntity instancia de Entity con los nuevos datos.
      * @return Instancia de RutinaEntity con los datos actualizados.
@@ -87,7 +90,7 @@ public class RutinaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el rutina identificado con el id = {0}",rutinasId);
         return rutinaActualizado;
     }
-
+    
     /**
      * Borrar un rutina
      *

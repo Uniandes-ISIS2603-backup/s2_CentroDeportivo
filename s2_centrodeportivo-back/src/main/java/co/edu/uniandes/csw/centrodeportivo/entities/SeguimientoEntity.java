@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -38,27 +37,22 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     private Double velocidadPromedio;
     private Double ritmoCardiacoPromedio;
     
-    public SeguimientoEntity()
-    {
-        
-    }
-    
     /**
      * Devuelve el deportista del seguimiento.
      *
      * @return Deportista que realiza el Seguimiento.
      */
-    public DeportistaEntity getDeportista() 
+    public DeportistaEntity getDeportista()
     {
         return deportista;
     }
-
+    
     /**
      * Modifica el deportista del seguimiento.
      *
      * @param deportista El nuevo deportista.
      */
-    public void setDeportista(DeportistaEntity deportista) 
+    public void setDeportista(DeportistaEntity deportista)
     {
         this.deportista = deportista;
     }
@@ -68,17 +62,17 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
      *
      * @return Lista de máquinas de Seguimiento.
      */
-    public List<MaquinaEntity> getMaquinas() 
+    public List<MaquinaEntity> getMaquinas()
     {
         return this.maquinas;
     }
-
+    
     /**
      * Modifica las máquinas del seguimiento.
      *
      * @param maquinas Las nuevas máquinas.
      */
-    public void setMaquinas(List<MaquinaEntity> maquinas) 
+    public void setMaquinas(List<MaquinaEntity> maquinas)
     {
         this.maquinas = maquinas;
     }
@@ -122,7 +116,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     {
         return ritmoCardiacoPromedio;
     }
-
+    
     /**
      * Modifica el tiempo invertido por el deportista.
      *
@@ -131,7 +125,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     public void setTiempo(Integer tiempo) {
         this.tiempo = tiempo;
     }
-
+    
     /**
      * Modifica la cantidad de calorías quemadas por el deportista.
      *
@@ -140,7 +134,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     public void setCalorias(Double calorias) {
         this.calorias = calorias;
     }
-
+    
     /**
      * Modifica la velocidad promedio del deportista.
      *
@@ -149,7 +143,7 @@ public class SeguimientoEntity extends BaseEntity implements Serializable {
     public void setVelocidadPromedio(Double velocidadPromedio) {
         this.velocidadPromedio = velocidadPromedio;
     }
-
+    
     /**
      * Modifica el ritmo cardíaco promedio del deportista.
      *

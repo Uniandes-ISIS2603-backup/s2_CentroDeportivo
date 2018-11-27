@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ImplementoEntity;
@@ -17,17 +17,17 @@ import javax.inject.Inject;
 /**
  * Clase que implementa la conexión con la persistencia para la entidad de
  * Implemento.
- * 
+ *
  * @author Lina Cardozo
  */
 @Stateless
 public class ImplementoLogic {
-
+    
     private static final Logger LOGGER = Logger.getLogger(ImplementoLogic.class.getName());
     
     @Inject
     private ImplementoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     /**
      * Crea un implemento en la persistencia.
      *
@@ -36,7 +36,7 @@ public class ImplementoLogic {
      * @return La entiddad del implemento luego de persistirla.
      * @throws BusinessLogicException Si el implemento a persistir ya existe.
      */
-    public ImplementoEntity createImplemento(ImplementoEntity implementoEntity) throws BusinessLogicException 
+    public ImplementoEntity createImplemento(ImplementoEntity implementoEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del implemento");
         // Invoca la persistencia para crear el implemento
@@ -47,9 +47,8 @@ public class ImplementoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de creación del implemento");
         return implementoEntity;
     }
-
+    
     /**
-     *
      * Obtener todos los implementos existentes en la base de datos.
      *
      * @return una lista de implementos.
@@ -61,9 +60,8 @@ public class ImplementoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los implementoes");
         return implementos;
     }
-
+    
     /**
-     *
      * Obtener un implemento por medio de su id.
      *
      * @param implementosId: id del implemento para ser buscado.
@@ -79,9 +77,8 @@ public class ImplementoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el implemento con id = {0}", implementosId);
         return implementoEntity;
     }
-
+    
     /**
-     *
      * Actualizar un implemento.
      *
      * @param implementosId: id del implemento para buscarlo en la base de
@@ -97,7 +94,7 @@ public class ImplementoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el implemento con id = {0}", implementoEntity.getId());
         return newEntity;
     }
-
+    
     /**
      * Borrar un implemento
      *

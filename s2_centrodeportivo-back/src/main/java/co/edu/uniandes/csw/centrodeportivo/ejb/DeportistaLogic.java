@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
@@ -15,6 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Deportista.
  *
  * @author Leidy Romero
  */
@@ -23,12 +25,12 @@ public class DeportistaLogic {
     
     private static final Logger LOGGER = Logger.getLogger(DeportistaLogic.class.getName());
     
-    @Inject 
-    private DeportistaPersistenc persistencia;
+    @Inject
+    private DeportistaPersistenc persistencia; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
-     /**
+    /**
      * Metodo que se encarga de crear un deportista en la base de datos.
-     * 
+     *
      * @param deportistaEntity Objeto de DeportistaEntity con los datos nuevos
      * @return Objeto de DeportistaEntity con los datos nuevos y su ID.
      * @throws BusinessLogicException si ya existe un deportista con la descripcion
@@ -43,7 +45,8 @@ public class DeportistaLogic {
         LOGGER.log(Level.INFO,"Termina proceso de creación de un deportista");
         return nuevoDeportista;
     }
-     /**
+    
+    /**
      * Obtiene la lista de los registros de los deportistas.
      * @return Coleccion de objetos tipo DeportistaEntity
      */
@@ -55,7 +58,7 @@ public class DeportistaLogic {
         return lista;
     }
     
-        /**
+    /**
      * Obtiene los datos de una instancia de Deportista a partir de su ID.
      * @param deportistasId Identificador de la instancia a consultar.
      * @return Instancia de DeportistaEntity con los datos del deportista encontrado.
@@ -73,7 +76,7 @@ public class DeportistaLogic {
     
     /**
      * Actualiza la informacion de una instancia de deportista de la base de datos.
-     * 
+     *
      * @param deportistasId identificador de la instancia a actualizar.
      * @param deportistaEntity instancia de Entity con los nuevos datos.
      * @return Instancia de DeportistaEntity con los datos actualizados.
@@ -86,6 +89,7 @@ public class DeportistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el deportista identificado con el id = {0}",deportistasId);
         return deportistaActualizado;
     }
+    
     /**
      * Elimina una instancia de un deportista de la base de datos.
      *
