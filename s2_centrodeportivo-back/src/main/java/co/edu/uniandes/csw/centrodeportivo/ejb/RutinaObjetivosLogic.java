@@ -43,7 +43,6 @@ public class RutinaObjetivosLogic {
      */
     public ObjetivoEntity addObjetivo(Long objetivosId, Long rutinasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un objetivo a la rutina con id = {0}", rutinasId);
-        RutinaEntity rutinaEntity = rutinaPersistence.find(rutinasId);
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
        // objetivoEntity.setRutina(rutinaEntity);
        //falta que implementen set rutina
@@ -72,11 +71,13 @@ public class RutinaObjetivosLogic {
      * rutina
      */
     public ObjetivoEntity getObjetivo(Long rutinasId, Long objetivosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el objetivo con id = {0} de la rutina con id = " + rutinasId, objetivosId);
+        Long[] array = {objetivosId,rutinasId};
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el objetivo con id = {0} de la rutina con id ={1} ", array);
         List<ObjetivoEntity> objetivos = rutinaPersistence.find(rutinasId).getObjetivos();
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
         int index = objetivos.indexOf(objetivoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo con id = {0} de la rutina con id = " + rutinasId, objetivosId);
+        Long[] array2 = {objetivosId,rutinasId};
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo con id = {0} de la rutina con id = {1}",array2);
         if (index >= 0) {
             return objetivos.get(index);
         }
@@ -92,7 +93,7 @@ public class RutinaObjetivosLogic {
      */
     public List<ObjetivoEntity> replaceObjetivos(Long rutinasId, List<ObjetivoEntity> objetivos) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la rutina con id = {0}", rutinasId);
-        RutinaEntity rutinaEntity = rutinaPersistence.find(rutinasId);
+
         List<ObjetivoEntity> objetivoList = objetivoPersistence.findAll();
         for (ObjetivoEntity objetivo : objetivoList) {
             if (objetivos.contains(objetivo)) {

@@ -38,6 +38,8 @@ import javax.ws.rs.WebApplicationException;
 public class ObjetivoResource {
     
     private static final Logger LOGGER = Logger.getLogger(DeportistaResource.class.getName());
+    private String NO_EXISTE = " no existe.";
+    private String RECURSO_OBJETIVO = "El recurso /objetivos/";
     @Inject
     ObjetivoLogic objetivoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
@@ -55,14 +57,14 @@ public class ObjetivoResource {
      */
     @POST
     public ObjetivoDTO createObjetivo(ObjetivoDTO objetivo) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ObjetivoResource createObjetivo: input: {0}", objetivo.toString());
+        LOGGER.log(Level.INFO, "ObjetivoResource createObjetivo: input: {0}", objetivo);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ObjetivoEntity objetivoEntity = objetivo.toEntity();
         // Invoca la lógica para crear el objetivo nuevo
         ObjetivoEntity nuevoObjetivoEntity = objetivoLogic.createObjetivo(objetivoEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         ObjetivoDTO nuevoObjetivoDTO = new ObjetivoDTO(nuevoObjetivoEntity);
-        LOGGER.log(Level.INFO, "ObjetivoResource createObjetivo: output: {0}", nuevoObjetivoDTO.toString());
+        LOGGER.log(Level.INFO, "ObjetivoResource createObjetivo: output: {0}", nuevoObjetivoDTO);
         return nuevoObjetivoDTO;
     }
     
@@ -76,7 +78,7 @@ public class ObjetivoResource {
     public List<ObjetivoDetailDTO> getObjetivos() {
         LOGGER.info("ObjetivoResource getObjetivos: input: void");
         List<ObjetivoDetailDTO> listaObjetivos = listEntity2DetailDTO(objetivoLogic.getObjetivos());
-        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivos: output: {0}", listaObjetivos.toString());
+        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivos: output: {0}", listaObjetivos);
         return listaObjetivos;
     }
     
@@ -91,14 +93,14 @@ public class ObjetivoResource {
      */
     @GET
     @Path("{objetivosId: \\d+}")
-    public ObjetivoDetailDTO getObjetivo(@PathParam("objetivosId") Long objetivosId) throws WebApplicationException {
+    public ObjetivoDetailDTO getObjetivo(@PathParam("objetivosId") Long objetivosId) {
         LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: input: {0}", objetivosId);
         ObjetivoEntity objetivoEntity = objetivoLogic.getObjetivo(objetivosId);
         if (objetivoEntity == null)
-            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_OBJETIVO + objetivosId + NO_EXISTE, 404);
         
         ObjetivoDetailDTO detailDTO = new ObjetivoDetailDTO(objetivoEntity);
-        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ObjetivoResource getObjetivo: output: {0}", detailDTO);
         return detailDTO;
     }
     /**
@@ -116,15 +118,15 @@ public class ObjetivoResource {
      */
     @PUT
     @Path("{objetivosId: \\d+}")
-    public ObjetivoDTO updateObjetivo(@PathParam("objetivosId") Long objetivosId, ObjetivoDTO objetivo) throws WebApplicationException {
+    public ObjetivoDTO updateObjetivo(@PathParam("objetivosId") Long objetivosId, ObjetivoDTO objetivo){
         
-        LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: input: id:{0} , objetivo: {1}", new Object[]{objetivosId, objetivo.toString()});
+        LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: input: id:{0} , objetivo: {1}", new Object[]{objetivosId, objetivo});
         objetivo.setId(objetivosId);
         if (objetivoLogic.getObjetivo(objetivosId) == null)
             throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404);
         
         ObjetivoDTO detailDTO = new ObjetivoDTO(objetivoLogic.updateObjetivo(objetivosId, objetivo.toEntity()));
-        LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ObjetivoResource updateObjetivo: output: {0}", detailDTO);
         return detailDTO;
     }
     

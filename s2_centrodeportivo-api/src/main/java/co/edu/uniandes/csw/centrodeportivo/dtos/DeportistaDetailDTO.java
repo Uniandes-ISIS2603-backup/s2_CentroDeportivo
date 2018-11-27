@@ -38,13 +38,11 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
      */
     public DeportistaDetailDTO(DeportistaEntity deportistaEntity) {
         super(deportistaEntity);
-        if (deportistaEntity != null) {
-            if (deportistaEntity.getObjetivos() != null)
-            {
-                objetivos = new ArrayList<>();
-                for (ObjetivoEntity entityObjetivos : deportistaEntity.getObjetivos()) {
-                    objetivos.add(new ObjetivoDTO(entityObjetivos));
-                }
+        if (deportistaEntity != null && deportistaEntity.getObjetivos() != null)
+        {
+            objetivos = new ArrayList<>();
+            for (ObjetivoEntity entityObjetivos : deportistaEntity.getObjetivos()) {
+                objetivos.add(new ObjetivoDTO(entityObjetivos));
             }
         }
     }
@@ -52,6 +50,7 @@ public class DeportistaDetailDTO extends DeportistaDTO implements Serializable {
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO      *
      */
+    @Override
     public DeportistaEntity toEntity() {
         DeportistaEntity deportista = super.toEntity();
         if (objetivos != null) {

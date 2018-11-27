@@ -12,6 +12,7 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -46,11 +47,77 @@ public class DeportistaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "deportista")
-    private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
+    private List<ObjetivoEntity> objetivos = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne
     private ObjetivoEntity objetivo;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DeportistaEntity other = (DeportistaEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.ultimaActualizacionDatos, other.ultimaActualizacionDatos)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
+            return false;
+        }
+        if (!Objects.equals(this.sexo, other.sexo)) {
+            return false;
+        }
+        if (!Objects.equals(this.altura, other.altura)) {
+            return false;
+        }
+        if (!Objects.equals(this.presionSanguinea, other.presionSanguinea)) {
+            return false;
+        }
+        if (!Objects.equals(this.peso, other.peso)) {
+            return false;
+        }
+        if (!Objects.equals(this.ritmoCardiaco, other.ritmoCardiaco)) {
+            return false;
+        }
+        if (!Objects.equals(this.medidaPiernas, other.medidaPiernas)) {
+            return false;
+        }
+        if (!Objects.equals(this.medidaCintura, other.medidaCintura)) {
+            return false;
+        }
+        if (!Objects.equals(this.medidaBrazos, other.medidaBrazos)) {
+            return false;
+        }
+        if (!Objects.equals(this.cedula, other.cedula)) {
+            return false;
+        }
+        if (!Objects.equals(this.especialista, other.especialista)) {
+            return false;
+        }
+        if (!Objects.equals(this.objetivos, other.objetivos)) {
+            return false;
+        }
+        if (!Objects.equals(this.objetivo, other.objetivo)) {
+            return false;
+        }
+        return Objects.equals(this.seguimiento, other.seguimiento);
+    }
     
     @PodamExclude
     @OneToOne(mappedBy = "deportista")

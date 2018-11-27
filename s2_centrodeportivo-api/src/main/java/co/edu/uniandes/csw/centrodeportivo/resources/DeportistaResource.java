@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -39,7 +40,8 @@ import javax.ws.rs.WebApplicationException;
 public class DeportistaResource implements Serializable{
     
     private static final Logger LOGGER = Logger.getLogger(DeportistaResource.class.getName());
-    
+    private String NO_EXISTE = " no existe.";
+    private String RECURSO_DEPORTISTAS = "El recurso /deportistas/";
     @Inject
     DeportistaLogic deportistaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
@@ -57,14 +59,14 @@ public class DeportistaResource implements Serializable{
      */
     @POST
     public DeportistaDTO createDeportista(DeportistaDTO deportista) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "DeportistaResource createDeportista: input: {0}", deportista.toString());
+        LOGGER.log(Level.INFO, "DeportistaResource createDeportista: input: {0}", deportista);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         DeportistaEntity deportistaEntity = deportista.toEntity();
         // Invoca la lógica para crear el deportista nuevo
         DeportistaEntity nuevoDeportistaEntity = deportistaLogic.createDeportista(deportistaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         DeportistaDTO nuevoDeportistaDTO = new DeportistaDTO(nuevoDeportistaEntity);
-        LOGGER.log(Level.INFO, "DeportistaResource createDeportista: output: {0}", nuevoDeportistaDTO.toString());
+        LOGGER.log(Level.INFO, "DeportistaResource createDeportista: output: {0}", nuevoDeportistaDTO);
         return nuevoDeportistaDTO;
     }
     
@@ -78,7 +80,7 @@ public class DeportistaResource implements Serializable{
     public List<DeportistaDetailDTO> getDeportistas() {
         LOGGER.info("DeportistaResource getDeportistas: input: void");
         List<DeportistaDetailDTO> listaDeportistas = listEntity2DetailDTO(deportistaLogic.getDeportistas());
-        LOGGER.log(Level.INFO, "DeportistaResource getDeportistas: output: {0}", listaDeportistas.toString());
+        LOGGER.log(Level.INFO, "DeportistaResource getDeportistas: output: {0}", listaDeportistas);
         return listaDeportistas;
     }
     
@@ -93,14 +95,14 @@ public class DeportistaResource implements Serializable{
      */
     @GET
     @Path("{deportistasId: \\d+}")
-    public DeportistaDetailDTO getDeportista(@PathParam("deportistasId") Long deportistasId) throws WebApplicationException {
+    public DeportistaDetailDTO getDeportista(@PathParam("deportistasId") Long deportistasId){
         LOGGER.log(Level.INFO, "DeportistaResource getDeportista: input: {0}", deportistasId);
         DeportistaEntity deportistaEntity = deportistaLogic.getDeportista(deportistasId);
         if (deportistaEntity == null)
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
         
         DeportistaDetailDTO detailDTO = new DeportistaDetailDTO(deportistaEntity);
-        LOGGER.log(Level.INFO, "DeportistaResource getDeportista: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "DeportistaResource getDeportista: output: {0}", detailDTO);
         return detailDTO;
     }
     /**
@@ -118,15 +120,15 @@ public class DeportistaResource implements Serializable{
      */
     @PUT
     @Path("{deportistasId: \\d+}")
-    public DeportistaDTO updateDeportista(@PathParam("deportistasId") Long deportistasId, DeportistaDTO deportista) throws WebApplicationException {
+    public DeportistaDTO updateDeportista(@PathParam("deportistasId") Long deportistasId, DeportistaDTO deportista){
         
-        LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: input: id:{0} , deportista: {1}", new Object[]{deportistasId, deportista.toString()});
+        LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: input: id:{0} , deportista: {1}", new Object[]{deportistasId, deportista});
         deportista.setId(deportistasId);
         if (deportistaLogic.getDeportista(deportistasId) == null)
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
         
         DeportistaDetailDTO detailDTO = new DeportistaDetailDTO(deportistaLogic.updateDeportista(deportistasId, deportista.toEntity()));
-        LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -161,10 +163,31 @@ public class DeportistaResource implements Serializable{
     @Path("{deportistasId: \\d+}/objetivos")
     public Class<DeportistaObjetivoResource> getDeportistaObjetivosReosurce(@PathParam("deportistasId") Long deportistasId) {
         if (deportistaLogic.getDeportista(deportistasId) == null) {
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
         }
         return DeportistaObjetivoResource.class;
     }
     //ELIMINAR?
-    
+    /**
+     * Borra la deportista con el id asociado recibido en la URL.
+     *
+     * @param deportistasId Identificador dela deportista que se desea borrar. Este debe
+     * ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     * si la deportista tiene ejercicios asociados
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+     * Error de lógica que se genera cuando no se encuentra la deportista a borrar.
+     */
+    @DELETE
+    @Path("{deportistasId: \\d+}")
+    public void eliminarDeportista(@PathParam("deportistasId") Long deportistasId) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "DeportistaResource deleteDeportista: input: {0}", deportistasId);
+        if (deportistaLogic.getDeportista(deportistasId) == null) {
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
+        }
+        deportistaLogic.deleteDeportista(deportistasId);
+        
+        LOGGER.info("DeportistaResource deleteDeportista: output: void");
+    } 
 } 

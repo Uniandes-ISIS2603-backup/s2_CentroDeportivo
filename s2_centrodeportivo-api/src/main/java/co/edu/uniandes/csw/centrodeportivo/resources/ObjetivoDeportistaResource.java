@@ -62,7 +62,7 @@ public class ObjetivoDeportistaResource {
             throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
         }
         DeportistaDTO deportistaDTO = new DeportistaDTO(objetivoDeportistaLogic.addDeportista(deportistasId, objetivosId));
-        LOGGER.log(Level.INFO, "ObjetivoDeportistaResource addDeportista: output: {0}", deportistaDTO.toString());
+        LOGGER.log(Level.INFO, "ObjetivoDeportistaResource addDeportista: output: {0}", deportistaDTO );
         return deportistaDTO;
     }
 
@@ -83,7 +83,7 @@ public class ObjetivoDeportistaResource {
             throw new WebApplicationException("El recurso /objetivos/" + objetivosId + "/deportista no existe.", 404);
         }
         DeportistaDetailDTO deportistaDetailDTO = new DeportistaDetailDTO(deportistaEntity);
-        LOGGER.log(Level.INFO, "ObjetivoDeportistaResource getDeportista: output: {0}", deportistaDetailDTO.toString());
+        LOGGER.log(Level.INFO, "ObjetivoDeportistaResource getDeportista: output: {0}", deportistaDetailDTO );
         return deportistaDetailDTO;
     }
 
@@ -106,7 +106,7 @@ public class ObjetivoDeportistaResource {
             throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
         }
         DeportistaDetailDTO deportistaDetailDTO = new DeportistaDetailDTO(objetivoDeportistaLogic.replaceDeportista(objetivosId, deportistasId));
-        LOGGER.log(Level.INFO, "ObjetivoDeportistaResource replaceDeportista: output: {0}", deportistaDetailDTO.toString());
+        LOGGER.log(Level.INFO, "ObjetivoDeportistaResource replaceDeportista: output: {0}", deportistaDetailDTO );
         return deportistaDetailDTO;
     }
 

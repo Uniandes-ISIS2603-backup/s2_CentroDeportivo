@@ -36,7 +36,9 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 class RutinaObjetivosResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaObjetivosResource.class.getName());
-
+    
+    private String NO_EXISTE = " no existe.";
+    
     @Inject
     private RutinaObjetivosLogic rutinaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
@@ -60,10 +62,10 @@ class RutinaObjetivosResource {
     public ObjetivoDTO addObjetivo(@PathParam("rutinasId") Long rutinasId, @PathParam("objetivosId") Long objetivosId) {
         LOGGER.log(Level.INFO, "RutinaObjetivosResource addObjetivo: input: rutinasID: {0} , objetivosId: {1}", new Object[]{rutinasId, objetivosId});
         if (objetivoLogic.getObjetivo(objetivosId) == null) {
-            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /objetivos/" + objetivosId +  NO_EXISTE, 404);
         }
         ObjetivoDTO objetivoDTO = new ObjetivoDTO(rutinaObjetivosLogic.addObjetivo(objetivosId, rutinasId));
-        LOGGER.log(Level.INFO, "RutinaObjetivosResource addObjetivo: output: {0}", objetivoDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaObjetivosResource addObjetivo: output: {0}", objetivoDTO );
         return objetivoDTO;
     }
 
@@ -79,7 +81,7 @@ class RutinaObjetivosResource {
     public List<ObjetivoDetailDTO> getObjetivos(@PathParam("rutinasId") Long rutinasId) {
         LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivos: input: {0}", rutinasId);
         List<ObjetivoDetailDTO> listaDetailDTOs = objetivosListEntity2DTO(rutinaObjetivosLogic.getObjetivos(rutinasId));
-        LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivos: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivos: output: {0}", listaDetailDTOs );
         return listaDetailDTOs;
     }
 
@@ -102,10 +104,10 @@ class RutinaObjetivosResource {
     public ObjetivoDetailDTO getObjetivo(@PathParam("rutinasId") Long rutinasId, @PathParam("objetivosId") Long objetivosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivo: input: rutinasID: {0} , objetivosId: {1}", new Object[]{rutinasId, objetivosId});
         if (objetivoLogic.getObjetivo(objetivosId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/objetivos/" + objetivosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/objetivos/" + objetivosId +  NO_EXISTE, 404);
         }
         ObjetivoDetailDTO objetivoDetailDTO = new ObjetivoDetailDTO(rutinaObjetivosLogic.getObjetivo(rutinasId, objetivosId));
-        LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivo: output: {0}", objetivoDetailDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivo: output: {0}", objetivoDetailDTO );
         return objetivoDetailDTO;
     }
 
@@ -123,14 +125,14 @@ class RutinaObjetivosResource {
      */
     @PUT
     public List<ObjetivoDetailDTO> replaceObjetivos(@PathParam("rutinasId") Long rutinasId, List<ObjetivoDetailDTO> objetivos) {
-        LOGGER.log(Level.INFO, "RutinaObjetivosResource replaceObjetivos: input: rutinasId: {0} , objetivos: {1}", new Object[]{rutinasId, objetivos.toString()});
+        LOGGER.log(Level.INFO, "RutinaObjetivosResource replaceObjetivos: input: rutinasId: {0} , objetivos: {1}", new Object[]{rutinasId, objetivos });
         for (ObjetivoDetailDTO objetivo : objetivos) {
             if (objetivoLogic.getObjetivo(objetivo.getId()) == null) {
-                throw new WebApplicationException("El recurso /objetivos/" + objetivo.getId() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /objetivos/" + objetivo.getId() +  NO_EXISTE, 404);
             }
         }
         List<ObjetivoDetailDTO> listaDetailDTOs = objetivosListEntity2DTO(rutinaObjetivosLogic.replaceObjetivos(rutinasId, objetivosListDTO2Entity(objetivos)));
-        LOGGER.log(Level.INFO, "RutinaObjetivosResource replaceObjetivos: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "RutinaObjetivosResource replaceObjetivos: output: {0}", listaDetailDTOs );
         return listaDetailDTOs;
     }
 

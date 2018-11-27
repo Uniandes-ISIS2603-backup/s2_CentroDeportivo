@@ -36,20 +36,20 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class RutinaResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaResource.class.getName());
-    
+     private String NO_EXISTE = " no existe.";
     @Inject
     RutinaLogic rutinaLogic;
     @POST
     public RutinaDTO createRutina(RutinaDTO rutina) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "RutinaResource createRutina: input: {0}", rutina.toString());
+        LOGGER.log(Level.INFO, "RutinaResource createRutina: input: {0}", rutina);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         RutinaEntity rutinaEntity = rutina.toEntity();
         // Invoca la lógica para crear la rutina nueva
         RutinaEntity nuevoRutinaEntity = rutinaLogic.createRutina(rutinaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         RutinaDTO nuevoRutinaDTO = new RutinaDTO(nuevoRutinaEntity);
-        LOGGER.log(Level.INFO, "RutinaResource createRutina: output: {0}", nuevoRutinaDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaResource createRutina: output: {0}", nuevoRutinaDTO);
         return nuevoRutinaDTO;
     }
     /**
@@ -62,7 +62,7 @@ public class RutinaResource {
     public List<RutinaDetailDTO> getRutinas() {
         LOGGER.info("RutinaResource getRutinas: input: void");
         List<RutinaDetailDTO> listaRutinas = listRutinaEntity2DTO(rutinaLogic.getRutinas());
-        LOGGER.log(Level.INFO, "RutinaResource getRutinas: output: {0}", listaRutinas.toString());
+        LOGGER.log(Level.INFO, "RutinaResource getRutinas: output: {0}", listaRutinas);
         return listaRutinas;
         
     }
@@ -78,14 +78,14 @@ public class RutinaResource {
      */
     @GET
     @Path("{rutinasId: \\d+}")
-    public RutinaDetailDTO getRutina(@PathParam("rutinasId") Long rutinasId) throws WebApplicationException {
+    public RutinaDetailDTO getRutina(@PathParam("rutinasId") Long rutinasId) {
         LOGGER.log(Level.INFO, "RutinaResource getRutina: input: {0}", rutinasId);
         RutinaEntity rutinaEntity = rutinaLogic.getRutina(rutinasId);
         if (rutinaEntity == null) {
-            throw new WebApplicationException("El recurso /rutina/" + rutinasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutina/" + rutinasId + NO_EXISTE, 404);
         }
         RutinaDetailDTO rutinaDTO = new RutinaDetailDTO(rutinaEntity);
-        LOGGER.log(Level.INFO, "RutinaResource getRutina: output: {0}", rutinaDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaResource getRutina: output: {0}", rutinaDTO);
         return rutinaDTO;
         
     }
@@ -110,10 +110,10 @@ public class RutinaResource {
         LOGGER.log(Level.INFO, "RutinaResource updateRutina: input: id:{0} , rutina: {1}", new Object[]{rutinasId, rutina.toString()});
         rutina.setId(rutinasId);
         if (rutinaLogic.getRutina(rutinasId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + NO_EXISTE, 404);
         }
         RutinaDetailDTO detailDTO = new RutinaDetailDTO(rutinaLogic.updateRutina(rutinasId, rutina.toEntity()));
-        LOGGER.log(Level.INFO, "RutinaResource updateRutina: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaResource updateRutina: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -132,7 +132,7 @@ public class RutinaResource {
     public void deleteRutina(@PathParam("rutinasId") Long rutinasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "RutinaResource deleteRutina: input: {0}", rutinasId);
         if (rutinaLogic.getRutina(rutinasId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + NO_EXISTE, 404);
         }
         rutinaLogic.deleteRutina(rutinasId);
         LOGGER.info("RutinaResource deleteRutina: output: void");
@@ -155,7 +155,7 @@ public class RutinaResource {
     @Path("{rutinasId: \\d+}/ejercicios")
     public Class<RutinaEjerciciosResource> getRutinaEjerciciosResource(@PathParam("rutinasId") Long rutinasId) {
         if (rutinaLogic.getRutina(rutinasId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + NO_EXISTE, 404);
         }
         return RutinaEjerciciosResource.class;
     }
@@ -176,9 +176,9 @@ public class RutinaResource {
      */
     
     @Path("{RutinasId: \\d+}/Objetivo")
-    public Class<RutinaObjetivosResource> getRutinaObjetivosResource(@PathParam("RutinasId") Long RutinasId) {
+    public Class<RutinaObjetivosResource> getRutinaObjetivosResource(@PathParam("rutinasId") Long RutinasId) {
         if (rutinaLogic.getRutina(RutinasId) == null) {
-            throw new WebApplicationException("El recurso /Rutinas/" + RutinasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Rutinas/" + RutinasId + NO_EXISTE, 404);
         }
         return RutinaObjetivosResource.class;
     }

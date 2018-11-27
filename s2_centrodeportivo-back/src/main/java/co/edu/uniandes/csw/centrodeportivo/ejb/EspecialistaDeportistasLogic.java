@@ -71,11 +71,12 @@ public class EspecialistaDeportistasLogic {
      * especialista
      */
     public DeportistaEntity getDeportista(Long especialistasId, Long deportistasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el deportista con id = {0} de la especialista con id = " + especialistasId, deportistasId);
+        Long[] array = {especialistasId,deportistasId};
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el deportista con id = {1} de la especialista con id = {0}" , array);
         List<DeportistaEntity> deportistas = especialistaPersistence.find(especialistasId).getDeportistas();
         DeportistaEntity deportistaEntity = deportistaPersistence.find(deportistasId);
         int index = deportistas.indexOf(deportistaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el deportista con id = {0} de la especialista con id = " + especialistasId, deportistasId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el deportista con id = {1} de la especialista con id = {0}", array);
         if (index >= 0) {
             return deportistas.get(index);
         }

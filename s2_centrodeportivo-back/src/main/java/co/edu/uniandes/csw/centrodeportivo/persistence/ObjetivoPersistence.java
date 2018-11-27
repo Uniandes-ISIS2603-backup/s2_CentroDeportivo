@@ -96,7 +96,7 @@ public class ObjetivoPersistence {
      * Si existe alguno devuelve el primero.
      */
     public ObjetivoEntity findByDescripcion(String descripcion) {
-        LOGGER.log(Level.INFO, "Consultando obejtivo por descripcion ", descripcion);
+        LOGGER.log(Level.INFO, "Consultando objetivo por descripcion = {0}" ,descripcion);
         // Se crea un query para buscar objetivo con la descripcion que recibe el método como argumento. ":descripcion" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select obj From ObjetivoEntity obj where obj.descripcion = :descripcion", ObjetivoEntity.class);
         // Se remplaza el placeholder ":descripcion" con el valor del argumento 
@@ -111,7 +111,7 @@ public class ObjetivoPersistence {
         } else {
             result = sameDescripcion.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar objetivo por descripcion ", descripcion);
+        LOGGER.log(Level.INFO, "Saliendo de consultar objetivo por descripcion ={0}", descripcion);
         return result;
     }
 }

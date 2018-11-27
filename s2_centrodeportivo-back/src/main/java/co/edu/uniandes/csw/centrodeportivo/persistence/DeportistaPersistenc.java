@@ -112,7 +112,7 @@ public class DeportistaPersistenc {
      * Si existe alguno devuelve el primero.
      */
     public DeportistaEntity findByCedula(Integer cedula) {
-        LOGGER.log(Level.INFO, "Consultando deportista por cedula ", cedula);
+        LOGGER.log(Level.INFO, "Consultando deportista por cedula = {0}", cedula);
         // Se crea un query para buscar deportistas con la cedula que recibe el método como argumento. ":cedula" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select dep From DeportistaEntity dep where dep.cedula = :cedula", DeportistaEntity.class);
         // Se remplaza el placeholder ":cedula" con el valor del argumento 
@@ -127,7 +127,7 @@ public class DeportistaPersistenc {
         } else {
             result = sameCedula.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar deportista por cédula ", cedula);
+        LOGGER.log(Level.INFO, "Saliendo de consultar deportista por cédula ={0}", cedula);
         return result;
     }
 }
