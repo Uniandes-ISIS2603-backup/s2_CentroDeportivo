@@ -142,6 +142,20 @@ public class ObjetivoResource {
         return list;
     }
     
+    /**
+     * Conexión con el servicio de deportistas para un objetivo.
+     * {@link ObjetivoDeportistasResource}
+     *
+     * Este método conecta la ruta de /objetivos con las rutas de /deportistas que
+     * dependen del objetivo, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los deportistas de un objetivo.
+     *
+     * @param objetivosId El ID del objetivo con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de deportistas para este objetivo en particular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el objetivo.
+     */
     @Path("{objetivosId: \\d+}/deportistas")
     public Class<ObjetivoDeportistaResource> getObjetivoDeportistasResource(@PathParam("objetivosId") Long objetivosId) {
         if (objetivoLogic.getObjetivo(objetivosId) == null) {

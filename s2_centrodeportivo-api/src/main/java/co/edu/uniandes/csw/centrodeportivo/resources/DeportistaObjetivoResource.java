@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;

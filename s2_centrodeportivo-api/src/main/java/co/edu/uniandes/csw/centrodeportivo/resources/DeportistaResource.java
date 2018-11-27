@@ -144,6 +144,20 @@ public class DeportistaResource implements Serializable{
         return list;
     }
     
+    /**
+     * Conexión con el servicio de objetivos para un deportista.
+     * {@link DeportistaObjetivosResource}
+     *
+     * Este método conecta la ruta de /deportistas con las rutas de /objetivos que
+     * dependen del deportista, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los objetivos de un deportista.
+     *
+     * @param deportistasId El ID del deportista con respecto al cual se
+     * accede al servicio.
+     * @return El servicio de objetivos para este deportista en particular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el deportista.
+     */
     @Path("{deportistasId: \\d+}/objetivos")
     public Class<DeportistaObjetivoResource> getDeportistaObjetivosReosurce(@PathParam("deportistasId") Long deportistasId) {
         if (deportistaLogic.getDeportista(deportistasId) == null) {

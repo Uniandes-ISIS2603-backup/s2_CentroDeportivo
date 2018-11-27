@@ -17,6 +17,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de Rutina y Objetivo.
  *
  * @author Francisco Jose MacAllister
  */
@@ -26,10 +28,10 @@ public class RutinaObjetivosLogic {
      private static final Logger LOGGER = Logger.getLogger(RutinaObjetivosLogic.class.getName());
 
     @Inject
-    private ObjetivoPersistence objetivoPersistence;
+    private ObjetivoPersistence objetivoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     @Inject
-    private RutinaPersistence rutinaPersistence;
+    private RutinaPersistence rutinaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
      * Agregar un objetivo a la rutina

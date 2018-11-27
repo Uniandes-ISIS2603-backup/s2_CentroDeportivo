@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.centrodeportivo.resources;
 
 import co.edu.uniandes.csw.centrodeportivo.dtos.RutinaDTO;
 import co.edu.uniandes.csw.centrodeportivo.dtos.RutinaDetailDTO;
-import co.edu.uniandes.csw.centrodeportivo.dtos.RutinaDetailDTO;
 import co.edu.uniandes.csw.centrodeportivo.ejb.RutinaLogic;
 import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
@@ -39,7 +38,7 @@ public class RutinaResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaResource.class.getName());
     
     @Inject
-            RutinaLogic rutinaLogic;
+    RutinaLogic rutinaLogic;
     @POST
     public RutinaDTO createRutina(RutinaDTO rutina) throws BusinessLogicException
     {

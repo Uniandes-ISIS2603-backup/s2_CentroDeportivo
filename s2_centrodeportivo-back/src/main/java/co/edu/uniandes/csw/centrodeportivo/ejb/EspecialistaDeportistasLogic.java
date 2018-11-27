@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
@@ -17,20 +17,22 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de Especialista y Deportista
  *
  * @author Francisco Jose MacAllister
  */
 @Stateless
 public class EspecialistaDeportistasLogic {
-
-     private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasLogic.class.getName());
-
+    
+    private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasLogic.class.getName());
+    
     @Inject
-    private DeportistaPersistenc deportistaPersistence;
-
+    private DeportistaPersistenc deportistaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
     @Inject
-    private EspecialistaPersistence especialistaPersistence;
-
+    private EspecialistaPersistence especialistaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
     /**
      * Agregar un deportista a la especialista
      *
@@ -47,7 +49,7 @@ public class EspecialistaDeportistasLogic {
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un deportista a la especialista con id = {0}", especialistasId);
         return deportistaEntity;
     }
-
+    
     /**
      * Retorna todos los deportistas asociados a una especialista
      *
@@ -58,7 +60,7 @@ public class EspecialistaDeportistasLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar los deportistas asociados a la especialista con id = {0}", especialistasId);
         return especialistaPersistence.find(especialistasId).getDeportistas();
     }
-
+    
     /**
      * Retorna un deportista asociado a una especialista
      *
@@ -79,9 +81,9 @@ public class EspecialistaDeportistasLogic {
         }
         throw new BusinessLogicException("El deportista no está asociado a la especialista");
     }
-
+    
     /**
-     * Remplazar deportistas de una especialista
+     * Reemplazar deportistas de una especialista
      *
      * @param deportistas Lista de deportistas que serán los de la especialista.
      * @param especialistasId El id de la especialista que se quiere actualizar.

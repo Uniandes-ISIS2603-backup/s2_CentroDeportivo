@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
@@ -16,20 +16,22 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de Deportista y Objetivo
  *
  * @author Leidy Romero
  */
 @Stateless
 public class DeportistaObjetivoLogic {
-
+    
     private static final Logger LOGGER = Logger.getLogger(DeportistaObjetivoLogic.class.getName());
-
+    
     @Inject
     private ObjetivoPersistence objetivoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private DeportistaPersistenc deportistaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     /**
      * Agregar un objetivo a un deportista
      *
@@ -45,9 +47,8 @@ public class DeportistaObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el objetivo con id = {0} al deportista con id = " + deportistasId, objetivosId);
         return objetivoPersistence.find(objetivosId);
     }
-
+    
     /**
-     *
      * Obtener un deportista por medio de su id y el de su objetivo.
      *
      * @param deportistasId id del deportista a ser buscado.
@@ -59,9 +60,9 @@ public class DeportistaObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el objetivo del deportista con id = {0}", deportistasId);
         return objetivoEntity;
     }
-
+    
     /**
-     * Remplazar objetivo de un deportista
+     * Reemplazar objetivo de un deportista
      *
      * @param deportistasId el id del deportista que se quiere actualizar.
      * @param objetivosId El id del nuebo objetivo asociado al deportista.
@@ -75,7 +76,7 @@ public class DeportistaObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el objetivo con id = {0} al deportista con id = " + deportistasId, objetivosId);
         return objetivoPersistence.find(objetivosId);
     }
-
+    
     /**
      * Borrar el objetivo de un deportista
      *
