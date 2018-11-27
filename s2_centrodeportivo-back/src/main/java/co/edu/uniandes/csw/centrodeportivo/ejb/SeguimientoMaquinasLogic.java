@@ -15,9 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 /**
  * Clase que implementa la conexion con la persistencia para la relación entre
- * la entidad de Seguimiento y Maquiina.
+ * la entidad de Seguimiento y Maquina.
  * @author Diany Quintero
  */
 
@@ -28,10 +29,10 @@ public class SeguimientoMaquinasLogic{
 
 
     @Inject
-    private MaquinaPersistence maquinaPersistence;
+    private MaquinaPersistence maquinaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
     @Inject
-    private SeguimientoPersistence seguimientoPersistence;
+    private SeguimientoPersistence seguimientoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
         /**
      * Agregar una maquina al seguimiento

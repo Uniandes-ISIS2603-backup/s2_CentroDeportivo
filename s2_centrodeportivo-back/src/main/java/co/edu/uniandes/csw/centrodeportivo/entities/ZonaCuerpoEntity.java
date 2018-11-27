@@ -1,24 +1,23 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa una zona del cuerpo en la persistencia y permite su serialización
  *
  * @author Daniel Pardo
  */
 @Entity
 public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
-{    
+{
     @PodamExclude
     @ManyToOne
     private EjercicioEntity ejercicio;
@@ -30,21 +29,21 @@ public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
      *
      * @return Ejercicio que corresponde al ZonaCuerpo.
      */
-    public EjercicioEntity getEjercicio() 
+    public EjercicioEntity getEjercicio()
     {
         return ejercicio;
     }
-
+    
     /**
      * Modifica el ejercicio perteneciente al zonaCuerpo.
      *
      * @param ejercicio El nuevo ejercicio.
      */
-    public void setEjercicio(EjercicioEntity ejercicio) 
+    public void setEjercicio(EjercicioEntity ejercicio)
     {
         this.ejercicio = ejercicio;
     }
-  
+    
     /**
      * Devuelve el nombre del zonaCuerpo.
      *
@@ -64,5 +63,5 @@ public class ZonaCuerpoEntity  extends BaseEntity implements Serializable
     {
         this.nombre = nombre;
     }
-
+    
 }

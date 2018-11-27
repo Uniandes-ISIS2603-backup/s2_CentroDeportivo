@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -19,20 +19,22 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de Rutina y Ejercicio
  *
  * @author Francisco Jose MacAllister
  */
 @Stateless
 public class RutinaEjerciciosLogic {
-
+    
     private static final Logger LOGGER = Logger.getLogger(RutinaEjerciciosLogic.class.getName());
-
+    
     @Inject
-    private EjercicioPersistence ejercicioPersistence;
-
+    private EjercicioPersistence ejercicioPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
     @Inject
-    private RutinaPersistence rutinaPersistence;
-
+    private RutinaPersistence rutinaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
     /**
      * Agregar un ejercicio a la rutina
      *
@@ -49,7 +51,7 @@ public class RutinaEjerciciosLogic {
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un ejercicio a la rutina con id = {0}", rutinasId);
         return ejercicioEntity;
     }
-
+    
     /**
      * Retorna todos los ejercicios asociados a una rutina
      *
@@ -60,7 +62,7 @@ public class RutinaEjerciciosLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar los ejercicios asociados a la rutina con id = {0}", rutinasId);
         return rutinaPersistence.find(rutinasId).getEjercicios();
     }
-
+    
     /**
      * Retorna un ejercicio asociado a una rutina
      *
@@ -81,7 +83,7 @@ public class RutinaEjerciciosLogic {
         }
         throw new BusinessLogicException("El ejercicio no está asociado a la rutina");
     }
-
+    
     /**
      * Remplazar ejercicios de una rutina
      *

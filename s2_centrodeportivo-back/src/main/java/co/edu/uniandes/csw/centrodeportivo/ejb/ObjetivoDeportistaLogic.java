@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.DeportistaEntity;
@@ -16,19 +16,21 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de Objetivo y Deportista.
  *
  * @author Leidy Romero
  */
 @Stateless
 public class ObjetivoDeportistaLogic {
-   private static final Logger LOGGER = Logger.getLogger(ObjetivoDeportistaLogic.class.getName());
-
+    private static final Logger LOGGER = Logger.getLogger(ObjetivoDeportistaLogic.class.getName());
+    
     @Inject
     private DeportistaPersistenc deportistaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private ObjetivoPersistence objetivoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     /**
      * Agregar un deportista a un objetivo
      *
@@ -44,7 +46,7 @@ public class ObjetivoDeportistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el deportista con id = {0} al objetivo con id = " + objetivosId, deportistasId);
         return deportistaPersistence.find(deportistasId);
     }
-
+    
     /**
      *
      * Obtener un objetivo por medio de su id y el de su deportista.
@@ -58,7 +60,7 @@ public class ObjetivoDeportistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el deportista del objetivo con id = {0}", objetivosId);
         return deportistaEntity;
     }
-
+    
     /**
      * Reemplazar deportista de un objetivo
      *
@@ -74,7 +76,7 @@ public class ObjetivoDeportistaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el deportista con id = {0} al objetivo con id = " + objetivosId, deportistasId);
         return deportistaPersistence.find(deportistasId);
     }
-
+    
     /**
      * Borrar el deportista de un objetivo
      *

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
-import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ZonaCuerpoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,7 +14,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * ZonaCuerpo.
+ * 
  * @author estudiante
  */
 @Stateless
@@ -23,7 +24,7 @@ public class ZonaCuerpoLogic {
     private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoLogic.class.getName());
     
     @Inject
-    private ZonaCuerpoPersistence persistence;
+    private ZonaCuerpoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
      /**
      * Se encarga de crear una zonaCuerpo en la base de datos.
@@ -86,7 +87,6 @@ public class ZonaCuerpoLogic {
      * Elimina una instancia de ZonaCuerpo de la base de datos.
      *
      * @param zonasCuerpoId Identificador de la instancia a eliminar.
-     * @throws BusinessLogicException si la zonaCuerpo a eliminar no existe.
      */
     public void deleteZonaCuerpo(Long zonasCuerpoId){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la zonaCuerpo con id = {0}", zonasCuerpoId);

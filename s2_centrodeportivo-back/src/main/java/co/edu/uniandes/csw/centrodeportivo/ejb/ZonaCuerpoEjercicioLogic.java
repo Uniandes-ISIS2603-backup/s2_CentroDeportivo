@@ -10,14 +10,15 @@ import co.edu.uniandes.csw.centrodeportivo.entities.ZonaCuerpoEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.EjercicioPersistence;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ZonaCuerpoPersistence;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de ZonaCuerpo y Ejercicio
+ * 
  * @author Daniel Pardo
  */
 @Stateless

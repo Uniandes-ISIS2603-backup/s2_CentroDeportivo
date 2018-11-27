@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -16,19 +16,21 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la relación entre
+ * la entidad de Implemento y Ejercicio
  *
- * @author estudiante
+ * @author Daniel Pardo y Lina Cardozo
  */
 @Stateless
 public class ImplementoEjercicioLogic {
     private static final Logger LOGGER = Logger.getLogger(ImplementoEjercicioLogic.class.getName());
-
+    
     @Inject
     private EjercicioPersistence ejercicioPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     @Inject
     private ImplementoPersistence implementoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
     /**
      * Agregar un ejercicio a un implemento
      *
@@ -44,7 +46,7 @@ public class ImplementoEjercicioLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al implemento con id = " + implementosId, ejerciciosId);
         return ejercicioPersistence.find(ejerciciosId);
     }
-
+    
     /**
      *
      * Obtener un implemento por medio de su id y el de su ejercicio.
@@ -58,7 +60,7 @@ public class ImplementoEjercicioLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el ejercicio del implemento con id = {0}", implementosId);
         return ejercicioEntity;
     }
-
+    
     /**
      * Remplazar ejercicio de un implemento
      *
@@ -74,7 +76,7 @@ public class ImplementoEjercicioLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al implemento con id = " + implementosId, ejerciciosId);
         return ejercicioPersistence.find(ejerciciosId);
     }
-
+    
     /**
      * Borrar el ejercicio de un implemento
      *

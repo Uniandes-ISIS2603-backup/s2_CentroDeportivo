@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
 import co.edu.uniandes.csw.centrodeportivo.entities.EjercicioEntity;
@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 /**
  * Clase que implementa la conexion con la persistencia para la relación entre
  * la entidad de Maquina y Ejercicio.
@@ -24,15 +25,15 @@ import javax.inject.Inject;
 @Stateless
 public class MaquinaEjerciciosLogic {
     
- private static final Logger LOGGER = Logger.getLogger(MaquinaEjerciciosLogic.class.getName());
-
-    @Inject
-    private EjercicioPersistence ejercicioPersistence;
-
-    @Inject
-    private MaquinaPersistence maquinaPersistence;
+    private static final Logger LOGGER = Logger.getLogger(MaquinaEjerciciosLogic.class.getName());
     
-        /**
+    @Inject
+    private EjercicioPersistence ejercicioPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
+    @Inject
+    private MaquinaPersistence maquinaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
+    /**
      * Agregar un ejercicio a la maquina
      *
      * @param ejerciciosId El id del ejercicio a guardar
@@ -77,7 +78,7 @@ public class MaquinaEjerciciosLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el ejercicio con id = {0} de la maquina con id = " + maquinasId, ejerciciosId);
         if (index >= 0) {
             return ejercicios.get(index);
-           
+            
         }
         throw new BusinessLogicException("El ejercicio no está asociado a la maquina");
     }

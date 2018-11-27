@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
@@ -13,67 +13,81 @@ import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa un especialista en la persistencia y permite su
+ * serialización
  *
  * @authorFrancisco Jose MacAllister y Leidy Romero
  */
 @Entity
 public class EspecialistaEntity extends BaseEntity implements Serializable {
-  
-
-    public String nombre;
-    public String especialidad;
-    public Integer cedula;
-    public String imagen;
-
+    
+    private String nombre;
+    private String especialidad;
+    private Integer cedula;
+    private String imagen;
+    
     @PodamExclude
     @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
     private List<DeportistaEntity> deportistas = new ArrayList<DeportistaEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
     private List <ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
-   
     
     /**
-     * pide nombre de Especialista
-     * 
+     * Devuelve el nombre de la editorial.
+     *
+     * @return el nombre
      */
     public String getNombre() {
         return nombre;
     }
-/**
-     * Asigna nombre a Especialista
-     * 
+    
+    /**
+     * Modifica el nombre de la editorial.
+     *
+     * @param nombre el nombre nuevo
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-/**
-     * pide especialidad de Especialista
-     * 
+    
+    /**
+     * Devuelve la especialidad del especialista.
+     *
+     * @return la especialidad
      */
     public String getEspecialidad() {
         return especialidad;
     }
-/**
-     * Asigna especialidad a Especialista
-     * 
+    
+    /**
+     * Modifica la especialidad del especialista.
+     *
+     * @param especialidad la especialidad nueva
      */
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-/**
-     * Asigna cedula a Especialista
-     * 
+    
+    /**
+     * Modifica la cédula del especialista.
+     *
+     * @param cedula la cédula nueva
      */
     public void setCedula(Integer cedula) {
         this.cedula=cedula;
     }
+    
     /**
-     *pide cedula de especialista Especialista
-     * 
+     * Devuelve la cédula del especialista.
+     *
+     * @return la cédula
      */
-      public Integer getCedula() {
+    public Integer getCedula() {
         return cedula;
     }
-      
+    
     /**
      * Asigna imagen al especialista.
      * @param imagen La nueva imagen del especialista
@@ -83,42 +97,48 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     }
     
     /**
+     * Devuelve la imagen del especialista.
      * @return La imagen del especialista
      */
     public String getImagen() {
         return imagen;
     }
-
-     /**
+    
+    /**
      * Devuelve los deportistas que son asesorados por este Especialista
-     * @return Collection los deportistas
+     * @return colección de los deportistas
      */
     public List<DeportistaEntity> getDeportistas()
     {
-      return deportistas;  
+        return deportistas;
     }
+    
     /**
-     * Asigna deprotistas a especialista Especialista
-     * 
+     * Asigna deportistas a especialista Especialista
+     *
+     * @param deportistas Los nuevos deportistas.
      */
     public void setDeportistas(List<DeportistaEntity> deportistas)
     {
-        deportistas=deportistas;
+        this.deportistas=deportistas;
     }
+    
     /**
      * Devuelve los objetivos de este Especialista
      * @return Collection los deportistas
      */
-     public List<ObjetivoEntity> getObjetivos()
+    public List<ObjetivoEntity> getObjetivos()
     {
-      return objetivos;  
+        return objetivos;
     }
-     /**
-     * Asigna objetivos a especialista Especialista
-     * 
+    
+    /**
+     * Asigna objetivos al Especialista
+     *
+     * @param listaObjetivos Los nuevos objetivos.
      */
     public void setObjetivos(List<ObjetivoEntity> listaObjetivos)
     {
-      objetivos=listaObjetivos;  
+        this.objetivos=listaObjetivos;
     }
 }

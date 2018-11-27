@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.centrodeportivo.entities;
 
 import java.io.Serializable;
@@ -31,31 +31,26 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     
     private String imagen;
     
-    public ImplementoEntity()
-    {
-        
-    }
-    
     /**
      * Devuelve el ejercicio que corresponde al implemento.
      *
      * @return Ejercicio que corresponde al Implemento.
      */
-    public EjercicioEntity getEjercicio() 
+    public EjercicioEntity getEjercicio()
     {
         return ejercicio;
     }
-
+    
     /**
      * Modifica el ejercicio perteneciente al implemento.
      *
      * @param ejercicio El nuevo ejercicio.
      */
-    public void setEjercicio(EjercicioEntity ejercicio) 
+    public void setEjercicio(EjercicioEntity ejercicio)
     {
         this.ejercicio = ejercicio;
     }
-  
+    
     /**
      * Devuelve el nombre del implemento.
      *
@@ -75,7 +70,7 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     {
         this.nombre = nombre;
     }
-
+    
     /**
      * Devuelve la cantidad de existencias del implemento.
      *
@@ -84,7 +79,7 @@ public class ImplementoEntity extends BaseEntity implements Serializable {
     public Integer getCantidadExistencias() {
         return cantidadExistencias;
     }
-
+    
     /**
      * Modifica la cantidad de existencias del implemento.
      *
