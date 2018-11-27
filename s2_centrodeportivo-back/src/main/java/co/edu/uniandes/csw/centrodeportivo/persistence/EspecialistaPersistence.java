@@ -103,9 +103,9 @@ public class EspecialistaPersistence {
    public EspecialistaEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando especialista por nombre ", name);
         // Se crea un query para buscar especialistaes con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From EspecialistaEntity e where e.name = :name", EspecialistaEntity.class);
+        TypedQuery query = em.createQuery("Select e From EspecialistaEntity e where e.nombre = :nombre", EspecialistaEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
+        query = query.setParameter("nombre", name);
         // Se invoca el query se obtiene la lista resultado
         List<EspecialistaEntity> sameName = query.getResultList();
         EspecialistaEntity result;

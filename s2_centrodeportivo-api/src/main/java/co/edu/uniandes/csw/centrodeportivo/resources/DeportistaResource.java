@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -124,7 +125,7 @@ public class DeportistaResource implements Serializable{
         LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: input: id:{0} , deportista: {1}", new Object[]{deportistasId, deportista});
         deportista.setId(deportistasId);
         if (deportistaLogic.getDeportista(deportistasId) == null)
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
         
         DeportistaDetailDTO detailDTO = new DeportistaDetailDTO(deportistaLogic.updateDeportista(deportistasId, deportista.toEntity()));
         LOGGER.log(Level.INFO, "DeportistaResource updateDeportista: output: {0}", detailDTO);
@@ -148,10 +149,31 @@ public class DeportistaResource implements Serializable{
     @Path("{deportistasId: \\d+}/objetivos")
     public Class<DeportistaObjetivoResource> getDeportistaObjetivosReosurce(@PathParam("deportistasId") Long deportistasId) {
         if (deportistaLogic.getDeportista(deportistasId) == null) {
-            throw new WebApplicationException("El recurso /deportistas/" + deportistasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
         }
         return DeportistaObjetivoResource.class;
     }
     //ELIMINAR?
-    
+    /**
+     * Borra la deportista con el id asociado recibido en la URL.
+     *
+     * @param deportistasId Identificador dela deportista que se desea borrar. Este debe
+     * ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException
+     * si la deportista tiene ejercicios asociados
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+     * Error de lógica que se genera cuando no se encuentra la deportista a borrar.
+     */
+    @DELETE
+    @Path("{deportistasId: \\d+}")
+    public void eliminarDeportista(@PathParam("deportistasId") Long deportistasId) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "DeportistaResource deleteDeportista: input: {0}", deportistasId);
+        if (deportistaLogic.getDeportista(deportistasId) == null) {
+            throw new WebApplicationException(RECURSO_DEPORTISTAS + deportistasId + NO_EXISTE, 404);
+        }
+        deportistaLogic.deleteDeportista(deportistasId);
+        
+        LOGGER.info("DeportistaResource deleteDeportista: output: void");
+    } 
 } 

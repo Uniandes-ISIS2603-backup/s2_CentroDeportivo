@@ -99,9 +99,9 @@ public void delete(Long rutinaId) {
 public RutinaEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando rutina por nombre ", name);
         // Se crea un query para buscar rutinas con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From RutinaEntity e where e.name = :name", RutinaEntity.class);
+        TypedQuery query = em.createQuery("Select e From RutinaEntity e where e.nombre = :nombre", RutinaEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
+        query = query.setParameter("nombre", name);
         // Se invoca el query se obtiene la lista resultado
         List<RutinaEntity> sameName = query.getResultList();
         RutinaEntity result;
