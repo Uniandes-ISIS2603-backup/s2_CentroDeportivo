@@ -152,4 +152,12 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
         }
         return Objects.equals(this.seguimiento, other.seguimiento);
     }
+    
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    }
 }

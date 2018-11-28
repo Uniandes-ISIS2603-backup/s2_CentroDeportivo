@@ -37,9 +37,12 @@ import javax.ws.rs.WebApplicationException;
 public class ImplementoResource {
     
     private static final Logger LOGGER = Logger.getLogger(ImplementoResource.class.getName());
-  
+ 
     @Inject
     private ImplementoLogic implementoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    
+    private static final String RECURSO_IMPLEMENTO = "El recurso /implementos/";
+    private static final String NO_EXISTE = " no existe.";
 
     /**
      * Crea un nuevo implemento con la informacion que se recibe en el cuerpo de
@@ -56,14 +59,14 @@ public class ImplementoResource {
     @POST
     public ImplementoDTO crearImplemento(ImplementoDTO implemento) throws BusinessLogicException
     {
-       LOGGER.log(Level.INFO, "ImplementoResource createImplemento: input: {0}", implemento.toString());
+       LOGGER.log(Level.INFO, "ImplementoResource createImplemento: input: {0}", implemento);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ImplementoEntity implementoEntity = implemento.toEntity();
         // Invoca la lógica para crear el implemento nuevo
         ImplementoEntity nuevoImplementoEntity = implementoLogic.createImplemento(implementoEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         ImplementoDTO nuevoImplementoDTO = new ImplementoDTO(nuevoImplementoEntity);
-        LOGGER.log(Level.INFO, "ImplementoResource createImplemento: output: {0}", nuevoImplementoDTO.toString());
+        LOGGER.log(Level.INFO, "ImplementoResource createImplemento: output: {0}", nuevoImplementoDTO);
         return nuevoImplementoDTO;
     }
     
@@ -77,7 +80,7 @@ public class ImplementoResource {
     public List<ImplementoDetailDTO> getImplementos() {
         LOGGER.info("ImplementoResource getImplementos: input: void");
         List<ImplementoDetailDTO> listaImplementos = listEntity2DetailDTO(implementoLogic.getImplementos());
-        LOGGER.log(Level.INFO, "ImplementoResource getImplementos: output: {0}", listaImplementos.toString());
+        LOGGER.log(Level.INFO, "ImplementoResource getImplementos: output: {0}", listaImplementos);
         return listaImplementos;
     }
     
@@ -96,10 +99,10 @@ public class ImplementoResource {
         LOGGER.log(Level.INFO, "ImplementoResource getImplemento: input: {0}", implementosId);
         ImplementoEntity implementoEntity = implementoLogic.getImplemento(implementosId);
         if (implementoEntity == null) {
-            throw new WebApplicationException("El recurso /implementos/" + implementosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_IMPLEMENTO + implementosId + NO_EXISTE, 404);
         }
         ImplementoDetailDTO detailDTO = new ImplementoDetailDTO(implementoEntity);
-        LOGGER.log(Level.INFO, "ImplementoResource getImplemento: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ImplementoResource getImplemento: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -120,13 +123,13 @@ public class ImplementoResource {
     @Path("{implementosId: \\d+}")
     public ImplementoDetailDTO updateImplemento(@PathParam("implementosId") Long implementosId, ImplementoDetailDTO implemento) throws WebApplicationException 
     {
-        LOGGER.log(Level.INFO, "ImplementoResource updateImplemento: input: id:{0} , implemento: {1}", new Object[]{implementosId, implemento.toString()});
+        LOGGER.log(Level.INFO, "ImplementoResource updateImplemento: input: id:{0} , implemento: {1}", new Object[]{implementosId, implemento});
         implemento.setId(implementosId);
         if (implementoLogic.getImplemento(implementosId) == null) {
-            throw new WebApplicationException("El recurso /implementos/" + implementosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_IMPLEMENTO + implementosId + NO_EXISTE, 404);
         }
         ImplementoDetailDTO detailDTO = new ImplementoDetailDTO(implementoLogic.updateImplemento(implementosId, implemento.toEntity()));
-        LOGGER.log(Level.INFO, "ImplementoResource updateImplemento: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ImplementoResource updateImplemento: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -145,7 +148,7 @@ public class ImplementoResource {
     public void deleteImplemento(@PathParam("implementosId") Long implementosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ImplementoResource deleteImplemento: input: {0}", implementosId);
         if (implementoLogic.getImplemento(implementosId) == null) {
-            throw new WebApplicationException("El recurso /implementos/" + implementosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_IMPLEMENTO + implementosId + NO_EXISTE, 404);
         }
         implementoLogic.deleteImplemento(implementosId);
         LOGGER.info("ImplementoResource deleteImplemento: output: void");
@@ -186,7 +189,7 @@ public class ImplementoResource {
     @Path("{implementosId: \\d+}/ejercicios")
     public Class<ImplementoEjercicioResource> getImplementoEjercicioResource(@PathParam("implementosId") Long implementosId) {
         if (implementoLogic.getImplemento(implementosId) == null) {
-            throw new WebApplicationException("El recurso /implementos/" + implementosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_IMPLEMENTO + implementosId + NO_EXISTE, 404);
         }
         return ImplementoEjercicioResource.class;
     }
