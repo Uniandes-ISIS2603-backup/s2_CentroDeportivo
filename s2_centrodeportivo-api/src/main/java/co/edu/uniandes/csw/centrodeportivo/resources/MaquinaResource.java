@@ -117,7 +117,7 @@ public class MaquinaResource implements Serializable {
         LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: input: id:{0} , maquina: {1}", new Object[]{maquinasId, maquina});
         maquina.setId(maquinasId);
         if (maquinaLogic.getMaquina(maquinasId) == null) {
-            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_MAQUINAS + maquinasId + NO_EXISTE, 404);
         }
         MaquinaDetailDTO detailDTO = new MaquinaDetailDTO(maquinaLogic.updateMaquina(maquinasId, maquina.toEntity()));
         LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: output: {0}", detailDTO);
@@ -140,7 +140,7 @@ public class MaquinaResource implements Serializable {
     {
         LOGGER.log(Level.INFO, "MaquinaResource deleteMaquina: input: {0}", maquinasId);
         if (maquinaLogic.getMaquina(maquinasId) == null) {
-            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_MAQUINAS + maquinasId + NO_EXISTE, 404);
         }
         maquinaLogic.deleteMaquina(maquinasId);
         
@@ -176,7 +176,7 @@ public class MaquinaResource implements Serializable {
     @Path("{maquinasId: \\d+}/ejercicios")
     public Class<MaquinaEjerciciosResource> getMaquinaEjerciciosReosurce(@PathParam("maquinasId") Long maquinasId) {
         if (maquinaLogic.getMaquina(maquinasId) == null) {
-            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO_MAQUINAS + maquinasId + NO_EXISTE, 404);
         }
         return MaquinaEjerciciosResource.class;
     }

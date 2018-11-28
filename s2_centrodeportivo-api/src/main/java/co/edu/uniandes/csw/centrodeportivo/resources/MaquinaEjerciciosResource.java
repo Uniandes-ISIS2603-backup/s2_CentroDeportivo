@@ -103,7 +103,7 @@ public class MaquinaEjerciciosResource {
     public EjercicioDetailDTO getEjercicio(@PathParam("maquinasId") Long maquinasId, @PathParam("ejerciciosId") Long ejerciciosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicio: input: maquinasId: {0} , ejerciciosID: {1}", new Object[]{maquinasId, ejerciciosId});
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + "/ejercicios/" + ejerciciosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + "/ejercicios/" + ejerciciosId + NO_EXISTE, 404);
         }
         EjercicioDetailDTO ejercicioDetailDTO = new EjercicioDetailDTO (maquinaEjerciciosLogic.getEjercicio(maquinasId, ejerciciosId));
         LOGGER.log(Level.INFO, "MaquinaEjerciciosResource getEjercicio: output: {0}", ejercicioDetailDTO);
@@ -127,7 +127,7 @@ public class MaquinaEjerciciosResource {
         LOGGER.log(Level.INFO, "MaquinaEjerciciosResource replaceEjercicios: input: maquinasId: {0} , ejercicios: {1}", new Object[]{maquinasId, ejercicios});
         for (EjercicioDTO ejercicio : ejercicios) {
             if (ejercicioLogic.getEjercicio(ejercicio.getId()) == null) {
-                throw new WebApplicationException("El recurso /ejercicios/" + ejercicio.getId() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /ejercicios/" + ejercicio.getId() + NO_EXISTE, 404);
             }
         }
         List<EjercicioDetailDTO> listaDetailDTOs = ejerciciosListEntity2DTO(maquinaEjerciciosLogic.replaceEjercicios(maquinasId, ejerciciosListDTO2Entity(ejercicios)));
