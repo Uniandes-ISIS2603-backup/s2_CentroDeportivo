@@ -89,10 +89,6 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el objetivo identificado con el id = {0}",objetivosId);
         return objetivoActualizado;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 40c68abb47bf42709b4dc9df418f128e4ea567a3
      /**
      * Elimina una instancia de un objetivo de la base de datos.
      *
