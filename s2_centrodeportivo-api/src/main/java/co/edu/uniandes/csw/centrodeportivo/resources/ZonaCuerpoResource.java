@@ -36,7 +36,8 @@ import javax.ws.rs.WebApplicationException;
 public class ZonaCuerpoResource
 {
     private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoResource.class.getName());
-    
+     private static final String noExiste = "no existe.";
+             
     @Inject
     ZonaCuerpoLogic zonaCuerpoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
@@ -52,9 +53,9 @@ public class ZonaCuerpoResource
     @POST
     public ZonaCuerpoDTO createZonaCuerpo(ZonaCuerpoDTO zonaCuerpo)
     {
-        LOGGER.log(Level.INFO, "ZonaCuerpoResource createZonaCuerpo: input: {0}", zonaCuerpo.toString());
+        LOGGER.log(Level.INFO, "ZonaCuerpoResource createZonaCuerpo: input: {0}", zonaCuerpo);
         ZonaCuerpoDTO nuevoZonaCuerpoDTO = new ZonaCuerpoDTO(zonaCuerpoLogic.createZonaCuerpo(zonaCuerpo.toEntity()));
-        LOGGER.log(Level.INFO, "ZonaCuerpoResource createZonaCuerpo: output: {0}", nuevoZonaCuerpoDTO.toString());
+        LOGGER.log(Level.INFO, "ZonaCuerpoResource createZonaCuerpo: output: {0}", nuevoZonaCuerpoDTO);
         return nuevoZonaCuerpoDTO;
     }
     
@@ -68,7 +69,7 @@ public class ZonaCuerpoResource
     public List<ZonaCuerpoDTO> getZonasCuerpo() {
         LOGGER.info("ZonaCuerpoResource getZonasCuerpo: input: void");
         List<ZonaCuerpoDTO> listaZonasCuerpo = listEntity2DetailDTO(zonaCuerpoLogic.getZonasCuerpo());
-        LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonasCuerpo: output: {0}", listaZonasCuerpo.toString());
+        LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonasCuerpo: output: {0}", listaZonasCuerpo);
         return listaZonasCuerpo;
     }
     
@@ -83,15 +84,15 @@ public class ZonaCuerpoResource
      */
     @GET
     @Path("{zonasCuerpoId: \\d+}")
-    public ZonaCuerpoDTO getZonaCuerpo(@PathParam("zonasCuerpoId") Long zonasCuerpoId) throws WebApplicationException
+    public ZonaCuerpoDTO getZonaCuerpo(@PathParam("zonasCuerpoId") Long zonasCuerpoId)
     {
         LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonaCuerpo: input: {0}", zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
         }
         ZonaCuerpoDTO zonaCuerpoDTO = new ZonaCuerpoDTO(zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId));
-        LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonaCuerpo: output: {0}", zonaCuerpoDTO.toString());
+        LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonaCuerpo: output: {0}", zonaCuerpoDTO);
         return zonaCuerpoDTO;
     }
     
@@ -111,14 +112,14 @@ public class ZonaCuerpoResource
     @Path("{zonasCuerpoId: \\d+}")
     public ZonaCuerpoDTO updateZonaCuerpo(@PathParam("zonasCuerpoId") Long zonasCuerpoId, ZonaCuerpoDTO zonaCuerpo) throws WebApplicationException {
         
-        LOGGER.log(Level.INFO, "ZonaCuerpoResource updateZonaCuerpo: input: zonasCuerpoId: {0} , zonaCuerpo: {1}", new Object[]{zonasCuerpoId, zonaCuerpo.toString()});
+        LOGGER.log(Level.INFO, "ZonaCuerpoResource updateZonaCuerpo: input: zonasCuerpoId: {0} , zonaCuerpo: {1}", new Object[]{zonasCuerpoId, zonaCuerpo});
         zonaCuerpo.setId(zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
         }
         ZonaCuerpoDTO detailDTO = new ZonaCuerpoDTO(zonaCuerpoLogic.updateZonaCuerpo(zonasCuerpoId, zonaCuerpo.toEntity()));
-        LOGGER.log(Level.INFO, "ZonaCuerpoResource updateZonaCuerpo: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ZonaCuerpoResource updateZonaCuerpo: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -136,7 +137,7 @@ public class ZonaCuerpoResource
         LOGGER.log(Level.INFO, "ZonaCuerpoResource deleteZonaCuerpo: input: {0}", zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
         }
         
         zonaCuerpoLogic.deleteZonaCuerpo(zonasCuerpoId);
@@ -172,7 +173,7 @@ public class ZonaCuerpoResource
     @Path("{zonasCuerpoId: \\d+}/ejercicios")
     public Class<ZonaCuerpoEjercicioResource> getZonaCuerpoEjercicioResource(@PathParam("zonasCuerpoId") Long zonasCuerpoId) {
         if (zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId) == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
         }
         return ZonaCuerpoEjercicioResource.class;
     }
