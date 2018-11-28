@@ -31,6 +31,8 @@ import javax.ws.rs.*;
 public class MaquinaResource implements Serializable {
     
     private static final Logger LOGGER = Logger.getLogger(MaquinaResource.class.getName());
+    private static final String NO_EXISTE = " no existe.";
+    private static final String RECURSO_MAQUINAS = "El recurso /maquinas/";
     
     @Inject
     private MaquinaLogic maquinaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -47,14 +49,14 @@ public class MaquinaResource implements Serializable {
     @POST
     public MaquinaDTO createMaquina(MaquinaDTO maquina)
     {
-        LOGGER.log(Level.INFO, "MaquinaResource createMaquina: input: {0}", maquina.toString());
+        LOGGER.log(Level.INFO, "MaquinaResource createMaquina: input: {0}", maquina);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         MaquinaEntity maquinaEntity = maquina.toEntity();
         // Invoca la lógica para crear la editorial nueva
         MaquinaEntity nuevaMaquinaEntity = maquinaLogic.createMaquina(maquinaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         MaquinaDTO nuevaMaquinaDTO = new MaquinaDTO(nuevaMaquinaEntity);
-        LOGGER.log(Level.INFO, "MaquinaResource createMaquina: output: {0}", nuevaMaquinaDTO.toString());
+        LOGGER.log(Level.INFO, "MaquinaResource createMaquina: output: {0}", nuevaMaquinaDTO);
         return nuevaMaquinaDTO;
     }
     
@@ -69,7 +71,7 @@ public class MaquinaResource implements Serializable {
     {
         LOGGER.info("MaquinaReosurce getMaquinas: input: void");
         List<MaquinaDetailDTO> listaMaquinas = listEntity2DetailDTO(maquinaLogic.getMaquinas());
-        LOGGER.log(Level.INFO, "MaquinaReosurce getMaquinas: output: {0}", listaMaquinas.toString());
+        LOGGER.log(Level.INFO, "MaquinaReosurce getMaquinas: output: {0}", listaMaquinas);
         return listaMaquinas;
     }
     
@@ -84,15 +86,15 @@ public class MaquinaResource implements Serializable {
      */
     @GET
     @Path("{maquinasId: \\d+}")
-    public MaquinaDetailDTO getMaquina(@PathParam("maquinasId") Long maquinasId) throws WebApplicationException {
+    public MaquinaDetailDTO getMaquina(@PathParam("maquinasId") Long maquinasId){
         
         LOGGER.log(Level.INFO, "MaquinaResource getMaquina: input: {0}", maquinasId);
         MaquinaEntity maquinaEntity = maquinaLogic.getMaquina(maquinasId);
         if (maquinaEntity == null) {
-            throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
+            throw new WebApplicationException( RECURSO_MAQUINAS + maquinasId + NO_EXISTE, 404);
         }
         MaquinaDetailDTO detailDTO = new MaquinaDetailDTO(maquinaEntity);
-        LOGGER.log(Level.INFO, "MaquinaResource getMaquina: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "MaquinaResource getMaquina: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -112,13 +114,13 @@ public class MaquinaResource implements Serializable {
     @Path("{maquinasId: \\d+}")
     public MaquinaDTO actualizarAtributos(@PathParam("maquinasId") Long maquinasId, MaquinaDTO maquina)
     {
-        LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: input: id:{0} , maquina: {1}", new Object[]{maquinasId, maquina.toString()});
+        LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: input: id:{0} , maquina: {1}", new Object[]{maquinasId, maquina});
         maquina.setId(maquinasId);
         if (maquinaLogic.getMaquina(maquinasId) == null) {
             throw new WebApplicationException("El recurso /maquinas/" + maquinasId + " no existe.", 404);
         }
         MaquinaDetailDTO detailDTO = new MaquinaDetailDTO(maquinaLogic.updateMaquina(maquinasId, maquina.toEntity()));
-        LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "MaquinaResource updateMaquina: output: {0}", detailDTO);
         return detailDTO;
     }
     
