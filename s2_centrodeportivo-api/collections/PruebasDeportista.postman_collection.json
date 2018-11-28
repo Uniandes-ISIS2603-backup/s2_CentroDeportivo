@@ -1,23 +1,23 @@
 {
 	"info": {
-		"_postman_id": "cf71c78d-b97f-4f86-9927-3926f4acb0d3",
+		"_postman_id": "8b21d25a-f0db-411d-8fc7-2bf5ecf085be",
 		"name": "PruebasDeportista",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "CrearDeportista",
+			"name": "Crear un deportista",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "93fed9ba-40a3-47f9-9627-2571af3986f7",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"nuevo_id_d\", data.id);",
 							"tests['No genera error en el Post'] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -31,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\t\"nombre\": \"Leidy Romero\",\n\t\t\"sexo\":true,\n\t\t\"altura\":1.62,\n\t\t\"presionSanguinea\":60,\n\t\t\"peso\":56,\n\t\t\"ritmoCardiaco\":70,\n\t\t\"medidaPiernas\":1.20,\n\t\t\"medidaCintura\":1,\n\t\t\"medidaBrazos\":1,\n\t\t\"cedula\":1233906000,\n\t\t\"ultimaActualizacionDatos\":\"2018-09-21 09:00:00\",\n\t\t\"fechaNacimiento\":\"1999-04-02 09:00:00\"\n}"
+					"raw": "{\n\t\"nombre\": \"Leidy Romero\",\n\t\"sexo\":true,\n\t\"altura\":1.62,\n\t\"presionSanguinea\":60,\n\t\"peso\":56,\n\t\"ritmoCardiaco\":70,\n\t\"medidaPiernas\":1.20,\n\t\"medidaCintura\":1,\n\t\"medidaBrazos\":1,\n\t\"cedula\":1233906000,\n\t\"ultimaActualizacionDatos\":\"2018-09-21 09:00:00\",\n\t\"fechaNacimiento\":\"1999-04-02 09:00:00\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/deportistas",
@@ -46,21 +46,23 @@
 						"deportistas"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Crea un nuevo deportista. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "ObtenerTodosLosDeportistas",
+			"name": "Obtener todos los Deportistas",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "ff069456-a2bb-4769-b724-3e1220ba95e1",
-						"type": "text/javascript",
 						"exec": [
-							"tests['No genera error en el Get'] = responseCode.code === 200;"
-						]
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"deportistas count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -84,21 +86,23 @@
 						"deportistas"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Consulta todos los deportistas de la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nPara la prueba, se verifica que el conjunto de deportistas en la respuesta tenga más de uno.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "ObtenerUnDeportista",
+			"name": "Obtener un Deportista",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "cf95c040-cf51-4506-b0f9-cd66c6e2ca84",
-						"type": "text/javascript",
 						"exec": [
-							"tests['No genera error en el Get'] = responseCode.code === 200;"
-						]
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -123,12 +127,66 @@
 						"{{nuevo_id_d}}"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Consulta un deportista de la aplicación.  \r\nLa petición no tiene cuerpo.\r\nSe envía el id del deportista deseado por la URL de la petición.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "ActualizarDeportista",
+			"name": "Obtener un Deportista que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "abc48a9e-ac00-47ca-bb08-aacc327b6f0a",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /deportistas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/deportistas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"deportistas",
+						"0"
+					]
+				},
+				"description": "Consulta un deportista que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /deportistas/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un Deportista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27502971-61e8-4c56-82da-761768ba81b4",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -155,12 +213,57 @@
 						"{{nuevo_id_d}}"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Actualiza un deportista existente. Se envía el Id en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "EliminarDeportista",
+			"name": "Actualizar un Deportista que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f125d7c-3554-4f9b-9e01-3e929de7ae08",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /deportistas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/deportistas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"deportistas",
+						"0"
+					]
+				},
+				"description": "Actualiza un implemento que no existe. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /implementos/0 no existe.\".\r\n\r\n**Código HTTP esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un Deportista",
 			"event": [
 				{
 					"listen": "test",
@@ -198,7 +301,48 @@
 						"deportistas",
 						"{{nuevo_id_d}}"
 					]
+				},
+				"description": "Borra un deportista. Se envía el id de la entidad creada anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un Deportista que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "379f5468-f758-457b-b9d8-330d553ce042",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /deportistas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
 				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/deportistas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"deportistas",
+						"0"
+					]
+				},
+				"description": "Borra un implemento que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /implementos/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
 			},
 			"response": []
 		}

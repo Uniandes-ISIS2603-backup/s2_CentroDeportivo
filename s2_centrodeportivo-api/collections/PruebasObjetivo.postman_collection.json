@@ -1,12 +1,26 @@
 {
 	"info": {
-		"_postman_id": "0833ac02-7818-4625-ba01-76b5adfddd29",
+		"_postman_id": "c289e8ed-fbe3-446e-b2e5-55fe0b8bd010",
 		"name": "PruebasObjetivo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "CrearUnObjetivo",
+			"name": "Crear un Objetivo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dfbdb812-55f1-4c73-9cc9-6b80c10db6a2",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_o\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -17,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\t\"descripcion\": \"Mejorar condición física\",\n\t\t\"cumplio\":false,\n\t\t\"fechaLimite\":\"2018 09 25\"\n}"
+					"raw": "{\n\t\"descripcion\": \"Mejorar condición física\",\n\t\"cumplio\":false,\n\t\"fechaLimite\":\"2018-09-25 09:00:00\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos",
@@ -32,12 +46,26 @@
 						"objetivos"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Crea un nuevo objetivo. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "ObtenerTodosLosObjetivo",
+			"name": "Obtener todos los objetivos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52002e13-7049-4e64-8d33-7e868b9ae898",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"objetivos count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -58,12 +86,26 @@
 						"objetivos"
 					]
 				},
-				"description": "Retorna nulo"
+				"description": "Consulta todos los objetivos de la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nPara la prueba, se verifica que el conjunto de objetivos en la respuesta tenga más de uno.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "ObtenerUnObjetivo",
+			"name": "Obtener un Objetivo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d51ab8e2-57ad-4b22-a467-932922091b40",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -72,7 +114,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos/{{nuevo_id_o}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -82,15 +124,114 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"objetivos",
-						"1"
+						"{{nuevo_id_o}}"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Consulta un objetivo de la aplicación.  \r\nLa petición no tiene cuerpo.\r\nSe envía el id del objetivo deseado por la URL de la petición.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "ActualizarUnObjetivo",
+			"name": "Obtener un Objetivo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "abc48a9e-ac00-47ca-bb08-aacc327b6f0a",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /objetivos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"objetivos",
+						"0"
+					]
+				},
+				"description": "Consulta un objetivo que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /objetivos/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un Objetivo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b47d3002-ec0e-4abf-8f16-2be1c0c6b3eb",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descripcion\": \"Bajar de peso\",\n\t\"cumplio\": true,\n\t\"fechaLimite\":\"2018-12-30 12:30:00\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos/{{nuevo_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"objetivos",
+						"{{nuevo_id_o}}"
+					]
+				},
+				"description": "Actualiza un objetivo existente. Se envía el Id en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un Objetivo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f125d7c-3554-4f9b-9e01-3e929de7ae08",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /objetivos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -104,7 +245,7 @@
 					"raw": "{\n\t\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/objetivos/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -114,10 +255,10 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"objetivos",
-						"1"
+						"0"
 					]
 				},
-				"description": "Retorna nulo."
+				"description": "Actualiza un objetivo que no existe. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /objetivos/0 no existe.\".\r\n\r\n**Código HTTP esperado: 404**"
 			},
 			"response": []
 		}

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9f65e8ee-645f-4e56-a363-59cc20493c2e",
+		"_postman_id": "514306ce-a9b2-4ab0-9685-a41559cb6a1d",
 		"name": "Pruebas Implemento",
 		"description": "Colección de pruebas sobre el recurso Editorial",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -13,13 +13,13 @@
 					"listen": "test",
 					"script": {
 						"id": "c6b89867-fe67-48e3-ae95-6c6e388cc7c8",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"nuevo_nombre_i\", data.nombre);",
 							"postman.setGlobalVariable(\"nuevo_id_i\", data.id);",
 							"tests['No genera error en el Post'] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Pesas {{$randomInt}}\"\n}"
+					"raw": "{\n\t\"nombre\": \"Pesas {{$randomInt}}\",\n\t\"cantidadExistencias\": {{$randomInt}}\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos",
@@ -50,7 +50,6 @@
 				},
 				"description": "Crea un nuevo implemento. El recurso solo tiene de atributo \"nombre\" que debe ser único. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
 			},
-<<<<<<< HEAD
 			"response": [
 				{
 					"name": "Crear un implemento",
@@ -126,9 +125,6 @@
 					"body": "{\"nombre\":\"Pesas\"}"
 				}
 			]
-=======
-			"response": []
->>>>>>> 36cf202af2e2448c8cbe8a4e03fc682fee41ca8a
 		},
 		{
 			"name": "Crear un implemento con el mismo nombre",
@@ -171,97 +167,6 @@
 					]
 				},
 				"description": "Crea un nuevo implemento pero con un nombre que ya existe. Verifica que se genera el error y el mensaje \"Ya existe un implemento con el nombre\".\r\n\r\n**Código HTTP esperado: 412 Precondition failed\".**"
-			},
-			"response": []
-		},
-		{
-			"name": "Editar un implemento",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d1ba3a9f-12f2-4dea-8ed8-328c08edb346",
-						"type": "text/javascript",
-						"exec": [
-							"console.log(responseBody);",
-							"var data = JSON.parse(responseBody);",
-							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Pesas {{$randomInt}}\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_centrodeportivo-api",
-						"api",
-						"implementos",
-						"{{nuevo_id_i}}"
-					]
-				},
-				"description": "Actualiza un implemento existente. El recurso solo tiene de atributo \"nombre\" que debe ser único. Se envía el Id en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
-			},
-			"response": []
-		},
-		{
-			"name": "Editar un implemento que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "4f125d7c-3554-4f9b-9e01-3e929de7ae08",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /implementos/0 no existe.\");"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"{{nuevo_nombre_i}}\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/0",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_centrodeportivo-api",
-						"api",
-						"implementos",
-						"0"
-					]
-				},
-				"description": "Actualiza un implemento que no existe. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /implementos/0 no existe.\".\r\n\r\n**Código HTTP esperado: 404**"
 			},
 			"response": []
 		},
@@ -383,6 +288,97 @@
 					]
 				},
 				"description": "Consulta un implemento que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /implementos/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un implemento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1ba3a9f-12f2-4dea-8ed8-328c08edb346",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Pesas {{$randomInt}}\",\n    \"cantidadExistencias\": {{$randomInt}}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/{{nuevo_id_i}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos",
+						"{{nuevo_id_i}}"
+					]
+				},
+				"description": "Actualiza un implemento existente. El recurso solo tiene de atributo \"nombre\" que debe ser único. Se envía el Id en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un implemento que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f125d7c-3554-4f9b-9e01-3e929de7ae08",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /implementos/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"{{nuevo_nombre_i}}\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"implementos",
+						"0"
+					]
+				},
+				"description": "Actualiza un implemento que no existe. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /implementos/0 no existe.\".\r\n\r\n**Código HTTP esperado: 404**"
 			},
 			"response": []
 		},
