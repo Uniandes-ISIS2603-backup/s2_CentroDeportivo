@@ -39,11 +39,11 @@ public class ZonaCuerpoEjercicioLogic {
      * @return El zonaCuerpo que fue agregado al ejercicio.
      */
     public EjercicioEntity addEjercicio(Long ejerciciosId, Long zonasCuerpoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar el ejercicio con id = {0} al zonaCuerpo con id = " + zonasCuerpoId, ejerciciosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar el ejercicio con id = {0} al zonaCuerpo ", ejerciciosId);
         EjercicioEntity ejercicioEntity = ejercicioPersistence.find(ejerciciosId);
         ZonaCuerpoEntity zonaCuerpoEntity = zonaCuerpoPersistence.find(zonasCuerpoId);
         zonaCuerpoEntity.setEjercicio(ejercicioEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al zonaCuerpo con id = " + zonasCuerpoId, ejerciciosId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al zonaCuerpo", ejerciciosId);
         return ejercicioPersistence.find(ejerciciosId);
     }
 
@@ -73,7 +73,7 @@ public class ZonaCuerpoEjercicioLogic {
         EjercicioEntity ejercicioEntity = ejercicioPersistence.find(ejerciciosId);
         ZonaCuerpoEntity zonaCuerpoEntity = zonaCuerpoPersistence.find(zonasCuerpoId);
         zonaCuerpoEntity.setEjercicio(ejercicioEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al zonaCuerpo con id = " + zonasCuerpoId, ejerciciosId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el ejercicio con id = {0} al zonaCuerpo ", ejerciciosId);
         return ejercicioPersistence.find(ejerciciosId);
     }
 
@@ -92,6 +92,6 @@ public class ZonaCuerpoEjercicioLogic {
         EjercicioEntity ejercicioEntity = ejercicioPersistence.find(zonaCuerpoEntity.getEjercicio().getId());
         zonaCuerpoEntity.setEjercicio(null);
         ejercicioEntity.getZonasCuerpo().remove(zonaCuerpoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el ejercicio con id = {0} del zonaCuerpo con id = " + zonasCuerpoId, ejercicioEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el ejercicio con id = {0} del zonaCuerpo ", ejercicioEntity.getId());
     }
 }
