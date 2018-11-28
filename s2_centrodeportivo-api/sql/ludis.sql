@@ -1,5 +1,4 @@
 delete from SeguimientoEntity;
-delete from DeportistaEntity;
 delete from EjercicioEntity;
 delete from EspecialistaEntity;
 delete from ImplementoEntity;
@@ -7,6 +6,8 @@ delete from MaquinaEntity;
 delete from ObjetivoEntity;
 delete from RutinaEntity;
 delete from ZonacuerpoEntity;
+delete from DeportistaEntity;
+
 
  -- POBLAMIENTO TABLA DEPORTISTA
 insert into DeportistaEntity (id, cedula, nombre, sexo, altura, presionSanguinea, peso, ritmoCardiaco, medidaPiernas, medidaCintura, medidaBrazos, fechaNacimiento) 
