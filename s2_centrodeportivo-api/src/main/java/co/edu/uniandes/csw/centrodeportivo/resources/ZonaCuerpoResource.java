@@ -36,7 +36,7 @@ import javax.ws.rs.WebApplicationException;
 public class ZonaCuerpoResource
 {
     private static final Logger LOGGER = Logger.getLogger(ZonaCuerpoResource.class.getName());
-     private static final String noExiste = "no existe.";
+     private static final String NOEXISTE = "no existe.";
              
     @Inject
     ZonaCuerpoLogic zonaCuerpoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -89,7 +89,7 @@ public class ZonaCuerpoResource
         LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonaCuerpo: input: {0}", zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + NOEXISTE, 404);
         }
         ZonaCuerpoDTO zonaCuerpoDTO = new ZonaCuerpoDTO(zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId));
         LOGGER.log(Level.INFO, "ZonaCuerpoResource getZonaCuerpo: output: {0}", zonaCuerpoDTO);
@@ -116,7 +116,7 @@ public class ZonaCuerpoResource
         zonaCuerpo.setId(zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + NOEXISTE, 404);
         }
         ZonaCuerpoDTO detailDTO = new ZonaCuerpoDTO(zonaCuerpoLogic.updateZonaCuerpo(zonasCuerpoId, zonaCuerpo.toEntity()));
         LOGGER.log(Level.INFO, "ZonaCuerpoResource updateZonaCuerpo: output: {0}", detailDTO);
@@ -137,7 +137,7 @@ public class ZonaCuerpoResource
         LOGGER.log(Level.INFO, "ZonaCuerpoResource deleteZonaCuerpo: input: {0}", zonasCuerpoId);
         ZonaCuerpoEntity entity = zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + NOEXISTE, 404);
         }
         
         zonaCuerpoLogic.deleteZonaCuerpo(zonasCuerpoId);
@@ -173,7 +173,7 @@ public class ZonaCuerpoResource
     @Path("{zonasCuerpoId: \\d+}/ejercicios")
     public Class<ZonaCuerpoEjercicioResource> getZonaCuerpoEjercicioResource(@PathParam("zonasCuerpoId") Long zonasCuerpoId) {
         if (zonaCuerpoLogic.getZonaCuerpo(zonasCuerpoId) == null) {
-            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + noExiste, 404);
+            throw new WebApplicationException("El recurso /zonasCuerpo/" + zonasCuerpoId + NOEXISTE, 404);
         }
         return ZonaCuerpoEjercicioResource.class;
     }
