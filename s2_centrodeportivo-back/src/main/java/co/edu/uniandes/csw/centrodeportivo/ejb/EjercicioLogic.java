@@ -104,7 +104,7 @@ public class EjercicioLogic {
     public void deleteEjercicio(Long ejerciciosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el ejercicio con id = {0}", ejerciciosId);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
-        EjercicioEntity ejercicioEntity = persistence.find(ejerciciosId);
+       
         persistence.delete(ejerciciosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el ejercicio con id = {0}", ejerciciosId);
     }
