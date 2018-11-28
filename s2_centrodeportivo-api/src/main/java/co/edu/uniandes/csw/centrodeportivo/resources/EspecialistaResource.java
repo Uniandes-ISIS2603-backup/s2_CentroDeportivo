@@ -37,8 +37,8 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class EspecialistaResource {
-    private final String NOEXISTE = " no existe.";
-    private final String REC="El recurso /especialistas/";
+    private static final String NOEXISTE = " no existe.";
+    private static final String REC="El recurso /especialistas/";
     private static final Logger LOGGER = Logger.getLogger(EspecialistaResource.class.getName());
     @Inject
     private EspecialistaLogic especialistaLogic;
@@ -91,7 +91,7 @@ public class EspecialistaResource {
      */
     @GET
     @Path("{especialistasId: \\d+}")
-    public EspecialistaDetailDTO getEspecialista(@PathParam("especialistasId") Long especialistasId) throws WebApplicationException {
+    public EspecialistaDetailDTO getEspecialista(@PathParam("especialistasId") Long especialistasId){
         LOGGER.log(Level.INFO, "EspecialistaResource getEspecialista: input: {0}", especialistasId);
         EspecialistaEntity especialistaEntity = especialistaLogic.getEspecialista(especialistasId);
         if (especialistaEntity == null) {
@@ -118,7 +118,7 @@ public class EspecialistaResource {
      */
     @PUT
     @Path("{especialistasId: \\d+}")
-    public EspecialistaDetailDTO updateEspecialista(@PathParam("especialistasId") Long especialistasId, EspecialistaDetailDTO especialista) throws WebApplicationException
+    public EspecialistaDetailDTO updateEspecialista(@PathParam("especialistasId") Long especialistasId, EspecialistaDetailDTO especialista)
     {
         LOGGER.log(Level.INFO, "EspecialistaResource updateEspecialista: input: id:{0} , especialista: {1}", new Object[]{especialistasId, especialista});
         especialista.setId(especialistasId);

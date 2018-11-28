@@ -115,7 +115,7 @@ public class EspecialistaPersistence {
      * Si existe alguno devuelve el primera.
      */
     public EspecialistaEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando especialista por nombre ", name);
+        LOGGER.log(Level.INFO, "Consultando especialista por nombre = {0}", name);
         // Se crea un query para buscar especialistaes con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From EspecialistaEntity e where e.nombre = :nombre", EspecialistaEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento
@@ -130,7 +130,7 @@ public class EspecialistaPersistence {
         } else {
             result = sameName.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar especialista por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar especialista por nombre = {0}", name);
         return result;
     }
 }

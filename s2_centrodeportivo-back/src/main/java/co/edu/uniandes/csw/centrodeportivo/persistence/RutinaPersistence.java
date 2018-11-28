@@ -114,7 +114,7 @@ public class RutinaPersistence {
      * Si existe alguna devuelve la primera.
      */
     public RutinaEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando rutina por nombre ", name);
+        LOGGER.log(Level.INFO, "Consultando rutina por nombre = {0}", name);
         // Se crea un query para buscar rutinas con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From RutinaEntity e where e.nombre = :nombre", RutinaEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento
@@ -129,7 +129,7 @@ public class RutinaPersistence {
         } else {
             result = sameName.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar rutina por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar rutina por nombre = {0}", name);
         return result;
     }
 }

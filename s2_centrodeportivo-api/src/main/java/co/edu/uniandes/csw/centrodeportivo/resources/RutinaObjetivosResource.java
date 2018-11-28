@@ -37,7 +37,7 @@ import javax.ws.rs.core.MediaType;
 class RutinaObjetivosResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaObjetivosResource.class.getName());
     
-    private final String NOEXISTE = " no existe.";
+    private static final String NOEXISTE = " no existe.";
     
     @Inject
     private RutinaObjetivosLogic rutinaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.

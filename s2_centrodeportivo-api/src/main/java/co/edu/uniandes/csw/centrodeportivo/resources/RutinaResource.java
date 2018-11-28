@@ -36,8 +36,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class RutinaResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaResource.class.getName());
-     private final String NOEXISTE = " no existe.";
-     private final String REC="El recurso /rutinas/";
+     private static final String NOEXISTE = " no existe.";
+     private static final String REC="El recurso /rutinas/";
     @Inject
     RutinaLogic rutinaLogic;
     @POST
@@ -169,7 +169,7 @@ public class RutinaResource {
      * dependen de la Rutina, es una redirección al servicio que maneja el
      * segmento de la URL que se encarga de los libros de una Rutina.
      *
-     * @param RutinasId El ID de la Rutina con respecto a la cual se
+     * @param rutinasId El ID de la Rutina con respecto a la cual se
      * accede al servicio.
      * @return El servicio de libros para esta Rutina en paricular.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
@@ -177,9 +177,9 @@ public class RutinaResource {
      */
     
     @Path("{RutinasId: \\d+}/Objetivo")
-    public Class<RutinaObjetivosResource> getRutinaObjetivosResource(@PathParam("rutinasId") Long RutinasId) {
-        if (rutinaLogic.getRutina(RutinasId) == null) {
-            throw new WebApplicationException("El recurso /Rutinas/" + RutinasId + NOEXISTE, 404);
+    public Class<RutinaObjetivosResource> getRutinaObjetivosResource(@PathParam("rutinasId") Long rutinasId) {
+        if (rutinaLogic.getRutina(rutinasId) == null) {
+            throw new WebApplicationException("El recurso /Rutinas/" + rutinasId + NOEXISTE, 404);
         }
         return RutinaObjetivosResource.class;
     }

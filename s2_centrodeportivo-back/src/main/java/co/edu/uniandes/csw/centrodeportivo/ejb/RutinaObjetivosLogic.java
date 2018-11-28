@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.centrodeportivo.ejb;
 
-import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
 import co.edu.uniandes.csw.centrodeportivo.entities.ObjetivoEntity;
+import co.edu.uniandes.csw.centrodeportivo.entities.RutinaEntity;
 import co.edu.uniandes.csw.centrodeportivo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.centrodeportivo.persistence.RutinaPersistence;
 import co.edu.uniandes.csw.centrodeportivo.persistence.ObjetivoPersistence;
@@ -44,8 +44,9 @@ public class RutinaObjetivosLogic {
     public ObjetivoEntity addObjetivo(Long objetivosId, Long rutinasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un objetivo a la rutina con id = {0}", rutinasId);
         ObjetivoEntity objetivoEntity = objetivoPersistence.find(objetivosId);
-       // objetivoEntity.setRutina(rutinaEntity);
-       //falta que implementen set rutina
+        RutinaEntity rutinaEntity = rutinaPersistence.find(rutinasId);
+       objetivoEntity.setRutina(rutinaEntity);
+       
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un objetivo a la rutina con id = {0}", rutinasId);
         return objetivoEntity;
     }
@@ -95,12 +96,13 @@ public class RutinaObjetivosLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la rutina con id = {0}", rutinasId);
 
         List<ObjetivoEntity> objetivoList = objetivoPersistence.findAll();
+        RutinaEntity rutinaEntity = rutinaPersistence.find(rutinasId);
         for (ObjetivoEntity objetivo : objetivoList) {
             if (objetivos.contains(objetivo)) {
-                //objetivo.setRutina(rutinaEntity);
-                //falta que implementen set rutina
-            //} else if (objetivo.getRutina() != null && objetivo.getRutina().equals(rutinaEntity)) {
-              //  objetivo.setRutina(null);
+                objetivo.setRutina(rutinaEntity);
+                
+            } else if (objetivo.getRutina() != null && objetivo.getRutina().equals(rutinaEntity)) {
+                objetivo.setRutina(null);
             }
         }
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la rutina con id = {0}", rutinasId);
