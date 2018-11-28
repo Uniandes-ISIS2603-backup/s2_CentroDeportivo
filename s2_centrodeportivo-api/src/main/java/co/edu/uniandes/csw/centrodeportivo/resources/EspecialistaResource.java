@@ -37,7 +37,8 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class EspecialistaResource {
-    
+    private final String NOEXISTE = " no existe.";
+    private final String REC="El recurso /especialistas/";
     private static final Logger LOGGER = Logger.getLogger(EspecialistaResource.class.getName());
     @Inject
     private EspecialistaLogic especialistaLogic;
@@ -53,14 +54,14 @@ public class EspecialistaResource {
      */
     @POST
     public EspecialistaDTO createEspecialista(EspecialistaDTO especialista) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: input: {0}", especialista.toString());
+        LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: input: {0}", especialista);
         //Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         EspecialistaEntity especialistaEntity = especialista.toEntity();
         // Invoca la lógica para crear un especialista nuevo
         EspecialistaEntity nuevoEspecialistaEntity = especialistaLogic.createEspecialista(especialistaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         EspecialistaDTO nuevoEspecialistaDTO = new EspecialistaDTO(nuevoEspecialistaEntity);
-        LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: output: {0}", nuevoEspecialistaDTO.toString());
+        LOGGER.log(Level.INFO, "EspecialistaResource createEspecialista: output: {0}", nuevoEspecialistaDTO);
         return nuevoEspecialistaDTO;
     }
     
@@ -74,7 +75,7 @@ public class EspecialistaResource {
     public List<EspecialistaDetailDTO> getEspecialistas() {
         LOGGER.info("EspecialistaResource getEspecialistas: input: void");
         List<EspecialistaDetailDTO> listaEspecialistas = listEntity2DetailDTO(especialistaLogic.getEspecialistas());
-        LOGGER.log(Level.INFO, "EspecialistaResource getEspecialistas: output: {0}", listaEspecialistas.toString());
+        LOGGER.log(Level.INFO, "EspecialistaResource getEspecialistas: output: {0}", listaEspecialistas);
         return listaEspecialistas;
         
     }
@@ -94,10 +95,10 @@ public class EspecialistaResource {
         LOGGER.log(Level.INFO, "EspecialistaResource getEspecialista: input: {0}", especialistasId);
         EspecialistaEntity especialistaEntity = especialistaLogic.getEspecialista(especialistasId);
         if (especialistaEntity == null) {
-            throw new WebApplicationException("El recurso /especialista/" + especialistasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /especialista/" + especialistasId + NOEXISTE, 404);
         }
         EspecialistaDetailDTO detailDTO = new EspecialistaDetailDTO(especialistaEntity);
-        LOGGER.log(Level.INFO, "EspecialistaResource getEspecialista: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "EspecialistaResource getEspecialista: output: {0}", detailDTO);
         return detailDTO;
         
     }
@@ -119,13 +120,13 @@ public class EspecialistaResource {
     @Path("{especialistasId: \\d+}")
     public EspecialistaDetailDTO updateEspecialista(@PathParam("especialistasId") Long especialistasId, EspecialistaDetailDTO especialista) throws WebApplicationException
     {
-        LOGGER.log(Level.INFO, "EspecialistaResource updateEspecialista: input: id:{0} , especialista: {1}", new Object[]{especialistasId, especialista.toString()});
+        LOGGER.log(Level.INFO, "EspecialistaResource updateEspecialista: input: id:{0} , especialista: {1}", new Object[]{especialistasId, especialista});
         especialista.setId(especialistasId);
         if (especialistaLogic.getEspecialista(especialistasId) == null) {
-            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + " no existe.", 404);
+            throw new WebApplicationException(REC + especialistasId + NOEXISTE, 404);
         }
         EspecialistaDetailDTO detailDTO = new EspecialistaDetailDTO(especialistaLogic.updateEspecialista(especialistasId, especialista.toEntity()));
-        LOGGER.log(Level.INFO, "EspecialistaResource updateEspecialista: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "EspecialistaResource updateEspecialista: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -144,7 +145,7 @@ public class EspecialistaResource {
     public void deleteEspecialista(@PathParam("especialistasId") Long especialistasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EspecialistaResource deleteEspecialista: input: {0}", especialistasId);
         if (especialistaLogic.getEspecialista(especialistasId) == null) {
-            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + " no existe.", 404);
+            throw new WebApplicationException(REC + especialistasId + NOEXISTE, 404);
         }
         especialistaLogic.deleteEspecialista(especialistasId);
         LOGGER.info("EspecialistaResource deleteEspecialista: output: void");
@@ -188,7 +189,7 @@ public class EspecialistaResource {
     @Path("{especialistasId: \\d+}/objetivos")
     public Class<EspecialistaObjetivosResource> getEspecialistaObjetivosResource(@PathParam("especialistasId") Long especialistasId) {
         if (especialistaLogic.getEspecialista(especialistasId) == null) {
-            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + " no existe.", 404);
+            throw new WebApplicationException(REC + especialistasId + NOEXISTE, 404);
         }
         return EspecialistaObjetivosResource.class;
     }
@@ -211,7 +212,7 @@ public class EspecialistaResource {
     @Path("{especialistasId: \\d+}/deportistas")
     public Class<EspecialistaDeportistasResource> getEspecialistaDeportistasResource(@PathParam("especialistasId") Long especialistasId) {
         if (especialistaLogic.getEspecialista(especialistasId) == null) {
-            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + " no existe.", 404);
+            throw new WebApplicationException(REC + especialistasId + NOEXISTE, 404);
         }
         return EspecialistaDeportistasResource.class;
     }

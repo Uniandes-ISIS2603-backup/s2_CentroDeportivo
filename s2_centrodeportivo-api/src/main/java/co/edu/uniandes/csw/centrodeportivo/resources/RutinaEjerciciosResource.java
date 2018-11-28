@@ -34,6 +34,7 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RutinaEjerciciosResource {
+    private final String NOEXISTE = " no existe.";
     private static final Logger LOGGER = Logger.getLogger(RutinaEjerciciosResource.class.getName());
     
     @Inject
@@ -59,10 +60,10 @@ public class RutinaEjerciciosResource {
     public EjercicioDTO addEjercicio(@PathParam("rutinasId") Long rutinasId, @PathParam("ejerciciosId") Long ejerciciosId) {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource addEjercicio: input: rutinasID: {0} , ejerciciosId: {1}", new Object[]{rutinasId, ejerciciosId});
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + NOEXISTE, 404);
         }
         EjercicioDTO ejercicioDTO = new EjercicioDTO(rutinaEjerciciosLogic.addEjercicio(ejerciciosId, rutinasId));
-        LOGGER.log(Level.INFO, "RutinaEjerciciosResource addEjercicio: output: {0}", ejercicioDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaEjerciciosResource addEjercicio: output: {0}", ejercicioDTO);
         return ejercicioDTO;
     }
     
@@ -78,7 +79,7 @@ public class RutinaEjerciciosResource {
     public List<EjercicioDetailDTO> getEjercicios(@PathParam("rutinasId") Long rutinasId) {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicios: input: {0}", rutinasId);
         List<EjercicioDetailDTO> listaDetailDTOs = ejerciciosListEntity2DTO(rutinaEjerciciosLogic.getEjercicios(rutinasId));
-        LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicios: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicios: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
     
@@ -101,10 +102,10 @@ public class RutinaEjerciciosResource {
     public EjercicioDetailDTO getEjercicio(@PathParam("rutinasId") Long rutinasId, @PathParam("ejerciciosId") Long ejerciciosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicio: input: rutinasID: {0} , ejerciciosId: {1}", new Object[]{rutinasId, ejerciciosId});
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/ejercicios/" + ejerciciosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/ejercicios/" + ejerciciosId + NOEXISTE, 404);
         }
         EjercicioDetailDTO ejercicioDetailDTO = new EjercicioDetailDTO(rutinaEjerciciosLogic.getEjercicio(rutinasId, ejerciciosId));
-        LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicio: output: {0}", ejercicioDetailDTO.toString());
+        LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicio: output: {0}", ejercicioDetailDTO);
         return ejercicioDetailDTO;
     }
     
@@ -122,14 +123,14 @@ public class RutinaEjerciciosResource {
      */
     @PUT
     public List<EjercicioDetailDTO> replaceEjercicios(@PathParam("rutinasId") Long rutinasId, List<EjercicioDetailDTO> ejercicios) {
-        LOGGER.log(Level.INFO, "RutinaEjerciciosResource replaceEjercicios: input: rutinasId: {0} , ejercicios: {1}", new Object[]{rutinasId, ejercicios.toString()});
+        LOGGER.log(Level.INFO, "RutinaEjerciciosResource replaceEjercicios: input: rutinasId: {0} , ejercicios: {1}", new Object[]{rutinasId, ejercicios});
         for (EjercicioDetailDTO ejercicio : ejercicios) {
             if (ejercicioLogic.getEjercicio(ejercicio.getId()) == null) {
-                throw new WebApplicationException("El recurso /ejercicios/" + ejercicio.getId() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /ejercicios/" + ejercicio.getId() + NOEXISTE, 404);
             }
         }
         List<EjercicioDetailDTO> listaDetailDTOs = ejerciciosListEntity2DTO(rutinaEjerciciosLogic.replaceEjercicios(rutinasId, ejerciciosListDTO2Entity(ejercicios)));
-        LOGGER.log(Level.INFO, "RutinaEjerciciosResource replaceEjercicios: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "RutinaEjerciciosResource replaceEjercicios: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
     
