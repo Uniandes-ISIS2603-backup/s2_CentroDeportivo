@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,11 +23,11 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
-    private List<ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
+    private List<ObjetivoEntity> objetivos = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "rutina", fetch = javax.persistence.FetchType.LAZY)
-    private List<EjercicioEntity> ejercicios =new ArrayList<EjercicioEntity>();
+    private List<EjercicioEntity> ejercicios =new ArrayList<>();
     
     private Integer identificadorRutina;
     private String nombre;
@@ -123,5 +124,43 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     public void setEjercicios(List<EjercicioEntity> ejercicios)
     {
         this.ejercicios=ejercicios;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RutinaEntity other = (RutinaEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.ejercicios, other.ejercicios))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.identificadorRutina, other.identificadorRutina))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.objetivos, other.objetivos))
+        {
+            return false;
+        }
+        return Objects.equals(this.estadoTerminado, other.estadoTerminado);
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
     }
 }

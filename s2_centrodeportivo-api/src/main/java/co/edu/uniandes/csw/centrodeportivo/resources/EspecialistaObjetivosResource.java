@@ -39,7 +39,7 @@ import javax.ws.rs.WebApplicationException;
 public class EspecialistaObjetivosResource {
     
     private static final Logger LOGGER = Logger.getLogger(EspecialistaObjetivosResource.class.getName());
-    private String NO_EXISTE = "no existe.";
+    private String NOEXISTE = "no existe.";
     @Inject
     private EspecialistaObjetivosLogic especialistaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
@@ -63,7 +63,7 @@ public class EspecialistaObjetivosResource {
     public ObjetivoDTO addObjetivo(@PathParam("especialistasId") Long especialistasId, @PathParam("objetivosId") Long objetivosId) {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource addObjetivo: input: especialistasID: {0} , objetivosId: {1}", new Object[]{especialistasId, objetivosId});
         if (objetivoLogic.getObjetivo(objetivosId) == null) {
-            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + NO_EXISTE, 404);
+            throw new WebApplicationException("El recurso /objetivos/" + objetivosId + NOEXISTE, 404);
         }
         ObjetivoDTO objetivoDTO = new ObjetivoDTO(especialistaObjetivosLogic.addObjetivo(objetivosId, especialistasId));
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource addObjetivo: output: {0}", objetivoDTO);
@@ -105,7 +105,7 @@ public class EspecialistaObjetivosResource {
     public ObjetivoDetailDTO getObjetivo(@PathParam("especialistasId") Long especialistasId, @PathParam("objetivosId") Long objetivosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource getObjetivo: input: especialistasID: {0} , objetivosId: {1}", new Object[]{especialistasId, objetivosId});
         if (objetivoLogic.getObjetivo(objetivosId) == null) {
-            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + "/objetivos/" + objetivosId + NO_EXISTE, 404);
+            throw new WebApplicationException("El recurso /especialistas/" + especialistasId + "/objetivos/" + objetivosId + NOEXISTE, 404);
         }
         ObjetivoDetailDTO objetivoDetailDTO = new ObjetivoDetailDTO(especialistaObjetivosLogic.getObjetivo(especialistasId, objetivosId));
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource getObjetivo: output: {0}", objetivoDetailDTO);
@@ -129,7 +129,7 @@ public class EspecialistaObjetivosResource {
         LOGGER.log(Level.INFO, "EspecialistaObjetivosResource replaceObjetivos: input: especialistasId: {0} , objetivos: {1}", new Object[]{especialistasId, objetivos});
         for (ObjetivoDetailDTO objetivo : objetivos) {
             if (objetivoLogic.getObjetivo(objetivo.getId()) == null) {
-                throw new WebApplicationException("El recurso /objetivos/" + objetivo.getId() + NO_EXISTE, 404);
+                throw new WebApplicationException("El recurso /objetivos/" + objetivo.getId() + NOEXISTE, 404);
             }
         }
         List<ObjetivoDetailDTO> listaDetailDTOs = objetivosListEntity2DTO(especialistaObjetivosLogic.replaceObjetivos(especialistasId, objetivosListDTO2Entity(objetivos)));

@@ -37,7 +37,7 @@ import javax.ws.rs.core.MediaType;
 class RutinaObjetivosResource {
     private static final Logger LOGGER = Logger.getLogger(RutinaObjetivosResource.class.getName());
     
-    private String NO_EXISTE = " no existe.";
+    private String NOEXISTE = " no existe.";
     
     @Inject
     private RutinaObjetivosLogic rutinaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -62,7 +62,7 @@ class RutinaObjetivosResource {
     public ObjetivoDTO addObjetivo(@PathParam("rutinasId") Long rutinasId, @PathParam("objetivosId") Long objetivosId) {
         LOGGER.log(Level.INFO, "RutinaObjetivosResource addObjetivo: input: rutinasID: {0} , objetivosId: {1}", new Object[]{rutinasId, objetivosId});
         if (objetivoLogic.getObjetivo(objetivosId) == null) {
-            throw new WebApplicationException("El recurso /objetivos/" + objetivosId +  NO_EXISTE, 404);
+            throw new WebApplicationException("El recurso /objetivos/" + objetivosId +  NOEXISTE, 404);
         }
         ObjetivoDTO objetivoDTO = new ObjetivoDTO(rutinaObjetivosLogic.addObjetivo(objetivosId, rutinasId));
         LOGGER.log(Level.INFO, "RutinaObjetivosResource addObjetivo: output: {0}", objetivoDTO );
@@ -104,7 +104,7 @@ class RutinaObjetivosResource {
     public ObjetivoDetailDTO getObjetivo(@PathParam("rutinasId") Long rutinasId, @PathParam("objetivosId") Long objetivosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivo: input: rutinasID: {0} , objetivosId: {1}", new Object[]{rutinasId, objetivosId});
         if (objetivoLogic.getObjetivo(objetivosId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/objetivos/" + objetivosId +  NO_EXISTE, 404);
+            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/objetivos/" + objetivosId +  NOEXISTE, 404);
         }
         ObjetivoDetailDTO objetivoDetailDTO = new ObjetivoDetailDTO(rutinaObjetivosLogic.getObjetivo(rutinasId, objetivosId));
         LOGGER.log(Level.INFO, "RutinaObjetivosResource getObjetivo: output: {0}", objetivoDetailDTO );
@@ -128,7 +128,7 @@ class RutinaObjetivosResource {
         LOGGER.log(Level.INFO, "RutinaObjetivosResource replaceObjetivos: input: rutinasId: {0} , objetivos: {1}", new Object[]{rutinasId, objetivos });
         for (ObjetivoDetailDTO objetivo : objetivos) {
             if (objetivoLogic.getObjetivo(objetivo.getId()) == null) {
-                throw new WebApplicationException("El recurso /objetivos/" + objetivo.getId() +  NO_EXISTE, 404);
+                throw new WebApplicationException("El recurso /objetivos/" + objetivo.getId() +  NOEXISTE, 404);
             }
         }
         List<ObjetivoDetailDTO> listaDetailDTOs = objetivosListEntity2DTO(rutinaObjetivosLogic.replaceObjetivos(rutinasId, objetivosListDTO2Entity(objetivos)));
