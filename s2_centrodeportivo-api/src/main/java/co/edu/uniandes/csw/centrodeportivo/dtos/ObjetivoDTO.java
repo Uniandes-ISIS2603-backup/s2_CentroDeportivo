@@ -24,9 +24,9 @@ public class ObjetivoDTO implements Serializable {
     //Descripción del objetivo
     private String descripcion;
     //Indica si se cumplió o no el objetivo
-    public Boolean cumplio;
+    private Boolean cumplio;
     //Fecha límite del objetivo
-    public String fechaLimite;
+    private String fechaLimite;
     
     /**
      * Constructor por defecto.

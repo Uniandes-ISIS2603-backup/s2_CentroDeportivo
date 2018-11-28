@@ -20,19 +20,19 @@ public class RutinaDTO implements Serializable {
     /**
      * Identificador unico de la rutina
      */
-    public Long id;
+    private Long id;
     /**
      * Identificador de la rutina repetible por deportista
      */
-    public Integer identificadorRutina;
+    private Integer identificadorRutina;
     /**
      * Nombre de la rutina
      */
-    public String nombre;
+    private String nombre;
     /**
      * Estado de la rutina
      */
-    public Boolean estadoTerminado;
+    private Boolean estadoTerminado;
     /**
      * Constructor por defecto
      */
