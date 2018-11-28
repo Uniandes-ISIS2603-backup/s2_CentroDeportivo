@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ca4cd066-fcd4-4b24-b86f-5d78f230d005",
+		"_postman_id": "43829485-50e5-4581-b78c-150d68881bfc",
 		"name": "Pruebas ImplementoEjercicio",
 		"description": "Colección de pruebas sobre el recurso ImplementoEjercicio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -59,13 +59,13 @@
 					"listen": "test",
 					"script": {
 						"id": "23f91cab-3c8f-4a32-b49b-7e91d82068ce",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"nuevo_id_i\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
 							"console.log(data.id);"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -79,7 +79,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Colchoneta {{$randomInt}}\"\n}"
+					"raw": "{\n\t\"nombre\": \"Colchoneta {{$randomInt}}\",\n\t\"cantidadExistencias\": {{$randomInt}}\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/implementos",
@@ -182,7 +182,7 @@
 			"response": []
 		},
 		{
-			"name": "Obtener el ejercicio de un implemento",
+			"name": "Obtener los ejercicios de un implemento",
 			"event": [
 				{
 					"listen": "test",
@@ -219,7 +219,7 @@
 						"ejercicios"
 					]
 				},
-				"description": "**Release: Paso-5**\r\n\r\nConsulta un autor de un premio en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id del autor y del premio a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+				"description": "Consulta la lista de ejercicios de un implemento en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
@@ -230,11 +230,11 @@
 					"listen": "test",
 					"script": {
 						"id": "0f5629a2-5f19-479e-a18f-8b0db119b272",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se puede obtener el ejercicio ya que este no existe.\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /implementos/19/ejercicio no existe.\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /implementos/19 no existe.\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],

@@ -1,11 +1,101 @@
 {
 	"info": {
-		"_postman_id": "2cbd1067-83fc-4f60-a41d-9bcbf7417080",
+		"_postman_id": "994b8b3b-b3bf-4e1f-8077-5c0204409214",
 		"name": "PruebasZonaCuerpoEjercicio",
 		"description": "Colección de pruebas sobre el recurso PrizeAuthor",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear Ejercicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d581f8a-9e5c-4298-bcbc-4322c2a3e3ee",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_e\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				},
+				"description": "Crea un nuevo ejercicio. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Zona Cuerpo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89241afe-7baa-4aa2-89e9-8d48c12e4827",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_z\", data.id);",
+							"tests['No genera error en el Post'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 2,\n\t\"nombre\": \"biceps\" \n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"zonasCuerpo"
+					]
+				},
+				"description": "Crea la zona Cuerpo"
+			},
+			"response": []
+		},
 		{
 			"name": "Agregarle un ejercicio a una zonacuerpo",
 			"event": [
@@ -13,10 +103,10 @@
 					"listen": "test",
 					"script": {
 						"id": "e9b76351-dc3d-4ac6-beab-81871addfd96",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -28,7 +118,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/1/ejercicios/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/{{nuevo_id_z}}/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -38,9 +128,9 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"1",
+						"{{nuevo_id_z}}",
 						"ejercicios",
-						"2"
+						"{{nuevo_id_e}}"
 					]
 				},
 				"description": "**Release: Paso-5**\r\n\r\nAsocia un premio a un autor en la aplicación. \r\n\r\nSe envía el Id del autor y el del premio a asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
@@ -54,11 +144,11 @@
 					"listen": "test",
 					"script": {
 						"id": "2b3391ee-d21d-4acb-94a8-0472b0e8f71f",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se puede asociar el ejercicio ya que este no existe.\"] = responseCode.code === 404;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /ejercicios/0 no existe.\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -70,7 +160,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/1/ejercicios/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/{{nuevo_id_z}}/ejercicios/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -80,7 +170,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"1",
+						"{{nuevo_id_z}}",
 						"ejercicios",
 						"0"
 					]
@@ -96,12 +186,12 @@
 					"listen": "test",
 					"script": {
 						"id": "6e5d490f-c9a8-4f77-9ff8-cd2807cf9b20",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -113,7 +203,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/1/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/{{nuevo_id_z}}/ejercicios",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -123,7 +213,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"1",
+						"{{nuevo_id_z}}",
 						"ejercicios"
 					]
 				},
@@ -138,12 +228,11 @@
 					"listen": "test",
 					"script": {
 						"id": "6781fafb-ed85-408e-be9a-c52f0dd1a2c5",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se puede obtener el ejercicio ya que este no existe.\"] = responseCode.code === 404;",
-							"let id = pm.variables.get(\"new_id_p2\");",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /zonasCuerpo/0 no existe.\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -180,10 +269,10 @@
 					"listen": "test",
 					"script": {
 						"id": "b595cd14-771c-4768-9c3e-b1faacdf23ce",
-						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
-						]
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -195,7 +284,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/1/ejercicios/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/{{nuevo_id_z}}/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -205,9 +294,9 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"1",
+						"{{nuevo_id_z}}",
 						"ejercicios",
-						"2"
+						"{{nuevo_id_e}}"
 					]
 				},
 				"description": "**Release: Paso-5**\r\n\r\nActualiza el autor de un premio existente. Se envían los Ids de las entidades asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
@@ -221,11 +310,11 @@
 					"listen": "test",
 					"script": {
 						"id": "120edacc-8190-438c-8a8d-a07d2758fde9",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se puede reemplazar el ejercicio a la zonaCuerpo ya que el nuevo no existe.\"] = responseCode.code === 404;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /ejercicios/0 no existe.\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -237,7 +326,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/1/ejercicios/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/{{nuevo_id_z}}/ejercicios/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -247,53 +336,12 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"1",
+						"{{nuevo_id_z}}",
 						"ejercicios",
 						"0"
 					]
 				},
 				"description": "**Release: Paso-5**\r\n\r\nAsocia un autor que no existe a un premio en la aplicación. \r\n\r\nSe envían los Ids a asociar en la URL de la petición.\r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /authors/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar una zona Cuerpo con ejercicio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "fdd6c061-53fe-48eb-8aa6-87894fd4a2ee",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"No se puede borrar un prize que tenga un ejercicio asociado.\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El zonaCuerpo no tiene ejercicio\");"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/6/ejercicios",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_centrodeportivo-api",
-						"api",
-						"zonasCuerpo",
-						"6",
-						"ejercicios"
-					]
-				},
-				"description": "**Release: Paso-5**\r\n\r\nBorra un premio existente pero con autor. Verifica que se genera el error.\r\n\r\n**Código HTTP esperado: 412 Precondition failed\".**"
 			},
 			"response": []
 		},
@@ -304,10 +352,10 @@
 					"listen": "test",
 					"script": {
 						"id": "08d9072a-55bf-4641-bbdb-52b352762f65",
-						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
-						]
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -319,7 +367,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/6",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/zonasCuerpo/{{nuevo_id_z}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -329,10 +377,10 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"zonasCuerpo",
-						"6"
+						"{{nuevo_id_z}}"
 					]
 				},
-				"description": "**Release: Paso-5**\n\nBorra la asociación entre un premio y un autor. Se envían los ids del autor y del premio creados anteriormente.\n\n**Código HTTP esperado: 204**"
+				"description": "Borra la asociación entre una zona del cuerpo y un ejercicio. Se envían los ids de la zona del cuerpo y del ejercicio creados anteriormente.\n\n**Código HTTP esperado: 204**"
 			},
 			"response": []
 		}

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d2ef5839-e648-4750-91b4-fd25b0e69aea",
+		"_postman_id": "d83f9c49-0546-4220-9042-c883de52ac64",
 		"name": "Pruebas Ejercicio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						"id": "2d581f8a-9e5c-4298-bcbc-4322c2a3e3ee",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"nuevo_id_s\", data.id);",
+							"postman.setGlobalVariable(\"nuevo_id_e\", data.id);",
 							"tests['No genera error en el Post'] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -46,12 +46,12 @@
 						"ejercicios"
 					]
 				},
-				"description": "Crea un ejercicio"
+				"description": "Crea un nuevo ejercicio. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener Ejercicio",
+			"name": "Obtener un Ejercicio",
 			"event": [
 				{
 					"listen": "test",
@@ -74,7 +74,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -83,15 +83,16 @@
 					"path": [
 						"s2_centrodeportivo-api",
 						"api",
-						"ejercicios"
+						"ejercicios",
+						"{{nuevo_id_e}}"
 					]
 				},
-				"description": "Obtiene el ejercicio"
+				"description": "Consulta un ejercicio de la aplicación.  \r\nLa petición no tiene cuerpo.\r\nSe envía el id del ejercicio deseado por la URL de la petición.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener ejercicio que no exsiste",
+			"name": "Obtener ejercicio que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -126,12 +127,52 @@
 						"0"
 					]
 				},
-				"description": "\n"
+				"description": "Consulta un ejercicio que no existe en la aplicación.  \n\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /ejercicios/0 no existe.\".\n\n**Código http esperado: 404**"
 			},
 			"response": []
 		},
 		{
-			"name": "Actualizar Ejercicio.",
+			"name": "Obtener todos los ejercicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a45e90da-b480-40b1-abcb-92084294df6d",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"ejercicios count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_centrodeportivo-api",
+						"api",
+						"ejercicios"
+					]
+				},
+				"description": "Consulta todos los ejercicios de la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nPara la prueba, se verifica que el conjunto de ejercicios en la respuesta tenga más de uno.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Ejercicio",
 			"event": [
 				{
 					"listen": "test",
@@ -156,10 +197,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+					"raw": "{\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -169,10 +210,10 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"ejercicios",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				},
-				"description": "Actualiza el ejercicio con id 1"
+				"description": "Actualiza un ejercicio existente. Se envía el Id en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
 			},
 			"response": []
 		},
@@ -184,7 +225,7 @@
 					"script": {
 						"id": "04a5541e-35a9-4893-aee0-6d85f7066bfd",
 						"exec": [
-							"tests[\"No se debería actualizar un ejercicios con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"No se debería actualizar un ejercicio con un id que no existe\"] = responseCode.code === 404;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /ejercicios/0 no existe.\");"
 						],
 						"type": "text/javascript"
@@ -201,7 +242,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
+					"raw": "{\n\t\"nombre\": \"peso Muerto\" ,\n\t\"categoria\": \"relajacion\",\n\t\"duracion\": 2,\n\t\"numeroDeSeries\": 3,\n\t\"descripcion\": \"Ejercicio de relajacion que relaja la espalda\",\n\t\"explicacion\": \"Levantar el peso y luego soltarlo\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/0",
@@ -216,7 +257,8 @@
 						"ejercicios",
 						"0"
 					]
-				}
+				},
+				"description": "Actualiza un ejercicio que no existe. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /ejercicios/0 no existe.\".\r\n\r\n**Código HTTP esperado: 404**"
 			},
 			"response": []
 		},
@@ -242,7 +284,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/ejercicios/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -252,10 +294,10 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"ejercicios",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				},
-				"description": "Borra el ejercicio."
+				"description": "Borra un ejercicio. Se envía el id de la entidad creada anteriormente.\n\n**Código HTTP esperado: 204**"
 			},
 			"response": []
 		},
@@ -294,7 +336,8 @@
 						"ejercicios",
 						"0"
 					]
-				}
+				},
+				"description": "Borra un ejercicio que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /ejercicio/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
 			},
 			"response": []
 		}
