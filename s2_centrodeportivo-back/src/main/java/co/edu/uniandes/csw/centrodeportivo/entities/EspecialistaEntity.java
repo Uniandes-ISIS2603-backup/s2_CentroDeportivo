@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -28,11 +29,11 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
-    private List<DeportistaEntity> deportistas = new ArrayList<DeportistaEntity>();
+    private List<DeportistaEntity> deportistas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "especialista", fetch = javax.persistence.FetchType.LAZY)
-    private List <ObjetivoEntity> objetivos = new ArrayList<ObjetivoEntity>();
+    private List <ObjetivoEntity> objetivos = new ArrayList<>();
     
     /**
      * Devuelve el nombre de la editorial.
@@ -140,5 +141,43 @@ public class EspecialistaEntity extends BaseEntity implements Serializable {
     public void setObjetivos(List<ObjetivoEntity> listaObjetivos)
     {
         this.objetivos=listaObjetivos;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EspecialistaEntity other = (EspecialistaEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.cedula, other.cedula))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.especialidad, other.especialidad))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.imagen, other.imagen))
+        {
+            return false;
+        }
+        return Objects.equals(this.deportistas, other.deportistas);
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
     }
 }

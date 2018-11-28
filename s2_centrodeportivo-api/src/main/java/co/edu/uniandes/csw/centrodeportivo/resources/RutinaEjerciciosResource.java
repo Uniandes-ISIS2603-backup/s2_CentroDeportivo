@@ -35,6 +35,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class RutinaEjerciciosResource {
     private final String NOEXISTE = " no existe.";
+    private final String REC ="El recurso /rutinas/";
     private static final Logger LOGGER = Logger.getLogger(RutinaEjerciciosResource.class.getName());
     
     @Inject
@@ -102,7 +103,7 @@ public class RutinaEjerciciosResource {
     public EjercicioDetailDTO getEjercicio(@PathParam("rutinasId") Long rutinasId, @PathParam("ejerciciosId") Long ejerciciosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicio: input: rutinasID: {0} , ejerciciosId: {1}", new Object[]{rutinasId, ejerciciosId});
         if (ejercicioLogic.getEjercicio(ejerciciosId) == null) {
-            throw new WebApplicationException("El recurso /rutinas/" + rutinasId + "/ejercicios/" + ejerciciosId + NOEXISTE, 404);
+            throw new WebApplicationException(REC + rutinasId + "/ejercicios/" + ejerciciosId + NOEXISTE, 404);
         }
         EjercicioDetailDTO ejercicioDetailDTO = new EjercicioDetailDTO(rutinaEjerciciosLogic.getEjercicio(rutinasId, ejerciciosId));
         LOGGER.log(Level.INFO, "RutinaEjerciciosResource getEjercicio: output: {0}", ejercicioDetailDTO);
