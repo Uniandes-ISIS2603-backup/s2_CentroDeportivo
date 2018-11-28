@@ -90,6 +90,7 @@ insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite) values (7, 'F
 insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite) values (8, 'Public-key mobile Graphical User Interface', 0, '1985-11-20 00:00:00');
 insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite) values (9, 'Persevering object-oriented access', 0, '1985-11-20 00:00:00');
 insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite) values (10, 'Function-based maximized project', 0, '1985-11-20 00:00:00');
+insert into ObjetivoEntity (id, descripcion, cumplio, fechaLimite, deportista_id) values (11, 'Prueba', 0, '1985-11-20 00:00:00',1);
 
  --POBLAMIENTO TABLA MAQUINA
 insert into MAQUINAENTITY (id, nombre, referencia, imagen) values (1, 'Caminadora', '12334', 'https://bodytech.com.co/uploads/complementaryservice/72a941c8e0574edfa2d77a182c1b5961/bodytech_zona_cardiovascular.jpg' );

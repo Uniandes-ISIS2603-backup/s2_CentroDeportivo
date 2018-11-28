@@ -39,7 +39,7 @@ public class ObjetivoLogic {
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de un objetivo");
         if (persistencia.findByDescripcion(objetivoEntity.getDescripcion()) != null) {
-            throw new BusinessLogicException("Ya existe un onjetivo con la descripción \"" + objetivoEntity.getDescripcion() + "\"");
+            throw new BusinessLogicException("Ya existe un objetivo con la descripción \"" + objetivoEntity.getDescripcion() + "\"");
         }
         ObjetivoEntity nuevoObjetivo = persistencia.create(objetivoEntity);
         LOGGER.log(Level.INFO,"Termina proceso de creación de un objetivo");
@@ -89,7 +89,6 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el objetivo identificado con el id = {0}",objetivosId);
         return objetivoActualizado;
     }
-<<<<<<< HEAD
      /**
      * Elimina una instancia de un objetivo de la base de datos.
      *
@@ -102,6 +101,4 @@ public class ObjetivoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar el objetivo con id = {0}", objetivosId);
     }
 }
-=======
-}
->>>>>>> e6666b15e4e9856c0329e34b324144f617fa5ef8
+
