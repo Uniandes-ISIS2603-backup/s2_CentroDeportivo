@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,7 +28,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "maquina")
-    private List<EjercicioEntity> ejercicios = new ArrayList<EjercicioEntity>();
+    private List<EjercicioEntity> ejercicios = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne
@@ -125,4 +126,30 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
         this.imagen = imagen;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaquinaEntity other = (MaquinaEntity) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.referencia, other.referencia)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagen, other.imagen)) {
+            return false;
+        }
+        if (!Objects.equals(this.ejercicios, other.ejercicios)) {
+            return false;
+        }
+        return Objects.equals(this.seguimiento, other.seguimiento);
+    }
 }
