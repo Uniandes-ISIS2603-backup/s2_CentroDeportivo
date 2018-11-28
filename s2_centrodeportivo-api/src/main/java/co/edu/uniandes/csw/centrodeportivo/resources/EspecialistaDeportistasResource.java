@@ -38,7 +38,7 @@ class EspecialistaDeportistasResource {
     
     private static final Logger LOGGER = Logger.getLogger(EspecialistaDeportistasResource.class.getName());
     
-    private String NOEXISTE = " no existe.";
+    private static final String NOEXISTE = " no existe.";
     
     @Inject
     private EspecialistaDeportistasLogic especialistaDeportistasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.

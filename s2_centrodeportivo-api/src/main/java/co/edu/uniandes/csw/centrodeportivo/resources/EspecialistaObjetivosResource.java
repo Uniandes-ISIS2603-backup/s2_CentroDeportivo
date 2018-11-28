@@ -39,7 +39,7 @@ import javax.ws.rs.WebApplicationException;
 public class EspecialistaObjetivosResource {
     
     private static final Logger LOGGER = Logger.getLogger(EspecialistaObjetivosResource.class.getName());
-    private String NOEXISTE = "no existe.";
+    private static final String NOEXISTE = "no existe.";
     @Inject
     private EspecialistaObjetivosLogic especialistaObjetivosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     

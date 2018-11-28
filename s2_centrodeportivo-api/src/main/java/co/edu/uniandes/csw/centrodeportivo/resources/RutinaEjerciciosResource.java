@@ -34,8 +34,8 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RutinaEjerciciosResource {
-    private final String NOEXISTE = " no existe.";
-    private final String REC ="El recurso /rutinas/";
+    private static final String NOEXISTE = " no existe.";
+    private static final String REC ="El recurso /rutinas/";
     private static final Logger LOGGER = Logger.getLogger(RutinaEjerciciosResource.class.getName());
     
     @Inject
