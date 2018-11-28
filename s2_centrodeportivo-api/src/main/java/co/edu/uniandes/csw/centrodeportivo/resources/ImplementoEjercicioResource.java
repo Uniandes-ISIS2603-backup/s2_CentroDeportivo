@@ -62,7 +62,7 @@ public class ImplementoEjercicioResource {
             throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
         }
         EjercicioDTO ejercicioDTO = new EjercicioDTO(implementoEjercicioLogic.addEjercicio(ejerciciosId, implementosId));
-        LOGGER.log(Level.INFO, "ImplementoEjercicioResource addEjercicio: output: {0}", ejercicioDTO.toString());
+        LOGGER.log(Level.INFO, "ImplementoEjercicioResource addEjercicio: output: {0}", ejercicioDTO);
         return ejercicioDTO;
     }
     
@@ -83,7 +83,7 @@ public class ImplementoEjercicioResource {
             throw new WebApplicationException("El recurso /implementos/" + implementosId + "/ejercicio no existe.", 404);
         }
         EjercicioDetailDTO ejercicioDetailDTO = new EjercicioDetailDTO(ejercicioEntity);
-        LOGGER.log(Level.INFO, "ImplementoEjercicioResource getEjercicio: output: {0}", ejercicioDetailDTO.toString());
+        LOGGER.log(Level.INFO, "ImplementoEjercicioResource getEjercicio: output: {0}", ejercicioDetailDTO);
         return ejercicioDetailDTO;
     }
     
@@ -106,7 +106,7 @@ public class ImplementoEjercicioResource {
             throw new WebApplicationException("El recurso /ejercicios/" + ejerciciosId + " no existe.", 404);
         }
         EjercicioDetailDTO ejercicioDetailDTO = new EjercicioDetailDTO(implementoEjercicioLogic.replaceEjercicio(implementosId, ejerciciosId));
-        LOGGER.log(Level.INFO, "ImplementoEjercicioResource replaceEjercicio: output: {0}", ejercicioDetailDTO.toString());
+        LOGGER.log(Level.INFO, "ImplementoEjercicioResource replaceEjercicio: output: {0}", ejercicioDetailDTO);
         return ejercicioDetailDTO;
     }
     
