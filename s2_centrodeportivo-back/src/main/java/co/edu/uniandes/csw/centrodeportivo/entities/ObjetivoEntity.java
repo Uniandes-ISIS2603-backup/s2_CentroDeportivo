@@ -12,6 +12,7 @@ package co.edu.uniandes.csw.centrodeportivo.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,6 +25,48 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ObjetivoEntity extends BaseEntity implements Serializable {
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ObjetivoEntity other = (ObjetivoEntity) obj;
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaLimite, other.fechaLimite)) {
+            return false;
+        }
+        if (!Objects.equals(this.cumplio, other.cumplio)) {
+            return false;
+        }
+        if (!Objects.equals(this.deportista, other.deportista)) {
+            return false;
+        }
+        if (!Objects.equals(this.rutina, other.rutina)) {
+            return false;
+        }
+        if (!Objects.equals(this.casosExitosos, other.casosExitosos)) {
+            return false;
+        }
+        if (!Objects.equals(this.especialista, other.especialista)) {
+            return false;
+        }
+        return true;
+    }
     
     private String descripcion;
     
@@ -40,7 +83,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "objetivo")
-    private List<DeportistaEntity> casosExitosos = new ArrayList<DeportistaEntity>();
+    private List<DeportistaEntity> casosExitosos = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne

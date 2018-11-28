@@ -1,23 +1,38 @@
 {
 	"info": {
-		"_postman_id": "0f8afb87-b99a-42d6-a4a1-f03c08d2be76",
+		"_postman_id": "296b1fa9-34a7-47b5-aa79-ee659e415665",
 		"name": "Pruebas Especialista",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear especialista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2ddc020-183b-4911-94e3-1be87134683d",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_e\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"cedula\": 37473473,\n\t\"nombre\": \"Lol\",\n\t\"especialidad\": \"Lel\"\n}"
+					"raw": "{\n\t\"cedula\": 37473473,\n\t\"nombre\": \"Lol\",\n\t\"especialidad\": \"Lel\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas",
@@ -41,7 +56,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas",
 					"protocol": "http",
@@ -60,12 +78,27 @@
 		},
 		{
 			"name": "Obtener un Especialista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6b26fe4-14ae-4269-9a26-521402ddf159",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -75,7 +108,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"especialistas",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				}
 			},
@@ -96,7 +129,7 @@
 					"raw": "{\n\t\"id\": 1,\n\t\"cedula\": 37473473,\n\t\"nombre\": \"Jose Manuel Roberto Andrade\",\n\t\"especialidad\": \"Yoga y karate\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -106,7 +139,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"especialistas",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				}
 			},
@@ -117,9 +150,12 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/especialistas/{{nuevo_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -129,7 +165,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"especialistas",
-						"1"
+						"{{nuevo_id_e}}"
 					]
 				}
 			},

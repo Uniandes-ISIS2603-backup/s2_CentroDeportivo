@@ -1,12 +1,25 @@
 {
 	"info": {
-		"_postman_id": "a990d79b-169e-486f-a99c-ba8c1426e187",
+		"_postman_id": "52257eb2-4149-48e9-8b45-e7f37996768d",
 		"name": "Pruebas Rutina",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear Rutina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f259729e-4f70-4c23-8c70-cc3ef77b8d44",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"nuevo_id_r\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -17,7 +30,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"identificadorRutina\": 1228213,\n\t\"nombre\": \"Upper body Workout\",\n\t\"estadoTerminado\": false\n}\n"
+					"raw": "{\n\t\"identificadorRutina\": 1228213,\n\t\"nombre\": \"Upper body Workout\",\n\t\"estadoTerminado\": false\n}\n"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas",
@@ -40,7 +53,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas",
 					"protocol": "http",
@@ -62,9 +78,12 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas/{{nuevo_id_r}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -74,7 +93,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"rutinas",
-						"1"
+						"{{nuevo_id_r}}"
 					]
 				}
 			},
@@ -95,7 +114,7 @@
 					"raw": "{\n\t\"id\": 1,\n\t\"identificadorRutina\": 1228213,\n\t\"nombre\": \"Upper body Workout\",\n\t\"estadoTerminado\": true\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas/{{nuevo_id_r}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -105,7 +124,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"rutinas",
-						"1"
+						"{{nuevo_id_r}}"
 					]
 				}
 			},
@@ -116,9 +135,12 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_centrodeportivo-api/api/rutinas/{{nuevo_id_r}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -128,7 +150,7 @@
 						"s2_centrodeportivo-api",
 						"api",
 						"rutinas",
-						"1"
+						"{{nuevo_id_r}}"
 					]
 				}
 			},
