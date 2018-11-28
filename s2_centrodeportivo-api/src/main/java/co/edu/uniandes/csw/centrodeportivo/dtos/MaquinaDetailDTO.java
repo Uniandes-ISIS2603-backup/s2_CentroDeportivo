@@ -42,7 +42,7 @@ public class MaquinaDetailDTO extends MaquinaDTO implements Serializable
     public MaquinaDetailDTO(MaquinaEntity maquinaEntity) {
         super(maquinaEntity);
         if (maquinaEntity != null) {
-            ejercicios = new ArrayList<EjercicioDTO>();
+            ejercicios = new ArrayList<>();
             for (EjercicioEntity entityEjercicios : maquinaEntity.getEjercicios( )) {
                 ejercicios.add(new EjercicioDTO(entityEjercicios));
             }
@@ -59,7 +59,7 @@ public class MaquinaDetailDTO extends MaquinaDTO implements Serializable
     public MaquinaEntity toEntity() {
         MaquinaEntity maquina = super.toEntity();
         if (ejercicios != null) {
-            List<EjercicioEntity> ejerciciosEntity = new ArrayList<EjercicioEntity>();
+            List<EjercicioEntity> ejerciciosEntity = new ArrayList<>();
             for (EjercicioDTO dtoEjercicio : ejercicios) {
                 ejerciciosEntity.add(dtoEjercicio.toEntity());
             }
