@@ -17,15 +17,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class EspecialistaDTO implements Serializable {
     
     //El id del especialista
-    private Long id;
+    public Long id;
     //La cédula del especialista
-    private Integer cedula;
+    public Integer cedula;
     //El nombre del especialista
-    private String nombre;
+    public String nombre;
     //La especialidad del especialista
-    private String especialidad;
+    public String especialidad;
     //La imagen del especialista
-    private String imagen;
+    public String imagen;
     
     /**
      * Constructor por defecto

@@ -18,55 +18,55 @@ public class DeportistaDTO implements Serializable {
     /**
      * Id del deportista
      */
-    private Long id;
+    public Long id;
     /**
      * Nombre del deportista
      */
-    private String nombre;
+    public String nombre;
     /**
      * Sexo del deportista
      */
-    private Boolean sexo;
+    public Boolean sexo;
     /**
      * Fecha ultima actualizacion de datos
      */
-    private String ultimaActualizacionDatos;
+    public String ultimaActualizacionDatos;
     /**
      * Fecha de nacimiento del deportista
      */
-    private String fechaNacimiento;
+    public String fechaNacimiento;
     /**
      * Altura del deportista
      */
-    private Double altura;
+    public Double altura;
     /**
      * Presion sanguinea del deportista
      */
-    private Double presionSanguinea;
+    public Double presionSanguinea;
     /**
      * peso del deportista
      */
-    private Double peso;
+    public Double peso;
     /**
      * Medida piernas del deportista
      */
-    private Double medidaPiernas;
+    public Double medidaPiernas;
     /**
      * Mediida cintura del deportista
      */
-    private Double medidaCintura;
+    public Double medidaCintura;
     /**
      * Medida de los brazos del deportista
      */
-    private Double medidaBrazos;
+    public Double medidaBrazos;
     /**
      * Ritmo cardiaco del deportista
      */
-    private Integer ritmoCardiaco;
+    public Integer ritmoCardiaco;
     /**
      * cedula del deportista
      */
-    private Integer cedula;
+    public Integer cedula;
     /**
      * Constructor por defecto.
      */
