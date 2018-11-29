@@ -20,13 +20,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ObjetivoDTO implements Serializable {
     
     //Id del objetivo
-    public Long id;
+    private Long id;
     //Descripción del objetivo
-    public String descripcion;
+    private String descripcion;
     //Indica si se cumplió o no el objetivo
-    public Boolean cumplio;
+    private Boolean cumplio;
     //Fecha límite del objetivo
-    public String fechaLimite;
+    private String fechaLimite;
     
     /**
      * Constructor por defecto.
